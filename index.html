@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaihAsa - Platform Donasi Tepat Sasaran untuk Bandung</title>
+    
+    <!-- Link ke file CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Link ke Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="#beranda" class="logo">RaihAsa</a>
+            <nav class="nav">
+                <a href="#beranda">Beranda</a>
+                <a href="#cara-kerja">Cara Kerja</a>
+                <a href="#tentang-kami">Tentang Kami</a>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-secondary">Masuk</a>
+                <a href="#" class="btn btn-primary">Daftar</a>
+
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION (Beranda) -->
+        <section id="beranda" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1>Menyalurkan Kebaikan, Tepat Sasaran di Bandung.</h1>
+                <p>RaihAsa menghubungkan donatur dengan panti asuhan & yayasan di Bandung yang benar-benar membutuhkan. Setiap donasi Anda akan berarti.</p>
+                <a href="#timeline-kebutuhan" class="btn btn-accent btn-large">Temukan Kebutuhan</a>
+            </div>
+        </section>
+
+        <!-- TIMELINE KEBUTUHAN -->
+        <section id="timeline-kebutuhan" class="filter-section">
+            <div class="container">
+                <h2>Timeline Kebutuhan Terkini</h2>
+                <div class="filter-container">
+                    <select id="locationFilter" class="filter-dropdown">
+                        <option value="5">Lokasi: < 5 KM</option>
+                        <option value="10">Lokasi: < 10 KM</option>
+                        <option value="25">Lokasi: < 25 KM</option>
+                        <option value="all">Semua Lokasi di Bandung</option>
+                    </select>
+                    <div class="category-filters">
+                        <button class="filter-btn active" data-category="all">Semua</button>
+                        <button class="filter-btn" data-category="makanan">Makanan</button>
+                        <button class="filter-btn" data-category="pakaian">Pakaian</button>
+                        <button class="filter-btn" data-category="furnitur">Furnitur</button>
+                        <button class="filter-btn" data-category="elektronik">Elektronik</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="container timeline" id="timelineContainer">
+                <!-- Kartu Kebutuhan 1 -->
+                <article class="kartu-kebutuhan" data-category="elektronik">
+                    <div class="kartu-header">
+                        <img src="https://via.placeholder.com/50" alt="Foto Panti A" class="panti-photo">
+                        <div class="panti-info">
+                            <h4>Panti Asuhan Kasih Ibu</h4>
+                            <p class="lokasi"><i class="icon-map"></i> Coblong, Bandung - 3 km dari Anda</p>
+                        </div>
+                    </div>
+                    <div class="kartu-body">
+                        <h3>Dibutuhkan Mendesak: 2 Kipas Angin</h3>
+                        <p>Stok kami habis, cuaca di Bandung sedang panas. Anak-anak kesulitan tidur dan belajar. Butuh kipas angin yang masih nyala.</p>
+                        <div class="kartu-meta">
+                            <span class="badge urgent">Mendesak</span>
+                            <span class="badge category">Elektronik</span>
+                        </div>
+                    </div>
+                    <div class="kartu-footer">
+                        <button class="btn btn-accent btn-block">Saya Penuhi Kebutuhan Ini</button>
+                    </div>
+                </article>
+
+                <!-- Kartu Kebutuhan 2 -->
+                <article class="kartu-kebutuhan" data-category="makanan">
+                    <div class="kartu-header">
+                        <img src="https://via.placeholder.com/50" alt="Foto Panti B" class="panti-photo">
+                        <div class="panti-info">
+                            <h4>Rumah Singgah Harapan</h4>
+                            <p class="lokasi"><i class="icon-map"></i> Sukajadi, Bandung - 5 km dari Anda</p>
+                        </div>
+                    </div>
+                    <div class="kartu-body">
+                        <h3>Menerima Donasi Beras 2 Karung</h3>
+                        <p>Persediaan beras kami untuk minggu ini sudah menipis. Bantuan Anda sangat berarti untuk kelangsungan makan anak-anak.</p>
+                        <div class="kartu-meta">
+                            <span class="badge normal">Normal</span>
+                            <span class="badge category">Makanan</span>
+                        </div>
+                    </div>
+                    <div class="kartu-footer">
+                        <button class="btn btn-accent btn-block">Saya Penuhi Kebutuhan Ini</button>
+                    </div>
+                </article>
+
+                <!-- Kartu Kebutuhan 3 -->
+                <article class="kartu-kebutuhan" data-category="pakaian">
+                    <div class="kartu-header">
+                        <img src="https://via.placeholder.com/50" alt="Foto Panti C" class="panti-photo">
+                        <div class="panti-info">
+                            <h4>Panti Jompo Sejahtera</h4>
+                            <p class="lokasi"><i class="icon-map"></i> Arcamanik, Bandung - 8 km dari Anda</p>
+                        </div>
+                    </div>
+                    <div class="kartu-body">
+                        <h3>Butuh Baju Layak Pakai untuk Lansia</h3>
+                        <p>Kami menerima donasi baju layak pakai untuk lansia (usia 60+), baik pria maupun wanita. Terutama kemeja dan baju longgar.</p>
+                        <div class="kartu-meta">
+                            <span class="badge normal">Normal</span>
+                            <span class="badge category">Pakaian</span>
+                        </div>
+                    </div>
+                    <div class="kartu-footer">
+                        <button class="btn btn-accent btn-block">Saya Penuhi Kebutuhan Ini</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- CARA KERJA SECTION -->
+        <section id="cara-kerja" class="content-section section-light">
+            <div class="container">
+                <h2>Cara Kerja RaihAsa</h2>
+                <p>Sederhana, transparan, dan berdampak langsung. RaihAsa dirancang untuk memudahkan Anda berbuat baik.</p>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-icon">1</div>
+                        <h3>Jelajahi Kebutuhan</h3>
+                        <p>Buka Timeline Kebutuhan dan filter berdasarkan lokasi atau kategori (Makanan, Pakaian, dll) untuk menemukan yang paling dekat dengan hati Anda.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">2</div>
+                        <h3>Pilih & Penuhi</h3>
+                        <p>Ketika Anda menemukan kebutuhan yang cocok, klik tombol "Saya Penuhi Kebutuhan Ini". Atau, posting barang yang Anda miliki dan biarkan sistem kami mencarinya.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">3</div>
+                        <h3>Atur Logistik</h3>
+                        <p>Setelah terhubung, Anda bisa memilih untuk mengantar barang sendiri atau dijemput oleh panti. Koordinasi jadi mudah.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TENTANG KAMI SECTION -->
+        <section id="tentang-kami" class="content-section section-dark">
+            <div class="container">
+                <h2>Tentang RaihAsa</h2>
+                <p>RaihAsa lahir dari keprihatinan akan banyaknya donasi yang tidak tepat sasaran dan kesulitan panti asuhan untuk menyuarakan kebutuhan spesifik mereka secara real-time.</p>
+                <div class="about-grid">
+                    <div class="about-item">
+                        <h3>Visi Kami</h3>
+                        <p>Menciptakan ekosistem donasi yang transparan, efisien, dan penuh kepercayaan di Indonesia, dimulai dari Bandung.</p>
+                    </div>
+                    <div class="about-item">
+                        <h3>Misi Kami</h3>
+                        <p>Memudahkan donatur untuk menyalurkan bantuan secara tepat sasaran dan memberdayakan panti asuhan & yayasan untuk menyampaikan kebutuhan mereka secara dinamis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 RaihAsa. All rights reserved. Berdiri untuk Bandung, Inspirasi untuk Indonesia.</p>
+        </div>
+    </footer>
+
+    <!-- Link ke file JS -->
+    <script src="js/script.js" defer></script>
+
+</body>
+</html>

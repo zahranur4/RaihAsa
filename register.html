@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar - RaihAsa</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>RaihAsa</h1>
+                <p>Menjembatani Kebutuhan, Menebarkan Kebaikan</p>
+            </div>
+            <form class="auth-form" id="registerForm">
+                <h2>Daftar Akun Baru</h2>
+                <div class="form-group">
+                    <input type="text" placeholder="Nama Lengkap" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="">Daftar Sebagai</option>
+                        <option value="donatur">Donatur</option>
+                        <option value="panti">Panti / Yayasan</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Daftar</button>
+                <p class="auth-switch">Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+            </form>
+        </div>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>
