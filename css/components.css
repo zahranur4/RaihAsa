@@ -1,0 +1,291 @@
+/*=============== NOTIFICATIONS ===============*/
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 300px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.notification-content i {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.notification-close:hover {
+  color: var(--text-primary);
+}
+
+/*=============== LOADING SPINNER ===============*/
+.loading-spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 0.25rem solid rgba(92, 107, 192, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/*=============== BADGES ===============*/
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-primary {
+  background-color: rgba(92, 107, 192, 0.1);
+  color: var(--primary-color);
+}
+
+.badge-success {
+  background-color: rgba(102, 187, 106, 0.1);
+  color: var(--success-color);
+}
+
+.badge-warning {
+  background-color: rgba(255, 202, 40, 0.1);
+  color: var(--warning-color);
+}
+
+.badge-danger {
+  background-color: rgba(239, 83, 80, 0.1);
+  color: var(--danger-color);
+}
+
+/*=============== TOOLTIPS ===============*/
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: var(--dark-color);
+  color: var(--white);
+  text-align: center;
+  border-radius: var(--radius);
+  padding: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*=============== PAGINATION ===============*/
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.pagination-item {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  background-color: var(--white);
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.pagination-item:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.pagination-item.active {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.pagination-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-item.disabled:hover {
+  background-color: var(--white);
+  color: var(--text-primary);
+}
+
+/*=============== SMART MATCHING PREVIEW ===============*/
+.smart-matching-preview {
+  background-color: var(--white);
+}
+
+.matching-factors {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.matching-factors li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.smart-matching-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.matching-diagram {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+}
+
+.matching-node {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  z-index: 2;
+}
+
+.matching-node i {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.matching-node span {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.matching-node.donor {
+  top: 0;
+  left: 0;
+}
+
+.matching-node.algorithm {
+  top: 0;
+  right: 0;
+  background-color: var(--primary-color);
+}
+
+.matching-node.algorithm i,
+.matching-node.algorithm span {
+  color: var(--white);
+}
+
+.matching-node.recipient {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.matching-arrow {
+  position: absolute;
+  background-color: var(--primary-color);
+  z-index: 1;
+}
+
+.matching-arrow.donor-to-algorithm {
+  width: 100px;
+  height: 3px;
+  top: 60px;
+  left: 120px;
+  transform: rotate(30deg);
+}
+
+.matching-arrow.algorithm-to-recipient {
+  width: 100px;
+  height: 3px;
+  top: 120px;
+  right: 120px;
+  transform: rotate(150deg);
+}
+
+.matching-arrow::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: -8px;
+  border-left: 15px solid var(--primary-color);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+/*=============== DIGITAL VERIFICATION ===============*/
+.digital-verification {
+  background-color: var(--white);
+}
+
+.verification-process {
+  margin-bottom: 3rem;
+}
+
+.verification-benefits {
+  margin-top: 3rem;
+}
+
+.verification-benefits .benefit-card {
+  height: 100%;
+}
