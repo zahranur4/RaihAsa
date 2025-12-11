@@ -1,0 +1,337 @@
+/*=============== FOOD RESCUE PAGE ===============*/
+.food-rescue-section {
+  background-color: var(--white);
+}
+
+.rescue-categories {
+  margin-bottom: 2rem;
+}
+
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.category-btn {
+  padding: 0.5rem 1.5rem;
+  background-color: var(--light-color);
+  border: none;
+  border-radius: 50px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.category-btn.active,
+.category-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.rescue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.rescue-card {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  position: relative;
+}
+
+.rescue-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.rescue-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.rescue-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.rescue-card:hover .rescue-image img {
+  transform: scale(1.05);
+}
+
+.rescue-content {
+  padding: 1.5rem;
+}
+
+.rescue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.rescue-header h4 {
+  font-size: 1.25rem;
+  margin: 0;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.rescue-urgency {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.rescue-urgency.critical {
+  background-color: rgba(239, 83, 80, 0.1);
+  color: var(--danger-color);
+}
+
+.rescue-urgency.urgent {
+  background-color: rgba(255, 202, 40, 0.1);
+  color: var(--warning-color);
+}
+
+.rescue-urgency.normal {
+  background-color: rgba(102, 187, 106, 0.1);
+  color: var(--success-color);
+}
+
+.rescue-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.rescue-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.rescue-details {
+  margin-bottom: 1rem;
+}
+
+.rescue-details p {
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.rescue-details strong {
+  color: var(--text-primary);
+}
+
+.rescue-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Countdown Timer for Food Rescue */
+.countdown-timer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.countdown-timer.critical {
+  background-color: rgba(239, 83, 80, 0.9);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 83, 80, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 83, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 83, 80, 0);
+  }
+}
+
+/* Food Rescue Detail Modal */
+.rescue-detail-modal .modal-body {
+  padding: 0;
+}
+
+.rescue-detail-header {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.rescue-detail-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rescue-detail-content {
+  padding: 2rem;
+}
+
+.rescue-detail-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.rescue-detail-info {
+  margin-bottom: 1.5rem;
+}
+
+.rescue-detail-info h5 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.rescue-detail-info p {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.rescue-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.rescue-detail-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.rescue-detail-description {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.rescue-detail-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Logistic Coordination Options */
+.logistic-options {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--light-color);
+}
+
+.logistic-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--light-color);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.logistic-option:hover {
+  border-color: var(--primary-color);
+  background-color: rgba(92, 107, 192, 0.05);
+}
+
+.logistic-option.selected {
+  border-color: var(--primary-color);
+  background-color: rgba(92, 107, 192, 0.1);
+}
+
+.logistic-option-icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--light-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+.logistic-option-content h5 {
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.logistic-option-content p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Smart Matching Indicator */
+.matching-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: rgba(102, 187, 106, 0.1);
+  border-radius: var(--radius);
+  color: var(--success-color);
+}
+
+.matching-indicator i {
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .rescue-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .category-tabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  
+  .rescue-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .rescue-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .rescue-actions {
+    flex-direction: column;
+  }
+}
