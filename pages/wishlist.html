@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist Penerima - RaihAsa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">
+                    <i class="fas fa-seedling me-2"></i>
+                    <span>RaihAsa</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html#about">Tentang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="food-rescue.html">Food Rescue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="wishlist.html">Wishlist</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a href="#login" class="btn btn-outline-primary me-2">Masuk</a>
+                        <a href="#register" class="btn btn-primary">Daftar</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Wishlist Penerima</h1>
+            <p class="lead">Temukan kebutuhan mendesak dari panti dan lembaga yang membutuhkan bantuan</p>
+        </div>
+    </section>
+
+    <!-- Wishlist Section -->
+    <section class="wishlist-section py-5">
+        <div class="container">
+            <div class="wishlist-categories">
+                <div class="category-tabs">
+                    <button class="category-btn active" data-category="all">Semua</button>
+                    <button class="category-btn" data-category="mendesak">Mendesak</button>
+                    <button class="category-btn" data-category="rutin">Rutin</button>
+                    <button class="category-btn" data-category="pendidikan">Pendidikan</button>
+                    <button class="category-btn" data-category="kesehatan">Kesehatan</button>
+                </div>
+                
+                <div class="wishlist-grid">
+                    <div class="wishlist-card urgent" data-category="mendesak">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Susu Formula">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Susu Formula Bayi</h4>
+                                <div class="wishlist-urgency urgent">
+                                    <i class="fas fa-exclamation-triangle"></i> Mendesak
+                                </div>
+                            </div>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Harapan, Jakarta</span>
+                                <span><i class="fas fa-users"></i> 15 bayi</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> 20 kaleng</p>
+                                <p><strong>Keterangan:</strong> Stok susu formula untuk bayi 0-6 bulan sudah hampir habis</p>
+                                <p><strong>Penerima:</strong> Panti Asuhan Harapan</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wishlist-card urgent" data-category="kesehatan">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Obat-obatan">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Obat-obatan Dasar</h4>
+                                <div class="wishlist-urgency urgent">
+                                    <i class="fas fa-exclamation-triangle"></i> Mendesak
+                                </div>
+                            </div>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Panti Jompo Bahagia, Depok</span>
+                                <span><i class="fas fa-users"></i> 30 lansia</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> Paracetamol, vitamin, antiseptik</p>
+                                <p><strong>Keterangan:</strong> Kebutuhan obat-obatan dasar untuk lansia dengan penyakit kronis</p>
+                                <p><strong>Penerima:</strong> Panti Jompo Bahagia</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wishlist-card routine" data-category="rutin">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1586201375761-ab8d00959daa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Beras">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Beras</h4>
+                                <div class="wishlist-urgency routine">
+                                    <i class="fas fa-sync-alt"></i> Rutin
+                                </div>
+                            </div>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Ceria, Bogor</span>
+                                <span><i class="fas fa-users"></i> 50 anak</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> 50 kg per bulan</p>
+                                <p><strong>Keterangan:</strong> Kebutuhan beras untuk konsumsi sehari-hari anak panti</p>
+                                <p><strong>Penerima:</strong> Panti Asuhan Ceria</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wishlist-card routine" data-category="pendidikan">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Buku Tulis">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Buku Tulis dan Alat Tulis</h4>
+                                <div class="wishlist-urgency routine">
+                                    <i class="fas fa-sync-alt"></i> Rutin
+                                </div>
+                            </div>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Rumah Belajar Cemerlang, Tangerang</span>
+                                <span><i class="fas fa-users"></i> 100 anak</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> 100 buku tulis, pensil, penggaris</p>
+                                <p><strong>Keterangan:</strong> Kebutuhan alat tulis untuk tahun ajaran baru</p>
+                                <p><strong>Penerima:</strong> Rumah Belajar Cemerlang</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wishlist-card urgent" data-category="mendesak">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1585314563571-3a7db3f198d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Makanan Bayi">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Makanan Bayi</h4>
+                                <div class="wishlist-urgency urgent">
+                                    <i class="fas fa-exclamation-triangle"></i> Mendesak
+                                </div>
+                            </div>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Kasih, Bekasi</span>
+                                <span><i class="fas fa-users"></i> 20 bayi</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> Bubur bayi, puree buah</p>
+                                <p><strong>Keterangan:</strong> Kebutuhan makanan bayi untuk usia 6-12 bulan</p>
+                                <p><strong>Penerima:</strong> Panti Asuhan Kasih</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wishlist-card routine" data-category="kesehatan">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Popok Bayi">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Popok Bayi</h4>
+                                <div class="wishlist-urgency routine">
+                                    <i class="fas fa-sync-alt"></i> Rutin
+                                </div>
+                            </div>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Harapan, Jakarta</span>
+                                <span><i class="fas fa-users"></i> 15 bayi</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> 5 pack per minggu</p>
+                                <p><strong>Keterangan:</strong> Kebutuhan popok bayi untuk usia 0-2 tahun</p>
+                                <p><strong>Penerima:</strong> Panti Asuhan Harapan</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Help Section -->
+    <section class="how-to-help py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Cara Membantu</h2>
+                <p class="lead">Ada beberapa cara untuk membantu memenuhi kebutuhan panti dan lembaga</p>
+            </div>
+            
+            <div class="help-methods">
+                <div class="help-method">
+                    <div class="help-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Donasi Langsung</h3>
+                    <p>Pilih salah satu wishlist dan donasikan barang yang dibutuhkan secara langsung</p>
+                </div>
+                
+                <div class="help-method">
+                    <div class="help-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Donasi Uang</h3>
+                    <p>Donasikan uang untuk membiayai pembelian barang yang dibutuhkan panti</p>
+                </div>
+                
+                <div class="help-method">
+                    <div class="help-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Sebarkan Informasi</h3>
+                    <p>Bantu menyebarkan informasi wishlist ke teman, keluarga, dan kolega Anda</p>
+                </div>
+                
+                <div class="help-method">
+                    <div class="help-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Jadi Relawan</h3>
+                    <p>Bantu mengkoordinasi dan mendistribusikan donasi kepada panti yang membutuhkan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5">
+        <div class="container">
+            <div class="cta-content text-center">
+                <h2>Bantu Mereka yang Membutuhkan</h2>
+                <p class="lead">Setiap donasi Anda, sekecil apapun, akan sangat berarti bagi mereka yang membutuhkan</p>
+                <div class="cta-buttons">
+                    <a href="#register" class="btn btn-light btn-lg me-2">Daftar sebagai Donor</a>
+                    <a href="#register" class="btn btn-outline-light btn-lg">Daftar sebagai Penerima</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="row">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <div class="footer-about">
+                            <a href="../index.html" class="footer-logo">
+                                <i class="fas fa-seedling me-2"></i>
+                                <span>RaihAsa</span>
+                            </a>
+                            <p>Platform donasi makanan terpercaya yang menghubungkan donor dengan penerima yang membutuhkan untuk mengurangi pemborosan makanan di Indonesia.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Link Cepat</h4>
+                            <ul>
+                                <li><a href="../index.html">Beranda</a></li>
+                                <li><a href="../index.html#about">Tentang Kami</a></li>
+                                <li><a href="../index.html#donate">Cara Kerja</a></li>
+                                <li><a href="food-rescue.html">Food Rescue</a></li>
+                                <li><a href="#contact">Kontak</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Donor</h4>
+                            <ul>
+                                <li><a href="../index.html#donate">Cara Donasi</a></li>
+                                <li><a href="../index.html#donate">Jenis Makanan</a></li>
+                                <li><a href="../index.html#donate">Panduan Pengemasan</a></li>
+                                <li><a href="../index.html#donate">FAQ Donor</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Penerima</h4>
+                            <ul>
+                                <li><a href="#register">Cara Mendaftar</a></li>
+                                <li><a href="#register">Verifikasi</a></li>
+                                <li><a href="#register">Membuat Permintaan</a></li>
+                                <li><a href="#register">FAQ Penerima</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-contact">
+                            <h4>Hubungi Kami</h4>
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
+                                <li><i class="fas fa-phone"></i> +62 21 1234 5678</li>
+                                <li><i class="fas fa-envelope"></i> info@raihasa.id</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p>&copy; 2023 RaihAsa. Hak Cipta Dilindungi.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <ul class="footer-bottom-links">
+                            <li><a href="#">Kebijakan Privasi</a></li>
+                            <li><a href="#">Syarat & Ketentuan</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="../js/main.js"></script>
+</body>
+</html>
