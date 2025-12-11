@@ -3,125 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodShare - Platform Donasi Makanan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>RaihAsa - Platform Donasi Makanan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header with Carousel -->
+    <!-- Header with Navigation -->
     <header class="header">
-        <div class="carousel-container">
-            <div class="carousel slide" id="heroCarousel" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Food Donation">
-                        <div class="carousel-caption">
-                            <h2>Berbagi Makanan, Mengurangi Pemborosan</h2>
-                            <p>Bersama kita bisa mengurangi pemborosan makanan dan membantu mereka yang membutuhkan</p>
-                            <a href="#donate" class="btn btn-primary">Donor Sekarang</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1604908446550-379e78509faf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Food Rescue">
-                        <div class="carousel-caption">
-                            <h2>Food Rescue untuk Masa Depan</h2>
-                            <p>Simpan makanan dari pemborosan dan distribusikan kepada yang membutuhkan</p>
-                            <a href="#rescue" class="btn btn-primary">Pelajari Lebih Lanjut</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Community">
-                        <div class="carousel-caption">
-                            <h2>Bangun Komunitas Peduli</h2>
-                            <p>Bergabunglah dengan komunitas kami dalam mengurangi pemborosan makanan</p>
-                            <a href="#register" class="btn btn-primary">Daftar Sekarang</a>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Navigation -->
-        <nav class="navbar">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <div class="navbar-content">
-                    <div class="logo">
-                        <i class="fas fa-leaf"></i>
-                        <span>FoodShare</span>
-                    </div>
-                    
-                    <ul class="nav-links">
-                        <li><a href="#home">Beranda</a></li>
-                        <li><a href="#about">Tentang</a></li>
-                        <li><a href="#donate">Donasi</a></li>
-                        <li><a href="#rescue">Food Rescue</a></li>
-                        <li><a href="#contact">Kontak</a></li>
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-seedling me-2"></i>
+                    <span>RaihAsa</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#home">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Tentang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#donate">Donasi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#rescue">Food Rescue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#impact">Dampak</a>
+                        </li>
                     </ul>
-                    
-                    <div class="nav-buttons">
-                        <a href="#login" class="btn btn-outline">Masuk</a>
+                    <div class="d-flex">
+                        <a href="#login" class="btn btn-outline-primary me-2">Masuk</a>
                         <a href="#register" class="btn btn-primary">Daftar</a>
-                    </div>
-                    
-                    <div class="mobile-menu-btn">
-                        <i class="fas fa-bars"></i>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Features Section -->
-        <section class="features" id="about">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Fitur Unggulan Kami</h2>
-                    <p>Platform kami dilengkapi dengan berbagai fitur canggih untuk memudahkan proses donasi makanan</p>
+    <!-- Hero Section with Carousel -->
+    <section id="home" class="hero-section">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Food Donation">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 class="animate__animated animate__fadeInDown">Berbagi Makanan, Selamatkan Bumi</h1>
+                        <p class="animate__animated animate__fadeInUp">Bersama RaihAsa, kurangi pemborosan makanan dan bantu mereka yang membutuhkan</p>
+                        <div class="hero-buttons animate__animated animate__fadeInUp">
+                            <a href="#donate" class="btn btn-light btn-lg me-2">Donasi Sekarang</a>
+                            <a href="#about" class="btn btn-outline-light btn-lg">Pelajari Lebih Lanjut</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card">
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1604908446550-379e78509faf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Food Rescue">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 class="animate__animated animate__fadeInDown">Food Rescue untuk Masa Depan</h1>
+                        <p class="animate__animated animate__fadeInUp">Selamatkan makanan dari pemborosan dan distribusikan kepada yang membutuhkan</p>
+                        <div class="hero-buttons animate__animated animate__fadeInUp">
+                            <a href="#rescue" class="btn btn-light btn-lg me-2">Selamatkan Makanan</a>
+                            <a href="#register" class="btn btn-outline-light btn-lg">Bergabung Sekarang</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Community">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 class="animate__animated animate__fadeInDown">Bersama untuk Indonesia</h1>
+                        <p class="animate__animated animate__fadeInUp">Bergabunglah dengan komunitas kami dalam mengurangi pemborosan makanan</p>
+                        <div class="hero-buttons animate__animated animate__fadeInUp">
+                            <a href="#register" class="btn btn-light btn-lg me-2">Daftar Sekarang</a>
+                            <a href="#impact" class="btn btn-outline-light btn-lg">Lihat Dampak Kami</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Floating Donation Button -->
+    <div class="floating-donation-btn">
+        <a href="#donate-modal" data-bs-toggle="modal" class="btn-donation">
+            <i class="fas fa-plus"></i>
+            <span>Donasi</span>
+        </a>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="section-title">Tentang RaihAsa</h2>
+                    <p class="lead">RaihAsa adalah platform inovatif yang menghubungkan masyarakat yang memiliki kelebihan makanan dengan mereka yang membutuhkan.</p>
+                    <p>Misi kami adalah mengurangi pemborosan makanan di Indonesia sambil membantu memenuhi kebutuhan pangan masyarakat kurang mampu. Dengan teknologi smart matching, kami memastikan donasi makanan tepat sasaran dan tepat waktu.</p>
+                    <div class="stats-container mt-4">
+                        <div class="stat-item">
+                            <h3>10,000+</h3>
+                            <p>Donatur Terdaftar</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>500+</h3>
+                            <p>Panti & Lembaga</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>50,000+</h3>
+                            <p>Donasi Terselesaikan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid rounded-3 shadow" alt="About RaihAsa">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Fitur Unggulan Kami</h2>
+                <p class="lead">Platform kami dilengkapi dengan berbagai fitur canggih untuk memudahkan proses donasi makanan</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
                         <div class="feature-icon">
                             <i class="fas fa-star"></i>
                         </div>
                         <h3>Manajemen Wishlist Prioritas</h3>
                         <p>Buat daftar kebutuhan spesifik dengan label tingkat urgensi (mendesak/rutin) untuk memprioritaskan bantuan yang paling dibutuhkan.</p>
                     </div>
-                    <div class="feature-card">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
                         <div class="feature-icon">
                             <i class="fas fa-magic"></i>
                         </div>
                         <h3>Algoritma Smart Matching</h3>
                         <p>Pencocokan otomatis yang merekomendasikan pasangan donatur-penerima optimal berdasarkan kategori barang, jarak, dan urgensi.</p>
                     </div>
-                    <div class="feature-card">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
                         <div class="feature-icon">
                             <i class="fas fa-truck"></i>
                         </div>
                         <h3>Koordinasi Logistik Fleksibel</h3>
                         <p>Pilih opsi distribusi mandiri melalui pengantaran langsung (self-delivery) atau pengambilan langsung (self-pickup) sesuai kesepakatan.</p>
                     </div>
-                    <div class="feature-card">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
                         <div class="feature-icon">
                             <i class="fas fa-clock"></i>
                         </div>
                         <h3>Real-time Food Rescue</h3>
                         <p>Fitur khusus makanan dengan countdown timer untuk memprioritaskan distribusi sebelum kedaluwarsa.</p>
                     </div>
-                    <div class="feature-card">
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
                         <div class="feature-icon">
                             <i class="fas fa-certificate"></i>
                         </div>
@@ -129,45 +195,573 @@
                         <p>Validasi dokumen operasional panti oleh admin untuk membangun kepercayaan pengguna.</p>
                     </div>
                 </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Tracking Dampak Sosial</h3>
+                        <p>Pantau dampak sosial dari donasi Anda dengan laporan real-time dan update dari penerima manfaat.</p>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Smart Matching Section -->
-        <section class="smart-matching" id="donate">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Smart Matching</h2>
-                    <p>Input barang yang ingin Anda donasikan dan sistem kami akan mencarikan panti yang cocok</p>
+    <!-- Food Rescue Section -->
+    <section id="rescue" class="rescue-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Food Rescue</h2>
+                <p class="lead">Simpan makanan dari pemborosan dengan mendistribusikannya kepada yang membutuhkan</p>
+            </div>
+            
+            <div class="rescue-categories">
+                <div class="category-tabs">
+                    <button class="category-btn active" data-category="all">Semua</button>
+                    <button class="category-btn" data-category="makanan-basah">Makanan Basah</button>
+                    <button class="category-btn" data-category="makanan-kering">Makanan Kering</button>
+                    <button class="category-btn" data-category="buah">Buah</button>
+                    <button class="category-btn" data-category="sayur">Sayuran</button>
+                    <button class="category-btn" data-category="minuman">Minuman</button>
                 </div>
                 
-                <div class="matching-container">
-                    <div class="matching-form">
-                        <h3>Form Donasi</h3>
-                        <form id="donation-form">
-                            <div class="form-group">
-                                <label for="donor-name">Nama Lengkap</label>
-                                <input type="text" id="donor-name" required>
+                <div class="rescue-grid">
+                    <div class="rescue-card critical" data-category="makanan-basah">
+                        <div class="rescue-badge">Kritis</div>
+                        <div class="rescue-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Nasi Kotak">
+                        </div>
+                        <div class="rescue-content">
+                            <h4>Nasi Kotak Sisa Catering</h4>
+                            <div class="rescue-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 3.2 km</span>
+                                <span><i class="fas fa-clock"></i> 2 jam lagi</span>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="donor-email">Email</label>
-                                <input type="email" id="donor-email" required>
+                            <div class="rescue-details">
+                                <p><strong>Jumlah:</strong> 50 porsi</p>
+                                <p><strong>Kadaluwarsa:</strong> Hari ini, 18:00</p>
+                                <p><strong>Donor:</strong> Catering Sejahtera</p>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="donor-phone">Nomor Telepon</label>
-                                <input type="tel" id="donor-phone" required>
+                            <div class="rescue-actions">
+                                <button class="btn btn-primary btn-sm">Klaim Donasi</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="donor-address">Alamat</label>
-                                <textarea id="donor-address" rows="2" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="rescue-card urgent" data-category="sayur">
+                        <div class="rescue-badge">Mendesak</div>
+                        <div class="rescue-image">
+                            <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Sayuran Segar">
+                        </div>
+                        <div class="rescue-content">
+                            <h4>Sayuran Segar Restoran</h4>
+                            <div class="rescue-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 5.7 km</span>
+                                <span><i class="fas fa-clock"></i> 5 jam lagi</span>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="food-category">Kategori Makanan</label>
-                                <select id="food-category" required>
-                                    <option value="">Pilih Kategori</option>
+                            <div class="rescue-details">
+                                <p><strong>Jumlah:</strong> 20 kg</p>
+                                <p><strong>Kadaluwarsa:</strong> Besok, 10:00</p>
+                                <p><strong>Donor:</strong> Restoran Lezat</p>
+                            </div>
+                            <div class="rescue-actions">
+                                <button class="btn btn-primary btn-sm">Klaim Donasi</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rescue-card urgent" data-category="makanan-kering">
+                        <div class="rescue-badge">Mendesak</div>
+                        <div class="rescue-image">
+                            <img src="https://images.unsplash.com/photo-1509440159570-ebd255f3c333?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Roti">
+                        </div>
+                        <div class="rescue-content">
+                            <h4>Roti Sisa Toko Roti</h4>
+                            <div class="rescue-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 2.1 km</span>
+                                <span><i class="fas fa-clock"></i> 8 jam lagi</span>
+                            </div>
+                            <div class="rescue-details">
+                                <p><strong>Jumlah:</strong> 30 bungkus</p>
+                                <p><strong>Kadaluwarsa:</strong> Besok, 12:00</p>
+                                <p><strong>Donor:</strong> Toko Roti Enak</p>
+                            </div>
+                            <div class="rescue-actions">
+                                <button class="btn btn-primary btn-sm">Klaim Donasi</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rescue-card normal" data-category="buah">
+                        <div class="rescue-badge">Normal</div>
+                        <div class="rescue-image">
+                            <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Buah">
+                        </div>
+                        <div class="rescue-content">
+                            <h4>Buah Segar Pasar</h4>
+                            <div class="rescue-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 4.5 km</span>
+                                <span><i class="fas fa-clock"></i> 1 hari lagi</span>
+                            </div>
+                            <div class="rescue-details">
+                                <p><strong>Jumlah:</strong> 15 kg</p>
+                                <p><strong>Kadaluwarsa:</strong> 2 hari lagi</p>
+                                <p><strong>Donor:</strong> Pasar Segar</p>
+                            </div>
+                            <div class="rescue-actions">
+                                <button class="btn btn-primary btn-sm">Klaim Donasi</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rescue-card normal" data-category="minuman">
+                        <div class="rescue-badge">Normal</div>
+                        <div class="rescue-image">
+                            <img src="https://images.unsplash.com/photo-1622597467836-f3c7ca3b4c25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Minuman">
+                        </div>
+                        <div class="rescue-content">
+                            <h4>Minuman Kemasan</h4>
+                            <div class="rescue-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 6.8 km</span>
+                                <span><i class="fas fa-clock"></i> 2 hari lagi</span>
+                            </div>
+                            <div class="rescue-details">
+                                <p><strong>Jumlah:</strong> 100 botol</p>
+                                <p><strong>Kadaluwarsa:</strong> 3 hari lagi</p>
+                                <p><strong>Donor:</strong> Distributor Minuman</p>
+                            </div>
+                            <div class="rescue-actions">
+                                <button class="btn btn-primary btn-sm">Klaim Donasi</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rescue-card normal" data-category="makanan-basah">
+                        <div class="rescue-badge">Normal</div>
+                        <div class="rescue-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Makanan Masak">
+                        </div>
+                        <div class="rescue-content">
+                            <h4>Makanan Masak Restoran</h4>
+                            <div class="rescue-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> 3.8 km</span>
+                                <span><i class="fas fa-clock"></i> 1 hari lagi</span>
+                            </div>
+                            <div class="rescue-details">
+                                <p><strong>Jumlah:</strong> 20 porsi</p>
+                                <p><strong>Kadaluwarsa:</strong> Besok, 08:00</p>
+                                <p><strong>Donor:</strong> Restoran Keluarga</p>
+                            </div>
+                            <div class="rescue-actions">
+                                <button class="btn btn-primary btn-sm">Klaim Donasi</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact-section py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Dampak Kami</h2>
+                <p class="lead">Bersama-sama, kita telah menciptakan perubahan nyata</p>
+            </div>
+            
+            <div class="impact-stats">
+                <div class="row g-4">
+                    <div class="col-md-3 col-6">
+                        <div class="impact-card">
+                            <div class="impact-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3>100 Ton+</h3>
+                            <p>Makanan Terselamatkan</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="impact-card">
+                            <div class="impact-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>250,000+</h3>
+                            <p>Penerima Manfaat</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="impact-card">
+                            <div class="impact-icon">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <h3>15,000+</h3>
+                            <p>Donatur Terlibat</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="impact-card">
+                            <div class="impact-icon">
+                                <i class="fas fa-globe-asia"></i>
+                            </div>
+                            <h3>25</h3>
+                            <p>Kota Terjangkau</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="impact-stories mt-5">
+                <h3 class="text-center mb-4">Cerita Kebanggaan Kami</h3>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="story-card">
+                            <div class="story-image">
+                                <img src="https://images.unsplash.com/photo-1543269664-7eef42226a21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Story 1">
+                            </div>
+                            <div class="story-content">
+                                <h4>Membantu Panti Asuhan di Tengah Pandemi</h4>
+                                <p>Dengan dukungan donatur, kami berhasil menyediakan makanan bergizi untuk 100 anak panti asuhan selama 6 bulan terakhir.</p>
+                                <a href="#" class="btn btn-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="story-card">
+                            <div class="story-image">
+                                <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Story 2">
+                            </div>
+                            <div class="story-content">
+                                <h4>Restoran Selamatkan 500kg Makanan</h4>
+                                <p>Kerjasama dengan 20 restoran telah menyelamatkan lebih dari 500kg makanan sisa yang didistribusikan ke panti jompo.</p>
+                                <a href="#" class="btn btn-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="story-card">
+                            <div class="story-image">
+                                <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Story 3">
+                            </div>
+                            <div class="story-content">
+                                <h4>Program Edukasi Anti Pemborosan</h4>
+                                <p>Kami telah menyelenggarakan 50 workshop edukasi tentang pengurangan pemborosan makanan di sekolah-sekolah.</p>
+                                <a href="#" class="btn btn-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Apa Kata Mereka</h2>
+                <p class="lead">Dengarkan pengalaman mereka yang telah terbantu dengan platform kami</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>Platform FoodShare sangat membantu panti asuhan kami. Kami bisa mendapatkan makanan bergizi secara rutin tanpa harus khawatir dengan biaya.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Siti Nurhaliza">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Siti Nurhaliza</h4>
+                                    <p>Pengurus Panti Asuhan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>Sebagai pemilik restoran, saya sering memiliki sisa makanan yang masih layak konsumsi. Dengan RaihAsa, saya bisa mendonasikannya kepada yang membutuhkan.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Budi Santoso">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Budi Santoso</h4>
+                                    <p>Pemilik Restoran</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>Saya ikut menjadi relawan di RaihAsa dan sangat terkesan dengan sistem mereka. Proses verifikasi yang ketat membuat saya yakin donasi sampai ke tangan yang tepat.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dewi Lestari">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Dewi Lestari</h4>
+                                    <p>Relawan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5">
+        <div class="container">
+            <div class="cta-content text-center">
+                <h2>Bergabunglah dengan Kami dalam Mengurangi Pemborosan Makanan</h2>
+                <p class="lead">Bersama-sama, kita dapat membuat perbedaan nyata dalam kehidupan banyak orang dan mengurangi dampak negatif pemborosan makanan terhadap lingkungan.</p>
+                <div class="cta-buttons">
+                    <a href="#register" class="btn btn-light btn-lg me-2">Daftar sebagai Donor</a>
+                    <a href="#register" class="btn btn-outline-light btn-lg">Daftar sebagai Penerima</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="row">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <div class="footer-about">
+                            <a href="#" class="footer-logo">
+                                <i class="fas fa-seedling me-2"></i>
+                                <span>RaihAsa</span>
+                            </a>
+                            <p>Platform donasi makanan terpercaya yang menghubungkan donor dengan penerima yang membutuhkan untuk mengurangi pemborosan makanan di Indonesia.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Link Cepat</h4>
+                            <ul>
+                                <li><a href="#home">Beranda</a></li>
+                                <li><a href="#about">Tentang Kami</a></li>
+                                <li><a href="#donate">Cara Kerja</a></li>
+                                <li><a href="#rescue">Food Rescue</a></li>
+                                <li><a href="#contact">Kontak</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Donor</h4>
+                            <ul>
+                                <li><a href="#donate">Cara Donasi</a></li>
+                                <li><a href="#donate">Jenis Makanan</a></li>
+                                <li><a href="#donate">Panduan Pengemasan</a></li>
+                                <li><a href="#donate">FAQ Donor</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Penerima</h4>
+                            <ul>
+                                <li><a href="#register">Cara Mendaftar</a></li>
+                                <li><a href="#register">Verifikasi</a></li>
+                                <li><a href="#register">Membuat Permintaan</a></li>
+                                <li><a href="#register">FAQ Penerima</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-contact">
+                            <h4>Hubungi Kami</h4>
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
+                                <li><i class="fas fa-phone"></i> +62 21 1234 5678</li>
+                                <li><i class="fas fa-envelope"></i> info@raihasa.id</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p>&copy; 2023 RaihAsa. Hak Cipta Dilindungi.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <ul class="footer-bottom-links">
+                            <li><a href="#">Kebijakan Privasi</a></li>
+                            <li><a href="#">Syarat & Ketentuan</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Donation Modal -->
+    <div class="modal fade" id="donate-modal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="donateModalLabel">Donasi Makanan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="donation-steps">
+                        <div class="step active">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Login/Daftar</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Isi Form Donasi</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Matching Otomatis</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Konfirmasi</div>
+                        </div>
+                    </div>
+                    
+                    <div class="login-form">
+                        <h4>Masuk ke Akun Anda</h4>
+                        <form id="login-form">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="remember">
+                                <label class="form-check-label" for="remember">Ingat saya</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Masuk</button>
+                            <div class="text-center mt-3">
+                                <p>Belum punya akun? <a href="#" class="register-link">Daftar sekarang</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category filtering for rescue section
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const rescueCards = document.querySelectorAll('.rescue-card');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Show/hide cards based on category
+                    rescueCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Login form submission
+            const loginForm = document.getElementById('login-form');
+            const loginFormDiv = document.querySelector('.login-form');
+            const donationSteps = document.querySelectorAll('.step');
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // In a real application, this would validate the login credentials
+                // For demo purposes, we'll just show the next step
+                
+                // Hide login form
+                loginFormDiv.style.display = 'none';
+                
+                // Update steps
+                donationSteps[0].classList.remove('active');
+                donationSteps[1].classList.add('active');
+                
+                // Show donation form (in a real app, this would be a separate form)
+                const modalBody = document.querySelector('.modal-body');
+                modalBody.innerHTML = `
+                    <div class="donation-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Login/Daftar</div>
+                        </div>
+                        <div class="step active">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Isi Form Donasi</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Matching Otomatis</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Konfirmasi</div>
+                        </div>
+                    </div>
+                    
+                    <div class="donation-form">
+                        <h4>Informasi Donasi</h4>
+                        <form id="donation-info-form">
+                            <div class="mb-3">
+                                <label for="food-category" class="form-label">Kategori Makanan</label>
+                                <select class="form-select" id="food-category" required>
+                                    <option value="" selected disabled>Pilih Kategori</option>
                                     <option value="makanan-basah">Makanan Basah</option>
                                     <option value="makanan-kering">Makanan Kering</option>
                                     <option value="buah">Buah</option>
@@ -176,47 +770,71 @@
                                     <option value="lainnya">Lainnya</option>
                                 </select>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="food-name">Nama Makanan</label>
-                                <input type="text" id="food-name" required>
+                            <div class="mb-3">
+                                <label for="food-name" class="form-label">Nama Makanan</label>
+                                <input type="text" class="form-control" id="food-name" required>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="food-quantity">Jumlah</label>
-                                <input type="text" id="food-quantity" placeholder="Contoh: 5 kg, 10 kotak" required>
+                            <div class="mb-3">
+                                <label for="food-quantity" class="form-label">Jumlah</label>
+                                <input type="text" class="form-control" id="food-quantity" placeholder="Contoh: 5 kg, 10 kotak" required>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="expiry-date">Tanggal Kadaluwarsa</label>
-                                <input type="date" id="expiry-date" required>
+                            <div class="mb-3">
+                                <label for="expiry-date" class="form-label">Tanggal Kadaluwarsa</label>
+                                <input type="date" class="form-control" id="expiry-date" required>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="food-description">Deskripsi</label>
-                                <textarea id="food-description" rows="3" placeholder="Berikan informasi tambahan tentang makanan yang akan didonasikan"></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="delivery-method">Metode Pengiriman</label>
-                                <select id="delivery-method" required>
-                                    <option value="">Pilih Metode</option>
+                            <div class="mb-3">
+                                <label for="delivery-method" class="form-label">Metode Pengiriman</label>
+                                <select class="form-select" id="delivery-method" required>
+                                    <option value="" selected disabled>Pilih Metode</option>
                                     <option value="self-delivery">Saya akan mengantar (Self-Delivery)</option>
                                     <option value="self-pickup">Panti mengambil (Self-Pickup)</option>
                                     <option value="flexible">Fleksibel</option>
                                 </select>
                             </div>
-                            
-                            <button type="submit" class="btn btn-primary">Cari Panti yang Cocok</button>
+                            <div class="mb-3">
+                                <label for="food-description" class="form-label">Deskripsi</label>
+                                <textarea class="form-control" id="food-description" rows="3" placeholder="Berikan informasi tambahan tentang makanan yang akan didonasikan"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Lanjutkan ke Matching</button>
                         </form>
                     </div>
+                `;
+                
+                // Re-attach event listener to the new form
+                const donationInfoForm = document.getElementById('donation-info-form');
+                donationInfoForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
                     
-                    <div class="matching-results" id="matching-results" style="display: none;">
-                        <h3>Panti yang Cocok</h3>
-                        <div class="results-container">
+                    // Update steps
+                    donationSteps[1].classList.remove('active');
+                    donationSteps[2].classList.add('active');
+                    
+                    // Show matching results
+                    modalBody.innerHTML = `
+                        <div class="donation-steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-title">Login/Daftar</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-title">Isi Form Donasi</div>
+                            </div>
+                            <div class="step active">
+                                <div class="step-number">3</div>
+                                <div class="step-title">Matching Otomatis</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-title">Konfirmasi</div>
+                            </div>
+                        </div>
+                        
+                        <div class="matching-results">
+                            <h4>Panti yang Cocok</h4>
                             <div class="result-card">
                                 <div class="result-header">
-                                    <h4>Panti Asuhan Harapan</h4>
+                                    <h5>Panti Asuhan Harapan</h5>
                                     <div class="match-percentage">95%</div>
                                 </div>
                                 <div class="result-info">
@@ -228,14 +846,14 @@
                                     <p><strong>Kebutuhan:</strong> Makanan basah, buah-buahan</p>
                                 </div>
                                 <div class="result-actions">
-                                    <button class="btn btn-primary">Hubungi Panti</button>
-                                    <button class="btn btn-outline">Lihat Detail</button>
+                                    <button class="btn btn-primary btn-sm">Pilih</button>
+                                    <button class="btn btn-outline-primary btn-sm">Detail</button>
                                 </div>
                             </div>
                             
                             <div class="result-card">
                                 <div class="result-header">
-                                    <h4>Panti Jompo Bahagia</h4>
+                                    <h5>Panti Jompo Bahagia</h5>
                                     <div class="match-percentage">87%</div>
                                 </div>
                                 <div class="result-info">
@@ -247,659 +865,58 @@
                                     <p><strong>Kebutuhan:</strong> Makanan kering, minuman</p>
                                 </div>
                                 <div class="result-actions">
-                                    <button class="btn btn-primary">Hubungi Panti</button>
-                                    <button class="btn btn-outline">Lihat Detail</button>
+                                    <button class="btn btn-primary btn-sm">Pilih</button>
+                                    <button class="btn btn-outline-primary btn-sm">Detail</button>
                                 </div>
                             </div>
+                        </div>
+                    `;
+                    
+                    // Add event listeners to the select buttons
+                    const selectButtons = document.querySelectorAll('.result-actions .btn-primary');
+                    selectButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            // Update steps
+                            donationSteps[2].classList.remove('active');
+                            donationSteps[3].classList.add('active');
                             
-                            <div class="result-card">
-                                <div class="result-header">
-                                    <h4>Rumah Singgah Anak</h4>
-                                    <div class="match-percentage">78%</div>
-                                </div>
-                                <div class="result-info">
-                                    <p><i class="fas fa-map-marker-alt"></i> Jl. Anak No. 5, Jakarta (5.7 km)</p>
-                                    <p><i class="fas fa-users"></i> 25 anak</p>
-                                    <p><i class="fas fa-star"></i> Terverifikasi</p>
-                                </div>
-                                <div class="result-needs">
-                                    <p><strong>Kebutuhan:</strong> Makanan basah, sayuran</p>
-                                </div>
-                                <div class="result-actions">
-                                    <button class="btn btn-primary">Hubungi Panti</button>
-                                    <button class="btn btn-outline">Lihat Detail</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Food Rescue Section -->
-        <section class="food-rescue" id="rescue">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Real-time Food Rescue</h2>
-                    <p>Simpan makanan dari pemborosan dengan mendistribusikannya kepada yang membutuhkan sebelum kedaluwarsa</p>
-                </div>
-                
-                <div class="rescue-stats">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>12</h3>
-                            <p>Donasi Mendesak</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>6 Jam</h3>
-                            <p>Waktu Rata-rata Tersisa</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>24</h3>
-                            <p>Penerima Membutuhkan</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="rescue-listings">
-                    <h3>Donasi Mendesak</h3>
-                    <div class="rescue-grid">
-                        <div class="rescue-card critical">
-                            <div class="rescue-countdown">
-                                <div class="countdown-display">
-                                    <div class="countdown-number">02</div>
-                                    <div class="countdown-label">Jam</div>
-                                </div>
-                                <div class="countdown-display">
-                                    <div class="countdown-number">45</div>
-                                    <div class="countdown-label">Menit</div>
-                                </div>
-                                <div class="countdown-display">
-                                    <div class="countdown-number">30</div>
-                                    <div class="countdown-label">Detik</div>
-                                </div>
-                            </div>
-                            
-                            <div class="rescue-content">
-                                <div class="rescue-header-info">
-                                    <h4>Nasi Kotak Sisa Catering</h4>
-                                    <div class="rescue-meta">
-                                        <span class="rescue-distance"><i class="fas fa-map-marker-alt"></i> 3.2 km</span>
-                                        <span class="rescue-category">Makanan Basah</span>
+                            // Show confirmation
+                            modalBody.innerHTML = `
+                                <div class="donation-steps">
+                                    <div class="step">
+                                        <div class="step-number">1</div>
+                                        <div class="step-title">Login/Daftar</div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">2</div>
+                                        <div class="step-title">Isi Form Donasi</div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">3</div>
+                                        <div class="step-title">Matching Otomatis</div>
+                                    </div>
+                                    <div class="step active">
+                                        <div class="step-number">4</div>
+                                        <div class="step-title">Konfirmasi</div>
                                     </div>
                                 </div>
                                 
-                                <div class="rescue-details">
-                                    <p><strong>Jumlah:</strong> 50 porsi</p>
-                                    <p><strong>Kadaluwarsa:</strong> Hari ini, pukul 18:00</p>
-                                    <p><strong>Lokasi:</strong> Jl. Catering No. 15, Jakarta</p>
-                                    <p><strong>Donor:</strong> Catering Sejahtera</p>
+                                <div class="confirmation-message">
+                                    <div class="confirmation-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <h4>Donasi Berhasil Dikirim!</h4>
+                                    <p>Terima kasih atas donasi Anda. Kami telah menghubungi panti dan mereka akan segera menghubungi Anda untuk koordinasi lebih lanjut.</p>
+                                    <div class="confirmation-details">
+                                        <p><strong>Kode Donasi:</strong> #FS123456</p>
+                                        <p><strong>Status:</strong> Menunggu Konfirmasi</p>
+                                    </div>
+                                    <button type="button" class="btn btn-primary w-100" data-bs-dismiss="modal">Selesai</button>
                                 </div>
-                                
-                                <div class="rescue-actions">
-                                    <button class="btn btn-primary">Klaim Donasi</button>
-                                    <button class="btn btn-outline">Lihat Detail</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="rescue-card urgent">
-                            <div class="rescue-countdown">
-                                <div class="countdown-display">
-                                    <div class="countdown-number">05</div>
-                                    <div class="countdown-label">Jam</div>
-                                </div>
-                                <div class="countdown-display">
-                                    <div class="countdown-number">30</div>
-                                    <div class="countdown-label">Menit</div>
-                                </div>
-                                <div class="countdown-display">
-                                    <div class="countdown-number">15</div>
-                                    <div class="countdown-label">Detik</div>
-                                </div>
-                            </div>
-                            
-                            <div class="rescue-content">
-                                <div class="rescue-header-info">
-                                    <h4>Sayuran Segar Restoran</h4>
-                                    <div class="rescue-meta">
-                                        <span class="rescue-distance"><i class="fas fa-map-marker-alt"></i> 5.7 km</span>
-                                        <span class="rescue-category">Sayuran</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="rescue-details">
-                                    <p><strong>Jumlah:</strong> 20 kg</p>
-                                    <p><strong>Kadaluwarsa:</strong> Besok, pukul 10:00</p>
-                                    <p><strong>Lokasi:</strong> Jl. Kuliner No. 8, Jakarta</p>
-                                    <p><strong>Donor:</strong> Restoran Lezat</p>
-                                </div>
-                                
-                                <div class="rescue-actions">
-                                    <button class="btn btn-primary">Klaim Donasi</button>
-                                    <button class="btn btn-outline">Lihat Detail</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="rescue-card urgent">
-                            <div class="rescue-countdown">
-                                <div class="countdown-display">
-                                    <div class="countdown-number">08</div>
-                                    <div class="countdown-label">Jam</div>
-                                </div>
-                                <div class="countdown-display">
-                                    <div class="countdown-number">15</div>
-                                    <div class="countdown-label">Menit</div>
-                                </div>
-                                <div class="countdown-display">
-                                    <div class="countdown-number">45</div>
-                                    <div class="countdown-label">Detik</div>
-                                </div>
-                            </div>
-                            
-                            <div class="rescue-content">
-                                <div class="rescue-header-info">
-                                    <h4>Roti Sisa Toko Roti</h4>
-                                    <div class="rescue-meta">
-                                        <span class="rescue-distance"><i class="fas fa-map-marker-alt"></i> 2.1 km</span>
-                                        <span class="rescue-category">Makanan Kering</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="rescue-details">
-                                    <p><strong>Jumlah:</strong> 30 bungkus</p>
-                                    <p><strong>Kadaluwarsa:</strong> Besok, pukul 12:00</p>
-                                    <p><strong>Lokasi:</strong> Jl. Roti No. 22, Jakarta</p>
-                                    <p><strong>Donor:</strong> Toko Roti Enak</p>
-                                </div>
-                                
-                                <div class="rescue-actions">
-                                    <button class="btn btn-primary">Klaim Donasi</button>
-                                    <button class="btn btn-outline">Lihat Detail</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Registration Section -->
-        <section class="registration" id="register">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Daftar Sekarang</h2>
-                    <p>Bergabunglah dengan kami dalam mengurangi pemborosan makanan</p>
-                </div>
-                
-                <div class="registration-tabs">
-                    <div class="tabs-header">
-                        <button class="tab-btn active" data-tab="donor">Donor</button>
-                        <button class="tab-btn" data-tab="recipient">Penerima</button>
-                    </div>
-                    
-                    <div class="tabs-content">
-                        <!-- Donor Registration Form -->
-                        <div class="tab-pane active" id="donor">
-                            <div class="form-container">
-                                <h3>Daftar sebagai Donor</h3>
-                                <form id="donor-registration-form">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="donor-reg-name">Nama Lengkap</label>
-                                            <input type="text" id="donor-reg-name" required>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="donor-reg-email">Email</label>
-                                            <input type="email" id="donor-reg-email" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="donor-reg-phone">Nomor Telepon</label>
-                                            <input type="tel" id="donor-reg-phone" required>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="donor-reg-password">Password</label>
-                                            <input type="password" id="donor-reg-password" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="donor-reg-address">Alamat Lengkap</label>
-                                        <textarea id="donor-reg-address" rows="3" required></textarea>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="donor-type">Jenis Donor</label>
-                                        <select id="donor-type" required>
-                                            <option value="">Pilih Jenis Donor</option>
-                                            <option value="individu">Individu</option>
-                                            <option value="restoran">Restoran</option>
-                                            <option value="toko-makanan">Toko Makanan</option>
-                                            <option value="catering">Catering</option>
-                                            <option value="pabrik">Pabrik Makanan</option>
-                                            <option value="lainnya">Lainnya</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="donor-description">Deskripsi (Opsional)</label>
-                                        <textarea id="donor-description" rows="3" placeholder="Ceritakan sedikit tentang Anda atau bisnis Anda"></textarea>
-                                    </div>
-                                    
-                                    <div class="form-actions">
-                                        <button type="submit" class="btn btn-primary">Daftar sebagai Donor</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        
-                        <!-- Recipient Registration Form -->
-                        <div class="tab-pane" id="recipient">
-                            <div class="form-container">
-                                <h3>Daftar sebagai Penerima</h3>
-                                <form id="recipient-registration-form">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="recipient-reg-name">Nama Lembaga</label>
-                                            <input type="text" id="recipient-reg-name" required>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="recipient-reg-email">Email</label>
-                                            <input type="email" id="recipient-reg-email" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="recipient-reg-phone">Nomor Telepon</label>
-                                            <input type="tel" id="recipient-reg-phone" required>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="recipient-reg-password">Password</label>
-                                            <input type="password" id="recipient-reg-password" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="recipient-type">Jenis Lembaga</label>
-                                        <select id="recipient-type" required>
-                                            <option value="">Pilih Jenis Lembaga</option>
-                                            <option value="panti-asuhan">Panti Asuhan</option>
-                                            <option value="panti-jompo">Panti Jompo</option>
-                                            <option value="rumah-sakit">Rumah Sakit</option>
-                                            <option value="lembaga-pendidikan">Lembaga Pendidikan</option>
-                                            <option value="komunitas">Komunitas</option>
-                                            <option value="lainnya">Lainnya</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="recipient-address">Alamat Lengkap</label>
-                                        <textarea id="recipient-address" rows="3" required></textarea>
-                                    </div>
-                                    
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="recipient-contact">Nama Kontak</label>
-                                            <input type="text" id="recipient-contact" required>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="recipient-position">Jabatan</label>
-                                            <input type="text" id="recipient-position" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="recipient-description">Deskripsi Lembaga</label>
-                                        <textarea id="recipient-description" rows="3" placeholder="Jelaskan secara singkat tentang lembaga Anda, kegiatan yang dilakukan, dan jumlah penerima manfaat" required></textarea>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="recipient-needs">Kebutuhan Donasi</label>
-                                        <textarea id="recipient-needs" rows="3" placeholder="Sebutkan jenis donasi yang biasanya dibutuhkan oleh lembaga Anda" required></textarea>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="recipient-capacity">Kapasitas Penyimpanan</label>
-                                        <input type="text" id="recipient-capacity" placeholder="Contoh: Kulkas 2 unit, Freezer 1 unit" required>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="recipient-pickup">Kemampuan Pengambilan</label>
-                                        <select id="recipient-pickup" required>
-                                            <option value="">Pilih Kemampuan</option>
-                                            <option value="bisa">Bisa mengambil sendiri</option>
-                                            <option value="terbatas">Terbatas (memerlukan bantuan transportasi)</option>
-                                            <option value="tidak-bisa">Tidak bisa mengambil (memerlukan pengantaran)</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="recipient-operating-hours">Jam Operasional</label>
-                                        <input type="text" id="recipient-operating-hours" placeholder="Contoh: Senin-Jumat, 08:00-17:00" required>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label>Unggah Dokumen Verifikasi</label>
-                                        <p>Untuk proses verifikasi, silakan unggah dokumen-dokumen berikut:</p>
-                                        
-                                        <div class="document-list">
-                                            <div class="document-item">
-                                                <div class="document-info">
-                                                    <h5>Akte Pendirian Lembaga</h5>
-                                                    <p>Dokumen resmi pendirian lembaga yang dilegalisir</p>
-                                                </div>
-                                                <div class="document-upload">
-                                                    <label for="akte-doc" class="upload-label">
-                                                        <i class="fas fa-cloud-upload-alt"></i>
-                                                        <span>Unggah Dokumen</span>
-                                                    </label>
-                                                    <input type="file" id="akte-doc" accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
-                                                    <div class="upload-status">
-                                                        <span class="status-text">Belum ada file</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="document-item">
-                                                <div class="document-info">
-                                                    <h5>Surat Keterangan Domisili</h5>
-                                                    <p>Surat keterangan domisili dari kelurahan setempat</p>
-                                                </div>
-                                                <div class="document-upload">
-                                                    <label for="domisili-doc" class="upload-label">
-                                                        <i class="fas fa-cloud-upload-alt"></i>
-                                                        <span>Unggah Dokumen</span>
-                                                    </label>
-                                                    <input type="file" id="domisili-doc" accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
-                                                    <div class="upload-status">
-                                                        <span class="status-text">Belum ada file</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="document-item">
-                                                <div class="document-info">
-                                                    <h5>Surat Ijin Operasional</h5>
-                                                    <p>Surat ijin operasional dari instansi terkait</p>
-                                                </div>
-                                                <div class="document-upload">
-                                                    <label for="ijin-doc" class="upload-label">
-                                                        <i class="fas fa-cloud-upload-alt"></i>
-                                                        <span>Unggah Dokumen</span>
-                                                    </label>
-                                                    <input type="file" id="ijin-doc" accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
-                                                    <div class="upload-status">
-                                                        <span class="status-text">Belum ada file</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-actions">
-                                        <button type="submit" class="btn btn-primary">Daftar sebagai Penerima</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="testimonials">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Cerita Mereka</h2>
-                    <p>Dengarkan pengalaman mereka yang telah terbantu dengan platform kami</p>
-                </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-header">
-                            <div class="testimonial-avatar">
-                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Testimonial">
-                            </div>
-                            <div class="testimonial-info">
-                                <h4>Siti Nurhaliza</h4>
-                                <p>Penerima Donasi</p>
-                            </div>
-                        </div>
-                        <div class="testimonial-text">
-                            Platform FoodShare sangat membantu panti asuhan kami. Kami bisa mendapatkan makanan bergizi secara rutin tanpa harus khawatir dengan biaya.
-                        </div>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-header">
-                            <div class="testimonial-avatar">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Testimonial">
-                            </div>
-                            <div class="testimonial-info">
-                                <h4>Budi Santoso</h4>
-                                <p>Donor</p>
-                            </div>
-                        </div>
-                        <div class="testimonial-text">
-                            Sebagai pemilik restoran, saya sering memiliki sisa makanan yang masih layak konsumsi. Dengan FoodShare, saya bisa mendonasikannya kepada yang membutuhkan.
-                        </div>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-header">
-                            <div class="testimonial-avatar">
-                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Testimonial">
-                            </div>
-                            <div class="testimonial-info">
-                                <h4>Dewi Lestari</h4>
-                                <p>Relawan</p>
-                            </div>
-                        </div>
-                        <div class="testimonial-text">
-                            Saya ikut menjadi relawan di FoodShare dan sangat terkesan dengan sistem mereka. Proses verifikasi yang ketat membuat saya yakin donasi sampai ke tangan yang tepat.
-                        </div>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta">
-            <div class="container">
-                <h2>Bergabunglah dengan Kami dalam Mengurangi Pemborosan Makanan</h2>
-                <p>Bersama-sama, kita dapat membuat perbedaan nyata dalam kehidupan banyak orang dan mengurangi dampak negatif pemborosan makanan terhadap lingkungan.</p>
-                <a href="#register" class="btn btn-primary">Daftar Sekarang</a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>Tentang FoodShare</h3>
-                    <p>Platform donasi makanan terpercaya yang menghubungkan donor dengan penerima yang membutuhkan untuk mengurangi pemborosan makanan di Indonesia.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Link Cepat</h3>
-                    <ul>
-                        <li><a href="#home">Beranda</a></li>
-                        <li><a href="#about">Tentang Kami</a></li>
-                        <li><a href="#donate">Cara Kerja</a></li>
-                        <li><a href="#rescue">Food Rescue</a></li>
-                        <li><a href="#contact">Kontak</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Donor</h3>
-                    <ul>
-                        <li><a href="#donate">Cara Donasi</a></li>
-                        <li><a href="#donate">Jenis Makanan</a></li>
-                        <li><a href="#donate">Panduan Pengemasan</a></li>
-                        <li><a href="#donate">FAQ Donor</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Penerima</h3>
-                    <ul>
-                        <li><a href="#register">Cara Mendaftar</a></li>
-                        <li><a href="#register">Verifikasi</a></li>
-                        <li><a href="#register">Membuat Permintaan</a></li>
-                        <li><a href="#register">FAQ Penerima</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 FoodShare. Hak Cipta Dilindungi.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JS -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.querySelector('.nav-links');
-            
-            mobileMenuBtn.addEventListener('click', function() {
-                navLinks.classList.toggle('show');
-            });
-            
-            // Registration tabs
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-            
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // Remove active class from all buttons and panes
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabPanes.forEach(p => p.classList.remove('active'));
-                    
-                    // Add active class to clicked button and corresponding pane
-                    this.classList.add('active');
-                    document.getElementById(tabId).classList.add('active');
+                            `;
+                        });
+                    });
                 });
-            });
-            
-            // Donation form submission
-            const donationForm = document.getElementById('donation-form');
-            const matchingResults = document.getElementById('matching-results');
-            
-            donationForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Hide form and show results
-                donationForm.parentElement.style.display = 'none';
-                matchingResults.style.display = 'block';
-                
-                // Scroll to results
-                matchingResults.scrollIntoView({ behavior: 'smooth' });
-            });
-            
-            // File upload handling for recipient registration
-            const fileInputs = document.querySelectorAll('input[type="file"]');
-            
-            fileInputs.forEach(input => {
-                input.addEventListener('change', function() {
-                    const statusElement = this.parentElement.querySelector('.status-text');
-                    
-                    if (this.files.length > 0) {
-                        const fileName = this.files[0].name;
-                        statusElement.textContent = fileName;
-                        statusElement.style.color = '#4F46E5';
-                    } else {
-                        statusElement.textContent = 'Belum ada file';
-                        statusElement.style.color = '#757575';
-                    }
-                });
-            });
-            
-            // Countdown timers for rescue cards
-            const rescueCards = document.querySelectorAll('.rescue-card');
-            
-            rescueCards.forEach(card => {
-                const countdownNumbers = card.querySelectorAll('.countdown-number');
-                let hours = parseInt(countdownNumbers[0].textContent);
-                let minutes = parseInt(countdownNumbers[1].textContent);
-                let seconds = parseInt(countdownNumbers[2].textContent);
-                
-                setInterval(() => {
-                    seconds--;
-                    if (seconds < 0) {
-                        seconds = 59;
-                        minutes--;
-                        if (minutes < 0) {
-                            minutes = 59;
-                            hours--;
-                            if (hours < 0) {
-                                hours = 0;
-                                minutes = 0;
-                                seconds = 0;
-                            }
-                        }
-                    }
-                    
-                    countdownNumbers[0].textContent = hours.toString().padStart(2, '0');
-                    countdownNumbers[1].textContent = minutes.toString().padStart(2, '0');
-                    countdownNumbers[2].textContent = seconds.toString().padStart(2, '0');
-                }, 1000);
             });
             
             // Smooth scrolling for navigation links
@@ -916,12 +933,26 @@
                             behavior: 'smooth',
                             block: 'start'
                         });
-                        
-                        // Close mobile menu if open
-                        navLinks.classList.remove('show');
                     }
                 });
             });
+            
+            // Add animation on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.feature-card, .impact-card, .story-card, .testimonial-card');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.classList.add('animate');
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
         });
     </script>
 </body>
