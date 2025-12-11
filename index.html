@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- Header with Navigation -->
@@ -36,7 +36,10 @@
                             <a class="nav-link" href="#rescue">Food Rescue</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#impact">Dampak</a>
+                            <a class="nav-link" href="#wishlist">Wishlist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#mydonations">Amalanku</a>
                         </li>
                     </ul>
                     <div class="d-flex">
@@ -60,33 +63,24 @@
                 <div class="carousel-item active">
                     <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Food Donation">
                     <div class="carousel-caption d-none d-md-block">
-                        <h1 class="animate__animated animate__fadeInDown">Berbagi Makanan, Selamatkan Bumi</h1>
-                        <p class="animate__animated animate__fadeInUp">Bersama RaihAsa, kurangi pemborosan makanan dan bantu mereka yang membutuhkan</p>
-                        <div class="hero-buttons animate__animated animate__fadeInUp">
-                            <a href="#donate" class="btn btn-light btn-lg me-2">Donasi Sekarang</a>
-                            <a href="#about" class="btn btn-outline-light btn-lg">Pelajari Lebih Lanjut</a>
+                        <div class="hero-buttons">
+                            <a href="#donate-modal" data-bs-toggle="modal" class="btn btn-light btn-lg">Donasi Sekarang</a>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="https://images.unsplash.com/photo-1604908446550-379e78509faf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Food Rescue">
                     <div class="carousel-caption d-none d-md-block">
-                        <h1 class="animate__animated animate__fadeInDown">Food Rescue untuk Masa Depan</h1>
-                        <p class="animate__animated animate__fadeInUp">Selamatkan makanan dari pemborosan dan distribusikan kepada yang membutuhkan</p>
-                        <div class="hero-buttons animate__animated animate__fadeInUp">
-                            <a href="#rescue" class="btn btn-light btn-lg me-2">Selamatkan Makanan</a>
-                            <a href="#register" class="btn btn-outline-light btn-lg">Bergabung Sekarang</a>
+                        <div class="hero-buttons">
+                            <a href="#rescue" class="btn btn-light btn-lg">Food Rescue</a>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Community">
                     <div class="carousel-caption d-none d-md-block">
-                        <h1 class="animate__animated animate__fadeInDown">Bersama untuk Indonesia</h1>
-                        <p class="animate__animated animate__fadeInUp">Bergabunglah dengan komunitas kami dalam mengurangi pemborosan makanan</p>
-                        <div class="hero-buttons animate__animated animate__fadeInUp">
-                            <a href="#register" class="btn btn-light btn-lg me-2">Daftar Sekarang</a>
-                            <a href="#impact" class="btn btn-outline-light btn-lg">Lihat Dampak Kami</a>
+                        <div class="hero-buttons">
+                            <a href="#register" class="btn btn-light btn-lg">Bergabung Sekarang</a>
                         </div>
                     </div>
                 </div>
@@ -120,15 +114,15 @@
                     <p>Misi kami adalah mengurangi pemborosan makanan di Indonesia sambil membantu memenuhi kebutuhan pangan masyarakat kurang mampu. Dengan teknologi smart matching, kami memastikan donasi makanan tepat sasaran dan tepat waktu.</p>
                     <div class="stats-container mt-4">
                         <div class="stat-item">
-                            <h3>10,000+</h3>
+                            <h3>100+</h3>
                             <p>Donatur Terdaftar</p>
                         </div>
                         <div class="stat-item">
-                            <h3>500+</h3>
+                            <h3>20+</h3>
                             <p>Panti & Lembaga</p>
                         </div>
                         <div class="stat-item">
-                            <h3>50,000+</h3>
+                            <h3>500+</h3>
                             <p>Donasi Terselesaikan</p>
                         </div>
                     </div>
@@ -228,12 +222,16 @@
                 
                 <div class="rescue-grid">
                     <div class="rescue-card critical" data-category="makanan-basah">
-                        <div class="rescue-badge">Kritis</div>
                         <div class="rescue-image">
                             <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Nasi Kotak">
                         </div>
                         <div class="rescue-content">
-                            <h4>Nasi Kotak Sisa Catering</h4>
+                            <div class="rescue-header">
+                                <h4>Nasi Kotak Sisa Catering</h4>
+                                <div class="rescue-urgency critical">
+                                    <i class="fas fa-exclamation-circle"></i> Kritis
+                                </div>
+                            </div>
                             <div class="rescue-meta">
                                 <span><i class="fas fa-map-marker-alt"></i> 3.2 km</span>
                                 <span><i class="fas fa-clock"></i> 2 jam lagi</span>
@@ -251,12 +249,16 @@
                     </div>
                     
                     <div class="rescue-card urgent" data-category="sayur">
-                        <div class="rescue-badge">Mendesak</div>
                         <div class="rescue-image">
                             <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Sayuran Segar">
                         </div>
                         <div class="rescue-content">
-                            <h4>Sayuran Segar Restoran</h4>
+                            <div class="rescue-header">
+                                <h4>Sayuran Segar Restoran</h4>
+                                <div class="rescue-urgency urgent">
+                                    <i class="fas fa-exclamation-triangle"></i> Mendesak
+                                </div>
+                            </div>
                             <div class="rescue-meta">
                                 <span><i class="fas fa-map-marker-alt"></i> 5.7 km</span>
                                 <span><i class="fas fa-clock"></i> 5 jam lagi</span>
@@ -274,12 +276,16 @@
                     </div>
                     
                     <div class="rescue-card urgent" data-category="makanan-kering">
-                        <div class="rescue-badge">Mendesak</div>
                         <div class="rescue-image">
                             <img src="https://images.unsplash.com/photo-1509440159570-ebd255f3c333?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Roti">
                         </div>
                         <div class="rescue-content">
-                            <h4>Roti Sisa Toko Roti</h4>
+                            <div class="rescue-header">
+                                <h4>Roti Sisa Toko Roti</h4>
+                                <div class="rescue-urgency urgent">
+                                    <i class="fas fa-exclamation-triangle"></i> Mendesak
+                                </div>
+                            </div>
                             <div class="rescue-meta">
                                 <span><i class="fas fa-map-marker-alt"></i> 2.1 km</span>
                                 <span><i class="fas fa-clock"></i> 8 jam lagi</span>
@@ -297,12 +303,16 @@
                     </div>
                     
                     <div class="rescue-card normal" data-category="buah">
-                        <div class="rescue-badge">Normal</div>
                         <div class="rescue-image">
                             <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Buah">
                         </div>
                         <div class="rescue-content">
-                            <h4>Buah Segar Pasar</h4>
+                            <div class="rescue-header">
+                                <h4>Buah Segar Pasar</h4>
+                                <div class="rescue-urgency normal">
+                                    <i class="fas fa-info-circle"></i> Normal
+                                </div>
+                            </div>
                             <div class="rescue-meta">
                                 <span><i class="fas fa-map-marker-alt"></i> 4.5 km</span>
                                 <span><i class="fas fa-clock"></i> 1 hari lagi</span>
@@ -320,12 +330,16 @@
                     </div>
                     
                     <div class="rescue-card normal" data-category="minuman">
-                        <div class="rescue-badge">Normal</div>
                         <div class="rescue-image">
                             <img src="https://images.unsplash.com/photo-1622597467836-f3c7ca3b4c25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Minuman">
                         </div>
                         <div class="rescue-content">
-                            <h4>Minuman Kemasan</h4>
+                            <div class="rescue-header">
+                                <h4>Minuman Kemasan</h4>
+                                <div class="rescue-urgency normal">
+                                    <i class="fas fa-info-circle"></i> Normal
+                                </div>
+                            </div>
                             <div class="rescue-meta">
                                 <span><i class="fas fa-map-marker-alt"></i> 6.8 km</span>
                                 <span><i class="fas fa-clock"></i> 2 hari lagi</span>
@@ -343,12 +357,16 @@
                     </div>
                     
                     <div class="rescue-card normal" data-category="makanan-basah">
-                        <div class="rescue-badge">Normal</div>
                         <div class="rescue-image">
                             <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Makanan Masak">
                         </div>
                         <div class="rescue-content">
-                            <h4>Makanan Masak Restoran</h4>
+                            <div class="rescue-header">
+                                <h4>Makanan Masak Restoran</h4>
+                                <div class="rescue-urgency normal">
+                                    <i class="fas fa-info-circle"></i> Normal
+                                </div>
+                            </div>
                             <div class="rescue-meta">
                                 <span><i class="fas fa-map-marker-alt"></i> 3.8 km</span>
                                 <span><i class="fas fa-clock"></i> 1 hari lagi</span>
@@ -369,91 +387,352 @@
         </div>
     </section>
 
-    <!-- Impact Section -->
-    <section id="impact" class="impact-section py-5 bg-light">
+    <!-- Wishlist Section -->
+    <section id="wishlist" class="wishlist-section py-5 bg-light">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="section-title">Dampak Kami</h2>
-                <p class="lead">Bersama-sama, kita telah menciptakan perubahan nyata</p>
+                <h2 class="section-title">Wishlist Penerima</h2>
+                <p class="lead">Berikut adalah daftar kebutuhan mendesak dari panti dan lembaga yang membutuhkan bantuan</p>
             </div>
             
-            <div class="impact-stats">
-                <div class="row g-4">
-                    <div class="col-md-3 col-6">
-                        <div class="impact-card">
-                            <div class="impact-icon">
-                                <i class="fas fa-utensils"></i>
+            <div class="wishlist-categories">
+                <div class="category-tabs">
+                    <button class="category-btn active" data-category="all">Semua</button>
+                    <button class="category-btn" data-category="mendesak">Mendesak</button>
+                    <button class="category-btn" data-category="rutin">Rutin</button>
+                    <button class="category-btn" data-category="pendidikan">Pendidikan</button>
+                    <button class="category-btn" data-category="kesehatan">Kesehatan</button>
+                </div>
+                
+                <div class="wishlist-grid">
+                    <div class="wishlist-card urgent" data-category="mendesak">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Susu Formula">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Susu Formula Bayi</h4>
+                                <div class="wishlist-urgency urgent">
+                                    <i class="fas fa-exclamation-triangle"></i> Mendesak
+                                </div>
                             </div>
-                            <h3>100 Ton+</h3>
-                            <p>Makanan Terselamatkan</p>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Harapan, Jakarta</span>
+                                <span><i class="fas fa-users"></i> 15 bayi</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> 20 kaleng</p>
+                                <p><strong>Keterangan:</strong> Stok susu formula untuk bayi 0-6 bulan sudah hampir habis</p>
+                                <p><strong>Penerima:</strong> Panti Asuhan Harapan</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-6">
-                        <div class="impact-card">
-                            <div class="impact-icon">
-                                <i class="fas fa-users"></i>
+                    
+                    <div class="wishlist-card urgent" data-category="kesehatan">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Obat-obatan">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Obat-obatan Dasar</h4>
+                                <div class="wishlist-urgency urgent">
+                                    <i class="fas fa-exclamation-triangle"></i> Mendesak
+                                </div>
                             </div>
-                            <h3>250,000+</h3>
-                            <p>Penerima Manfaat</p>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Panti Jompo Bahagia, Depok</span>
+                                <span><i class="fas fa-users"></i> 30 lansia</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> Paracetamol, vitamin, antiseptik</p>
+                                <p><strong>Keterangan:</strong> Kebutuhan obat-obatan dasar untuk lansia dengan penyakit kronis</p>
+                                <p><strong>Penerima:</strong> Panti Jompo Bahagia</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-6">
-                        <div class="impact-card">
-                            <div class="impact-icon">
-                                <i class="fas fa-hand-holding-heart"></i>
+                    
+                    <div class="wishlist-card routine" data-category="rutin">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1586201375761-ab8d00959daa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Beras">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Beras</h4>
+                                <div class="wishlist-urgency routine">
+                                    <i class="fas fa-sync-alt"></i> Rutin
+                                </div>
                             </div>
-                            <h3>15,000+</h3>
-                            <p>Donatur Terlibat</p>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Ceria, Bogor</span>
+                                <span><i class="fas fa-users"></i> 50 anak</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> 50 kg per bulan</p>
+                                <p><strong>Keterangan:</strong> Kebutuhan beras untuk konsumsi sehari-hari anak panti</p>
+                                <p><strong>Penerima:</strong> Panti Asuhan Ceria</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-6">
-                        <div class="impact-card">
-                            <div class="impact-icon">
-                                <i class="fas fa-globe-asia"></i>
+                    
+                    <div class="wishlist-card routine" data-category="pendidikan">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Buku Tulis">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Buku Tulis dan Alat Tulis</h4>
+                                <div class="wishlist-urgency routine">
+                                    <i class="fas fa-sync-alt"></i> Rutin
+                                </div>
                             </div>
-                            <h3>25</h3>
-                            <p>Kota Terjangkau</p>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Rumah Belajar Cemerlang, Tangerang</span>
+                                <span><i class="fas fa-users"></i> 100 anak</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> 100 buku tulis, pensil, penggaris</p>
+                                <p><strong>Keterangan:</strong> Kebutuhan alat tulis untuk tahun ajaran baru</p>
+                                <p><strong>Penerima:</strong> Rumah Belajar Cemerlang</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wishlist-card urgent" data-category="mendesak">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1585314563571-3a7db3f198d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Makanan Bayi">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Makanan Bayi</h4>
+                                <div class="wishlist-urgency urgent">
+                                    <i class="fas fa-exclamation-triangle"></i> Mendesak
+                                </div>
+                            </div>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Kasih, Bekasi</span>
+                                <span><i class="fas fa-users"></i> 20 bayi</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> Bubur bayi, puree buah</p>
+                                <p><strong>Keterangan:</strong> Kebutuhan makanan bayi untuk usia 6-12 bulan</p>
+                                <p><strong>Penerima:</strong> Panti Asuhan Kasih</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wishlist-card routine" data-category="kesehatan">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Popok Bayi">
+                        </div>
+                        <div class="wishlist-content">
+                            <div class="wishlist-header">
+                                <h4>Popok Bayi</h4>
+                                <div class="wishlist-urgency routine">
+                                    <i class="fas fa-sync-alt"></i> Rutin
+                                </div>
+                            </div>
+                            <div class="wishlist-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Harapan, Jakarta</span>
+                                <span><i class="fas fa-users"></i> 15 bayi</span>
+                            </div>
+                            <div class="wishlist-details">
+                                <p><strong>Jumlah:</strong> 5 pack per minggu</p>
+                                <p><strong>Keterangan:</strong> Kebutuhan popok bayi untuk usia 0-2 tahun</p>
+                                <p><strong>Penerima:</strong> Panti Asuhan Harapan</p>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- My Donations Section -->
+    <section id="mydonations" class="mydonations-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Kontribusiku</h2>
+                <p class="lead">Lacak dan kelola semua donasi yang telah Anda berikan</p>
+            </div>
             
-            <div class="impact-stories mt-5">
-                <h3 class="text-center mb-4">Cerita Kebanggaan Kami</h3>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="story-card">
-                            <div class="story-image">
-                                <img src="https://images.unsplash.com/photo-1543269664-7eef42226a21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Story 1">
+            <div class="donation-tabs">
+                <ul class="nav nav-tabs" id="donationTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="active-tab" data-bs-toggle="tab" data-bs-target="#active" type="button" role="tab">Donasi Aktif</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button" role="tab">Donasi Selesai</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="scheduled-tab" data-bs-toggle="tab" data-bs-target="#scheduled" type="button" role="tab">Terjadwal</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="donationTabsContent">
+                    <div class="tab-pane fade show active" id="active" role="tabpanel">
+                        <div class="donation-grid">
+                            <div class="donation-card">
+                                <div class="donation-image">
+                                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Nasi Kotak">
+                                </div>
+                                <div class="donation-content">
+                                    <div class="donation-header">
+                                        <h4>Nasi Kotak</h4>
+                                        <div class="donation-status active">
+                                            <i class="fas fa-clock"></i> Menunggu Konfirmasi
+                                        </div>
+                                    </div>
+                                    <div class="donation-meta">
+                                        <span><i class="fas fa-calendar"></i> 15 Nov 2023</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> 3.2 km</span>
+                                    </div>
+                                    <div class="donation-details">
+                                        <p><strong>Jumlah:</strong> 50 porsi</p>
+                                        <p><strong>Penerima:</strong> Panti Asuhan Harapan</p>
+                                        <p><strong>Metode:</strong> Self-Delivery</p>
+                                    </div>
+                                    <div class="donation-actions">
+                                        <button class="btn btn-primary btn-sm">Detail</button>
+                                        <button class="btn btn-outline-primary btn-sm">Batalkan</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="story-content">
-                                <h4>Membantu Panti Asuhan di Tengah Pandemi</h4>
-                                <p>Dengan dukungan donatur, kami berhasil menyediakan makanan bergizi untuk 100 anak panti asuhan selama 6 bulan terakhir.</p>
-                                <a href="#" class="btn btn-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                            
+                            <div class="donation-card">
+                                <div class="donation-image">
+                                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Sayuran">
+                                </div>
+                                <div class="donation-content">
+                                    <div class="donation-header">
+                                        <h4>Sayuran Segar</h4>
+                                        <div class="donation-status active">
+                                            <i class="fas fa-truck"></i> Dalam Pengiriman
+                                        </div>
+                                    </div>
+                                    <div class="donation-meta">
+                                        <span><i class="fas fa-calendar"></i> 14 Nov 2023</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> 5.7 km</span>
+                                    </div>
+                                    <div class="donation-details">
+                                        <p><strong>Jumlah:</strong> 20 kg</p>
+                                        <p><strong>Penerima:</strong> Restoran Lezat</p>
+                                        <p><strong>Metode:</strong> Self-Pickup</p>
+                                    </div>
+                                    <div class="donation-actions">
+                                        <button class="btn btn-primary btn-sm">Detail</button>
+                                        <button class="btn btn-outline-primary btn-sm">Tracking</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="story-card">
-                            <div class="story-image">
-                                <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Story 2">
+                    <div class="tab-pane fade" id="completed" role="tabpanel">
+                        <div class="donation-grid">
+                            <div class="donation-card">
+                                <div class="donation-image">
+                                    <img src="https://images.unsplash.com/photo-1509440159570-ebd255f3c333?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Roti">
+                                </div>
+                                <div class="donation-content">
+                                    <div class="donation-header">
+                                        <h4>Roti Sisa</h4>
+                                        <div class="donation-status completed">
+                                            <i class="fas fa-check-circle"></i> Selesai
+                                        </div>
+                                    </div>
+                                    <div class="donation-meta">
+                                        <span><i class="fas fa-calendar"></i> 10 Nov 2023</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> 2.1 km</span>
+                                    </div>
+                                    <div class="donation-details">
+                                        <p><strong>Jumlah:</strong> 30 bungkus</p>
+                                        <p><strong>Penerima:</strong> Toko Roti Enak</p>
+                                        <p><strong>Metode:</strong> Self-Delivery</p>
+                                    </div>
+                                    <div class="donation-actions">
+                                        <button class="btn btn-primary btn-sm">Detail</button>
+                                        <button class="btn btn-outline-primary btn-sm">Donasi Lagi</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="story-content">
-                                <h4>Restoran Selamatkan 500kg Makanan</h4>
-                                <p>Kerjasama dengan 20 restoran telah menyelamatkan lebih dari 500kg makanan sisa yang didistribusikan ke panti jompo.</p>
-                                <a href="#" class="btn btn-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                            
+                            <div class="donation-card">
+                                <div class="donation-image">
+                                    <img src="https://images.unsplash.com/photo-1622597467836-f3c7ca3b4c25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Minuman">
+                                </div>
+                                <div class="donation-content">
+                                    <div class="donation-header">
+                                        <h4>Minuman Kemasan</h4>
+                                        <div class="donation-status completed">
+                                            <i class="fas fa-check-circle"></i> Selesai
+                                        </div>
+                                    </div>
+                                    <div class="donation-meta">
+                                        <span><i class="fas fa-calendar"></i> 5 Nov 2023</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> 6.8 km</span>
+                                    </div>
+                                    <div class="donation-details">
+                                        <p><strong>Jumlah:</strong> 100 botol</p>
+                                        <p><strong>Penerima:</strong> Distributor Minuman</p>
+                                        <p><strong>Metode:</strong> Self-Pickup</p>
+                                    </div>
+                                    <div class="donation-actions">
+                                        <button class="btn btn-primary btn-sm">Detail</button>
+                                        <button class="btn btn-outline-primary btn-sm">Donasi Lagi</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="story-card">
-                            <div class="story-image">
-                                <img src="https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Story 3">
-                            </div>
-                            <div class="story-content">
-                                <h4>Program Edukasi Anti Pemborosan</h4>
-                                <p>Kami telah menyelenggarakan 50 workshop edukasi tentang pengurangan pemborosan makanan di sekolah-sekolah.</p>
-                                <a href="#" class="btn btn-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    <div class="tab-pane fade" id="scheduled" role="tabpanel">
+                        <div class="donation-grid">
+                            <div class="donation-card">
+                                <div class="donation-image">
+                                    <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Buah">
+                                </div>
+                                <div class="donation-content">
+                                    <div class="donation-header">
+                                        <h4>Buah Segar</h4>
+                                        <div class="donation-status scheduled">
+                                            <i class="fas fa-calendar-alt"></i> Terjadwal
+                                        </div>
+                                    </div>
+                                    <div class="donation-meta">
+                                        <span><i class="fas fa-calendar"></i> 20 Nov 2023</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> 4.5 km</span>
+                                    </div>
+                                    <div class="donation-details">
+                                        <p><strong>Jumlah:</strong> 15 kg</p>
+                                        <p><strong>Penerima:</strong> Pasar Segar</p>
+                                        <p><strong>Metode:</strong> Self-Delivery</p>
+                                    </div>
+                                    <div class="donation-actions">
+                                        <button class="btn btn-primary btn-sm">Detail</button>
+                                        <button class="btn btn-outline-primary btn-sm">Ubah Jadwal</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -463,7 +742,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials-section py-5">
+    <section class="testimonials-section py-5 bg-light">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-title">Apa Kata Mereka</h2>
@@ -478,7 +757,7 @@
                                 <div class="testimonial-icon">
                                     <i class="fas fa-quote-left"></i>
                                 </div>
-                                <p>Platform FoodShare sangat membantu panti asuhan kami. Kami bisa mendapatkan makanan bergizi secara rutin tanpa harus khawatir dengan biaya.</p>
+                                <p>Platform RaihAsa sangat membantu panti asuhan kami. Kami bisa mendapatkan makanan bergizi secara rutin tanpa harus khawatir dengan biaya.</p>
                             </div>
                             <div class="testimonial-author">
                                 <div class="author-image">
@@ -691,13 +970,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Category filtering for rescue section
-            const categoryBtns = document.querySelectorAll('.category-btn');
-            const rescueCards = document.querySelectorAll('.rescue-card');
+            const rescueCategoryBtns = document.querySelectorAll('#rescue .category-btn');
+            const rescueCards = document.querySelectorAll('#rescue .rescue-card');
             
-            categoryBtns.forEach(btn => {
+            rescueCategoryBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
                     // Remove active class from all buttons
-                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    rescueCategoryBtns.forEach(b => b.classList.remove('active'));
                     
                     // Add active class to clicked button
                     this.classList.add('active');
@@ -708,6 +987,41 @@
                     rescueCards.forEach(card => {
                         if (category === 'all' || card.getAttribute('data-category') === category) {
                             card.style.display = 'block';
+                            // Add animation
+                            card.style.opacity = '0';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                            }, 100);
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Category filtering for wishlist section
+            const wishlistCategoryBtns = document.querySelectorAll('#wishlist .category-btn');
+            const wishlistCards = document.querySelectorAll('#wishlist .wishlist-card');
+            
+            wishlistCategoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    wishlistCategoryBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Show/hide cards based on category
+                    wishlistCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                            // Add animation
+                            card.style.opacity = '0';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                            }, 100);
                         } else {
                             card.style.display = 'none';
                         }
@@ -723,9 +1037,6 @@
             loginForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // In a real application, this would validate the login credentials
-                // For demo purposes, we'll just show the next step
-                
                 // Hide login form
                 loginFormDiv.style.display = 'none';
                 
@@ -733,7 +1044,7 @@
                 donationSteps[0].classList.remove('active');
                 donationSteps[1].classList.add('active');
                 
-                // Show donation form (in a real app, this would be a separate form)
+                // Show donation form
                 const modalBody = document.querySelector('.modal-body');
                 modalBody.innerHTML = `
                     <div class="donation-steps">
@@ -939,7 +1250,7 @@
             
             // Add animation on scroll
             const animateOnScroll = function() {
-                const elements = document.querySelectorAll('.feature-card, .impact-card, .story-card, .testimonial-card');
+                const elements = document.querySelectorAll('.feature-card, .impact-card, .story-card, .testimonial-card, .donation-card');
                 
                 elements.forEach(element => {
                     const elementPosition = element.getBoundingClientRect().top;
@@ -953,6 +1264,33 @@
             
             window.addEventListener('scroll', animateOnScroll);
             animateOnScroll(); // Run once on load
+            
+            // Add parallax effect to carousel
+            const carouselItems = document.querySelectorAll('.carousel-item');
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                
+                carouselItems.forEach(item => {
+                    item.style.transform = `translateY(${rate}px)`;
+                });
+            });
+            
+            // Add hover effect to cards
+            const cards = document.querySelectorAll('.rescue-card, .wishlist-card, .donation-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                });
+            });
         });
     </script>
 </body>
