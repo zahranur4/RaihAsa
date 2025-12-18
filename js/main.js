@@ -211,3 +211,163 @@ document.addEventListener('DOMContentLoaded', function() {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is logged in
+    const isLoggedIn = checkLoginStatus();
+    
+    // Show appropriate content in donation modal
+    const donationModal = document.getElementById('donationModal');
+    if (donationModal) {
+        donationModal.addEventListener('show.bs.modal', function() {
+            if (isLoggedIn) {
+                document.getElementById('loginPrompt').style.display = 'none';
+                document.getElementById('donationForm').style.display = 'block';
+            } else {
+                document.getElementById('loginPrompt').style.display = 'block';
+                document.getElementById('donationForm').style.display = 'none';
+            }
+        });
+    }
+    
+    // Handle form submissions
+    const foodRescueForm = document.getElementById('foodRescueForm');
+    if (foodRescueForm) {
+        foodRescueForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                type: 'food-rescue',
+                foodType: document.getElementById('food-type').value,
+                foodName: document.getElementById('food-name').value,
+                quantity: document.getElementById('food-quantity').value,
+                expiry: document.getElementById('food-expiry').value,
+                description: document.getElementById('food-description').value,
+                pickupMethod: document.getElementById('pickup-method').value
+            };
+            
+            // Validate form
+            if (validateFoodRescueForm(formData)) {
+                // In a real application, you would send this data to a server
+                console.log('Food Rescue form data:', formData);
+                
+                // Show success message
+                alert('Donasi Food Rescue berhasil dikirim!');
+                
+                // Reset form and close modal
+                foodRescueForm.reset();
+                const modal = bootstrap.Modal.getInstance(donationModal);
+                modal.hide();
+            }
+        });
+    }
+    
+    const wishlistForm = document.getElementById('wishlistForm');
+    if (wishlistForm) {
+        wishlistForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                type: 'wishlist',
+                recipient: document.getElementById('wishlist-recipient').value,
+                item: document.getElementById('wishlist-item').value,
+                quantity: document.getElementById('wishlist-quantity').value,
+                description: document.getElementById('wishlist-description').value,
+                deliveryMethod: document.getElementById('delivery-method').value
+            };
+            
+            // Validate form
+            if (validateWishlistForm(formData)) {
+                // In a real application, you would send this data to a server
+                console.log('Wishlist form data:', formData);
+                
+                // Show success message
+                alert('Donasi Wishlist berhasil dikirim!');
+                
+                // Reset form and close modal
+                wishlistForm.reset();
+                const modal = bootstrap.Modal.getInstance(donationModal);
+                modal.hide();
+            }
+        });
+    }
+    
+    const otherForm = document.getElementById('otherForm');
+    if (otherForm) {
+        otherForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                type: 'other',
+                donationType: document.getElementById('other-type').value,
+                itemName: document.getElementById('other-name').value,
+                quantity: document.getElementById('other-quantity').value,
+                description: document.getElementById('other-description').value,
+                recipient: document.getElementById('other-recipient').value,
+                deliveryMethod: document.getElementById('delivery-method-other').value
+            };
+            
+            // Validate form
+            if (validateOtherForm(formData)) {
+                // In a real application, you would send this data to a server
+                console.log('Other form data:', formData);
+                
+                // Show success message
+                alert('Donasi berhasil dikirim!');
+                
+                // Reset form and close modal
+                otherForm.reset();
+                const modal = bootstrap.Modal.getInstance(donationModal);
+                modal.hide();
+            }
+        });
+    }
+    
+    // Check login status (dummy function)
+    function checkLoginStatus() {
+        // In a real application, you would check if the user is logged in
+        // For demo purposes, we'll return false
+        return false;
+    }
+    
+    // Validate Food Rescue form
+    function validateFoodRescueForm(data) {
+        if (!data.foodType || !data.foodName || !data.quantity || !data.expiry || !data.pickupMethod) {
+            alert('Silakan lengkapi semua field yang wajib diisi');
+            return false;
+        }
+        
+        // Check if expiry date is in the future
+        const expiryDate = new Date(data.expiry);
+        const now = new Date();
+        if (expiryDate <= now) {
+            alert('Tanggal kadaluwarsa harus di masa depan');
+            return false;
+        }
+        
+        return true;
+    }
+    
+    // Validate Wishlist form
+    function validateWishlistForm(data) {
+        if (!data.recipient || !data.item || !data.quantity || !data.deliveryMethod) {
+            alert('Silakan lengkapi semua field yang wajib diisi');
+            return false;
+        }
+        
+        return true;
+    }
+    
+    // Validate Other form
+    function validateOtherForm(data) {
+        if (!data.donationType || !data.itemName || !data.quantity || !data.recipient || !data.deliveryMethod) {
+            alert('Silakan lengkapi semua field yang wajib diisi');
+            return false;
+        }
+        
+        return true;
+    }
+});
