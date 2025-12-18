@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan - RaihAsa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <!-- Admin Sidebar -->
+    <div class="admin-wrapper">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-seedling me-2"></i>
+                    <span>RaihAsa</span>
+                </a>
+            </div>
+            
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#usersSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-users"></i>
+                        Manajemen Pengguna
+                    </a>
+                    <ul class="collapse list-unstyled" id="usersSubmenu">
+                        <li>
+                            <a href="users-donor.html">Donor</a>
+                        </li>
+                        <li>
+                            <a href="users-recipient.html">Penerima</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#donationsSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        Manajemen Donasi
+                    </a>
+                    <ul class="collapse list-unstyled" id="donationsSubmenu">
+                        <li>
+                            <a href="donations-food-rescue.html">Food Rescue</a>
+                        </li>
+                        <li>
+                            <a href="donations-wishlist.html">Wishlist</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="verification.html">
+                        <i class="fas fa-certificate"></i>
+                        Verifikasi Penerima
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="reports.html">
+                        <i class="fas fa-chart-bar"></i>
+                        Laporan
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        Pengaturan
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <a href="../index.html" class="btn btn-outline-light btn-sm">
+                    <i class="fas fa-sign-out-alt me-2"></i> Keluar
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Page Content -->
+        <div id="content" class="content">
+            <!-- Admin Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-light">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user-circle me-2"></i>
+                                Admin
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="profile.html">Profil</a></li>
+                                <li><a class="dropdown-item" href="settings.html">Pengaturan</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="../index.html">Keluar</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Reports Content -->
+            <div class="container-fluid">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Laporan</h1>
+                    <div>
+                        <button class="btn btn-sm btn-primary shadow-sm me-2" data-bs-toggle="modal" data-bs-target="#generateReportModal">
+                            <i class="fas fa-file-export fa-sm text-white-50"></i> Generate Laporan
+                        </button>
+                        <button class="btn btn-sm btn-secondary shadow-sm" data-bs-toggle="modal" data-bs-target="#scheduleReportModal">
+                            <i class="fas fa-calendar-alt fa-sm text-white-50"></i> Jadwalkan Laporan
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Report Filters -->
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="reportType">Tipe Laporan</label>
+                                    <select class="form-select" id="reportType">
+                                        <option value="all">Semua Laporan</option>
+                                        <option value="donations">Donasi</option>
+                                        <option value="users">Pengguna</option>
+                                        <option value="food-rescue">Food Rescue</option>
+                                        <option value="wishlist">Wishlist</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="reportPeriod">Periode</label>
+                                    <select class="form-select" id="reportPeriod">
+                                        <option value="daily">Harian</option>
+                                        <option value="weekly">Mingguan</option>
+                                        <option value="monthly">Bulanan</option>
+                                        <option value="quarterly">Kuartalan</option>
+                                        <option value="yearly">Tahunan</option>
+                                        <option value="custom">Kustom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="startDate">Tanggal Mulai</label>
+                                    <input type="date" class="form-control" id="startDate">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="endDate">Tanggal Selesai</label>
+                                    <input type="date" class="form-control" id="endDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12 d-flex justify-content-end">
+                                <button class="btn btn-primary">Terapkan Filter</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Summary Cards -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Donasi Bulan Ini</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">342</div>
+                                        <div class="mt-1">
+                                            <span class="text-success"><i class="fas fa-arrow-up"></i> 12% dari bulan lalu</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-hand-holding-heart fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Makanan Terselamatkan (Kg)</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">1,245</div>
+                                        <div class="mt-1">
+                                            <span class="text-success"><i class="fas fa-arrow-up"></i> 8% dari bulan lalu</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-weight fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Donor Aktif</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">256</div>
+                                        <div class="mt-1">
+                                            <span class="text-success"><i class="fas fa-arrow-up"></i> 5% dari bulan lalu</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Penerima Terverifikasi</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">87</div>
+                                        <div class="mt-1">
+                                            <span class="text-danger"><i class="fas fa-arrow-down"></i> 2% dari bulan lalu</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Charts Row -->
+                <div class="row">
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Statistik Donasi</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Opsi:</div>
+                                        <a class="dropdown-item" href="#">Hari Ini</a>
+                                        <a class="dropdown-item" href="#">Minggu Ini</a>
+                                        <a class="dropdown-item" href="#">Bulan Ini</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Tahun Ini</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <canvas id="donationStatsChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Distribusi Donasi</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Opsi:</div>
+                                        <a class="dropdown-item" href="#">Hari Ini</a>
+                                        <a class="dropdown-item" href="#">Minggu Ini</a>
+                                        <a class="dropdown-item" href="#">Bulan Ini</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Tahun Ini</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-pie pt-4 pb-2">
+                                    <canvas id="donationDistributionChart"></canvas>
+                                </div>
+                                <div class="mt-4 text-center small">
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-primary"></i> Food Rescue
+                                    </span>
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-success"></i> Wishlist
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Reports -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Laporan Terkini</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Lihat Semua</a>
+                                <a class="dropdown-item" href="#">Arsip</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="reportsTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Laporan</th>
+                                        <th>Tipe</th>
+                                        <th>Periode</th>
+                                        <th>Tanggal Generate</th>
+                                        <th>Oleh</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Laporan Donasi Bulanan</td>
+                                        <td>Donasi</td>
+                                        <td>Juni 2023</td>
+                                        <td>2023-07-01</td>
+                                        <td>Admin</td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                                            <a href="#" class="btn btn-sm btn-success"><i class="fas fa-download"></i></a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-share"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Laporan Food Rescue Q2 2023</td>
+                                        <td>Food Rescue</td>
+                                        <td>April - Juni 2023</td>
+                                        <td>2023-07-01</td>
+                                        <td>Admin</td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                                            <a href="#" class="btn btn-sm btn-success"><i class="fas fa-download"></i></a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-share"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Laporan Pengguna Aktif</td>
+                                        <td>Pengguna</td>
+                                        <td>Juni 2023</td>
+                                        <td>2023-06-30</td>
+                                        <td>Admin</td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                                            <a href="#" class="btn btn-sm btn-success"><i class="fas fa-download"></i></a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-share"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Laporan Wishlist Terpenuhi</td>
+                                        <td>Wishlist</td>
+                                        <td>Mei 2023</td>
+                                        <td>2023-06-01</td>
+                                        <td>Admin</td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                                            <a href="#" class="btn btn-sm btn-success"><i class="fas fa-download"></i></a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-share"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generate Report Modal -->
+    <div class="modal fade" id="generateReportModal" tabindex="-1" aria-labelledby="generateReportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="generateReportModalLabel">Generate Laporan Baru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="reportName" class="form-label">Nama Laporan</label>
+                            <input type="text" class="form-control" id="reportName" placeholder="Contoh: Laporan Donasi Bulanan" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportCategory" class="form-label">Kategori Laporan</label>
+                            <select class="form-select" id="reportCategory" required>
+                                <option value="">Pilih Kategori</option>
+                                <option value="donations">Donasi</option>
+                                <option value="users">Pengguna</option>
+                                <option value="food-rescue">Food Rescue</option>
+                                <option value="wishlist">Wishlist</option>
+                                <option value="verification">Verifikasi</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reportFormat" class="form-label">Format</label>
+                            <select class="form-select" id="reportFormat" required>
+                                <option value="pdf">PDF</option>
+                                <option value="excel">Excel</option>
+                                <option value="csv">CSV</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="reportStartDate" class="form-label">Tanggal Mulai</label>
+                                    <input type="date" class="form-control" id="reportStartDate" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="reportEndDate" class="form-label">Tanggal Selesai</label>
+                                    <input type="date" class="form-control" id="reportEndDate" required>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary">Generate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Report Modal -->
+    <div class="modal fade" id="scheduleReportModal" tabindex="-1" aria-labelledby="scheduleReportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="scheduleReportModalLabel">Jadwalkan Laporan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="scheduledReportName" class="form-label">Nama Laporan</label>
+                            <input type="text" class="form-control" id="scheduledReportName" placeholder="Contoh: Laporan Bulanan" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="scheduledReportCategory" class="form-label">Kategori Laporan</label>
+                            <select class="form-select" id="scheduledReportCategory" required>
+                                <option value="">Pilih Kategori</option>
+                                <option value="donations">Donasi</option>
+                                <option value="users">Pengguna</option>
+                                <option value="food-rescue">Food Rescue</option>
+                                <option value="wishlist">Wishlist</option>
+                                <option value="verification">Verifikasi</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="scheduleFrequency" class="form-label">Frekuensi</label>
+                            <select class="form-select" id="scheduleFrequency" required>
+                                <option value="">Pilih Frekuensi</option>
+                                <option value="daily">Harian</option>
+                                <option value="weekly">Mingguan</option>
+                                <option value="monthly">Bulanan</option>
+                                <option value="quarterly">Kuartalan</option>
+                                <option value="yearly">Tahunan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="scheduleEmail" class="form-label">Kirim ke Email</label>
+                            <input type="email" class="form-control" id="scheduleEmail" placeholder="admin@example.com">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="includeInDashboard">
+                            <label class="form-check-label" for="includeInDashboard">Tampilkan di Dashboard</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary">Simpan Jadwal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="../js/admin.js"></script>
+</body>
+</html>
