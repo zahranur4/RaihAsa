@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/forms.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/components.css">
     
@@ -42,8 +43,8 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a href="#login" class="btn btn-outline-primary me-2">Masuk</a>
-                    <a href="#register" class="btn btn-primary">Daftar</a>
+                    <a href="/pages/login.html" class="btn btn-outline-primary me-2">Masuk</a>
+                    <a href="register.html" class="btn btn-primary">Daftar</a>
                 </div>
             </div>
             </div>
@@ -96,12 +97,186 @@
     </section>
 
     <!-- Floating Donation Button -->
-    <div class="floating-donation-btn">
-        <a href="#donate-modal" data-bs-toggle="modal" class="btn-donation">
-            <i class="fas fa-plus"></i>
-            <span>Donasi</span>
-        </a>
+<div class="floating-donation-btn">
+    <a href="#" class="btn-donation" data-bs-toggle="modal" data-bs-target="#donationModal">
+        <i class="fas fa-plus"></i>
+        <span>Donasi</span>
+    </a>
+</div>
+
+<!-- Donation Modal -->
+<div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="donationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="donationModalLabel">Form Donasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Login Prompt if not logged in -->
+                <div id="loginPrompt" class="auth-prompt">
+                    <div class="auth-icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </div>
+                    <h4>Login Diperlukan</h4>
+                    <p>Anda harus login terlebih dahulu untuk membuat donasi</p>
+                    <div class="auth-buttons">
+                        <a href="/pages/login.html" class="btn btn-primary w-100">Login</a>
+                        <a href="/pages/register.html" class="btn btn-outline-primary w-100 mt-2">Daftar</a>
+                    </div>
+                </div>
+                
+                <!-- Donation Form if logged in (hidden by default) -->
+                <div id="donationForm" style="display: none;">
+                    <ul class="nav nav-tabs mb-3" id="donationTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="food-rescue-tab" data-bs-toggle="tab" data-bs-target="#food-rescue" type="button" role="tab" aria-controls="food-rescue" aria-selected="true">Food Rescue</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="wishlist-tab" data-bs-toggle="tab" data-bs-target="#wishlist" type="button" role="tab" aria-controls="wishlist" aria-selected="false">Wishlist</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="other-tab" data-bs-toggle="tab" data-bs-target="#other" type="button" role="tab" aria-controls="other" aria-selected="false">Lainnya</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="donationTabsContent">
+                        <!-- Food Rescue Form -->
+                        <div class="tab-pane fade show active" id="food-rescue" role="tabpanel" aria-labelledby="food-rescue-tab">
+                            <form id="foodRescueForm">
+                                <div class="mb-3">
+                                    <label for="food-type" class="form-label">Jenis Makanan</label>
+                                    <select class="form-control" id="food-type" required>
+                                        <option value="">Pilih jenis makanan</option>
+                                        <option value="makanan-basah">Makanan Basah</option>
+                                        <option value="makanan-kering">Makanan Kering</option>
+                                        <option value="buah">Buah</option>
+                                        <option value="sayur">Sayuran</option>
+                                        <option value="minuman">Minuman</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="food-name" class="form-label">Nama Makanan</label>
+                                    <input type="text" class="form-control" id="food-name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="food-quantity" class="form-label">Jumlah</label>
+                                    <input type="text" class="form-control" id="food-quantity" placeholder="Contoh: 5 kg, 10 porsi" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="food-expiry" class="form-label">Kadaluwarsa</label>
+                                    <input type="datetime-local" class="form-control" id="food-expiry" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="food-description" class="form-label">Deskripsi</label>
+                                    <textarea class="form-control" id="food-description" rows="3" placeholder="Deskripsikan makanan yang akan didonasikan"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pickup-method" class="form-label">Metode Pengambilan</label>
+                                    <select class="form-control" id="pickup-method" required>
+                                        <option value="">Pilih metode</option>
+                                        <option value="self-delivery">Saya akan mengantar</option>
+                                        <option value="self-pickup">Diambil oleh penerima</option>
+                                    </select>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Kirim Donasi</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Wishlist Form -->
+                        <div class="tab-pane fade" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
+                            <form id="wishlistForm">
+                                <div class="mb-3">
+                                    <label for="wishlist-recipient" class="form-label">Pilih Penerima</label>
+                                    <select class="form-control" id="wishlist-recipient" required>
+                                        <option value="">Pilih penerima</option>
+                                        <option value="1">Panti Asuhan Harapan</option>
+                                        <option value="2">Panti Jompo Bahagia</option>
+                                        <option value="3">Rumah Belajar Cemerlang</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="wishlist-item" class="form-label">Item yang akan didonasikan</label>
+                                    <input type="text" class="form-control" id="wishlist-item" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="wishlist-quantity" class="form-label">Jumlah</label>
+                                    <input type="text" class="form-control" id="wishlist-quantity" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="wishlist-description" class="form-label">Deskripsi</label>
+                                    <textarea class="form-control" id="wishlist-description" rows="3" placeholder="Deskripsikan item yang akan didonasikan"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="delivery-method" class="form-label">Metode Pengiriman</label>
+                                    <select class="form-control" id="delivery-method" required>
+                                        <option value="">Pilih metode</option>
+                                        <option value="self-delivery">Saya akan mengantar</option>
+                                        <option value="courier">Kurir</option>
+                                    </select>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Kirim Donasi</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Other Donation Form -->
+                        <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other-tab">
+                            <form id="otherForm">
+                                <div class="mb-3">
+                                    <label for="other-type" class="form-label">Jenis Donasi</label>
+                                    <select class="form-control" id="other-type" required>
+                                        <option value="">Pilih jenis donasi</option>
+                                        <option value="uang">Uang</option>
+                                        <option value="pakaian">Pakaian</option>
+                                        <option value="buku">Buku</option>
+                                        <option value="mainan">Mainan Anak</option>
+                                        <option value="alat-sekolah">Alat Sekolah</option>
+                                        <option value="lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="other-name" class="form-label">Nama Item</label>
+                                    <input type="text" class="form-control" id="other-name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="other-quantity" class="form-label">Jumlah</label>
+                                    <input type="text" class="form-control" id="other-quantity" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="other-description" class="form-label">Deskripsi</label>
+                                    <textarea class="form-control" id="other-description" rows="3" placeholder="Deskripsikan item yang akan didonasikan"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="other-recipient" class="form-label">Pilih Penerima</label>
+                                    <select class="form-control" id="other-recipient" required>
+                                        <option value="">Pilih penerima</option>
+                                        <option value="1">Panti Asuhan Harapan</option>
+                                        <option value="2">Panti Jompo Bahagia</option>
+                                        <option value="3">Rumah Belajar Cemerlang</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="delivery-method-other" class="form-label">Metode Pengiriman</label>
+                                    <select class="form-control" id="delivery-method-other" required>
+                                        <option value="">Pilih metode</option>
+                                        <option value="self-delivery">Saya akan mengantar</option>
+                                        <option value="courier">Kurir</option>
+                                    </select>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Kirim Donasi</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
     <!-- About Section -->
     <section id="about" class="about-section py-5">
