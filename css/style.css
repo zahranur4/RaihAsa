@@ -1717,11 +1717,12 @@ section {
     display: none;
 }
 
-/* Search Box Styles */
+/* Update Search Box Styles */
 .search-container {
-    margin-top: -60px;
+    margin-top: -20px; /* Kurangi margin top agar lebih dekat dengan kategori */
     position: relative;
     z-index: 10;
+    padding-bottom: 20px; /* Tambahkan padding bottom untuk jarak dengan konten berikutnya */
 }
 
 .search-box {
@@ -1818,4 +1819,31 @@ section {
     .small-category-card span {
         font-size: 0.75rem;
     }
+}
+
+/* Tambahkan style untuk kategori mendesak */
+.small-category-card.urgent {
+    background-color: #fff8f8;
+    border: 1px solid #ffebee;
+}
+
+.small-category-card.urgent:hover {
+    background-color: #ffebee;
+    color: #d32f2f;
+}
+
+.small-category-card.urgent .small-category-icon {
+    background-color: rgba(211, 47, 47, 0.1);
+}
+
+.small-category-card.urgent:hover .small-category-icon {
+    background-color: #d32f2f;
+}
+
+.small-category-card.urgent .small-category-icon i {
+    color: #d32f2f;
+}
+
+.small-category-card.urgent:hover .small-category-icon i {
+    color: white;
 }
