@@ -1704,3 +1704,11 @@ section {
 .form-check-label {
   margin-bottom: 0;
 }
+
+.navbar-brand img {
+    transition: all 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.05);
+}
