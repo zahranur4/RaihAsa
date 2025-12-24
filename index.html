@@ -17,8 +17,9 @@
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
-                <img src="/assets/logo.png" alt="RaihAsa" class="img-fluid" style="max-height: 40px;">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" height="40" class="me-2">
+                <span>RaihAsa</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -92,8 +93,94 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-        </div>
+        <!-- Tambahkan setelah bagian carousel -->
+            <div class="container search-container mt-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="search-box">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-lg" placeholder="Cari donasi, penerima, atau kebutuhan mendesak...">
+                                <button class="btn btn-primary btn-lg" type="button">
+                                    <i class="fas fa-search"></i> Cari
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </section>
+
+    <!-- Categories Section -->
+<section class="categories-section py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Kategori Program</h2>
+            <p class="lead">Temukan berbagai program yang sesuai dengan keinginan Anda untuk berkontribusi</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 col-lg-3">
+                <a href="pages/food-rescue.html" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Food Rescue</h3>
+                    <p>Donasi makanan berlebih untuk mengurangi pemborosan dan membantu yang membutuhkan</p>
+                    <div class="category-stats">
+                        <span><i class="fas fa-box"></i> 1,245 Donasi</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <a href="pages/wishlist.html" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Wishlist</h3>
+                    <p>Penuhi kebutuhan spesifik dari panti asuhan dan lembaga sosial</p>
+                    <div class="category-stats">
+                        <span><i class="fas fa-list"></i> 87 Permintaan</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <a href="pages/volunteer.html" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Relawan</h3>
+                    <p>Bergabung sebagai relawan untuk membantu operasional di lapangan</p>
+                    <div class="category-stats">
+                        <span><i class="fas fa-users"></i> 120+ Relawan</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <a href="pages/education.html" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Edukasi Pangan</h3>
+                    <p>Program edukasi tentang gizi, pengolahan makanan, dan pengurangan limbah</p>
+                    <div class="category-stats">
+                        <span><i class="fas fa-book"></i> 24 Workshop</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <a href="pages/community.html" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>Komunitas</h3>
+                    <p>Bergabung dengan komunitas peduli pangan dan lingkungan di sekitar Anda</p>
+                    <div class="category-stats">
+                        <span><i class="fas fa-map-marker-alt"></i> 12 Kota</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Floating Donation Button -->
 <div class="floating-donation-btn">
