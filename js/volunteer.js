@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show/hide sections based on login status
     toggleVolunteerSections(isLoggedIn);
     
+    // Initialize scroll animations
+    initScrollAnimations();
+    
     // Volunteer Modal
     const volunteerModal = document.getElementById('volunteerModal');
     if (volunteerModal) {
@@ -162,9 +165,92 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Function to initialize scroll animations
+function initScrollAnimations() {
+    // Create an Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                
+                // If it's a progress bar, animate it
+                if (entry.target.classList.contains('progress-bar')) {
+                    const width = entry.target.getAttribute('aria-valuenow');
+                    entry.target.style.width = width + '%';
+                }
+                
+                // If it's a counter, animate it
+                if (entry.target.classList.contains('counter')) {
+                    animateCounter(entry.target);
+                }
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger when 10% of the element is visible
+    });
+    
+    // Elements to observe with fade-in animation
+    const fadeElements = document.querySelectorAll(
+        '.category-card, .activity-card, .photo-item, .management-card, .match-item, .step'
+    );
+    
+    // Elements to observe with slide-up animation
+    const slideElements = document.querySelectorAll(
+        '.section-title, .lead, .text-center h2, .text-center p'
+    );
+    
+    // Progress bars to observe
+    const progressBars = document.querySelectorAll('.progress-bar');
+    
+    // Counters to observe
+    const counters = document.querySelectorAll('.counter');
+    
+    // Add animation classes and observe elements
+    fadeElements.forEach(el => {
+        el.classList.add('fade-in');
+        observer.observe(el);
+    });
+    
+    slideElements.forEach(el => {
+        el.classList.add('slide-up');
+        observer.observe(el);
+    });
+    
+    progressBars.forEach(el => {
+        // Set initial width to 0
+        el.style.width = '0%';
+        observer.observe(el);
+    });
+    
+    counters.forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// Function to animate counter
+function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-target'));
+    const duration = 2000; // 2 seconds
+    const increment = target / (duration / 16); // 60fps
+    let current = 0;
+    
+    const updateCounter = () => {
+        current += increment;
+        
+        if (current < target) {
+            element.textContent = Math.ceil(current);
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = target;
+        }
+    };
+    
+    updateCounter();
+}
+
 // Function to check if user is logged in
 function checkUserLoginStatus() {
-    // In a real application, this would check if the user has a valid session
+    // In a real application, this would check if user has a valid session
     // For demo purposes, we'll use localStorage to simulate login status
     return localStorage.getItem('isLoggedIn') === 'true';
 }
