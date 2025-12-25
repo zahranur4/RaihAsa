@@ -58,18 +58,19 @@
         </div>
     </section>
 
-    <!-- Volunteer Status Section -->
-    <section class="volunteer-status py-4 bg-light">
+    <!-- Volunteer CTA Section -->
+    <section class="volunteer-cta py-5 bg-light">
         <div class="container">
-            <div class="status-card">
-                <div class="status-content">
-                    <div class="status-badge pending">
-                        <i class="fas fa-clock"></i> Belum Terverifikasi
-                    </div>
-                    <p>Akun Anda sedang dalam proses verifikasi oleh admin. Setelah terverifikasi, Anda dapat mengikuti kegiatan volunteer.</p>
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2>Ingin menjadi relawan?</h2>
+                    <p class="lead">Bergabunglah dengan tim relawan kami dan berkontribusi dalam berbagai kegiatan sosial yang bermakna.</p>
+                    <p>Setelah mendaftar dan login, Anda dapat mengisi form pendaftaran relawan, melihat kegiatan yang tersedia melalui smart matching, dan mengelola partisipasi Anda dalam berbagai kegiatan sosial.</p>
                 </div>
-                <div class="status-action">
-                    <a href="#verification-form" class="btn btn-primary">Lengkapi Data</a>
+                <div class="col-lg-4 text-center">
+                    <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#volunteerModal">
+                        Daftar sebagai Relawan
+                    </button>
                 </div>
             </div>
         </div>
@@ -157,8 +158,25 @@
         </div>
     </section>
 
-    <!-- Volunteer Form Section -->
-    <section id="verification-form" class="volunteer-form-section py-5 bg-light">
+    <!-- Login Required Section -->
+    <div id="loginRequired" class="auth-required-section">
+        <div class="container">
+            <div class="auth-prompt text-center py-5">
+                <div class="auth-icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                </div>
+                <h3>Login Diperlukan</h3>
+                <p>Anda harus login terlebih dahulu untuk mengakses fitur volunteer lengkap</p>
+                <div class="auth-buttons mt-4">
+                    <a href="/pages/login.html" class="btn btn-primary me-2">Login</a>
+                    <a href="/pages/register.html" class="btn btn-outline-primary">Daftar Akun</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Volunteer Form Section (Hidden by default) -->
+    <section id="verification-form" class="volunteer-form-section py-5 bg-light" style="display: none;">
         <div class="container">
             <div class="form-container">
                 <div class="form-header text-center mb-5">
@@ -345,8 +363,8 @@
         </div>
     </section>
 
-    <!-- Activities Section -->
-    <section id="activities" class="activities-section py-5">
+    <!-- Activities Section (Hidden by default) -->
+    <section id="activities" class="activities-section py-5" style="display: none;">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-title">Kegiatan Volunteer</h2>
@@ -540,8 +558,8 @@
         </div>
     </section>
 
-    <!-- Smart Matching Section -->
-    <section class="smart-matching py-5 bg-light">
+    <!-- Smart Matching Section (Hidden by default) -->
+    <section class="smart-matching py-5 bg-light" style="display: none;">
         <div class="container">
             <div class="matching-container">
                 <div class="matching-header text-center mb-5">
@@ -694,8 +712,8 @@
         </div>
     </section>
 
-    <!-- Activity Management Section -->
-    <section class="activity-management py-5">
+    <!-- Activity Management Section (Hidden by default) -->
+    <section class="activity-management py-5" style="display: none;">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-title">Manajemen Kegiatan</h2>
@@ -799,6 +817,65 @@
             </div>
         </div>
     </section>
+
+    <!-- Volunteer Modal -->
+    <div class="modal fade" id="volunteerModal" tabindex="-1" aria-labelledby="volunteerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="volunteerModalLabel">Pendaftaran Relawan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Login Prompt if not logged in -->
+                    <div id="volunteerLoginPrompt" class="auth-prompt">
+                        <div class="auth-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h4>Daftar Akun Diperlukan</h4>
+                        <p>Anda harus memiliki akun RaihAsa terlebih dahulu untuk mendaftar sebagai relawan</p>
+                        <div class="auth-buttons">
+                            <a href="/pages/register.html" class="btn btn-primary w-100">Daftar Akun</a>
+                            <a href="/pages/login.html" class="btn btn-outline-primary w-100 mt-2">Masuk</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Volunteer info if logged in (hidden by default) -->
+                    <div id="volunteerInfo" style="display: none;">
+                        <div class="volunteer-steps">
+                            <div class="step active">
+                                <div class="step-number">1</div>
+                                <div class="step-title">Lengkapi Data</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-title">Verifikasi</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-title">Pilih Kegiatan</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-title">Mulai Berkontribusi</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <p>Setelah akun Anda terverifikasi, Anda dapat mengakses:</p>
+                            <ul class="volunteer-features">
+                                <li><i class="fas fa-check-circle"></i> Form pendaftaran relawan lengkap</li>
+                                <li><i class="fas fa-check-circle"></i> Smart matching untuk kegiatan yang sesuai</li>
+                                <li><i class="fas fa-check-circle"></i> Manajemen kegiatan dan partisipasi</li>
+                                <li><i class="fas fa-check-circle"></i> Grup WhatsApp untuk koordinasi</li>
+                            </ul>
+                            <button type="button" class="btn btn-primary mt-3" data-bs-dismiss="modal">Mengerti</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Feedback Modal -->
     <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
@@ -925,117 +1002,6 @@
     
     <!-- Custom JS -->
     <script src="../js/main.js"></script>
-    <script>
-        // Volunteer Page JavaScript
-        
-        // Filter Activities
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const activityCards = document.querySelectorAll('.activity-card');
-            
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    const filter = this.getAttribute('data-filter');
-                    
-                    // Show/hide activity cards based on filter
-                    activityCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            // Management Tabs
-            const managementTabs = document.querySelectorAll('.management-tab');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-            
-            managementTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all tabs
-                    managementTabs.forEach(t => t.classList.remove('active'));
-                    
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-                    
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // Hide all tab panes
-                    tabPanes.forEach(pane => {
-                        pane.classList.remove('active');
-                    });
-                    
-                    // Show selected tab pane
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-            
-            // Rating Stars
-            const ratingStars = document.querySelectorAll('.rating i');
-            
-            ratingStars.forEach(star => {
-                star.addEventListener('click', function() {
-                    const rating = this.getAttribute('data-rating');
-                    
-                    // Remove active class from all stars
-                    ratingStars.forEach(s => {
-                        s.classList.remove('fas');
-                        s.classList.add('far');
-                    });
-                    
-                    // Add active class to selected and previous stars
-                    for (let i = 0; i < rating; i++) {
-                        ratingStars[i].classList.remove('far');
-                        ratingStars[i].classList.add('fas');
-                    }
-                });
-                
-                star.addEventListener('mouseover', function() {
-                    const rating = this.getAttribute('data-rating');
-                    
-                    // Remove active class from all stars
-                    ratingStars.forEach(s => {
-                        s.classList.remove('fas');
-                        s.classList.add('far');
-                    });
-                    
-                    // Add active class to hovered and previous stars
-                    for (let i = 0; i < rating; i++) {
-                        ratingStars[i].classList.remove('far');
-                        ratingStars[i].classList.add('fas');
-                    }
-                });
-            });
-            
-            // Photo Upload Preview
-            const photoInput = document.getElementById('facePhoto');
-            const photoPreview = document.querySelector('.photo-preview');
-            
-            if (photoInput && photoPreview) {
-                photoInput.addEventListener('change', function(e) {
-                    const file = e.target.files[0];
-                    
-                    if (file) {
-                        const reader = new FileReader();
-                        
-                        reader.onload = function(e) {
-                            photoPreview.style.backgroundImage = `url(${e.target.result})`;
-                            photoPreview.innerHTML = '';
-                        }
-                        
-                        reader.readAsDataURL(file);
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="../js/volunteer.js"></script>
 </body>
 </html>
