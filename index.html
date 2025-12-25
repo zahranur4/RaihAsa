@@ -98,13 +98,13 @@
         </div>
         
         <!-- Search container -->
-        <div class="container search-container mt-1">
+        <div class="container search-container mt-4">
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="search-box">
-                        <div class="input-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Cari donasi, penerima, atau kebutuhan...">
-                            <button class="btn btn-primary btn-lg" type="button">
+                <div class="col-md-8 col-lg-6">
+                    <div class="search-box p-3">
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control form-control-lg" placeholder="Cari donasi, penerima, atau kebutuhan..." style="border-radius: 10px 0 0 10px;">
+                            <button class="btn btn-primary btn-lg" type="button" style="border-radius: 0 10px 10px 0;">
                                 <i class="fas fa-search"></i> Cari
                             </button>
                         </div>
@@ -117,8 +117,8 @@
     <!-- Small Categories Section -->
     <section class="small-categories py-3">
         <div class="container">
-            <div class="row g-3">
-                <div class="col-6 col-md-4 col-lg-2">
+            <div class="row g-3 justify-content-center">
+                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
                     <a href="pages/food-rescue.html" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-utensils"></i>
@@ -126,7 +126,7 @@
                         <span>Food Rescue</span>
                     </a>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2">
+                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
                     <a href="pages/wishlist.html" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-heart"></i>
@@ -134,7 +134,7 @@
                         <span>Wishlist</span>
                     </a>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2">
+                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
                     <a href="pages/volunteer.html" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-hands-helping"></i>
@@ -142,15 +142,7 @@
                         <span>Relawan</span>
                     </a>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="pages/education.html" class="small-category-card">
-                        <div class="small-category-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <span>Edukasi</span>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
+                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
                     <a href="pages/my-donations.html" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-hand-holding-heart"></i>
@@ -369,7 +361,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid rounded-3 shadow" alt="About RaihAsa">
+                        <img src="/assets/raih asa.png" class="img-fluid rounded-3 shadow" alt="About RaihAsa">
                     </div>
                 </div>
             </div>
@@ -455,7 +447,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="food-rescue-image">
-                        <img src="/assets/food rescue.jpg" class="img-fluid rounded-3 shadow" alt="Food Rescue">
+                        <img src="/assets/food rescue.png" class="img-fluid rounded-3 shadow" alt="Food Rescue">
                     </div>
                 </div>
             </div>
@@ -475,7 +467,7 @@
                 </div>
                 <div class="col-lg-6 order-lg-1">
                     <div class="wishlist-image">
-                        <img src="/assets/Anak 2.jpg" class="img-fluid rounded-3 shadow" alt="Wishlist">
+                        <img src="/assets/wishlist.png" class="img-fluid rounded-3 shadow" alt="Wishlist">
                     </div>
                 </div>
             </div>
@@ -495,7 +487,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="volunteer-image">
-                        <img src="/assets/volunteer.jpg" class="img-fluid rounded-3 shadow" alt="Volunteer">
+                        <img src="/assets/volunteer.png" class="img-fluid rounded-3 shadow" alt="Volunteer">
                     </div>
                 </div>
             </div>
@@ -657,7 +649,7 @@
             <div class="footer-bottom">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <p>&copy; 2023 RaihAsa. Hak Cipta Dilindungi.</p>
+                        <p>&copy; 2025 RaihAsa. Hak Cipta Dilindungi.</p>
                     </div>
                     <div class="col-md-6 text-md-end">
                         <ul class="footer-bottom-links">
@@ -729,53 +721,87 @@
         </div>
     </div>
 
-    <!-- Donation Modal -->
+    <!-- Donation Modal for Carousel Button -->
     <div class="modal fade" id="donate-modal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="donateModalLabel">Donasi Makanan</h5>
+                    <h5 class="modal-title" id="donateModalLabel">Form Donasi</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="donation-steps">
-                        <div class="step active">
-                            <div class="step-number">1</div>
-                            <div class="step-title">Login/Daftar</div>
+                    <!-- Login Prompt if not logged in -->
+                    <div id="carouselLoginPrompt" class="auth-prompt">
+                        <div class="auth-icon">
+                            <i class="fas fa-sign-in-alt"></i>
                         </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-title">Isi Form Donasi</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-title">Matching Otomatis</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <div class="step-title">Konfirmasi</div>
+                        <h4>Login Diperlukan</h4>
+                        <p>Anda harus login terlebih dahulu untuk membuat donasi</p>
+                        <div class="auth-buttons">
+                            <a href="/pages/login.html" class="btn btn-primary w-100">Login</a>
+                            <a href="/pages/register.html" class="btn btn-outline-primary w-100 mt-2">Daftar</a>
                         </div>
                     </div>
                     
-                    <div class="login-form">
+                    <!-- Login form (hidden by default) -->
+                    <div id="carouselLoginForm" style="display: none;">
                         <h4>Masuk ke Akun Anda</h4>
-                        <form id="login-form">
+                        <form id="carousel-login-form">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <label for="carousel-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="carousel-email" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" required>
+                                <label for="carousel-password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="carousel-password" required>
                             </div>
                             <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="remember">
-                                <label class="form-check-label" for="remember">Ingat saya</label>
+                                <input type="checkbox" class="form-check-input" id="carousel-remember">
+                                <label class="form-check-label" for="carousel-remember">Ingat saya</label>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Masuk</button>
                             <div class="text-center mt-3">
-                                <p>Belum punya akun? <a href="#" class="register-link">Daftar sekarang</a></p>
+                                <p>Belum punya akun? <a href="#" class="carousel-register-link">Daftar sekarang</a></p>
                             </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Donation form (hidden by default) -->
+                    <div id="carouselDonationForm" style="display: none;">
+                        <h4>Isi Form Donasi</h4>
+                        <form id="carousel-donation-form">
+                            <div class="mb-3">
+                                <label for="carousel-food-type" class="form-label">Jenis Makanan</label>
+                                <select class="form-control" id="carousel-food-type" required>
+                                    <option value="">Pilih jenis makanan</option>
+                                    <option value="makanan-basah">Makanan Basah</option>
+                                    <option value="makanan-kering">Makanan Kering</option>
+                                    <option value="buah">Buah</option>
+                                    <option value="sayur">Sayuran</option>
+                                    <option value="minuman">Minuman</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="carousel-quantity" class="form-label">Jumlah</label>
+                                <input type="text" class="form-control" id="carousel-quantity" placeholder="Contoh: 5 kg, 10 porsi" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="carousel-expiry" class="form-label">Kadaluwarsa</label>
+                                <input type="datetime-local" class="form-control" id="carousel-expiry" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="carousel-description" class="form-label">Deskripsi</label>
+                                <textarea class="form-control" id="carousel-description" rows="3" placeholder="Deskripsikan makanan yang akan didonasikan"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="carousel-pickup-method" class="form-label">Metode Pengambilan</label>
+                                <select class="form-control" id="carousel-pickup-method" required>
+                                    <option value="">Pilih metode</option>
+                                    <option value="self-delivery">Saya akan mengantar</option>
+                                    <option value="self-pickup">Diambil oleh penerima</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Lanjutkan</button>
                         </form>
                     </div>
                 </div>

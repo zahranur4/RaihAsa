@@ -289,3 +289,176 @@
 .verification-benefits .benefit-card {
   height: 100%;
 }
+
+/* Animasi untuk elemen saat scroll */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Search Box Styles */
+.search-container {
+  padding: 2rem 0;
+  margin-top: 1rem;
+}
+
+.search-box {
+  background-color: white;
+  border-radius: 10px; /* Mengurangi border radius dari 50px menjadi 10px */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-box:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.search-box .form-control {
+  border: none;
+  background-color: transparent;
+  border-radius: 10px 0 0 10px; /* Menyesuaikan border radius input */
+}
+
+.search-box .form-control:focus {
+  box-shadow: none;
+}
+
+.search-box .btn {
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0 10px 10px 0; /* Menyesuaikan border radius tombol */
+}
+
+/* Small Categories Section */
+.small-categories {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    padding: 20px 0; /* Menambah padding */
+}
+
+.small-categories .row {
+    justify-content: center; /* Menengahkan kategori */
+}
+
+.small-category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #495057;
+    transition: all 0.3s ease;
+    height: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin: 0 auto; /* Menambah margin auto untuk menengahkan */
+    max-width: 140px; /* Menambah max width */
+}
+
+.small-category-card:hover {
+    background-color: #f8f9fa;
+    color: #000957;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-decoration: none;
+}
+
+.small-category-icon {
+    width: 50px; /* Memperbesar icon */
+    height: 50px;
+    background-color: rgba(0, 9, 87, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.small-category-card:hover .small-category-icon {
+    background-color: #000957;
+}
+
+.small-category-icon i {
+    font-size: 1.5rem; /* Memperbesar icon */
+    color: #000957;
+    transition: all 0.3s ease;
+}
+
+.small-category-card:hover .small-category-icon i {
+    color: white;
+}
+
+.small-category-card span {
+    font-size: 0.9rem; /* Memperbesar teks */
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Penyesuaian untuk tampilan mobile */
+@media (max-width: 768px) {
+    .small-category-card {
+        margin-bottom: 10px; /* Menambah jarak antar kategori */
+    }
+}
+
+/* Auth Prompt Styles */
+.auth-prompt {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.auth-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.auth-prompt h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.auth-prompt p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.auth-buttons .btn {
+    padding: 0.75rem;
+    font-weight: 500;
+}
+
+/* Matching Screen Styles */
+.matching-screen {
+    padding: 2rem 0;
+}
+
+.confirmation-screen {
+    padding: 1rem 0;
+}
+
+.confirmation-screen ul {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.confirmation-screen ul li {
+    margin-bottom: 0.5rem;
+}

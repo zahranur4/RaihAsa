@@ -1720,28 +1720,51 @@ section {
     display: none;
 }
 
-/* Update Search Box Styles */
-/* Update Search Box Styles */
+/* Search Box Styles */
 .search-container {
-    margin-top: -10px; /* Kurangi margin top agar lebih dekat dengan kategori */
-    position: relative;
-    z-index: 10;
-    padding-bottom: 10px; /* Tambahkan padding bottom untuk jarak dengan konten berikutnya */
+  padding: 2rem 0; /* Tambah padding atas dan bawah */
+  margin-top: 1rem; /* Kurangi margin top */
 }
 
 .search-box {
-    background-color: white;
-    border-radius: var(--radius);
-    padding: 15px;
-    box-shadow: var(--shadow-lg);
+  background-color: white; /* Tambah background putih */
+  border-radius: 50px; /* Buat rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Tambah shadow */
+  padding: 0.75rem 1rem; /* Tambah padding */
+  transition: all 0.3s ease; /* Tambah transisi */
 }
 
-.search-box .input-group .form-control {
-    border-right: none;
+.search-box:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Tambah shadow saat hover */
 }
 
-.search-box .input-group .btn {
-    border-left: none;
+.search-box .form-control {
+  border: none; /* Hapus border */
+  background-color: transparent; /* Background transparan */
+}
+
+.search-box .form-control:focus {
+  box-shadow: none; /* Hapus focus shadow */
+}
+
+.search-box .btn {
+  border: none; /* Hapus border */
+  padding: 0.5rem 1.5rem; /* Sesuaikan padding tombol */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-container {
+    padding: 1.5rem 0; /* Kurangi padding di mobile */
+  }
+  
+  .search-box {
+    padding: 0.5rem 0.75rem; /* Kurangi padding di mobile */
+  }
+  
+  .search-box .btn {
+    padding: 0.5rem 1rem; /* Sesuaikan padding tombol di mobile */
+  }
 }
 
 /*=============== SMALL CATEGORIES SECTION ===============*/
