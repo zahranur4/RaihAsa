@@ -1,4 +1,30 @@
 /*=============== FOOD RESCUE PAGE ===============*/
+
+/* Hero Section with Navy Background */
+.food-rescue-hero {
+  background-color: var(--primary-color);
+  padding: 100px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.food-rescue-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.food-rescue-hero .hero-image img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 1rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.food-rescue-hero .hero-image img:hover {
+  transform: translateY(-10px);
+}
+
 .food-rescue-section {
   background-color: var(--white);
 }
@@ -311,6 +337,14 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .food-rescue-hero {
+    padding: 80px 0 60px;
+  }
+  
+  .food-rescue-hero .display-4 {
+    font-size: 2rem;
+  }
+  
   .rescue-grid {
     grid-template-columns: 1fr;
   }

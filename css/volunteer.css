@@ -733,3 +733,75 @@
     padding-bottom: 0.5rem;
   }
 }
+
+/* Volunteer Photos Section */
+.volunteer-photos {
+  background-color: var(--white);
+  padding: 5rem 0;
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.photo-item {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.photo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.photo-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.photo-item:hover img {
+  transform: scale(1.05);
+}
+
+.photo-caption {
+  padding: 1.5rem;
+}
+
+.photo-caption h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.photo-caption p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Responsive Design for Photos */
+@media (max-width: 768px) {
+  .photos-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .photo-item img {
+    height: 200px;
+  }
+  
+  .photo-caption h4 {
+    font-size: 1.1rem;
+  }
+  
+  .photo-caption p {
+    font-size: 0.85rem;
+  }
+}
