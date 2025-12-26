@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaihAsa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    @vite(['resources/css/forms.css','resources/css/style.css','resources/css/components.css','resources/js/main.js'])
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" height="40" class="me-2">
+                    <span>RaihAsa</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/index.html#about">Tentang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link requires-auth" href="/pages/food-rescue.html">Food Rescue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link requires-auth" href="/pages/wishlist.html">Wishlist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link requires-auth" href="/pages/volunteer.html">Relawan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link requires-auth" href="/pages/my-donations.html">Kontribusiku</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a href="/pages/login.html" class="btn btn-outline-primary me-2">Masuk</a>
+                        <a href="/pages/register.html" class="btn btn-primary">Daftar</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Carousel -->
+    <section id="home" class="hero-section">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/assets/Anak 1.png">
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="hero-buttons">
+                            <a href="#donate-modal" data-bs-toggle="modal" class="btn btn-light btn-lg">Donasi Sekarang</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/assets/Anak 2.png" class="d-block w-100" alt="Food Rescue">
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="hero-buttons">
+                            <a href="pages/food-rescue.html" class="btn btn-light btn-lg">Food Rescue</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/assets/Anak 3.png" class="d-block w-100" alt="Volunteer">
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="hero-buttons">
+                            <a href="#volunteer-section" class="btn btn-light btn-lg">Jadi Relawan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        
+        <!-- Search container -->
+        <div class="container search-container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="search-box p-3">
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control form-control-lg" placeholder="Cari donasi, penerima, atau kebutuhan..." style="border-radius: 10px 0 0 10px;">
+                            <button class="btn btn-primary btn-lg" type="button" style="border-radius: 0 10px 10px 0;">
+                                <i class="fas fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Small Categories Section -->
+    <section class="small-categories py-3">
+        <div class="container">
+            <div class="row g-3 justify-content-center">
+                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
+                    <a href="pages/food-rescue.html" class="small-category-card">
+                        <div class="small-category-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <span>Food Rescue</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
+                    <a href="pages/wishlist.html" class="small-category-card">
+                        <div class="small-category-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span>Wishlist</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
+                    <a href="pages/volunteer.html" class="small-category-card">
+                        <div class="small-category-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <span>Relawan</span>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
+                    <a href="pages/my-donations.html" class="small-category-card">
+                        <div class="small-category-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <span>Kontribusiku</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Donation Button -->
+    <div class="floating-donation-btn">
+        <a href="#" class="btn-donation" data-bs-toggle="modal" data-bs-target="#donationModal">
+            <i class="fas fa-plus"></i>
+            <span>Donasi</span>
+        </a>
+    </div>
+
+    <!-- Donation Modal -->
+    <div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="donationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="donationModalLabel">Form Donasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Login Prompt if not logged in -->
+                    <div id="loginPrompt" class="auth-prompt">
+                        <div class="auth-icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                        <h4>Login Diperlukan</h4>
+                        <p>Anda harus login terlebih dahulu untuk membuat donasi</p>
+                        <div class="auth-buttons">
+                            <a href="/pages/login.html" class="btn btn-primary w-100">Login</a>
+                            <a href="/pages/register.html" class="btn btn-outline-primary w-100 mt-2">Daftar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Donation Form if logged in (hidden by default) -->
+                    <div id="donationForm" style="display: none;">
+                        <ul class="nav nav-tabs mb-3" id="donationTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="food-rescue-tab" data-bs-toggle="tab" data-bs-target="#food-rescue" type="button" role="tab" aria-controls="food-rescue" aria-selected="true">Food Rescue</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="wishlist-tab" data-bs-toggle="tab" data-bs-target="#wishlist" type="button" role="tab" aria-controls="wishlist" aria-selected="false">Wishlist</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="other-tab" data-bs-toggle="tab" data-bs-target="#other" type="button" role="tab" aria-controls="other" aria-selected="false">Lainnya</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="donationTabsContent">
+                            <!-- Food Rescue Form -->
+                            <div class="tab-pane fade show active" id="food-rescue" role="tabpanel" aria-labelledby="food-rescue-tab">
+                                <form id="foodRescueForm">
+                                    <div class="mb-3">
+                                        <label for="food-type" class="form-label">Jenis Makanan</label>
+                                        <select class="form-control" id="food-type" required>
+                                            <option value="">Pilih jenis makanan</option>
+                                            <option value="makanan-basah">Makanan Basah</option>
+                                            <option value="makanan-kering">Makanan Kering</option>
+                                            <option value="buah">Buah</option>
+                                            <option value="sayur">Sayuran</option>
+                                            <option value="minuman">Minuman</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="food-name" class="form-label">Nama Makanan</label>
+                                        <input type="text" class="form-control" id="food-name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="food-quantity" class="form-label">Jumlah</label>
+                                        <input type="text" class="form-control" id="food-quantity" placeholder="Contoh: 5 kg, 10 porsi" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="food-expiry" class="form-label">Kadaluwarsa</label>
+                                        <input type="datetime-local" class="form-control" id="food-expiry" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="food-description" class="form-label">Deskripsi</label>
+                                        <textarea class="form-control" id="food-description" rows="3" placeholder="Deskripsikan makanan yang akan didonasikan"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pickup-method" class="form-label">Metode Pengambilan</label>
+                                        <select class="form-control" id="pickup-method" required>
+                                            <option value="">Pilih metode</option>
+                                            <option value="self-delivery">Saya akan mengantar</option>
+                                            <option value="self-pickup">Diambil oleh penerima</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary">Kirim Donasi</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <!-- Wishlist Form -->
+                            <div class="tab-pane fade" id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
+                                <form id="wishlistForm">
+                                    <div class="mb-3">
+                                        <label for="wishlist-recipient" class="form-label">Pilih Penerima</label>
+                                        <select class="form-control" id="wishlist-recipient" required>
+                                            <option value="">Pilih penerima</option>
+                                            <option value="1">Panti Asuhan Harapan</option>
+                                            <option value="2">Panti Jompo Bahagia</option>
+                                            <option value="3">Rumah Belajar Cemerlang</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="wishlist-item" class="form-label">Item yang akan didonasikan</label>
+                                        <input type="text" class="form-control" id="wishlist-item" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="wishlist-quantity" class="form-label">Jumlah</label>
+                                        <input type="text" class="form-control" id="wishlist-quantity" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="wishlist-description" class="form-label">Deskripsi</label>
+                                        <textarea class="form-control" id="wishlist-description" rows="3" placeholder="Deskripsikan item yang akan didonasikan"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="delivery-method" class="form-label">Metode Pengiriman</label>
+                                        <select class="form-control" id="delivery-method" required>
+                                            <option value="">Pilih metode</option>
+                                            <option value="self-delivery">Saya akan mengantar</option>
+                                            <option value="courier">Kurir</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary">Kirim Donasi</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <!-- Other Donation Form -->
+                            <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other-tab">
+                                <form id="otherForm">
+                                    <div class="mb-3">
+                                        <label for="other-type" class="form-label">Jenis Donasi</label>
+                                        <select class="form-control" id="other-type" required>
+                                            <option value="">Pilih jenis donasi</option>
+                                            <option value="uang">Uang</option>
+                                            <option value="pakaian">Pakaian</option>
+                                            <option value="buku">Buku</option>
+                                            <option value="mainan">Mainan Anak</option>
+                                            <option value="alat-sekolah">Alat Sekolah</option>
+                                            <option value="lainnya">Lainnya</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="other-name" class="form-label">Nama Item</label>
+                                        <input type="text" class="form-control" id="other-name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="other-quantity" class="form-label">Jumlah</label>
+                                        <input type="text" class="form-control" id="other-quantity" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="other-description" class="form-label">Deskripsi</label>
+                                        <textarea class="form-control" id="other-description" rows="3" placeholder="Deskripsikan item yang akan didonasikan"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="other-recipient" class="form-label">Pilih Penerima</label>
+                                        <select class="form-control" id="other-recipient" required>
+                                            <option value="">Pilih penerima</option>
+                                            <option value="1">Panti Asuhan Harapan</option>
+                                            <option value="2">Panti Jompo Bahagia</option>
+                                            <option value="3">Rumah Belajar Cemerlang</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="delivery-method-other" class="form-label">Metode Pengiriman</label>
+                                        <select class="form-control" id="delivery-method-other" required>
+                                            <option value="">Pilih metode</option>
+                                            <option value="self-delivery">Saya akan mengantar</option>
+                                            <option value="courier">Kurir</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary">Kirim Donasi</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="section-title">Tentang RaihAsa</h2>
+                    <p class="lead">RaihAsa adalah platform inovatif yang menghubungkan donasi makanan, pemenuhan kebutuhan, dan kegiatan relawan dengan mereka yang membutuhkan.</p>
+                    <p>Misi kami adalah mengurangi pemborosan, memenuhi kebutuhan masyarakat kurang mampu, dan membangun komunitas peduli di Indonesia. 
+                    Dengan teknologi smart matching, kami memastikan setiap kontribusi—baik makanan, barang, maupun waktu—tepat sasaran dan tepat waktu.</p>
+                    <div class="stats-container mt-4">
+                        <div class="stat-item">
+                            <h3>100+</h3>
+                            <p>Donatur Terdaftar</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>20+</h3>
+                            <p>Panti & Lembaga</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>500+</h3>
+                            <p>Donasi Terselesaikan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <img src="/assets/raih asa.png" class="img-fluid rounded-3 shadow" alt="About RaihAsa">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Fitur Unggulan Kami</h2>
+                <p class="lead">Platform kami dilengkapi dengan berbagai fitur canggih untuk memudahkan proses donasi makanan</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Manajemen Wishlist Prioritas</h3>
+                        <p>Buat daftar kebutuhan spesifik dengan label tingkat urgensi (mendesak/rutin) untuk memprioritaskan bantuan yang paling dibutuhkan.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h3>Algoritma Smart Matching</h3>
+                        <p>Pencocokan otomatis yang merekomendasikan pasangan donatur-penerima optimal berdasarkan kategori barang, jarak, dan urgensi.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Koordinasi Logistik Fleksibel</h3>
+                        <p>Pilih opsi distribusi mandiri melalui pengantaran langsung (self-delivery) atau pengambilan langsung (self-pickup) sesuai kesepakatan.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Real-time Food Rescue</h3>
+                        <p>Fitur khusus makanan dengan countdown timer untuk memprioritaskan distribusi sebelum kedaluwarsa.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>Verifikasi Legalitas Digital</h3>
+                        <p>Validasi dokumen operasional panti oleh admin untuk membangun kepercayaan pengguna.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Tracking Dampak Sosial</h3>
+                        <p>Pantau dampak sosial dari donasi Anda dengan laporan real-time dan update dari penerima manfaat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Rescue Preview Section -->
+    <section class="food-rescue-preview py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="section-title">Food Rescue</h2>
+                    <p class="lead">Simpan makanan dari pemborosan dengan mendistribusikannya kepada yang membutuhkan sebelum kedaluwarsa.</p>
+                    <p>Fitur Food Rescue kami memungkinkan restoran, toko makanan, dan individu untuk mendonasikan makanan berlebih yang masih layak konsumsi kepada panti asuhan, panti jompo, dan lembaga lain yang membutuhkan.</p>
+                    <p>Dengan sistem monitoring dan notifikasi real-time, kami memastikan makanan didistribusikan dengan cepat sebelum kedaluwarsa, mengurangi pemborosan, dan membantu mereka yang membutuhkan.</p>
+                    <a href="pages/food-rescue.html" class="btn btn-primary mt-3">Lihat Selengkapnya</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="food-rescue-image">
+                        <img src="/assets/food rescue.png" class="img-fluid rounded-3 shadow" alt="Food Rescue">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wishlist Preview Section -->
+    <section class="wishlist-preview py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                    <h2 class="section-title">Wishlist Penerima</h2>
+                    <p class="lead">Temukan kebutuhan mendesak dari panti dan lembaga yang membutuhkan bantuan.</p>
+                    <p>Panti asuhan, panti jompo, dan lembaga sosial dapat membuat daftar kebutuhan mereka dengan label tingkat urgensi. Anda dapat melihat semua wishlist ini dan memilih untuk membantu sesuai dengan kemampuan dan keinginan Anda.</p>
+                    <p>Setiap wishlist memiliki informasi detail tentang jenis kebutuhan, jumlah yang dibutuhkan, dan tingkat urgensi, sehingga Anda dapat membuat keputusan yang tepat tentang donasi Anda.</p>
+                    <a href="pages/wishlist.html" class="btn btn-primary mt-3">Lihat Selengkapnya</a>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="wishlist-image">
+                        <img src="/assets/wishlist.png" class="img-fluid rounded-3 shadow" alt="Wishlist">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Section -->
+    <section id="volunteer-section" class="volunteer-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="section-title">Menjadi Relawan</h2>
+                    <p class="lead">Ingin menjadi relawan?</p>
+                    <p>Bergabunglah sebagai relawan untuk membuat dampak positif di masyarakat. RaihAsa menyediakan berbagai kesempatan untuk berkontribusi sesuai minat dan kemampuan Anda.</p>
+                    <p>Setelah mendaftar dan login, Anda dapat mengisi form pendaftaran relawan, melihat kegiatan yang tersedia melalui smart matching, dan mengelola partisipasi Anda dalam berbagai kegiatan sosial.</p>
+                    <a href="#volunteerModal" data-bs-toggle="modal" class="btn btn-primary mt-3">Daftar sebagai Relawan</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="volunteer-image">
+                        <img src="/assets/volunteer.png" class="img-fluid rounded-3 shadow" alt="Volunteer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Apa Kata Mereka</h2>
+                <p class="lead">Dengarkan pengalaman mereka yang telah terbantu dengan platform kami</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>Platform RaihAsa sangat membantu panti asuhan kami. Kami bisa mendapatkan makanan bergizi secara rutin tanpa harus khawatir dengan biaya.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Siti Nurhaliza">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Siti Nurhaliza</h4>
+                                    <p>Pengurus Panti Asuhan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>Sebagai pemilik restoran, saya sering memiliki sisa makanan yang masih layak konsumsi. Dengan RaihAsa, saya bisa mendonasikannya kepada yang membutuhkan.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Budi Santoso">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Budi Santoso</h4>
+                                    <p>Pemilik Restoran</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="testimonial-icon">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>Saya ikut menjadi relawan di RaihAsa dan sangat terkesan dengan sistem mereka. Proses verifikasi yang ketat membuat saya yakin donasi sampai ke tangan yang tepat.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-image">
+                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dewi Lestari">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Dewi Lestari</h4>
+                                    <p>Relawan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5">
+        <div class="container">
+            <div class="cta-content text-center">
+                <h2>Bergabunglah dengan Kami dalam Mengurangi Pemborosan Makanan</h2>
+                <p class="lead">Bersama-sama, kita dapat membuat perbedaan nyata dalam kehidupan banyak orang dan mengurangi dampak negatif pemborosan makanan terhadap lingkungan.</p>
+                <div class="cta-buttons">
+                    <a href="/pages/register.html" class="btn btn-light btn-lg me-2">Daftar sebagai Donor</a>
+                    <a href="#volunteerModal" data-bs-toggle="modal" class="btn btn-outline-light btn-lg">Daftar sebagai Relawan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Modal -->
+    <div class="modal fade" id="volunteerModal" tabindex="-1" aria-labelledby="volunteerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="volunteerModalLabel">Pendaftaran Relawan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Login Prompt if not logged in -->
+                    <div id="volunteerLoginPrompt" class="auth-prompt">
+                        <div class="auth-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h4>Daftar Akun Diperlukan</h4>
+                        <p>Anda harus memiliki akun RaihAsa terlebih dahulu untuk mendaftar sebagai relawan</p>
+                        <div class="auth-buttons">
+                            <a href="/pages/register.html" class="btn btn-primary w-100">Daftar Akun</a>
+                            <a href="/pages/login.html" class="btn btn-outline-primary w-100 mt-2">Masuk</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Volunteer info if logged in (hidden by default) -->
+                    <div id="volunteerInfo" style="display: none;">
+                        <div class="volunteer-steps">
+                            <div class="step active">
+                                <div class="step-number">1</div>
+                                <div class="step-title">Lengkapi Data</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-title">Verifikasi</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-title">Pilih Kegiatan</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-title">Mulai Berkontribusi</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <p>Setelah akun Anda terverifikasi, Anda dapat mengakses:</p>
+                            <ul class="volunteer-features">
+                                <li><i class="fas fa-check-circle"></i> Form pendaftaran relawan lengkap</li>
+                                <li><i class="fas fa-check-circle"></i> Smart matching untuk kegiatan yang sesuai</li>
+                                <li><i class="fas fa-check-circle"></i> Manajemen kegiatan dan partisipasi</li>
+                                <li><i class="fas fa-check-circle"></i> Grup WhatsApp untuk koordinasi</li>
+                            </ul>
+                            <a href="/pages/volunteer.html" class="btn btn-primary mt-3">Menuju Halaman Relawan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Modal for Carousel Button -->
+    <div class="modal fade" id="donate-modal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="donateModalLabel">Form Donasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Login Prompt if not logged in -->
+                    <div id="carouselLoginPrompt" class="auth-prompt">
+                        <div class="auth-icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                        <h4>Login Diperlukan</h4>
+                        <p>Anda harus login terlebih dahulu untuk membuat donasi</p>
+                        <div class="auth-buttons">
+                            <a href="/pages/login.html" class="btn btn-primary w-100">Login</a>
+                            <a href="/pages/register.html" class="btn btn-outline-primary w-100 mt-2">Daftar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Login form (hidden by default) -->
+                    <div id="carouselLoginForm" style="display: none;">
+                        <h4>Masuk ke Akun Anda</h4>
+                        <form id="carousel-login-form">
+                            <div class="mb-3">
+                                <label for="carousel-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="carousel-email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="carousel-password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="carousel-password" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="carousel-remember">
+                                <label class="form-check-label" for="carousel-remember">Ingat saya</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Masuk</button>
+                            <div class="text-center mt-3">
+                                <p>Belum punya akun? <a href="#" class="carousel-register-link">Daftar sekarang</a></p>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Donation form (hidden by default) -->
+                    <div id="carouselDonationForm" style="display: none;">
+                        <h4>Isi Form Donasi</h4>
+                        <form id="carousel-donation-form">
+                            <div class="mb-3">
+                                <label for="carousel-food-type" class="form-label">Jenis Makanan</label>
+                                <select class="form-control" id="carousel-food-type" required>
+                                    <option value="">Pilih jenis makanan</option>
+                                    <option value="makanan-basah">Makanan Basah</option>
+                                    <option value="makanan-kering">Makanan Kering</option>
+                                    <option value="buah">Buah</option>
+                                    <option value="sayur">Sayuran</option>
+                                    <option value="minuman">Minuman</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="carousel-quantity" class="form-label">Jumlah</label>
+                                <input type="text" class="form-control" id="carousel-quantity" placeholder="Contoh: 5 kg, 10 porsi" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="carousel-expiry" class="form-label">Kadaluwarsa</label>
+                                <input type="datetime-local" class="form-control" id="carousel-expiry" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="carousel-description" class="form-label">Deskripsi</label>
+                                <textarea class="form-control" id="carousel-description" rows="3" placeholder="Deskripsikan makanan yang akan didonasikan"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="carousel-pickup-method" class="form-label">Metode Pengambilan</label>
+                                <select class="form-control" id="carousel-pickup-method" required>
+                                    <option value="">Pilih metode</option>
+                                    <option value="self-delivery">Saya akan mengantar</option>
+                                    <option value="self-pickup">Diambil oleh penerima</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Lanjutkan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Donations Modal -->
+    <div class="modal fade" id="my-donations-modal" tabindex="-1" aria-labelledby="myDonationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myDonationsModalLabel">Kontribusiku</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="auth-prompt">
+                        <div class="auth-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Mau Berbuat Amalan Sekarang?</h4>
+                        <p>Daftar akun RaihAsa untuk mulai berdonasi dan melacak kontribusi Anda dalam membantu sesama.</p>
+                        <div class="auth-buttons">
+                            <a href="#register" class="btn btn-primary w-100">Daftar Sekarang</a>
+                            <a href="#login" class="btn btn-outline-primary w-100 mt-2">Masuk</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="row">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <div class="footer-about">
+                            <a href="index.html" class="footer-logo">
+                                <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" class="footer-logo-img me-2">
+                                <span>RaihAsa</span>
+                            </a>
+                            <p>Jembatan kebaikan yang menghubungkan kepedulian Anda dengan mereka yang membutuhkan, mewujudkan harapan melalui donasi makanan, barang, dan tenaga.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Link Cepat</h4>
+                            <ul>
+                                <li><a href="index.html">Beranda</a></li>
+                                <li><a href="#about">Tentang Kami</a></li>
+                                <li><a href="#donate">Cara Kerja</a></li>
+                                <li><a href="pages/food-rescue.html">Food Rescue</a></li>
+                                <li><a href="#contact">Kontak</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Donor</h4>
+                            <ul>
+                                <li><a href="#donate">Cara Donasi</a></li>
+                                <li><a href="#donate">Jenis Makanan</a></li>
+                                <li><a href="#donate">Panduan Pengemasan</a></li>
+                                <li><a href="#donate">FAQ Donor</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Relawan</h4>
+                            <ul>
+                                <li><a href="#volunteer-section">Cara Mendaftar</a></li>
+                                <li><a href="pages/volunteer.html">Kegiatan</a></li>
+                                <li><a href="pages/volunteer.html">Kategori</a></li>
+                                <li><a href="pages/volunteer.html">FAQ Relawan</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-contact">
+                            <h4>Hubungi Kami</h4>
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i> Bandung, Indonesia</li>
+                                <li><i class="fas fa-phone"></i> +62 22 1234 5678</li>
+                                <li><i class="fas fa-envelope"></i> info@raihasa.id</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p>&copy; 2025 RaihAsa. Hak Cipta Dilindungi.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <ul class="footer-bottom-links">
+                            <li><a href="#">Kebijakan Privasi</a></li>
+                            <li><a href="#">Syarat & Ketentuan</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>
