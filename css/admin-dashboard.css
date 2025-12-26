@@ -479,3 +479,207 @@ body {
     padding-bottom: 10px;
     border-bottom: 2px solid var(--primary-color);
 }
+
+/* Tambahkan di akhir file admin-dashboard.css */
+
+/* Gaya untuk Tombol Aksi */
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+/* Gaya untuk Filter Bar */
+.filter-bar {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Gaya untuk Content Header */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.page-info h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.page-info p {
+    color: #777;
+    margin: 0;
+}
+
+/* Gaya untuk Modal */
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+/* Gaya untuk Tab Settings */
+.nav-tabs .nav-link {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.nav-tabs .nav-link i {
+    margin-right: 8px;
+}
+
+/* Gaya untuk Pengaturan Section */
+.pengaturan-section {
+    margin-bottom: 30px;
+}
+
+.pengaturan-section h4 {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--text-color);
+}
+
+/* Gaya untuk Form Color */
+.form-control-color {
+    width: 100%;
+    height: 38px;
+    padding: 0.375rem 0.75rem;
+}
+
+/* Gaya untuk Laporan Filters */
+.laporan-filters .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.laporan-filters .form-label {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Gaya untuk Table Actions */
+.table-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Gaya untuk Badge Status */
+.badge {
+    font-size: 0.85rem;
+    padding: 0.4em 0.8em;
+}
+
+/* Gaya untuk Responsive Table */
+.table-responsive {
+    border-radius: 0.375rem;
+}
+
+/* Gaya untuk Card Header dengan Tombol */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h5 {
+    margin: 0;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Gaya untuk Pagination */
+.pagination .page-link {
+    color: var(--primary-color);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Gaya untuk Charts */
+.chart-container {
+    margin-bottom: 20px;
+}
+
+.chart-container canvas {
+    max-height: 300px;
+}
+
+/* Gaya untuk User Avatar */
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Gaya untuk Badge Role */
+.badge.bg-danger { background-color: var(--danger-color) !important; }
+.badge.bg-primary { background-color: var(--primary-color) !important; }
+.badge.bg-info { background-color: var(--info-color) !important; }
+.badge.bg-success { background-color: var(--success-color) !important; }
+.badge.bg-warning { background-color: var(--warning-color) !important; }
+
+/* Gaya untuk Form pada Modal */
+.modal-body .form-label {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Gaya untuk Button */
+.btn {
+    font-weight: 500;
+    border-radius: 6px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #000740;
+    border-color: #000740;
+}
+
+/* Gaya untuk Responsive */
+@media (max-width: 768px) {
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .table-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .action-buttons {
+        flex-wrap: nowrap;
+    }
+}
