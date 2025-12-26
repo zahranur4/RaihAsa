@@ -21,13 +21,12 @@
             </div>
             <ul class="sidebar-menu">
                 <li><a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="#users"><i class="fas fa-users"></i> Manajemen Pengguna</a></li>
-                <li><a href="#donations"><i class="fas fa-hand-holding-heart"></i> Manajemen Donasi</a></li>
-                <li><a href="#food-rescue"><i class="fas fa-utensils"></i> Food Rescue</a></li>
-                <li><a href="#volunteers"><i class="fas fa-hands-helping"></i> Manajemen Relawan</a></li>
-                <li><a href="#reports"><i class="fas fa-chart-bar"></i> Laporan</a></li>
-                <li><a href="#settings"><i class="fas fa-cog"></i> Pengaturan</a></li>
-                <li><a href="/index.html"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
+                <li><a href="manajemen-pengguna.html"><i class="fas fa-users"></i> Manajemen Pengguna</a></li>
+                <li><a href="manajemen-donasi.html"><i class="fas fa-hand-holding-heart"></i> Manajemen Donasi</a></li>
+                <li><a href="food-rescue-admin.html"><i class="fas fa-utensils"></i> Food Rescue</a></li>
+                <li><a href="manajemen-relawan.html"><i class="fas fa-hands-helping"></i> Manajemen Relawan</a></li>
+                <li><a href="laporan-admin.html"><i class="fas fa-chart-bar"></i> Laporan</a></li>
+                <li><a href="pengaturan-admin.html"><i class="fas fa-cog"></i> Pengaturan</a></li>
             </ul>
         </aside>
 
@@ -51,10 +50,17 @@
                         <span class="badge">3</span>
                     </div>
                     <div class="admin-profile">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin">
-                        <span>Admin</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
+                <div class="profile-info" onclick="toggleProfileMenu()">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="profile-menu" id="profileMenu">
+                    <li><a href="#"><i class="fas fa-user"></i> Profil Saya</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Pengaturan</a></li>
+                    <li><a href="/index.html"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
+                </ul>
+            </div>
                 </div>
             </header>
 
