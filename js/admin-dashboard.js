@@ -146,3 +146,29 @@ function initializeDonationCategoryChart() {
         }
     });
 }
+
+function viewUserDetail(userId) {
+    alert('Melihat detail user: ' + userId);
+    // Bisa membuka modal baru atau redirect ke halaman detail
+}
+
+function editUser(userId) {
+    alert('Mengedit user: ' + userId);
+    // Bisa membuka modal edit dengan data user yang dipilih
+}
+
+function deleteUser(button, userId) {
+    if (confirm('Apakah Anda yakin ingin menghapus user ' + userId + '?')) {
+        const row = button.closest('tr');
+        row.remove();
+        alert('User ' + userId + ' telah dihapus.');
+    }
+}
+
+function saveNewUser() {
+    // Logika untuk menyimpan user baru
+    alert('User baru berhasil disimpan!');
+    // Tutup modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
+    modal.hide();
+}

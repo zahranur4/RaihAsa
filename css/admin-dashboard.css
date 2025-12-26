@@ -432,3 +432,50 @@ body {
 .badge.bg-danger { background-color: var(--danger-color) !important; }
 .badge.bg-primary { background-color: var(--primary-color) !important; }
 .badge.bg-info { background-color: var(--info-color) !important; }
+
+/*============================================
+  TAMBAHAN UNTUK HALAMAN ADMIN LAINNYA
+============================================*/
+
+/* Gaya Tambahan untuk Tabel */
+.table th {
+    font-weight: 600;
+    color: var(--text-color);
+    border-top: none;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Gaya untuk Badge Status */
+.badge {
+    font-size: 0.85rem;
+    padding: 0.4em 0.8em;
+}
+
+/* Gaya untuk Halaman Laporan */
+.laporan-filters .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.laporan-filters .form-label {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Gaya untuk Halaman Pengaturan */
+.pengaturan-section {
+    margin-bottom: 30px;
+}
+
+.pengaturan-section h4 {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
