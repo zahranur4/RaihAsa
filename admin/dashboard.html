@@ -3,318 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - RaihAsa</title>
+    <title>Dashboard Admin - RaihAsa</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/components.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
 </head>
 <body>
-    <!-- Admin Sidebar -->
-    <div class="admin-wrapper">
-        <nav id="sidebar" class="sidebar">
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
             <div class="sidebar-header">
-                <a href="../index.html" class="logo">
-                    <i class="fas fa-seedling me-2"></i>
-                    <span>RaihAsa</span>
-                </a>
+                <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" class="logo">
+                <h3>RaihAsa Admin</h3>
             </div>
-            
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="dashboard.html">
-                        <i class="fas fa-tachometer-alt"></i>
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#usersSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-users"></i>
-                        Manajemen Pengguna
-                    </a>
-                    <ul class="collapse list-unstyled" id="usersSubmenu">
-                        <li>
-                            <a href="users-donor.html">Donor</a>
-                        </li>
-                        <li>
-                            <a href="users-recipient.html">Penerima</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#donationsSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-hand-holding-heart"></i>
-                        Manajemen Donasi
-                    </a>
-                    <ul class="collapse list-unstyled" id="donationsSubmenu">
-                        <li>
-                            <a href="donations-food-rescue.html">Food Rescue</a>
-                        </li>
-                        <li>
-                            <a href="donations-wishlist.html">Wishlist</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="verification.html">
-                        <i class="fas fa-certificate"></i>
-                        Verifikasi Penerima
-                    </a>
-                </li>
-                <li>
-                    <a href="reports.html">
-                        <i class="fas fa-chart-bar"></i>
-                        Laporan
-                    </a>
-                </li>
-                <li>
-                    <a href="settings.html">
-                        <i class="fas fa-cog"></i>
-                        Pengaturan
-                    </a>
-                </li>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#users"><i class="fas fa-users"></i> Manajemen Pengguna</a></li>
+                <li><a href="#donations"><i class="fas fa-hand-holding-heart"></i> Manajemen Donasi</a></li>
+                <li><a href="#food-rescue"><i class="fas fa-utensils"></i> Food Rescue</a></li>
+                <li><a href="#volunteers"><i class="fas fa-hands-helping"></i> Manajemen Relawan</a></li>
+                <li><a href="#reports"><i class="fas fa-chart-bar"></i> Laporan</a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i> Pengaturan</a></li>
+                <li><a href="/index.html"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
             </ul>
-            
-            <div class="sidebar-footer">
-                <a href="../index.html" class="btn btn-outline-light btn-sm">
-                    <i class="fas fa-sign-out-alt me-2"></i> Keluar
-                </a>
-            </div>
-        </nav>
-        
-        <!-- Page Content -->
-        <div id="content" class="content">
-            <!-- Admin Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn btn-light">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    
-                    <div class="ms-auto d-flex align-items-center">
-                        <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user-circle me-2"></i>
-                                Admin
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="profile.html">Profil</a></li>
-                                <li><a class="dropdown-item" href="settings.html">Pengaturan</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="../index.html">Keluar</a></li>
-                            </ul>
-                        </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <button class="toggle-sidebar" id="toggleSidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-title">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Cari...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="admin-profile">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin">
+                        <span>Admin</span>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
-            </nav>
-            
-            <!-- Dashboard Content -->
-            <div class="container-fluid">
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                </div>
-                
+            </header>
+
+            <div class="content">
                 <!-- Stats Cards -->
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,234</h3>
+                            <p>Total Pengguna</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>567</h3>
+                            <p>Total Donasi</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>89</h3>
+                            <p>Relawan Aktif</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>2.5 Ton</h3>
+                            <p>Makanan Terselamatkan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <div class="chart-container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Tren Donasi 6 Bulan Terakhir</h5>
+                            </div>
                             <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Donor</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">1,254</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-users fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
+                                <canvas id="donationTrendChart"></canvas>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Penerima</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">87</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-home fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
+                    <div class="chart-container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Kategori Donasi</h5>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-info shadow h-100 py-2">
                             <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Donasi</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">3,542</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-hand-holding-heart fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Menunggu Verifikasi</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clock fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
+                                <canvas id="donationCategoryChart"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Charts Row -->
-                <div class="row">
-                    <div class="col-xl-8 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Statistik Donasi</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Opsi:</div>
-                                        <a class="dropdown-item" href="#">Hari Ini</a>
-                                        <a class="dropdown-item" href="#">Minggu Ini</a>
-                                        <a class="dropdown-item" href="#">Bulan Ini</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Tahun Ini</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart-area">
-                                    <canvas id="donationChart"></canvas>
-                                </div>
-                            </div>
+
+                <!-- Recent Activities Table -->
+                <div class="recent-activities">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Aktivitas Terkini</h5>
                         </div>
-                    </div>
-                    
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Jenis Donasi</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Opsi:</div>
-                                        <a class="dropdown-item" href="#">Hari Ini</a>
-                                        <a class="dropdown-item" href="#">Minggu Ini</a>
-                                        <a class="dropdown-item" href="#">Bulan Ini</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Tahun Ini</a>
-                                    </div>
-                                </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Pengguna</th>
+                                            <th>Aktivitas</th>
+                                            <th>Detail</th>
+                                            <th>Waktu</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#D001</td>
+                                            <td>Budi Santoso</td>
+                                            <td>Donasi Makanan</td>
+                                            <td>Nasi Kotak (50 porsi)</td>
+                                            <td>2 jam yang lalu</td>
+                                            <td><span class="badge bg-success">Selesai</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#V001</td>
+                                            <td>Siti Nurhaliza</td>
+                                            <td>Pendaftaran Relawan</td>
+                                            <td>Kategori: Edukasi</td>
+                                            <td>5 jam yang lalu</td>
+                                            <td><span class="badge bg-warning">Menunggu Verifikasi</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#R001</td>
+                                            <td>Panti Asuhan Harapan</td>
+                                            <td>Permintaan Wishlist</td>
+                                            <td>Susu Formula (20 kaleng)</td>
+                                            <td>1 hari yang lalu</td>
+                                            <td><span class="badge bg-info">Aktif</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#D002</td>
+                                            <td>Toko Roti Enak</td>
+                                            <td>Donasi Makanan</td>
+                                            <td>Roti Sisa (30 bungkus)</td>
+                                            <td>1 hari yang lalu</td>
+                                            <td><span class="badge bg-primary">Diklaim</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="card-body">
-                                <div class="chart-pie pt-4 pb-2">
-                                    <canvas id="donationTypeChart"></canvas>
-                                </div>
-                                <div class="mt-4 text-center small">
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-primary"></i> Food Rescue
-                                    </span>
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-success"></i> Wishlist
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Recent Donations Table -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Donasi Terbaru</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Donor</th>
-                                        <th>Penerima</th>
-                                        <th>Jenis</th>
-                                        <th>Status</th>
-                                        <th>Tanggal</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#1234</td>
-                                        <td>Budi Santoso</td>
-                                        <td>Panti Asuhan Harapan</td>
-                                        <td>Food Rescue</td>
-                                        <td><span class="badge bg-success">Selesai</span></td>
-                                        <td>2023-06-15</td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1235</td>
-                                        <td>Siti Nurhaliza</td>
-                                        <td>Panti Jompo Bahagia</td>
-                                        <td>Wishlist</td>
-                                        <td><span class="badge bg-warning">Proses</span></td>
-                                        <td>2023-06-14</td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#1236</td>
-                                        <td>Restoran Lezat</td>
-                                        <td>Rumah Belajar Cemerlang</td>
-                                        <td>Food Rescue</td>
-                                        <td><span class="badge bg-success">Selesai</span></td>
-                                        <td>2023-06-13</td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Custom JS -->
-    <script src="../js/admin.js"></script>
+    <script src="/js/admin-dashboard.js"></script>
 </body>
 </html>
