@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showSuccessMessage(type) {
         const formContainer = document.querySelector('.registration-container');
         const successMessage = document.createElement('div');
-        successMessage.className = 'registration-success';
+        successMessage.className = 'registration-success show';
         
         if (type === 'donor') {
             successMessage.innerHTML = `
@@ -188,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>Terima kasih telah mendaftar sebagai donor. Kami telah mengirim email verifikasi ke alamat email Anda. Silakan cek email Anda untuk mengaktifkan akun.</p>
                 <div class="mt-4">
                     <a href="login.html" class="btn btn-primary">Masuk ke Akun</a>
+                    <button class="btn btn-outline-secondary ms-2" id="back-to-selection">Kembali ke Pemilihan</button>
                 </div>
             `;
         } else {
@@ -199,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>Terima kasih telah mendaftar sebagai penerima. Kami telah mengirim email verifikasi ke alamat email Anda. Tim kami akan melakukan verifikasi dokumen legalitas Anda dalam 3-5 hari kerja.</p>
                 <div class="mt-4">
                     <a href="login.html" class="btn btn-primary">Masuk ke Akun</a>
+                    <button class="btn btn-outline-secondary ms-2" id="back-to-selection">Kembali ke Pemilihan</button>
                 </div>
             `;
         }
@@ -208,5 +210,23 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.donor-form').style.display = 'none';
         document.querySelector('.recipient-form').style.display = 'none';
         formContainer.appendChild(successMessage);
+        
+        // Add event listener to back button
+        document.getElementById('back-to-selection').addEventListener('click', function() {
+            // Remove success message
+            successMessage.remove();
+            
+            // Show type selector
+            document.querySelector('.registration-type-selector').style.display = 'block';
+            
+            // Reset active states
+            document.querySelectorAll('.type-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            
+            // Set donor as default active
+            document.querySelector('.type-option[data-type="donor"]').classList.add('active');
+            document.querySelector('.donor-form').classList.add('active');
+        });
     }
 });

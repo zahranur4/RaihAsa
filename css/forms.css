@@ -286,3 +286,54 @@
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
 }
+
+/* Back button styling */
+.btn-outline-secondary {
+    color: var(--text-secondary);
+    border-color: var(--text-secondary);
+}
+
+.btn-outline-secondary:hover {
+    color: var(--white);
+    background-color: var(--text-secondary);
+    border-color: var(--text-secondary);
+}
+
+/* Ensure type selector is visible when needed */
+.registration-type-selector {
+    display: block;
+}
+
+/* Fix for form display */
+.registration-form {
+    display: none;
+}
+
+.registration-form.active {
+    display: block;
+}
+
+/* --- SOLUSI: TAMBAHKAN CSS INI --- */
+
+/* Sembunyikan semua form registrasi secara default */
+.registration-form {
+  display: none;
+}
+
+/* Tampilkan HANYA form yang sedang memiliki kelas 'active' */
+.registration-form.active {
+  display: block;
+}
+
+/* Pastikan selector untuk tipe pilihan juga berfungsi dengan baik */
+.type-option {
+  cursor: pointer; /* Menunjukkan bahwa elemen ini bisa diklik */
+  transition: all 0.3s ease;
+}
+
+/* Gaya untuk opsi yang sedang dipilih/aktif */
+.type-option.active {
+  /* Tambahkan gaya visual di sini, misalnya: */
+  border-color: var(--primary-color);
+  background-color: rgba(92, 107, 192, 0.1);
+}

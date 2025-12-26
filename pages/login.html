@@ -12,12 +12,13 @@
     <link rel="stylesheet" href="/css/forms.css">
 </head>
 <body>
+    
     <!-- Header with Navigation -->
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <i class="fas fa-seedling me-2"></i>
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" height="40" class="me-2">
                     <span>RaihAsa</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,20 +30,23 @@
                             <a class="nav-link" href="/index.html">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html#about">Tentang</a>
+                            <a class="nav-link" href="/index.html#about">Tentang</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/pages/food-rescue.html">Food Rescue</a>
+                            <a class="nav-link requires-auth" href="/pages/food-rescue.html">Food Rescue</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/wishlist.html">Wishlist</a>
+                            <a class="nav-link requires-auth" href="/pages/wishlist.html">Wishlist</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/pages/my-donations.html">Kontribusiku</a>
+                            <a class="nav-link requires-auth" href="/pages/volunteer.html">Relawan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link requires-auth" href="/pages/my-donations.html">Kontribusiku</a>
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="login.html" class="btn btn-outline-primary me-2">Masuk</a>
+                        <a href="/pages/login.html" class="btn btn-outline-primary me-2">Masuk</a>
                         <a href="register.html" class="btn btn-primary">Daftar</a>
                     </div>
                 </div>
