@@ -369,3 +369,61 @@
     flex-direction: column;
   }
 }
+
+/*============================================
+  ANIMASI SAAT SCROLL
+============================================*/
+
+/* Kondisi awal elemen sebelum animasi */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px); /* Bergerak dari bawah ke atas */
+  transition: all 0.8s ease; /* Durasi dan jenis transisi */
+}
+
+/* Kondisi akhir elemen saat animasi berjalan */
+.animate-on-scroll.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efek stagger untuk kartu agar tidak muncul bersamaan */
+.rescue-card.animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.rescue-card.animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.rescue-card.animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.rescue-card.animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+.rescue-card.animate-on-scroll:nth-child(5) { transition-delay: 0.5s; }
+.rescue-card.animate-on-scroll:nth-child(6) { transition-delay: 0.6s; }
+
+/* Efek stagger untuk langkah cara kerja */
+.step-item.animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.step-item.animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.step-item.animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.step-item.animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+.step-item.animate-on-scroll:nth-child(5) { transition-delay: 0.5s; }
+
+/* Efek stagger untuk kartu manfaat */
+.benefit-card.animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.benefit-card.animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.benefit-card.animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.benefit-card.animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+
+/* Animasi untuk bagian CTA */
+.cta-content.animate-on-scroll {
+  transform: scale(0.95); /* Sedikit membesar */
+}
+.cta-content.animate-on-scroll.animated {
+  transform: scale(1);
+}
+
+/* Animasi untuk elemen footer */
+.footer-about.animate-on-scroll,
+.footer-links.animate-on-scroll,
+.footer-contact.animate-on-scroll {
+  transform: translateX(-20px); /* Bergerak dari kiri */
+}
+.footer-about.animate-on-scroll.animated,
+.footer-links.animate-on-scroll.animated,
+.footer-contact.animate-on-scroll.animated {
+  transform: translateX(0);
+}
