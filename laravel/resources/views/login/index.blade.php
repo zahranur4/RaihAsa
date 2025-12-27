@@ -73,14 +73,17 @@
                         <p class="text-muted">Masukkan email dan password untuk melanjutkan</p>
                     </div>
                     
-                    <form id="login-form">
+                    <form id="login-form" method="POST" action="{{ route('login.submit') }}">
+                        @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" required>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                            @error('email') <div class="text-danger small">{{ $message }}</div> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            @error('password') <div class="text-danger small">{{ $message }}</div> @enderror
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="remember">

@@ -93,30 +93,36 @@
                         <h3>Form Pendaftaran Donor</h3>
                         <p>Isi formulir di bawah ini untuk mendaftar sebagai donor</p>
                     </div>
-                    <form id="donor-registration-form">
+                    <form id="donor-registration-form" method="POST" action="{{ route('register.donor') }}"> 
+                        @csrf
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="donor-fullname" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="donor-fullname" required>
+                                <input type="text" class="form-control" id="donor-fullname" name="nama" value="{{ old('nama') }}" required>
+                                @error('nama') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="donor-email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="donor-email" required>
+                                <input type="email" class="form-control" id="donor-email" name="email" value="{{ old('email') }}" required>
+                                @error('email') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="donor-phone" class="form-label">Nomor Telepon</label>
-                                <input type="tel" class="form-control" id="donor-phone" required>
+                                <input type="tel" class="form-control" id="donor-phone" name="nomor_telepon" value="{{ old('nomor_telepon') }}" required>
+                                @error('nomor_telepon') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="donor-password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="donor-password" required>
+                                <input type="password" class="form-control" id="donor-password" name="kata_sandi" required>
+                                @error('kata_sandi') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="donor-address" class="form-label">Alamat Lengkap</label>
-                            <textarea class="form-control" id="donor-address" rows="3" required></textarea>
+                            <textarea class="form-control" id="donor-address" name="alamat" rows="3" required>{{ old('alamat') }}</textarea>
+                                @error('alamat') <div class="text-danger small">{{ $message }}</div> @enderror
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -165,25 +171,30 @@
                         <h3>Form Pendaftaran Penerima</h3>
                         <p>Isi formulir di bawah ini untuk mendaftar sebagai penerima donasi</p>
                     </div>
-                    <form id="recipient-registration-form">
+                    <form id="recipient-registration-form" method="POST" action="{{ route('register.recipient') }}">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="recipient-name" class="form-label">Nama Panti/Lembaga</label>
-                                <input type="text" class="form-control" id="recipient-name" required>
+                                <input type="text" class="form-control" id="recipient-name" name="nama" value="{{ old('nama') }}" required>
+                                @error('nama') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="recipient-email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="recipient-email" required>
+                                <input type="email" class="form-control" id="recipient-email" name="email" value="{{ old('email') }}" required>
+                                @error('email') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="recipient-phone" class="form-label">Nomor Telepon</label>
-                                <input type="tel" class="form-control" id="recipient-phone" required>
+                                <input type="tel" class="form-control" id="recipient-phone" name="nomor_telepon" value="{{ old('nomor_telepon') }}" required>
+                                @error('nomor_telepon') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="recipient-password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="recipient-password" required>
+                                <input type="password" class="form-control" id="recipient-password" name="kata_sandi" required>
+                                @error('kata_sandi') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                         </div>
                         <div class="mb-3">
@@ -197,7 +208,8 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="recipient-postal" class="form-label">Kode Pos</label>
-                                <input type="text" class="form-control" id="recipient-postal" required>
+                                <input type="text" class="form-control" id="recipient-postal" name="kode_pos" value="{{ old('kode_pos') }}" required>
+                                @error('kode_pos') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                         </div>
                         <div class="mb-3">
@@ -215,7 +227,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="recipient-capacity" class="form-label">Kapasitas (Jumlah Penghuni)</label>
-                            <input type="number" class="form-control" id="recipient-capacity" min="1" required>
+                            <input type="number" class="form-control" id="recipient-capacity" name="kapasitas" min="1" value="{{ old('kapasitas') }}" required>
+                                @error('kapasitas') <div class="text-danger small">{{ $message }}</div> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="recipient-description" class="form-label">Deskripsi Singkat</label>
@@ -242,17 +255,20 @@
                             
                             <div class="mb-3">
                                 <label for="legal-number" class="form-label">Nomor Registrasi Legal</label>
-                                <input type="text" class="form-control" id="legal-number" placeholder="Contoh: AHU-0001.AH.01.01.Tahun 2023">
+                                <input type="text" class="form-control" id="legal-number" name="nomor_legalitas" value="{{ old('nomor_legalitas') }}" placeholder="Contoh: AHU-0001.AH.01.01.Tahun 2023">
+                                @error('nomor_legalitas') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             
                             <div class="mb-3">
                                 <label for="legal-date" class="form-label">Tanggal Pendirian</label>
-                                <input type="date" class="form-control" id="legal-date">
+                                <input type="date" class="form-control" id="legal-date" name="tanggal_berdiri" value="{{ old('tanggal_berdiri') }}">
+                                @error('tanggal_berdiri') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             
                             <div class="mb-3">
                                 <label for="legal-notary" class="form-label">Nama Notaris (jika ada)</label>
-                                <input type="text" class="form-control" id="legal-notary">
+                                <input type="text" class="form-control" id="legal-notary" name="posisi_penanggung_jawab" value="{{ old('posisi_penanggung_jawab') }}">
+                                @error('posisi_penanggung_jawab') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             
                             <div class="mb-3">
