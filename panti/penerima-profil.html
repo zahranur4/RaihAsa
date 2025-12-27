@@ -8,49 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/admin-dashboard.css">
-    <style>
-        .verification-status-card {
-            background-color: #f8f9fa;
-            border-left: 4px solid;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-        }
-        .verification-status-card.verified {
-            border-left-color: var(--success-color);
-        }
-        .verification-status-card.pending {
-            border-left-color: var(--warning-color);
-        }
-        .tab-content {
-            padding-top: 20px;
-        }
-        .form-control:disabled {
-            background-color: #fff;
-            cursor: not-allowed;
-            opacity: 1;
-        }
-        .document-list {
-            list-style: none;
-            padding: 0;
-        }
-        .document-list li {
-            padding: 10px;
-            border: 1px solid #e9ecef;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .document-list a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        .document-list a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/penerima-profil.css">
 </head>
 <body>
     <div class="dashboard-container">
@@ -300,36 +258,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/admin-dashboard.js"></script>
-    <script>
-        let isEditMode = false;
-
-        function toggleEditMode() {
-            isEditMode = !isEditMode;
-            const inputs = document.querySelectorAll('#infoForm input, #infoForm textarea, #infoForm select, #legalForm input, #legalForm select, #operationalForm input, #operationalForm select, #contactForm input');
-            const editBtn = document.getElementById('editProfileBtn');
-            const saveActions = document.getElementById('saveActions');
-
-            if (isEditMode) {
-                inputs.forEach(input => input.disabled = false);
-                editBtn.style.display = 'none';
-                saveActions.style.display = 'block';
-            } else {
-                inputs.forEach(input => input.disabled = true);
-                editBtn.style.display = 'block';
-                saveActions.style.display = 'none';
-            }
-        }
-
-        function cancelEdit() {
-            // Logika untuk membatalkan edit (kembalikan data asli)
-            toggleEditMode(); 
-        }
-
-        function saveProfile() {
-            // Logika untuk menyimpan perubahan ke backend
-            alert('Profil berhasil diperbarui!');
-            toggleEditMode();
-        }
-    </script>
+ 
 </body>
 </html>
