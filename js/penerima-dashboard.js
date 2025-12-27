@@ -214,3 +214,17 @@ window.saveNotificationSettings = function() {
     alert('Pengaturan notifikasi berhasil disimpan!');
     // Logika untuk menyimpan ke backend
 };
+
+// Fungsi untuk toggle sidebar
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleSidebarBtn = document.getElementById('toggleSidebar');
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    
+    if (toggleSidebarBtn) {
+        toggleSidebarBtn.addEventListener('click', function() {
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
+        });
+    }
+});
