@@ -7,8 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- CSS Dasar & Khusus Penerima -->
-    <link rel="stylesheet" href="/css/admin-dashboard.css">
     <link rel="stylesheet" href="/css/penerima-dashboard.css">
 </head>
 <body>
@@ -20,7 +18,7 @@
                 <h3>Panti Asuhan Harapan</h3>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="penerima-dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="dashboard-panti.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                 <li><a href="penerima-wishlist.html"><i class="fas fa-list-alt"></i> Wishlist Saya</a></li>
                 <li><a href="penerima-donasi-masuk.html"><i class="fas fa-hand-holding-heart"></i> Donasi Masuk</a></li>
                 <li><a href="penerima-food-rescue.html"><i class="fas fa-utensils"></i> Food Rescue</a></li>
@@ -66,7 +64,7 @@
 
             <div class="content">
                 <!-- Welcome Banner -->
-                <div class="welcome-banner">
+                <div class="welcome-banner" style="background: linear-gradient(135deg, var(--primary-color), #0030a1); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px;">
                     <h2>Selamat Datang kembali, Admin Panti Asuhan Harapan!</h2>
                     <p>Mari bersama-sama wujudkan harapan untuk anak-anak Indonesia.</p>
                 </div>
@@ -112,36 +110,100 @@
                 </div>
 
                 <!-- Quick Actions -->
-                <div class="quick-actions">
-                    <a href="penerima-wishlist.html?action=create" class="quick-action-card">
-                        <div class="icon"><i class="fas fa-plus-circle"></i></div>
-                        <h5>Buat Wishlist Baru</h5>
-                        <p>Tambahkan kebutuhan panti</p>
-                    </a>
-                    <a href="penerima-food-rescue.html" class="quick-action-card">
-                        <div class="icon"><i class="fas fa-search"></i></div>
-                        <h5>Cari Food Rescue</h5>
-                        <p>Temukan makanan berlimpah di sekitar Anda</p>
-                    </a>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-plus-circle fa-3x text-primary mb-3"></i>
+                                <h5>Buat Wishlist Baru</h5>
+                                <p>Tambahkan kebutuhan panti</p>
+                                <a href="penerima-wishlist.html?action=create" class="btn btn-primary">Buat Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-search fa-3x text-primary mb-3"></i>
+                                <h5>Cari Food Rescue</h5>
+                                <p>Temukan makanan berlimpah di sekitar Anda</p>
+                                <a href="penerima-food-rescue.html" class="btn btn-primary">Cari Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Main Info Section -->
-                <div class="row info-section">
-                    <!-- Wishlist Saya -->
-                    <div class="col-lg-8 mb-4">
-                        <div class="info-card">
-                            <div class="card-header-custom">
-                                <i class="fas fa-list-alt me-2"></i> Wishlist Saya
+                <!-- Recent Activities & Wishlist Preview -->
+                <div class="row">
+                    <!-- Recent Activities -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Aktivitas Terkini</h5>
                             </div>
-                            <div class="card-body-custom">
+                            <div class="card-body">
+                                <div class="activity-list">
+                                    <div class="d-flex mb-3">
+                                        <div class="me-3">
+                                            <div class="rounded-circle bg-success bg-opacity-10 p-2">
+                                                <i class="fas fa-check text-success"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="mb-1"><strong>Wishlist Susu Formula</strong> terpenuhi!</p>
+                                            <small class="text-muted">2 jam yang lalu</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="me-3">
+                                            <div class="rounded-circle bg-info bg-opacity-10 p-2">
+                                                <i class="fas fa-truck text-info"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="mb-1">Donasi dari <strong>Toko Buku Pintar</strong> dalam perjalanan.</p>
+                                            <small class="text-muted">5 jam yang lalu</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mb-3">
+                                        <div class="me-3">
+                                            <div class="rounded-circle bg-warning bg-opacity-10 p-2">
+                                                <i class="fas fa-utensils text-warning"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="mb-1">Food Rescue <strong>Nasi Kotak</strong> dari Restoran Padang Sederhana tersedia.</p>
+                                            <small class="text-muted">1 hari yang lalu</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="me-3">
+                                            <div class="rounded-circle bg-success bg-opacity-10 p-2">
+                                                <i class="fas fa-user-plus text-success"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="mb-1"><strong>Ahmad Fadli</strong> berdonasi Buku Tulis.</p>
+                                            <small class="text-muted">2 hari yang lalu</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wishlist Preview -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Wishlist Saya</h5>
+                            </div>
+                            <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th>Item</th>
-                                                <th>Kategori</th>
-                                                <th>Dibutuhkan</th>
-                                                <th>Terkumpul</th>
                                                 <th>Progress</th>
                                                 <th>Status</th>
                                             </tr>
@@ -149,9 +211,6 @@
                                         <tbody>
                                             <tr>
                                                 <td>Susu Formula</td>
-                                                <td><span class="badge bg-info">Makanan</span></td>
-                                                <td>20 kaleng</td>
-                                                <td>20 kaleng</td>
                                                 <td>
                                                     <div class="progress" style="height: 10px;">
                                                         <div class="progress-bar bg-success" style="width: 100%"></div>
@@ -161,9 +220,6 @@
                                             </tr>
                                             <tr>
                                                 <td>Buku Tulis</td>
-                                                <td><span class="badge bg-warning">Pendidikan</span></td>
-                                                <td>50 pcs</td>
-                                                <td>35 pcs</td>
                                                 <td>
                                                     <div class="progress" style="height: 10px;">
                                                         <div class="progress-bar bg-warning" style="width: 70%"></div>
@@ -172,10 +228,7 @@
                                                 <td><span class="badge bg-warning">Dalam Proses</span></td>
                                             </tr>
                                             <tr>
-                                                <td>Pakaian Anak (Usia 5-7 th)</td>
-                                                <td><span class="badge bg-secondary">Pakaian</span></td>
-                                                <td>30 set</td>
-                                                <td>5 set</td>
+                                                <td>Pakaian Anak</td>
                                                 <td>
                                                     <div class="progress" style="height: 10px;">
                                                         <div class="progress-bar" style="width: 16.67%"></div>
@@ -192,72 +245,12 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Aktivitas & Status Verifikasi -->
-                    <div class="col-lg-4">
-                        <!-- Aktivitas Terkini -->
-                        <div class="info-card mb-4">
-                            <div class="card-header-custom">
-                                <i class="fas fa-clock me-2"></i> Aktivitas Terkini
-                            </div>
-                            <div class="card-body-custom">
-                                <ul class="activity-list">
-                                    <li>
-                                        <div class="icon success"><i class="fas fa-check"></i></div>
-                                        <div class="content">
-                                            <p><strong>Wishlist Susu Formula</strong> terpenuhi!</p>
-                                            <small>2 jam yang lalu</small>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon info"><i class="fas fa-truck"></i></div>
-                                        <div class="content">
-                                            <p>Donasi dari <strong>Toko Buku Pintar</strong> dalam perjalanan.</p>
-                                            <small>5 jam yang lalu</small>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon warning"><i class="fas fa-utensils"></i></div>
-                                        <div class="content">
-                                            <p>Food Rescue <strong>Nasi Kotak</strong> dari Restoran Padang Sederhana tersedia.</p>
-                                            <small>1 hari yang lalu</small>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon success"><i class="fas fa-user-plus"></i></div>
-                                        <div class="content">
-                                            <p><strong>Ahmad Fadli</strong> berdonasi Buku Tulis.</p>
-                                            <small>2 hari yang lalu</small>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Status Verifikasi -->
-                        <div class="info-card">
-                            <div class="card-header-custom">
-                                <i class="fas fa-certificate me-2"></i> Status Verifikasi
-                            </div>
-                            <div class="card-body-custom">
-                                <div class="verification-status verified">
-                                    <i class="fas fa-check-circle"></i>
-                                    <div>
-                                        <h6 class="mb-1">Terverifikasi</h6>
-                                        <p class="mb-0 small">Panti Asuhan Anda telah diverifikasi. Anda dapat menerima donasi.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/admin-dashboard.js"></script>
     <script src="/js/penerima-dashboard.js"></script>
 </body>
 </html>
