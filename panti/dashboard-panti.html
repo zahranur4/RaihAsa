@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Penerima - RaihAsa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Gunakan CSS admin yang sudah ada -->
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <style>
+        /* Tambahan CSS khusus untuk Dashboard Penerima */
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary-color), #001a8f);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .welcome-banner h2 {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .welcome-banner p {
+            margin: 0;
+            opacity: 0.9;
+        }
+        .quick-actions {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .quick-action-card {
+            flex: 1;
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        .quick-action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        .quick-action-card .icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .quick-action-card h5 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .info-section {
+            margin-bottom: 30px;
+        }
+        .info-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+        .info-card .card-header-custom {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+        }
+        .info-card .card-body-custom {
+            padding: 20px;
+        }
+        .activity-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .activity-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+        }
+        .activity-list li:last-child {
+            border-bottom: none;
+        }
+        .activity-list .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .activity-list .icon.success {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--success-color);
+        }
+        .activity-list .icon.info {
+            background-color: rgba(23, 162, 184, 0.1);
+            color: var(--info-color);
+        }
+        .activity-list .icon.warning {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: var(--warning-color);
+        }
+        .activity-list .content {
+            flex: 1;
+        }
+        .activity-list .content p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .activity-list .content small {
+            color: #777;
+        }
+        .verification-status {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .verification-status.verified {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid var(--success-color);
+        }
+        .verification-status.pending {
+            background-color: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid var(--warning-color);
+        }
+        .verification-status i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        .verification-status.verified i {
+            color: var(--success-color);
+        }
+        .verification-status.pending i {
+            color: var(--warning-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" class="logo">
+                <h3>Panti Asuhan Harapan</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="penerima-dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="penerima-wishlist.html"><i class="fas fa-list-alt"></i> Wishlist Saya</a></li>
+                <li><a href="penerima-donasi-masuk.html"><i class="fas fa-hand-holding-heart"></i> Donasi Masuk</a></li>
+                <li><a href="penerima-food-rescue.html"><i class="fas fa-utensils"></i> Food Rescue</a></li>
+                <li><a href="penerima-laporan.html"><i class="fas fa-chart-bar"></i> Laporan</a></li>
+                <li><a href="penerima-profil.html"><i class="fas fa-building"></i> Profil Panti</a></li>
+                <li><a href="penerima-pengaturan.html"><i class="fas fa-cog"></i> Pengaturan</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <button class="toggle-sidebar" id="toggleSidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-title">
+                    <h1>Dashboard Penerima</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Cari...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="admin-profile">
+                        <div class="profile-info" onclick="toggleProfileMenu()">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Admin Panti">
+                            <span>Panti Asuhan Harapan</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <ul class="profile-menu" id="profileMenu">
+                            <li><a href="penerima-profil.html"><i class="fas fa-building"></i> Profil Panti</a></li>
+                            <li><a href="penerima-pengaturan.html"><i class="fas fa-cog"></i> Pengaturan</a></li>
+                            <li><a href="/index.html"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <!-- Welcome Banner -->
+                <div class="welcome-banner">
+                    <h2>Selamat Datang kembali, Admin Panti Asuhan Harapan!</h2>
+                    <p>Mari bersama-sama wujudkan harapan untuk anak-anak Indonesia.</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>124</h3>
+                            <p>Total Donasi Diterima</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-list-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>38</h3>
+                            <p>Item Wishlist Terpenuhi</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>15</h3>
+                            <p>Food Rescue Diambil</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>50</h3>
+                            <p>Total Penghuni</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <a href="penerima-wishlist.html?action=create" class="quick-action-card">
+                        <div class="icon"><i class="fas fa-plus-circle"></i></div>
+                        <h5>Buat Wishlist Baru</h5>
+                        <p>Tambahkan kebutuhan panti</p>
+                    </a>
+                    <a href="penerima-food-rescue.html" class="quick-action-card">
+                        <div class="icon"><i class="fas fa-search"></i></div>
+                        <h5>Cari Food Rescue</h5>
+                        <p>Temukan makanan berlimpah di sekitar Anda</p>
+                    </a>
+                </div>
+
+                <!-- Main Info Section -->
+                <div class="row info-section">
+                    <!-- Wishlist Saya -->
+                    <div class="col-lg-8 mb-4">
+                        <div class="info-card">
+                            <div class="card-header-custom">
+                                <i class="fas fa-list-alt me-2"></i> Wishlist Saya
+                            </div>
+                            <div class="card-body-custom">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Kategori</th>
+                                                <th>Dibutuhkan</th>
+                                                <th>Terkumpul</th>
+                                                <th>Progress</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Susu Formula</td>
+                                                <td><span class="badge bg-info">Makanan</span></td>
+                                                <td>20 kaleng</td>
+                                                <td>20 kaleng</td>
+                                                <td>
+                                                    <div class="progress" style="height: 10px;">
+                                                        <div class="progress-bar bg-success" style="width: 100%"></div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-success">Terkumpul</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Buku Tulis</td>
+                                                <td><span class="badge bg-warning">Pendidikan</span></td>
+                                                <td>50 pcs</td>
+                                                <td>35 pcs</td>
+                                                <td>
+                                                    <div class="progress" style="height: 10px;">
+                                                        <div class="progress-bar bg-warning" style="width: 70%"></div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-warning">Dalam Proses</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pakaian Anak (Usia 5-7 th)</td>
+                                                <td><span class="badge bg-secondary">Pakaian</span></td>
+                                                <td>30 set</td>
+                                                <td>5 set</td>
+                                                <td>
+                                                    <div class="progress" style="height: 10px;">
+                                                        <div class="progress-bar" style="width: 16.67%"></div>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-primary">Aktif</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <a href="penerima-wishlist.html" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aktivitas & Status Verifikasi -->
+                    <div class="col-lg-4">
+                        <!-- Aktivitas Terkini -->
+                        <div class="info-card mb-4">
+                            <div class="card-header-custom">
+                                <i class="fas fa-clock me-2"></i> Aktivitas Terkini
+                            </div>
+                            <div class="card-body-custom">
+                                <ul class="activity-list">
+                                    <li>
+                                        <div class="icon success"><i class="fas fa-check"></i></div>
+                                        <div class="content">
+                                            <p><strong>Wishlist Susu Formula</strong> terpenuhi!</p>
+                                            <small>2 jam yang lalu</small>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon info"><i class="fas fa-truck"></i></div>
+                                        <div class="content">
+                                            <p>Donasi dari <strong>Toko Buku Pintar</strong> dalam perjalanan.</p>
+                                            <small>5 jam yang lalu</small>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon warning"><i class="fas fa-utensils"></i></div>
+                                        <div class="content">
+                                            <p>Food Rescue <strong>Nasi Kotak</strong> dari Restoran Padang Sederhana tersedia.</p>
+                                            <small>1 hari yang lalu</small>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon success"><i class="fas fa-user-plus"></i></div>
+                                        <div class="content">
+                                            <p><strong>Ahmad Fadli</strong> berdonasi Buku Tulis.</p>
+                                            <small>2 hari yang lalu</small>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Status Verifikasi -->
+                        <div class="info-card">
+                            <div class="card-header-custom">
+                                <i class="fas fa-certificate me-2"></i> Status Verifikasi
+                            </div>
+                            <div class="card-body-custom">
+                                <div class="verification-status verified">
+                                    <i class="fas fa-check-circle"></i>
+                                    <div>
+                                        <h6 class="mb-1">Terverifikasi</h6>
+                                        <p class="mb-0 small">Panti Asuhan Anda telah diverifikasi. Anda dapat menerima donasi.</p>
+                                    </div>
+                                </div>
+                                <div class="verification-status pending">
+                                    <i class="fas fa-hourglass-half"></i>
+                                    <div>
+                                        <h6 class="mb-1">Menunggu Verifikasi</h6>
+                                        <p class="mb-0 small">Dokumen Anda sedang dalam proses verifikasi oleh tim RaihAsa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/admin-dashboard.js"></script>
+</body>
+</html>
