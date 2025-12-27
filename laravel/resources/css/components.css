@@ -1,0 +1,464 @@
+/*=============== NOTIFICATIONS ===============*/
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 300px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.notification-content i {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.notification-close:hover {
+  color: var(--text-primary);
+}
+
+/*=============== LOADING SPINNER ===============*/
+.loading-spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 0.25rem solid rgba(92, 107, 192, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/*=============== BADGES ===============*/
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-primary {
+  background-color: rgba(92, 107, 192, 0.1);
+  color: var(--primary-color);
+}
+
+.badge-success {
+  background-color: rgba(102, 187, 106, 0.1);
+  color: var(--success-color);
+}
+
+.badge-warning {
+  background-color: rgba(255, 202, 40, 0.1);
+  color: var(--warning-color);
+}
+
+.badge-danger {
+  background-color: rgba(239, 83, 80, 0.1);
+  color: var(--danger-color);
+}
+
+/*=============== TOOLTIPS ===============*/
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: var(--dark-color);
+  color: var(--white);
+  text-align: center;
+  border-radius: var(--radius);
+  padding: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*=============== PAGINATION ===============*/
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.pagination-item {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  background-color: var(--white);
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.pagination-item:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.pagination-item.active {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.pagination-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-item.disabled:hover {
+  background-color: var(--white);
+  color: var(--text-primary);
+}
+
+/*=============== SMART MATCHING PREVIEW ===============*/
+.smart-matching-preview {
+  background-color: var(--white);
+}
+
+.matching-factors {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.matching-factors li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.smart-matching-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.matching-diagram {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+}
+
+.matching-node {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  z-index: 2;
+}
+
+.matching-node i {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.matching-node span {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.matching-node.donor {
+  top: 0;
+  left: 0;
+}
+
+.matching-node.algorithm {
+  top: 0;
+  right: 0;
+  background-color: var(--primary-color);
+}
+
+.matching-node.algorithm i,
+.matching-node.algorithm span {
+  color: var(--white);
+}
+
+.matching-node.recipient {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.matching-arrow {
+  position: absolute;
+  background-color: var(--primary-color);
+  z-index: 1;
+}
+
+.matching-arrow.donor-to-algorithm {
+  width: 100px;
+  height: 3px;
+  top: 60px;
+  left: 120px;
+  transform: rotate(30deg);
+}
+
+.matching-arrow.algorithm-to-recipient {
+  width: 100px;
+  height: 3px;
+  top: 120px;
+  right: 120px;
+  transform: rotate(150deg);
+}
+
+.matching-arrow::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: -8px;
+  border-left: 15px solid var(--primary-color);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+/*=============== DIGITAL VERIFICATION ===============*/
+.digital-verification {
+  background-color: var(--white);
+}
+
+.verification-process {
+  margin-bottom: 3rem;
+}
+
+.verification-benefits {
+  margin-top: 3rem;
+}
+
+.verification-benefits .benefit-card {
+  height: 100%;
+}
+
+/* Animasi untuk elemen saat scroll */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Search Box Styles */
+.search-container {
+  padding: 2rem 0;
+  margin-top: 1rem;
+}
+
+.search-box {
+  background-color: white;
+  border-radius: 10px; /* Mengurangi border radius dari 50px menjadi 10px */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-box:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.search-box .form-control {
+  border: none;
+  background-color: transparent;
+  border-radius: 10px 0 0 10px; /* Menyesuaikan border radius input */
+}
+
+.search-box .form-control:focus {
+  box-shadow: none;
+}
+
+.search-box .btn {
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0 10px 10px 0; /* Menyesuaikan border radius tombol */
+}
+
+/* Small Categories Section */
+.small-categories {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    padding: 20px 0; /* Menambah padding */
+}
+
+.small-categories .row {
+    justify-content: center; /* Menengahkan kategori */
+}
+
+.small-category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #495057;
+    transition: all 0.3s ease;
+    height: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin: 0 auto; /* Menambah margin auto untuk menengahkan */
+    max-width: 140px; /* Menambah max width */
+}
+
+.small-category-card:hover {
+    background-color: #f8f9fa;
+    color: #000957;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-decoration: none;
+}
+
+.small-category-icon {
+    width: 50px; /* Memperbesar icon */
+    height: 50px;
+    background-color: rgba(0, 9, 87, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.small-category-card:hover .small-category-icon {
+    background-color: #000957;
+}
+
+.small-category-icon i {
+    font-size: 1.5rem; /* Memperbesar icon */
+    color: #000957;
+    transition: all 0.3s ease;
+}
+
+.small-category-card:hover .small-category-icon i {
+    color: white;
+}
+
+.small-category-card span {
+    font-size: 0.9rem; /* Memperbesar teks */
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Penyesuaian untuk tampilan mobile */
+@media (max-width: 768px) {
+    .small-category-card {
+        margin-bottom: 10px; /* Menambah jarak antar kategori */
+    }
+}
+
+/* Auth Prompt Styles */
+.auth-prompt {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.auth-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.auth-prompt h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.auth-prompt p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.auth-buttons .btn {
+    padding: 0.75rem;
+    font-weight: 500;
+}
+
+/* Matching Screen Styles */
+.matching-screen {
+    padding: 2rem 0;
+}
+
+.confirmation-screen {
+    padding: 1rem 0;
+}
+
+.confirmation-screen ul {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.confirmation-screen ul li {
+    margin-bottom: 0.5rem;
+}

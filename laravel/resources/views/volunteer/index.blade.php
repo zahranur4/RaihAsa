@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer - RaihAsa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    @vite(['resources/css/style.css','resources/css/components.css','resources/css/volunteer.css','resources/js/main.js','resources/js/volunteer.js'])
+</head>
+<body>
+<!-- Header with Navigation -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" height="40" class="me-2">
+                    <span>RaihAsa</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/index.html#about">Tentang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link requires-auth" href="/pages/food-rescue.html">Food Rescue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link requires-auth" href="/pages/wishlist.html">Wishlist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link requires-auth" href="/pages/volunteer.html">Relawan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link requires-auth" href="/pages/my-donations.html">Kontribusiku</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a href="/pages/login.html" class="btn btn-outline-primary me-2">Masuk</a>
+                        <a href="register.html" class="btn btn-primary">Daftar</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Page Header -->
+    <section class="page-header volunteer-header">
+        <div class="container">
+            <h1>Volunteer</h1>
+            <p class="lead">Bergabunglah sebagai relawan untuk membuat dampak positif di masyarakat</p>
+        </div>
+    </section>
+
+    <!-- Volunteer CTA Section -->
+    <section class="volunteer-cta py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2>Ingin menjadi relawan?</h2>
+                    <p class="lead">Bergabunglah dengan tim relawan kami dan berkontribusi dalam berbagai kegiatan sosial yang bermakna.</p>
+                    <p>Setelah mendaftar dan login, Anda dapat mengisi form pendaftaran relawan, melihat kegiatan yang tersedia melalui smart matching, dan mengelola partisipasi Anda dalam berbagai kegiatan sosial.</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#volunteerModal">
+                        Daftar sebagai Relawan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Categories Section -->
+    <section class="volunteer-categories py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Kategori Volunteer</h2>
+                <p class="lead">Pilih kategori volunteer yang sesuai dengan minat dan kemampuan Anda</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Edukasi & Literasi</h3>
+                    <p>Mengajar dan meningkatkan literasi masyarakat, terutama anak-anak dan remaja.</p>
+                    <div class="category-details">
+                        <p><strong>Contoh kegiatan:</strong> Mengajar di panti asuhan, membaca buku bersama anak-anak</p>
+                        <p><strong>Skill umum:</strong> Kemampuan mengajar, kesabaran, komunikasi</p>
+                        <p><strong>Durasi:</strong> 2-3 jam per sesi</p>
+                    </div>
+                    <a href="#activities" class="btn btn-outline-primary btn-sm">Lihat Kegiatan</a>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Kesehatan & Gizi</h3>
+                    <p>Membantu penyebaran informasi kesehatan dan gizi yang tepat kepada masyarakat.</p>
+                    <div class="category-details">
+                        <p><strong>Contoh kegiatan:</strong> Sosialisasi gizi seimbang, kampanye hidup sehat</p>
+                        <p><strong>Skill umum:</strong> Pengetahuan gizi, komunikasi, presentasi</p>
+                        <p><strong>Durasi:</strong> 3-4 jam per sesi</p>
+                    </div>
+                    <a href="#activities" class="btn btn-outline-primary btn-sm">Lihat Kegiatan</a>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Kreatif & Psikososial</h3>
+                    <p>Menggunakan kegiatan kreatif untuk mendukung kesehatan mental dan emosional.</p>
+                    <div class="category-details">
+                        <p><strong>Contoh kegiatan:</strong> Terapi seni, bermain bersama anak-anak, workshop kreativitas</p>
+                        <p><strong>Skill umum:</strong> Kreativitas, empati, kemampuan berinteraksi</p>
+                        <p><strong>Durasi:</strong> 2-4 jam per sesi</p>
+                    </div>
+                    <a href="#activities" class="btn btn-outline-primary btn-sm">Lihat Kegiatan</a>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Kemanusiaan & Kebencanaan</h3>
+                    <p>Memberikan bantuan kemanusiaan saat terjadi bencana atau kondisi darurat.</p>
+                    <div class="category-details">
+                        <p><strong>Contoh kegiatan:</strong> Penggalangan dana, distribusi bantuan, evakuasi</p>
+                        <p><strong>Skill umum:</strong> Ketangguhan fisik, kerja sama tim, komunikasi darurat</p>
+                        <p><strong>Durasi:</strong> Bervariasi sesuai kebutuhan</p>
+                    </div>
+                    <a href="#activities" class="btn btn-outline-primary btn-sm">Lihat Kegiatan</a>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Dukungan Operasional & Lingkungan</h3>
+                    <p>Mendukung operasional organisasi dan kegiatan pelestarian lingkungan.</p>
+                    <div class="category-details">
+                        <p><strong>Contoh kegiatan:</strong> Penanaman pohon, bersih-bersih lingkungan, administrasi</p>
+                        <p><strong>Skill umum:</strong> Manajemen, organisasi, ketelitian</p>
+                        <p><strong>Durasi:</strong> 3-5 jam per sesi</p>
+                    </div>
+                    <a href="#activities" class="btn btn-outline-primary btn-sm">Lihat Kegiatan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Activities Photos Section -->
+<section class="volunteer-photos py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Kegiatan Volunteer Kami</h2>
+            <p class="lead">Lihat bagaimana volunteer kami telah membuat dampak positif di masyarakat</p>
+        </div>
+        
+        <div class="photos-grid">
+            <div class="photo-item">
+                <img src="/assets/Mengajar.png" alt="Mengajar di Panti Asuhan">
+                <div class="photo-caption">
+                    <h4>Mengajar di Panti Asuhan</h4>
+                    <p>Volunteer mengajar matematika untuk anak-anak panti asuhan</p>
+                </div>
+            </div>
+            
+            <div class="photo-item">
+                <img src="/assets/Sosialisasi.png" alt="Sosialisasi Gizi">
+                <div class="photo-caption">
+                    <h4>Sosialisasi Gizi Seimbang</h4>
+                    <p>Volunteer mensosialisasikan pentingnya gizi seimbang</p>
+                </div>
+            </div>
+            
+            <div class="photo-item">
+                <img src="/assets/Workshop.png" alt="Workshop Melukis">
+                <div class="photo-caption">
+                    <h4>Workshop Melukis untuk Anak</h4>
+                    <p>Volunteer membantu anak-anak dalam kegiatan melukis</p>
+                </div>
+            </div>
+            
+            <div class="photo-item">
+                <img src="/assets/Bantuan banjir.png" alt="Bantuan Banjir">
+                <div class="photo-caption">
+                    <h4>Bantuan Banjir Bandung Timur</h4>
+                    <p>Volunteer membantu membersihkan rumah warga terdampak banjir</p>
+                </div>
+            </div>
+            
+            <div class="photo-item">
+                <img src="/assets/Penanaman pohon.png" alt="Penanaman Pohon">
+                <div class="photo-caption">
+                    <h4>Penanaman Pohon di Taman City</h4>
+                    <p>Volunteer menanam pohon untuk penghijauan kota</p>
+                </div>
+            </div>
+            
+            <div class="photo-item">
+                <img src="/assets/Literasi.png" alt="Perpustakaan Keliling">
+                <div class="photo-caption">
+                    <h4>Perpustakaan Keliling</h4>
+                    <p>Volunteer mendampingi anak-anak dalam kegiatan membaca</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="#volunteerModal" class="btn btn-primary btn-lg" data-bs-toggle="modal">Bergabung sebagai Volunteer</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Login Required Section -->
+    <div id="loginRequired" class="auth-required-section">
+        <div class="container">
+            <div class="auth-prompt text-center py-5">
+                <div class="auth-icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                </div>
+                <h3>Login Diperlukan</h3>
+                <p>Anda harus login terlebih dahulu untuk mengakses fitur volunteer lengkap</p>
+                <div class="auth-buttons mt-4">
+                    <a href="/pages/login.html" class="btn btn-primary me-2">Login</a>
+                    <a href="/pages/register.html" class="btn btn-outline-primary">Daftar Akun</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Volunteer Form Section (Hidden by default) -->
+    <section id="verification-form" class="volunteer-form-section py-5 bg-light" style="display: none;">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header text-center mb-5">
+                    <h2>Form Pendaftaran Volunteer</h2>
+                    <p class="lead">Lengkapi data diri Anda untuk bergabung sebagai volunteer</p>
+                </div>
+                
+                <form class="volunteer-form">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="fullName" class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="fullName" placeholder="Masukkan nama lengkap Anda" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <label for="facePhoto" class="form-label">Foto Wajah</label>
+                            <div class="upload-photo">
+                                <div class="photo-preview">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Upload Foto</span>
+                                </div>
+                                <input type="file" class="form-control" id="facePhoto" accept="image/*" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="whatsapp" class="form-label">Nomor WhatsApp Aktif</label>
+                            <input type="tel" class="form-control" id="whatsapp" placeholder="Contoh: 081234567890" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <label for="email" class="form-label">Email Aktif</label>
+                            <input type="email" class="form-control" id="email" placeholder="Contoh: nama@email.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="identity" class="form-label">Identitas Pendukung</label>
+                            <select class="form-select" id="identityType" required>
+                                <option value="" selected disabled>Pilih jenis identitas</option>
+                                <option value="nim">NIM</option>
+                                <option value="ktp">Nomor KTP</option>
+                            </select>
+                            <input type="text" class="form-control mt-2" id="identity" placeholder="Masukkan NIM/Nomor KTP" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <label for="domicile" class="form-label">Domisili (wilayah Bandung)</label>
+                            <select class="form-select" id="domicile" required>
+                                <option value="" selected disabled>Pilih domisili</option>
+                                <option value="batununggal">Batununggal</option>
+                                <option value="buahbatu">Buahbatu</option>
+                                <option value="cibiru">Cibiru</option>
+                                <option value="cinambo">Cinambo</option>
+                                <option value="gedebage">Gedebage</option>
+                                <option value="ujungberung">Ujungberung</option>
+                                <option value="arcamanik">Arcamanik</option>
+                                <option value="antapani">Antapani</option>
+                                <option value="lengkong">Lengkong</option>
+                                <option value="regol">Regol</option>
+                                <option value="bandungwetan">Bandung Wetan</option>
+                                <option value="astanaanyar">Astanaanyar</option>
+                                <option value="coblong">Coblong</option>
+                                <option value="sukasari">Sukasari</option>
+                                <option value="cicendo">Cicendo</option>
+                                <option value="andalas">Andir</option>
+                                <option value="babakanciparay">Babakan Ciparay</option>
+                                <option value="bojongloakaler">Bojongloa Kaler</option>
+                                <option value="bojongloakidul">Bojongloa Kidul</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label">Skill & Minat</label>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <input type="checkbox" class="form-check-input" id="skill1">
+                                <label class="form-check-label" for="skill1">Mengajar</label>
+                            </div>
+                            <div class="skill-item">
+                                <input type="checkbox" class="form-check-input" id="skill2">
+                                <label class="form-check-label" for="skill2">Komunikasi</label>
+                            </div>
+                            <div class="skill-item">
+                                <input type="checkbox" class="form-check-input" id="skill3">
+                                <label class="form-check-label" for="skill3">Organisasi</label>
+                            </div>
+                            <div class="skill-item">
+                                <input type="checkbox" class="form-check-input" id="skill4">
+                                <label class="form-check-label" for="skill4">Kesenian</label>
+                            </div>
+                            <div class="skill-item">
+                                <input type="checkbox" class="form-check-input" id="skill5">
+                                <label class="form-check-label" for="skill5">Kesehatan</label>
+                            </div>
+                            <div class="skill-item">
+                                <input type="checkbox" class="form-check-input" id="skill6">
+                                <label class="form-check-label" for="skill6">IT & Teknologi</label>
+                            </div>
+                            <div class="skill-item">
+                                <input type="checkbox" class="form-check-input" id="skill7">
+                                <label class="form-check-label" for="skill7">Penulisan</label>
+                            </div>
+                            <div class="skill-item">
+                                <input type="checkbox" class="form-check-input" id="skill8">
+                                <label class="form-check-label" for="skill8">Fotografi</label>
+                            </div>
+                            <div class="skill-item">
+                                <input type="checkbox" class="form-check-input" id="skill9">
+                                <label class="form-check-label" for="skill9">Lingkungan</label>
+                            </div>
+                            <div class="skill-item">
+                                <input type="checkbox" class="form-check-input" id="skill10">
+                                <label class="form-check-label" for="skill10">Kemanusiaan</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="availability" class="form-label">Ketersediaan Waktu</label>
+                        <div class="availability-grid">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="weekday-morning" id="weekday-morning">
+                                <label class="form-check-label" for="weekday-morning">
+                                    Weekday (Pagi)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="weekday-afternoon" id="weekday-afternoon">
+                                <label class="form-check-label" for="weekday-afternoon">
+                                    Weekday (Siang)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="weekday-evening" id="weekday-evening">
+                                <label class="form-check-label" for="weekday-evening">
+                                    Weekday (Sore)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="weekend-morning" id="weekend-morning">
+                                <label class="form-check-label" for="weekend-morning">
+                                    Weekend (Pagi)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="weekend-afternoon" id="weekend-afternoon">
+                                <label class="form-check-label" for="weekend-afternoon">
+                                    Weekend (Siang)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="weekend-evening" id="weekend-evening">
+                                <label class="form-check-label" for="weekend-evening">
+                                    Weekend (Sore)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="motivation" class="form-label">Motivasi Menjadi Volunteer</label>
+                        <textarea class="form-control" id="motivation" rows="4" placeholder="Ceritakan motivasi Anda menjadi volunteer..." required></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="agreement" required>
+                            <label class="form-check-label" for="agreement">
+                                Saya menyetujui semua aturan dan ketentuan yang berlaku dalam program volunteer RaihAsa
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">Kirim Pendaftaran</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section (Hidden by default) -->
+    <section id="activities" class="activities-section py-5" style="display: none;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Kegiatan Volunteer</h2>
+                <p class="lead">Temukan kegiatan volunteer yang sesuai dengan minat dan ketersediaan waktu Anda</p>
+            </div>
+            
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">Semua Kategori</button>
+                <button class="filter-btn" data-filter="edukasi">Edukasi & Literasi</button>
+                <button class="filter-btn" data-filter="kesehatan">Kesehatan & Gizi</button>
+                <button class="filter-btn" data-filter="kreatif">Kreatif & Psikososial</button>
+                <button class="filter-btn" data-filter="kemanusiaan">Kemanusiaan & Kebencanaan</button>
+                <button class="filter-btn" data-filter="operasional">Dukungan Operasional</button>
+            </div>
+            
+            <div class="activities-grid">
+                <div class="activity-card" data-category="edukasi">
+                    <div class="activity-header">
+                        <div class="activity-category">
+                            <i class="fas fa-book-open"></i> Edukasi & Literasi
+                        </div>
+                        <div class="activity-status">
+                            <i class="fas fa-users"></i> 3/10 volunteer
+                        </div>
+                    </div>
+                    <h3>Mengajar di Panti Asuhan Harapan</h3>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Coblong</span>
+                        <span><i class="fas fa-calendar"></i> 15 Juli 2023</span>
+                        <span><i class="fas fa-clock"></i> 09:00 - 12:00</span>
+                    </div>
+                    <div class="activity-details">
+                        <p>Mengajar matematika dan bahasa Indonesia untuk anak-anak panti asuhan. Materi telah disiapkan, volunteer hanya perlu mengajar dengan sabar dan menyenangkan.</p>
+                        <div class="activity-skills">
+                            <span class="skill-tag">Mengajar</span>
+                            <span class="skill-tag">Komunikasi</span>
+                            <span class="skill-tag">Kesabaran</span>
+                        </div>
+                    </div>
+                    <div class="activity-actions">
+                        <button class="btn btn-primary btn-sm">Daftar</button>
+                        <button class="btn btn-outline-primary btn-sm">Detail</button>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-category="kesehatan">
+                    <div class="activity-header">
+                        <div class="activity-category">
+                            <i class="fas fa-heartbeat"></i> Kesehatan & Gizi
+                        </div>
+                        <div class="activity-status">
+                            <i class="fas fa-users"></i> 5/8 volunteer
+                        </div>
+                    </div>
+                    <h3>Sosialisasi Gizi Seimbang</h3>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Bojongloa Kidul</span>
+                        <span><i class="fas fa-calendar"></i> 17 Juli 2023</span>
+                        <span><i class="fas fa-clock"></i> 13:00 - 16:00</span>
+                    </div>
+                    <div class="activity-details">
+                        <p>Mensosialisasikan pentingnya gizi seimbang kepada ibu-ibu PKK di wilayah Bojongloa Kidul. Materi dan contoh makanan sehat akan disiapkan oleh panitia.</p>
+                        <div class="activity-skills">
+                            <span class="skill-tag">Komunikasi</span>
+                            <span class="skill-tag">Kesehatan</span>
+                            <span class="skill-tag">Presentasi</span>
+                        </div>
+                    </div>
+                    <div class="activity-actions">
+                        <button class="btn btn-primary btn-sm">Daftar</button>
+                        <button class="btn btn-outline-primary btn-sm">Detail</button>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-category="kreatif">
+                    <div class="activity-header">
+                        <div class="activity-category">
+                            <i class="fas fa-palette"></i> Kreatif & Psikososial
+                        </div>
+                        <div class="activity-status">
+                            <i class="fas fa-users"></i> 2/6 volunteer
+                        </div>
+                    </div>
+                    <h3>Workshop Melukis untuk Anak</h3>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Sukasari</span>
+                        <span><i class="fas fa-calendar"></i> 22 Juli 2023</span>
+                        <span><i class="fas fa-clock"></i> 10:00 - 14:00</span>
+                    </div>
+                    <div class="activity-details">
+                        <p>Membantu anak-anak dalam kegiatan melukis sebagai bentuk terapi ekspresi. Tidak perlu mahir melukis, yang penting sabar dan suka berinteraksi dengan anak.</p>
+                        <div class="activity-skills">
+                            <span class="skill-tag">Kesenian</span>
+                            <span class="skill-tag">Interaksi Anak</span>
+                            <span class="skill-tag">Kreativitas</span>
+                        </div>
+                    </div>
+                    <div class="activity-actions">
+                        <button class="btn btn-primary btn-sm">Daftar</button>
+                        <button class="btn btn-outline-primary btn-sm">Detail</button>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-category="kemanusiaan">
+                    <div class="activity-header">
+                        <div class="activity-category">
+                            <i class="fas fa-hands-helping"></i> Kemanusiaan & Kebencanaan
+                        </div>
+                        <div class="activity-status">
+                            <i class="fas fa-users"></i> 7/15 volunteer
+                        </div>
+                    </div>
+                    <h3>Bantuan Banjir Bandung Timur</h3>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Ujungberung</span>
+                        <span><i class="fas fa-calendar"></i> 20 Juli 2023</span>
+                        <span><i class="fas fa-clock"></i> 08:00 - 17:00</span>
+                    </div>
+                    <div class="activity-details">
+                        <p>Membantu membersihkan rumah warga terdampak banjir dan mendistribusikan bantuan logistik. Membutuhkan fisik yang kuat dan siap kerja lapangan.</p>
+                        <div class="activity-skills">
+                            <span class="skill-tag">Kemanusiaan</span>
+                            <span class="skill-tag">Fisik Kuat</span>
+                            <span class="skill-tag">Kerja Tim</span>
+                        </div>
+                    </div>
+                    <div class="activity-actions">
+                        <button class="btn btn-primary btn-sm">Daftar</button>
+                        <button class="btn btn-outline-primary btn-sm">Detail</button>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-category="operasional">
+                    <div class="activity-header">
+                        <div class="activity-category">
+                            <i class="fas fa-leaf"></i> Dukungan Operasional
+                        </div>
+                        <div class="activity-status">
+                            <i class="fas fa-users"></i> 4/5 volunteer
+                        </div>
+                    </div>
+                    <h3>Penanaman Pohon di Taman City</h3>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Bandung Wetan</span>
+                        <span><i class="fas fa-calendar"></i> 23 Juli 2023</span>
+                        <span><i class="fas fa-clock"></i> 07:00 - 11:00</span>
+                    </div>
+                    <div class="activity-details">
+                        <p>Berbarengan dengan Dinas Lingkungan Hidup, menanam pohon di Taman City untuk penghijauan. Alat dan bibit akan disediakan oleh panitia.</p>
+                        <div class="activity-skills">
+                            <span class="skill-tag">Lingkungan</span>
+                            <span class="skill-tag">Kerja Tim</span>
+                            <span class="skill-tag">Fisik</span>
+                        </div>
+                    </div>
+                    <div class="activity-actions">
+                        <button class="btn btn-primary btn-sm">Daftar</button>
+                        <button class="btn btn-outline-primary btn-sm">Detail</button>
+                    </div>
+                </div>
+                
+                <div class="activity-card" data-category="edukasi">
+                    <div class="activity-header">
+                        <div class="activity-category">
+                            <i class="fas fa-book-open"></i> Edukasi & Literasi
+                        </div>
+                        <div class="activity-status">
+                            <i class="fas fa-users"></i> 1/8 volunteer
+                        </div>
+                    </div>
+                    <h3>Perpustakaan Keliling</h3>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Arcamanik</span>
+                        <span><i class="fas fa-calendar"></i> 25 Juli 2023</span>
+                        <span><i class="fas fa-clock"></i> 14:00 - 17:00</span>
+                    </div>
+                    <div class="activity-details">
+                        <p>Mendampingi anak-anak dalam membaca buku di perpustakaan keliling. Membantu mereka memahami isi bacaan dan mendorong minat baca.</p>
+                        <div class="activity-skills">
+                            <span class="skill-tag">Literasi</span>
+                            <span class="skill-tag">Anak-anak</span>
+                            <span class="skill-tag">Kesabaran</span>
+                        </div>
+                    </div>
+                    <div class="activity-actions">
+                        <button class="btn btn-primary btn-sm">Daftar</button>
+                        <button class="btn btn-outline-primary btn-sm">Detail</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Matching Section (Hidden by default) -->
+    <section class="smart-matching py-5 bg-light" style="display: none;">
+        <div class="container">
+            <div class="matching-container">
+                <div class="matching-header text-center mb-5">
+                    <h2 class="section-title">Smart Matching</h2>
+                    <p class="lead">Temukan kegiatan volunteer yang paling cocok untuk Anda</p>
+                </div>
+                
+                <div class="matching-form">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <label for="match-skills" class="form-label">Skill</label>
+                            <select class="form-select" id="match-skills">
+                                <option value="" selected disabled>Pilih skill Anda</option>
+                                <option value="mengajar">Mengajar</option>
+                                <option value="komunikasi">Komunikasi</option>
+                                <option value="organisasi">Organisasi</option>
+                                <option value="kesenian">Kesenian</option>
+                                <option value="kesehatan">Kesehatan</option>
+                                <option value="it">IT & Teknologi</option>
+                                <option value="penulisan">Penulisan</option>
+                                <option value="fotografi">Fotografi</option>
+                                <option value="lingkungan">Lingkungan</option>
+                                <option value="kemanusiaan">Kemanusiaan</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <label for="match-interest" class="form-label">Minat</label>
+                            <select class="form-select" id="match-interest">
+                                <option value="" selected disabled>Pilih minat Anda</option>
+                                <option value="edukasi">Edukasi & Literasi</option>
+                                <option value="kesehatan">Kesehatan & Gizi</option>
+                                <option value="kreatif">Kreatif & Psikososial</option>
+                                <option value="kemanusiaan">Kemanusiaan & Kebencanaan</option>
+                                <option value="operasional">Dukungan Operasional</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <label for="match-time" class="form-label">Ketersediaan Waktu</label>
+                            <select class="form-select" id="match-time">
+                                <option value="" selected disabled>Pilih waktu</option>
+                                <option value="weekday-morning">Weekday (Pagi)</option>
+                                <option value="weekday-afternoon">Weekday (Siang)</option>
+                                <option value="weekday-evening">Weekday (Sore)</option>
+                                <option value="weekend-morning">Weekend (Pagi)</option>
+                                <option value="weekend-afternoon">Weekend (Siang)</option>
+                                <option value="weekend-evening">Weekend (Sore)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="match-location" class="form-label">Lokasi</label>
+                            <select class="form-select" id="match-location">
+                                <option value="" selected disabled>Pilih lokasi</option>
+                                <option value="batununggal">Batununggal</option>
+                                <option value="buahbatu">Buahbatu</option>
+                                <option value="cibiru">Cibiru</option>
+                                <option value="cinambo">Cinambo</option>
+                                <option value="gedebage">Gedebage</option>
+                                <option value="ujungberung">Ujungberung</option>
+                                <option value="arcamanik">Arcamanik</option>
+                                <option value="antapani">Antapani</option>
+                                <option value="lengkong">Lengkong</option>
+                                <option value="regol">Regol</option>
+                                <option value="bandungwetan">Bandung Wetan</option>
+                                <option value="astanaanyar">Astanaanyar</option>
+                                <option value="coblong">Coblong</option>
+                                <option value="sukasari">Sukasari</option>
+                                <option value="cicendo">Cicendo</option>
+                                <option value="andalas">Andir</option>
+                                <option value="babakanciparay">Babakan Ciparay</option>
+                                <option value="bojongloakaler">Bojongloa Kaler</option>
+                                <option value="bojongloakidul">Bojongloa Kidul</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4 d-flex align-items-end">
+                            <button class="btn btn-primary w-100">Cari Kegiatan</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="matching-results">
+                    <h4 class="results-title">Rekomendasi Kegiatan untuk Anda</h4>
+                    
+                    <div class="match-item">
+                        <div class="match-content">
+                            <h5>Mengajar di Panti Asuhan Harapan</h5>
+                            <div class="match-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Coblong</span>
+                                <span><i class="fas fa-calendar"></i> 15 Juli 2023</span>
+                                <span><i class="fas fa-clock"></i> 09:00 - 12:00</span>
+                            </div>
+                            <div class="match-percentage">
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="percentage-text">90% Kecocokan</span>
+                            </div>
+                        </div>
+                        <div class="match-action">
+                            <button class="btn btn-primary btn-sm">Daftar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="match-item">
+                        <div class="match-content">
+                            <h5>Workshop Melukis untuk Anak</h5>
+                            <div class="match-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Sukasari</span>
+                                <span><i class="fas fa-calendar"></i> 22 Juli 2023</span>
+                                <span><i class="fas fa-clock"></i> 10:00 - 14:00</span>
+                            </div>
+                            <div class="match-percentage">
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="percentage-text">85% Kecocokan</span>
+                            </div>
+                        </div>
+                        <div class="match-action">
+                            <button class="btn btn-primary btn-sm">Daftar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="match-item">
+                        <div class="match-content">
+                            <h5>Perpustakaan Keliling</h5>
+                            <div class="match-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Arcamanik</span>
+                                <span><i class="fas fa-calendar"></i> 25 Juli 2023</span>
+                                <span><i class="fas fa-clock"></i> 14:00 - 17:00</span>
+                            </div>
+                            <div class="match-percentage">
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="percentage-text">75% Kecocokan</span>
+                            </div>
+                        </div>
+                        <div class="match-action">
+                            <button class="btn btn-primary btn-sm">Daftar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activity Management Section (Hidden by default) -->
+    <section class="activity-management py-5" style="display: none;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Manajemen Kegiatan</h2>
+                <p class="lead">Kelola partisipasi Anda dalam kegiatan volunteer</p>
+            </div>
+            
+            <div class="management-tabs">
+                <button class="management-tab active" data-tab="registered">Kegiatan Terdaftar</button>
+                <button class="management-tab" data-tab="approved">Kegiatan Disetujui</button>
+                <button class="management-tab" data-tab="completed">Kegiatan Selesai</button>
+            </div>
+            
+            <div class="management-content">
+                <div class="tab-pane active" id="registered">
+                    <div class="management-card">
+                        <div class="management-header">
+                            <h4>Mengajar di Panti Asuhan Harapan</h4>
+                            <div class="management-status pending">
+                                <i class="fas fa-clock"></i> Menunggu Persetujuan
+                            </div>
+                        </div>
+                        <div class="management-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Coblong</span>
+                            <span><i class="fas fa-calendar"></i> 15 Juli 2023</span>
+                            <span><i class="fas fa-clock"></i> 09:00 - 12:00</span>
+                        </div>
+                        <div class="management-details">
+                            <p>Pendaftaran Anda sedang ditinjau oleh pihak panti asuhan. Anda akan menerima notifikasi setelah status berubah.</p>
+                        </div>
+                        <div class="management-actions">
+                            <button class="btn btn-outline-danger btn-sm">Batalkan Pendaftaran</button>
+                        </div>
+                    </div>
+                    
+                    <div class="management-card">
+                        <div class="management-header">
+                            <h4>Workshop Melukis untuk Anak</h4>
+                            <div class="management-status pending">
+                                <i class="fas fa-clock"></i> Menunggu Persetujuan
+                            </div>
+                        </div>
+                        <div class="management-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Sukasari</span>
+                            <span><i class="fas fa-calendar"></i> 22 Juli 2023</span>
+                            <span><i class="fas fa-clock"></i> 10:00 - 14:00</span>
+                        </div>
+                        <div class="management-details">
+                            <p>Pendaftaran Anda sedang ditinjau oleh panitia kegiatan. Anda akan menerima notifikasi setelah status berubah.</p>
+                        </div>
+                        <div class="management-actions">
+                            <button class="btn btn-outline-danger btn-sm">Batalkan Pendaftaran</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane" id="approved">
+                    <div class="management-card">
+                        <div class="management-header">
+                            <h4>Sosialisasi Gizi Seimbang</h4>
+                            <div class="management-status approved">
+                                <i class="fas fa-check-circle"></i> Disetujui
+                            </div>
+                        </div>
+                        <div class="management-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Bojongloa Kidul</span>
+                            <span><i class="fas fa-calendar"></i> 17 Juli 2023</span>
+                            <span><i class="fas fa-clock"></i> 13:00 - 16:00</span>
+                        </div>
+                        <div class="management-details">
+                            <p>Anda telah disetujui sebagai <strong>Fasilitator</strong> dalam kegiatan ini. Grup WhatsApp telah dibuat oleh koordinator.</p>
+                        </div>
+                        <div class="management-actions">
+                            <a href="#" class="btn btn-primary btn-sm"><i class="fab fa-whatsapp"></i> Grup WhatsApp</a>
+                            <button class="btn btn-outline-danger btn-sm">Batalkan Partisipasi</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane" id="completed">
+                    <div class="management-card">
+                        <div class="management-header">
+                            <h4>Bantuan Banjir Bandung Timur</h4>
+                            <div class="management-status completed">
+                                <i class="fas fa-flag-checkered"></i> Selesai
+                            </div>
+                        </div>
+                        <div class="management-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Ujungberung</span>
+                            <span><i class="fas fa-calendar"></i> 20 Juli 2023</span>
+                            <span><i class="fas fa-clock"></i> 08:00 - 17:00</span>
+                        </div>
+                        <div class="management-details">
+                            <p>Anda berpartisipasi sebagai <strong>Anggota Tim</strong> dalam kegiatan ini.</p>
+                        </div>
+                        <div class="management-actions">
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#feedbackModal">Beri Feedback</button>
+                            <button class="btn btn-outline-primary btn-sm">Lihat Sertifikat</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Modal -->
+    <div class="modal fade" id="volunteerModal" tabindex="-1" aria-labelledby="volunteerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="volunteerModalLabel">Pendaftaran Relawan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Login Prompt if not logged in -->
+                    <div id="volunteerLoginPrompt" class="auth-prompt">
+                        <div class="auth-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h4>Daftar Akun Diperlukan</h4>
+                        <p>Anda harus memiliki akun RaihAsa terlebih dahulu untuk mendaftar sebagai relawan</p>
+                        <div class="auth-buttons">
+                            <a href="/pages/register.html" class="btn btn-primary w-100">Daftar Akun</a>
+                            <a href="/pages/login.html" class="btn btn-outline-primary w-100 mt-2">Masuk</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Volunteer info if logged in (hidden by default) -->
+                    <div id="volunteerInfo" style="display: none;">
+                        <div class="volunteer-steps">
+                            <div class="step active">
+                                <div class="step-number">1</div>
+                                <div class="step-title">Lengkapi Data</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-title">Verifikasi</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-title">Pilih Kegiatan</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-title">Mulai Berkontribusi</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <p>Setelah akun Anda terverifikasi, Anda dapat mengakses:</p>
+                            <ul class="volunteer-features">
+                                <li><i class="fas fa-check-circle"></i> Form pendaftaran relawan lengkap</li>
+                                <li><i class="fas fa-check-circle"></i> Smart matching untuk kegiatan yang sesuai</li>
+                                <li><i class="fas fa-check-circle"></i> Manajemen kegiatan dan partisipasi</li>
+                                <li><i class="fas fa-check-circle"></i> Grup WhatsApp untuk koordinasi</li>
+                            </ul>
+                            <button type="button" class="btn btn-primary mt-3" data-bs-dismiss="modal">Mengerti</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackModalLabel">Feedback Kegiatan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Penilaian Kegiatan</label>
+                            <div class="rating">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="feedback" class="form-label">Komentar Anda</label>
+                            <textarea class="form-control" id="feedback" rows="3" placeholder="Bagikan pengalaman Anda selama mengikuti kegiatan..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="suggestion" class="form-label">Saran Perbaikan</label>
+                            <textarea class="form-control" id="suggestion" rows="2" placeholder="Saran untuk perbaikan kegiatan selanjutnya..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Kirim Feedback</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="row">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <div class="footer-about">
+                            <a href="index.html" class="footer-logo">
+                                <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" class="footer-logo-img me-2">
+                                <span>RaihAsa</span>
+                            </a>
+                            <p>Jembatan kebaikan yang menghubungkan kepedulian Anda dengan mereka yang membutuhkan, mewujudkan harapan melalui donasi makanan, barang, dan tenaga.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Link Cepat</h4>
+                            <ul>
+                                <li><a href="index.html">Beranda</a></li>
+                                <li><a href="#about">Tentang Kami</a></li>
+                                <li><a href="#donate">Cara Kerja</a></li>
+                                <li><a href="pages/food-rescue.html">Food Rescue</a></li>
+                                <li><a href="#contact">Kontak</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Donor</h4>
+                            <ul>
+                                <li><a href="#donate">Cara Donasi</a></li>
+                                <li><a href="#donate">Jenis Makanan</a></li>
+                                <li><a href="#donate">Panduan Pengemasan</a></li>
+                                <li><a href="#donate">FAQ Donor</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                        <div class="footer-links">
+                            <h4>Relawan</h4>
+                            <ul>
+                                <li><a href="#volunteer-section">Cara Mendaftar</a></li>
+                                <li><a href="pages/volunteer.html">Kegiatan</a></li>
+                                <li><a href="pages/volunteer.html">Kategori</a></li>
+                                <li><a href="pages/volunteer.html">FAQ Relawan</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-contact">
+                            <h4>Hubungi Kami</h4>
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i> Bandung, Indonesia</li>
+                                <li><i class="fas fa-phone"></i> +62 22 1234 5678</li>
+                                <li><i class="fas fa-envelope"></i> info@raihasa.id</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p>&copy; 2025 RaihAsa. Hak Cipta Dilindungi.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <ul class="footer-bottom-links">
+                            <li><a href="#">Kebijakan Privasi</a></li>
+                            <li><a href="#">Syarat & Ketentuan</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

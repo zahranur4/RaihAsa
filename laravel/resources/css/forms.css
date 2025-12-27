@@ -1,0 +1,339 @@
+/*=============== FORMS ===============*/
+.registration-section {
+    background-color: var(--white);
+    padding-top: 2rem;
+}
+
+.registration-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.registration-type-selector {
+    background-color: var(--light-color);
+    padding: 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.type-options {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.type-option {
+    flex: 1;
+    padding: 1.5rem;
+    background-color: var(--white);
+    border-radius: var(--radius);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.type-option:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.type-option.active {
+    border-color: var(--primary-color);
+    background-color: rgba(92, 107, 192, 0.05);
+}
+
+.type-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(92, 107, 192, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.type-icon i {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+}
+
+.type-option h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.type-option p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.registration-form {
+    padding: 2rem;
+    display: none;
+}
+
+.registration-form.active {
+    display: block;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h3 {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: var(--text-secondary);
+}
+
+.legal-documents-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--light-color);
+    border-radius: var(--radius);
+}
+
+.legal-documents-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.document-upload {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.upload-item {
+    margin-bottom: 1rem;
+}
+
+.upload-item label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.upload-item .text-muted {
+    font-weight: normal;
+    font-size: 0.875rem;
+}
+
+/* Custom file input styling */
+.form-control[type="file"] {
+    padding: 0.5rem;
+}
+
+/* Form validation styles */
+.form-control.is-invalid {
+    border-color: var(--danger-color);
+}
+
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--danger-color);
+}
+
+/* Success message */
+.registration-success {
+    display: none;
+    text-align: center;
+    padding: 3rem;
+}
+
+.registration-success.show {
+    display: block;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(102, 187, 106, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.success-icon i {
+    font-size: 2.5rem;
+    color: var(--success-color);
+}
+
+.registration-success h3 {
+    font-size: 1.75rem;
+    color: var(--success-color);
+    margin-bottom: 1rem;
+}
+
+.registration-success p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .type-options {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .registration-form {
+        padding: 1.5rem;
+    }
+    
+    .document-upload {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*=============== LOGIN ===============*/
+.login-section {
+    background-color: var(--white);
+    padding-top: 2rem;
+}
+
+.login-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.login-form {
+    padding: 2rem;
+}
+
+.login-icon {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(92, 107, 192, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.login-icon i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.login-form h3 {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.login-form p.text-muted {
+    margin-bottom: 2rem;
+}
+
+/* Success message for login */
+.login-success {
+    display: none;
+    text-align: center;
+    padding: 3rem;
+}
+
+.login-success.show {
+    display: block;
+}
+
+.login-success .success-icon {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(102, 187, 106, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.login-success .success-icon i {
+    font-size: 2.5rem;
+    color: var(--success-color);
+}
+
+.login-success h3 {
+    font-size: 1.75rem;
+    color: var(--success-color);
+    margin-bottom: 1rem;
+}
+
+.login-success p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Back button styling */
+.btn-outline-secondary {
+    color: var(--text-secondary);
+    border-color: var(--text-secondary);
+}
+
+.btn-outline-secondary:hover {
+    color: var(--white);
+    background-color: var(--text-secondary);
+    border-color: var(--text-secondary);
+}
+
+/* Ensure type selector is visible when needed */
+.registration-type-selector {
+    display: block;
+}
+
+/* Fix for form display */
+.registration-form {
+    display: none;
+}
+
+.registration-form.active {
+    display: block;
+}
+
+/* --- SOLUSI: TAMBAHKAN CSS INI --- */
+
+/* Sembunyikan semua form registrasi secara default */
+.registration-form {
+  display: none;
+}
+
+/* Tampilkan HANYA form yang sedang memiliki kelas 'active' */
+.registration-form.active {
+  display: block;
+}
+
+/* Pastikan selector untuk tipe pilihan juga berfungsi dengan baik */
+.type-option {
+  cursor: pointer; /* Menunjukkan bahwa elemen ini bisa diklik */
+  transition: all 0.3s ease;
+}
+
+/* Gaya untuk opsi yang sedang dipilih/aktif */
+.type-option.active {
+  /* Tambahkan gaya visual di sini, misalnya: */
+  border-color: var(--primary-color);
+  background-color: rgba(92, 107, 192, 0.1);
+}

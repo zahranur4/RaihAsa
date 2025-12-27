@@ -1,0 +1,93 @@
+/*============================================
+  ANIMASI SAAT SCROLL (DARI VOLUNTEER PAGE)
+============================================*/
+
+/* Animasi Fade In */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animasi Slide Up */
+.slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide-up.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efek Stagger untuk Kartu Rescue */
+.rescue-grid .rescue-card:nth-child(1) { transition-delay: 0.1s; }
+.rescue-grid .rescue-card:nth-child(2) { transition-delay: 0.2s; }
+.rescue-grid .rescue-card:nth-child(3) { transition-delay: 0.3s; }
+.rescue-grid .rescue-card:nth-child(4) { transition-delay: 0.4s; }
+.rescue-grid .rescue-card:nth-child(5) { transition-delay: 0.5s; }
+.rescue-grid .rescue-card:nth-child(6) { transition-delay: 0.6s; }
+
+/* Efek Stagger untuk Cara Kerja */
+.steps-container .step-item:nth-child(1) { transition-delay: 0.1s; }
+.steps-container .step-item:nth-child(2) { transition-delay: 0.2s; }
+.steps-container .step-item:nth-child(3) { transition-delay: 0.3s; }
+.steps-container .step-item:nth-child(4) { transition-delay: 0.4s; }
+.steps-container .step-item:nth-child(5) { transition-delay: 0.5s; }
+
+/* Efek Stagger untuk Manfaat */
+.benefits-grid .benefit-card:nth-child(1) { transition-delay: 0.1s; }
+.benefits-grid .benefit-card:nth-child(2) { transition-delay: 0.2s; }
+.benefits-grid .benefit-card:nth-child(3) { transition-delay: 0.3s; }
+.benefits-grid .benefit-card:nth-child(4) { transition-delay: 0.4s; }
+
+/* Animasi untuk bagian CTA */
+.cta-content.animate-in {
+    transform: scale(1);
+}
+.cta-content {
+    transform: scale(0.95);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Animasi untuk elemen footer */
+.footer-about.animate-in,
+.footer-links.animate-in,
+.footer-contact.animate-in {
+    transform: translateX(0);
+}
+.footer-about,
+.footer-links,
+.footer-contact {
+    transform: translateX(-20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/*============================================
+  ANIMASI UNTUK WISHLIST & MY-DONATIONS PAGE
+============================================*/
+
+/* Efek Stagger untuk Wishlist Card */
+.wishlist-grid .wishlist-card:nth-child(1) { transition-delay: 0.1s; }
+.wishlist-grid .wishlist-card:nth-child(2) { transition-delay: 0.2s; }
+.wishlist-grid .wishlist-card:nth-child(3) { transition-delay: 0.3s; }
+.wishlist-grid .wishlist-card:nth-child(4) { transition-delay: 0.4s; }
+.wishlist-grid .wishlist-card:nth-child(5) { transition-delay: 0.5s; }
+.wishlist-grid .wishlist-card:nth-child(6) { transition-delay: 0.6s; }
+
+/* Efek Stagger untuk Cara Membantu */
+.help-methods .help-method:nth-child(1) { transition-delay: 0.1s; }
+.help-methods .help-method:nth-child(2) { transition-delay: 0.2s; }
+.help-methods .help-method:nth-child(3) { transition-delay: 0.3s; }
+.help-methods .help-method:nth-child(4) { transition-delay: 0.4s; }
+
+/* Efek Stagger untuk Testimonial Card */
+.testimonials-slider .testimonial-card:nth-child(1) { transition-delay: 0.1s; }
+.testimonials-slider .testimonial-card:nth-child(2) { transition-delay: 0.2s; }
+.testimonials-slider .testimonial-card:nth-child(3) { transition-delay: 0.3s; }
