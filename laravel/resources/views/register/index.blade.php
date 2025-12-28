@@ -44,8 +44,8 @@
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="/pages/login.html" class="btn btn-outline-primary me-2">Masuk</a>
-                        <a href="register.html" class="btn btn-primary">Daftar</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">Masuk</a>
+                        <a href="{{ route('register') }}" class="btn btn-primary">Daftar</a>
                     </div>
                 </div>
             </div>
@@ -93,6 +93,13 @@
                         <h3>Form Pendaftaran Donor</h3>
                         <p>Isi formulir di bawah ini untuk mendaftar sebagai donor</p>
                     </div>
+
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+                    @if($errors->any())
+                        <div class="alert alert-danger">{{ $errors->first() }}</div>
+                    @endif
                     <form id="donor-registration-form" method="POST" action="{{ route('register.donor') }}"> 
                         @csrf
                         <div class="row">
@@ -199,7 +206,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="recipient-address" class="form-label">Alamat Lengkap</label>
-                            <textarea class="form-control" id="recipient-address" rows="3" required></textarea>
+                            <textarea class="form-control" id="recipient-address" name="alamat" rows="3" required>{{ old('alamat') }}</textarea>
+                                @error('alamat') <div class="text-danger small">{{ $message }}</div> @enderror
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -232,9 +240,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="recipient-description" class="form-label">Deskripsi Singkat</label>
-                            <textarea class="form-control" id="recipient-description" rows="3" placeholder="Ceritakan sedikit tentang panti/lembaga Anda" required></textarea>
-                        </div>
-                        
+                                <textarea class="form-control" id="recipient-description" name="deskripsi" rows="3" placeholder="Ceritakan sedikit tentang panti/lembaga Anda" required>{{ old('deskripsi') }}</textarea>
+                                @error('deskripsi') <div class="text-danger small">{{ $message }}</div> @enderror
                         <!-- Legal Documents Section -->
                         <div class="legal-documents-section">
                             <h4>Dokumen Legalitas</h4>
@@ -295,17 +302,20 @@
                             
                             <div class="mb-3">
                                 <label for="contact-person" class="form-label">Nama Penanggung Jawab</label>
-                                <input type="text" class="form-control" id="contact-person" required>
+                                <input type="text" class="form-control" id="contact-person" name="nama_penanggung_jawab" value="{{ old('nama_penanggung_jawab') }}" required>
+                                @error('nama_penanggung_jawab') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             
                             <div class="mb-3">
                                 <label for="contact-position" class="form-label">Jabatan Penanggung Jawab</label>
-                                <input type="text" class="form-control" id="contact-position" placeholder="Contoh: Ketua Yayasan, Pimpinan Panti, dll" required>
+                                <input type="text" class="form-control" id="contact-position" name="posisi_penanggung_jawab" placeholder="Contoh: Ketua Yayasan, Pimpinan Panti, dll" value="{{ old('posisi_penanggung_jawab') }}" required>
+                                @error('posisi_penanggung_jawab') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             
                             <div class="mb-3">
                                 <label for="contact-id" class="form-label">Nomor KTP Penanggung Jawab</label>
-                                <input type="text" class="form-control" id="contact-id" required>
+                                <input type="text" class="form-control" id="contact-id" name="nik" value="{{ old('nik') }}" required>
+                                @error('nik') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             
                             <div class="mb-3">

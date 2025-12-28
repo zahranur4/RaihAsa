@@ -44,8 +44,8 @@
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="/pages/login.html" class="btn btn-outline-primary me-2">Masuk</a>
-                        <a href="register.html" class="btn btn-primary">Daftar</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">Masuk</a>
+                        <a href="{{ route('register') }}" class="btn btn-primary">Daftar</a>
                     </div>
                 </div>
             </div>
@@ -72,6 +72,13 @@
                         <h3>Masuk ke Akun Anda</h3>
                         <p class="text-muted">Masukkan email dan password untuk melanjutkan</p>
                     </div>
+
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+                    @if($errors->any())
+                        <div class="alert alert-danger">{{ $errors->first() }}</div>
+                    @endif
                     
                     <form id="login-form" method="POST" action="{{ route('login.submit') }}">
                         @csrf
@@ -93,7 +100,7 @@
                             <button type="submit" class="btn btn-primary">Masuk</button>
                         </div>
                         <div class="text-center mt-3">
-                            <p>Belum punya akun? <a href="register.html">Daftar sekarang</a></p>
+                            <p>Belum punya akun? <a href="{{ route('register') }}">Daftar sekarang</a></p>
                             <p><a href="#" class="text-primary">Lupa password?</a></p>
                         </div>
                     </form>

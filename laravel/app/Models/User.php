@@ -17,11 +17,20 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    // Kolom sesuai migrasi (menggunakan Bahasa Indonesia)
     protected $fillable = [
-        'name',
+        'nama',
         'email',
-        'password',
+        'kata_sandi',
+        'alamat',
+        'nomor_telepon',
     ];
+
+    // Alias: kalau ada kode yang masih mengandalkan atribut 'name', sediakan accessor
+    public function getNameAttribute()
+    {
+        return $this->attributes['nama'] ?? null;
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -29,12 +38,21 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $hidden = [
-        'password',
+        'kata_sandi',
         'remember_token',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Override password field used by the Authenticatable implementation
+     * so Laravel uses `kata_sandi` column as the password.
+     */
+    public function getAuthPassword()
+    {
+        return $this->kata_sandi;
+    }
+
+    /**
+     * The attributes that should be cast.
      *
      * @return array<string, string>
      */
@@ -42,7 +60,6 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
         ];
     }
 }
