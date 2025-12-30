@@ -24,6 +24,11 @@ class User extends Authenticatable
         'kata_sandi',
         'alamat',
         'nomor_telepon',
+        'is_admin',
+    ];
+
+    protected $casts = [
+        'is_admin' => 'boolean',
     ];
 
     // Alias: kalau ada kode yang masih mengandalkan atribut 'name', sediakan accessor
