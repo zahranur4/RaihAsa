@@ -30,16 +30,16 @@
                             <a class="nav-link" href="/index.html#about">Tentang</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/food-rescue.html">Food Rescue</a>
+                            <a class="nav-link requires-auth" href="{{ route('food-rescue') }}">Food Rescue</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/wishlist.html">Wishlist</a>
+                            <a class="nav-link requires-auth" href="{{ route('wishlist') }}">Wishlist</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/volunteer.html">Relawan</a>
+                            <a class="nav-link requires-auth" href="{{ route('volunteer') }}">Relawan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/my-donations.html">Kontribusiku</a>
+                            <a class="nav-link requires-auth" href="{{ route('my-donations') }}">Kontribusiku</a>
                         </li>
                     </ul>
                     @auth
@@ -51,6 +51,9 @@
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
                                 <li><a class="dropdown-item" href="{{ route('home') }}">Beranda</a></li>
                                 <li><a class="dropdown-item" href="{{ route('my-donations') }}">Kontribusiku</a></li>
+                                @if((Auth::user()->is_admin ?? false) || (Auth::user()->email === 'admin@example.com'))
+                                    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                @endif
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                         @csrf
@@ -254,8 +257,8 @@
                 <h3>Login Diperlukan</h3>
                 <p>Anda harus login terlebih dahulu untuk mengakses fitur volunteer lengkap</p>
                 <div class="auth-buttons mt-4">
-                    <a href="/pages/login.html" class="btn btn-primary me-2">Login</a>
-                    <a href="/pages/register.html" class="btn btn-outline-primary">Daftar Akun</a>
+                    <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-primary">Daftar Akun</a>
                 </div>
             </div>
         </div>
@@ -921,8 +924,8 @@
                         <h4>Daftar Akun Diperlukan</h4>
                         <p>Anda harus memiliki akun RaihAsa terlebih dahulu untuk mendaftar sebagai relawan</p>
                         <div class="auth-buttons">
-                            <a href="/pages/register.html" class="btn btn-primary w-100">Daftar Akun</a>
-                            <a href="/pages/login.html" class="btn btn-outline-primary w-100 mt-2">Masuk</a>
+                            <a href="{{ route('register') }}" class="btn btn-primary w-100">Daftar Akun</a>
+                            <a href="{{ route('login') }}" class="btn btn-outline-primary w-100 mt-2">Masuk</a>
                         </div>
                     </div>
                     

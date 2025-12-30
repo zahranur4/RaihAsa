@@ -24,10 +24,22 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', \App\Http\Middleware\EnsureAdmin::class])->group(function () {
+    // Redirect /admin to dashboard
+    Route::get('/', function () { return redirect()->route('admin.dashboard'); })->name('index');
+
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+
+    // Static admin pages (views)
+    Route::view('/manajemen-donasi', 'admin.manajemen-donasi.index')->name('donations.index');
+    Route::view('/food-rescue', 'admin.food-rescue-admin.index')->name('food-rescue.index');
+    Route::view('/manajemen-penerima', 'admin.manajemen-penerima.index')->name('recipients.index');
+    Route::view('/manajemen-relawan', 'admin.manajemen-relawan.index')->name('volunteers.index');
+    Route::view('/pengaturan', 'admin.pengaturan-admin.index')->name('settings.index');
+    Route::view('/laporan', 'admin.laporan-admin.index')->name('reports.index');
 
     // Manajemen pengguna
     Route::get('/manajemen-pengguna', [UserController::class, 'index'])->name('users.index');
+    Route::post('/manajemen-pengguna', [UserController::class, 'store'])->name('users.store');
     Route::get('/manajemen-pengguna/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/manajemen-pengguna/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/manajemen-pengguna/{id}', [UserController::class, 'destroy'])->name('users.destroy');

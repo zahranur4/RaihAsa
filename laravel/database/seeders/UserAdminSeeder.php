@@ -29,10 +29,11 @@ class UserAdminSeeder extends Seeder
             ]
         );
 
-        // Buat akun admin default di tabel admins (tetap disimpan jika diperlukan)
+        // Buat akun admin default di tabel admins (simpan juga email)
         DB::table('admins')->updateOrInsert(
             ['username' => 'admin'],
             [
+                'email' => 'admin@example.com',
                 'kata_sandi' => Hash::make('@dM1nR4ih4sa'), // password seperti diminta
                 'created_at' => now(),
                 'updated_at' => now(),

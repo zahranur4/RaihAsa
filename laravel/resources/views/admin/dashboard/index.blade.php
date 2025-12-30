@@ -20,12 +20,12 @@
             <ul class="sidebar-menu">
                 <li><a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                 <li><a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}"><i class="fas fa-users"></i> Manajemen Pengguna</a></li>
-                <li><a href="#"><i class="fas fa-hand-holding-heart"></i> Manajemen Donasi</a></li>
-                <li><a href="#"><i class="fas fa-utensils"></i> Food Rescue</a></li>
-                <li><a href="#"><i class="fas fa-hands-helping"></i> Manajemen Relawan</a></li>
-                <li><a href="#"><i class="fas fa-home"></i> Manajemen Penerima</a></li>
-                <li><a href="#"><i class="fas fa-chart-bar"></i> Laporan</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> Pengaturan</a></li>
+                <li><a href="{{ route('admin.donations.index') }}" class="{{ request()->routeIs('admin.donations.*') ? 'active' : '' }}"><i class="fas fa-hand-holding-heart"></i> Manajemen Donasi</a></li>
+                <li><a href="{{ route('admin.food-rescue.index') }}" class="{{ request()->routeIs('admin.food-rescue.*') ? 'active' : '' }}"><i class="fas fa-utensils"></i> Food Rescue</a></li>
+                <li><a href="{{ route('admin.volunteers.index') }}" class="{{ request()->routeIs('admin.volunteers.*') ? 'active' : '' }}"><i class="fas fa-hands-helping"></i> Manajemen Relawan</a></li>
+                <li><a href="{{ route('admin.recipients.index') }}" class="{{ request()->routeIs('admin.recipients.*') ? 'active' : '' }}"><i class="fas fa-home"></i> Manajemen Penerima</a></li>
+                <li><a href="{{ route('admin.reports.index') }}" class="{{ request()->routeIs('admin.reports.*') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i> Laporan</a></li>
+                <li><a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}"><i class="fas fa-cog"></i> Pengaturan</a></li>
             </ul>
         </aside>
 
@@ -56,7 +56,7 @@
                         </div>
                         <ul class="profile-menu" id="profileMenu">
                             <li><a href="#"><i class="fas fa-user"></i> Profil Saya</a></li>
-                            <li><a href="#"><i class="fas fa-cog"></i> Pengaturan</a></li>
+                            <li><a href="{{ route('admin.settings.index') }}"><i class="fas fa-cog"></i> Pengaturan</a></li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                                     @csrf

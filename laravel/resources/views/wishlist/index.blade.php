@@ -30,16 +30,16 @@
                             <a class="nav-link" href="/index.html#about">Tentang</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/food-rescue.html">Food Rescue</a>
+                            <a class="nav-link requires-auth" href="{{ route('food-rescue') }}">Food Rescue</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/wishlist.html">Wishlist</a>
+                            <a class="nav-link requires-auth" href="{{ route('wishlist') }}">Wishlist</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/volunteer.html">Relawan</a>
+                            <a class="nav-link requires-auth" href="{{ route('volunteer') }}">Relawan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/my-donations.html">Kontribusiku</a>
+                            <a class="nav-link requires-auth" href="{{ route('my-donations') }}">Kontribusiku</a>
                         </li>
                     </ul>
                     @auth
@@ -50,8 +50,9 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
                                 <li><a class="dropdown-item" href="{{ route('home') }}">Beranda</a></li>
-                                <li><a class="dropdown-item" href="{{ route('my-donations') }}">Kontribusiku</a></li>
-                                <li>
+                                <li><a class="dropdown-item" href="{{ route('my-donations') }}">Kontribusiku</a></li>                                @if((Auth::user()->is_admin ?? false) || (Auth::user()->email === 'admin@example.com'))
+                                    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                @endif                                <li>
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                         @csrf
                                         <button type="submit" class="dropdown-item">Keluar</button>
@@ -309,8 +310,8 @@
                 <h2>Bantu Mereka yang Membutuhkan</h2>
                 <p class="lead">Setiap donasi Anda, sekecil apapun, akan sangat berarti bagi mereka yang membutuhkan</p>
                 <div class="cta-buttons">
-                    <a href="/pages/register.html" class="btn btn-light btn-lg me-2">Daftar sebagai Donor</a>
-                    <a href="/pages/register.html" class="btn btn-outline-light btn-lg">Daftar sebagai Penerima</a>
+                    <a href="{{ route('register') }}" class="btn btn-light btn-lg me-2">Daftar sebagai Donor</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-light btn-lg">Daftar sebagai Penerima</a>
                 </div>
             </div>
         </div>

@@ -30,16 +30,16 @@
                             <a class="nav-link" href="/index.html#about">Tentang</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/food-rescue.html">Food Rescue</a>
+                            <a class="nav-link requires-auth" href="{{ route('food-rescue') }}">Food Rescue</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/wishlist.html">Wishlist</a>
+                            <a class="nav-link requires-auth" href="{{ route('wishlist') }}">Wishlist</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/volunteer.html">Relawan</a>
+                            <a class="nav-link requires-auth" href="{{ route('volunteer') }}">Relawan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/my-donations.html">Kontribusiku</a>
+                            <a class="nav-link requires-auth" href="{{ route('my-donations') }}">Kontribusiku</a>
                         </li>
                     </ul>
                     @auth
@@ -51,6 +51,9 @@
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
                                 <li><a class="dropdown-item" href="{{ route('home') }}">Beranda</a></li>
                                 <li><a class="dropdown-item" href="{{ route('my-donations') }}">Kontribusiku</a></li>
+                                @if((Auth::user()->is_admin ?? false) || (Auth::user()->email === 'admin@example.com'))
+                                    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                @endif
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                         @csrf
@@ -197,8 +200,8 @@
                         <h4>Login Diperlukan</h4>
                         <p>Anda harus login terlebih dahulu untuk membuat donasi</p>
                         <div class="auth-buttons">
-                            <a href="/pages/login.html" class="btn btn-primary w-100">Login</a>
-                            <a href="/pages/register.html" class="btn btn-outline-primary w-100 mt-2">Daftar</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary w-100">Login</a>
+                            <a href="{{ route('register') }}" class="btn btn-outline-primary w-100 mt-2">Daftar</a>
                         </div>
                     </div>
                     
@@ -592,7 +595,7 @@
                 <h2>Bergabunglah dengan Kami dalam Mengurangi Pemborosan Makanan</h2>
                 <p class="lead">Bersama-sama, kita dapat membuat perbedaan nyata dalam kehidupan banyak orang dan mengurangi dampak negatif pemborosan makanan terhadap lingkungan.</p>
                 <div class="cta-buttons">
-                    <a href="/pages/register.html" class="btn btn-light btn-lg me-2">Daftar sebagai Donor</a>
+                    <a href="{{ route('register') }}" class="btn btn-light btn-lg me-2">Daftar sebagai Donor</a>
                     <a href="#volunteerModal" data-bs-toggle="modal" class="btn btn-outline-light btn-lg">Daftar sebagai Relawan</a>
                 </div>
             </div>
@@ -616,8 +619,8 @@
                         <h4>Daftar Akun Diperlukan</h4>
                         <p>Anda harus memiliki akun RaihAsa terlebih dahulu untuk mendaftar sebagai relawan</p>
                         <div class="auth-buttons">
-                            <a href="/pages/register.html" class="btn btn-primary w-100">Daftar Akun</a>
-                            <a href="/pages/login.html" class="btn btn-outline-primary w-100 mt-2">Masuk</a>
+                            <a href="{{ route('register') }}" class="btn btn-primary w-100">Daftar Akun</a>
+                            <a href="{{ route('login') }}" class="btn btn-outline-primary w-100 mt-2">Masuk</a>
                         </div>
                     </div>
                     
@@ -650,7 +653,7 @@
                                 <li><i class="fas fa-check-circle"></i> Manajemen kegiatan dan partisipasi</li>
                                 <li><i class="fas fa-check-circle"></i> Grup WhatsApp untuk koordinasi</li>
                             </ul>
-                            <a href="/pages/volunteer.html" class="btn btn-primary mt-3">Menuju Halaman Relawan</a>
+                            <a href="{{ route('volunteer') }}" class="btn btn-primary mt-3">Menuju Halaman Relawan</a>
                         </div>
                     </div>
                 </div>
@@ -675,8 +678,8 @@
                         <h4>Login Diperlukan</h4>
                         <p>Anda harus login terlebih dahulu untuk membuat donasi</p>
                         <div class="auth-buttons">
-                            <a href="/pages/login.html" class="btn btn-primary w-100">Login</a>
-                            <a href="/pages/register.html" class="btn btn-outline-primary w-100 mt-2">Daftar</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary w-100">Login</a>
+                            <a href="{{ route('register') }}" class="btn btn-outline-primary w-100 mt-2">Daftar</a>
                         </div>
                     </div>
                     

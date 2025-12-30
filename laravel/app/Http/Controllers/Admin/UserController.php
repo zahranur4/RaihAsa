@@ -51,6 +51,33 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'Pengguna diperbarui.');
     }
 
+    // Tambah user baru
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'nomor_telepon' => ['nullable','regex:/^(\\+62|62|0)8[0-9]{7,11}$/'],
+            'alamat' => 'nullable|string',
+            'kata_sandi' => ['required','string','min:8','regex:/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/'],
+            'is_admin' => 'sometimes|boolean',
+        ], [
+            'kata_sandi.regex' => 'Password harus minimal 8 karakter dan mengandung huruf serta angka.',
+            'nomor_telepon.regex' => 'Nomor telepon harus format Indonesia.'
+        ]);
+
+        $user = new User();
+        $user->nama = $data['nama'];
+        $user->email = $data['email'];
+        $user->nomor_telepon = $data['nomor_telepon'] ?? null;
+        $user->alamat = $data['alamat'] ?? null;
+        $user->kata_sandi = Hash::make($data['kata_sandi']);
+        $user->is_admin = !empty($data['is_admin']) ? (bool)$data['is_admin'] : false;
+        $user->save();
+
+        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan.');
+    }
+
     // Hapus user
     public function destroy($id)
     {
