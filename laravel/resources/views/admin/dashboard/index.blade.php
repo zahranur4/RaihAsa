@@ -14,7 +14,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" class="logo">
+                <img src="{{ asset('assets/raih asa logo.png') }}" alt="RaihAsa Logo" class="logo">
                 <h3>RaihAsa Admin</h3>
             </div>
             <ul class="sidebar-menu">

@@ -25,6 +25,7 @@ export default defineConfig({
                 'resources/js/bootstrap.js',
                 'resources/js/script.js',
                 'resources/js/volunteer.js',
+                'resources/js/login.js',
             ],
             refresh: true,
         }),
