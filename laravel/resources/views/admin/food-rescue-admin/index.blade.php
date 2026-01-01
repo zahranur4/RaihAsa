@@ -116,9 +116,9 @@
                         <p>Kelola semua program food rescue yang ada di platform RaihAsa</p>
                     </div>
                     <div class="page-actions">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFoodRescueModal">
+                        <a href="{{ route('admin.food-rescue.create') }}" class="btn btn-primary">
                             <i class="fas fa-plus"></i> Tambah Food Rescue
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -186,58 +186,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse($items as $item)
                                     <tr>
-                                        <td>#FR001</td>
-                                        <td>Restoran Padang Sederhana</td>
-                                        <td>Nasi Padang</td>
-                                        <td>20 porsi</td>
-                                        <td>Hari ini, 20:00</td>
-                                        <td><span class="badge bg-success">Tersedia</span></td>
+                                        <td>#{{ $item->id_food }}</td>
+                                        <td>{{ $item->id_donatur }}</td>
+                                        <td>{{ $item->nama_makanan }}</td>
+                                        <td>{{ $item->porsi }}</td>
+                                        <td>{{ optional($item->waktu_expired)->format('d M Y H:i') ?? '-' }}</td>
+                                        <td><span class="badge bg-info">{{ ucfirst($item->status) }}</span></td>
                                         <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewFoodRescueDetail('FR001')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editFoodRescue('FR001')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteFoodRescue(this, 'FR001')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
+                                            <a href="{{ route('admin.food-rescue.edit', $item->id_food) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                            <form action="{{ route('admin.food-rescue.destroy', $item->id_food) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus item ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
+                                    @empty
                                     <tr>
-                                        <td>#FR002</td>
-                                        <td>Warung Nusantara</td>
-                                        <td>Sate Ayam</td>
-                                        <td>15 tusuk</td>
-                                        <td>Besok, 12:00</td>
-                                        <td><span class="badge bg-primary">Diklaim</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewFoodRescueDetail('FR002')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editFoodRescue('FR002')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteFoodRescue(this, 'FR002')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
+                                        <td colspan="7" class="text-center">Tidak ada item</td>
                                     </tr>
-                                    <tr>
-                                        <td>#FR003</td>
-                                        <td>Kedai Kopi Kenangan</td>
-                                        <td>Kue & Pastry</td>
-                                        <td>30 pcs</td>
-                                        <td>Hari ini, 18:00</td>
-                                        <td><span class="badge bg-info">Diambil</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewFoodRescueDetail('FR003')">
+                                    @endforelse
+                                </tbody>
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-warning" onclick="editFoodRescue('FR003')">
@@ -295,19 +266,9 @@
                             </table>
                         </div>
                         <!-- Pagination -->
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div class="mt-3">
+                            {{ $items->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

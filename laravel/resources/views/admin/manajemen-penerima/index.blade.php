@@ -116,9 +116,9 @@
                         <p>Kelola semua penerima donasi yang terdaftar di platform RaihAsa</p>
                     </div>
                     <div class="page-actions">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRecipientModal">
+                        <a href="{{ route('admin.recipients.create') }}" class="btn btn-primary">
                             <i class="fas fa-plus"></i> Tambah Penerima
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -193,31 +193,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse($pantis as $panti)
                                     <tr>
-                                        <td>#R001</td>
-                                        <td>Panti Asuhan Harapan</td>
-                                        <td><span class="badge bg-primary">Panti Asuhan</span></td>
-                                        <td>Bandung</td>
-                                        <td>50 anak</td>
-                                        <td><span class="badge bg-success">Terverifikasi</span></td>
-                                        <td>15 Jan 2023</td>
+                                        <td>#{{ $panti->id_panti }}</td>
+                                        <td>{{ $panti->nama_panti }}</td>
+                                        <td><span class="badge bg-secondary">Panti</span></td>
+                                        <td>{{ $panti->kota }}</td>
+                                        <td>-</td>
+                                        <td><span class="badge bg-{{ $panti->status_verif == 'verified' ? 'success' : ($panti->status_verif == 'rejected' ? 'danger' : 'warning') }}">{{ ucfirst($panti->status_verif) }}</span></td>
+                                        <td>{{ $panti->created_at->format('d M Y') }}</td>
                                         <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewRecipientDetail('R001')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editRecipient('R001')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-success" onclick="verifyRecipient('R001')">
-                                                    <i class="fas fa-check"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteRecipient(this, 'R001')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
+                                            <a href="{{ route('admin.recipients.edit', $panti->id_panti) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                            <form action="{{ route('admin.recipients.destroy', $panti->id_panti) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus panti ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center">Tidak ada panti</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
                                     <tr>
                                         <td>#R002</td>
                                         <td>Yayasan Peduli Anak</td>
@@ -322,19 +321,9 @@
                             </table>
                         </div>
                         <!-- Pagination -->
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div class="mt-3">
+                            {{ $pantis->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

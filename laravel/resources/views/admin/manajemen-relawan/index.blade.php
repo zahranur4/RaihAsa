@@ -116,9 +116,9 @@
                         <p>Kelola semua relawan yang terdaftar di platform RaihAsa</p>
                     </div>
                     <div class="page-actions">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVolunteerModal">
+                        <a href="{{ route('admin.volunteers.create') }}" class="btn btn-primary">
                             <i class="fas fa-plus"></i> Tambah Relawan
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -185,39 +185,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse($relawans as $relawan)
                                     <tr>
-                                        <td>#V001</td>
-                                        <td><img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Volunteer" class="user-avatar"></td>
-                                        <td>Siti Nurhaliza</td>
-                                        <td>siti.n@email.com</td>
-                                        <td><span class="badge bg-primary">Edukasi</span></td>
-                                        <td><span class="badge bg-success">Aktif</span></td>
-                                        <td>15 Jan 2023</td>
+                                        <td>#{{ $relawan->id_relawan }}</td>
+                                        <td><img src="https://ui-avatars.com/api/?name={{ urlencode($relawan->nama_lengkap) }}&background=0D6EFD&color=fff" alt="Volunteer" class="user-avatar"></td>
+                                        <td>{{ $relawan->nama_lengkap }}</td>
+                                        <td>-</td>
+                                        <td><span class="badge bg-secondary">{{ Str::limit($relawan->skill, 20) }}</span></td>
+                                        <td><span class="badge bg-{{ $relawan->status_verif == 'verified' ? 'success' : ($relawan->status_verif == 'rejected' ? 'danger' : 'warning') }}">{{ ucfirst($relawan->status_verif) }}</span></td>
+                                        <td>{{ $relawan->created_at->format('d M Y') }}</td>
                                         <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewVolunteerDetail('V001')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editVolunteer('V001')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteVolunteer(this, 'V001')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
+                                            <a href="{{ route('admin.volunteers.edit', $relawan->id_relawan) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                            <form action="{{ route('admin.volunteers.destroy', $relawan->id_relawan) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus relawan ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
+                                    @empty
                                     <tr>
-                                        <td>#V002</td>
-                                        <td><img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Volunteer" class="user-avatar"></td>
-                                        <td>Ahmad Fadli</td>
-                                        <td>ahmad.f@email.com</td>
-                                        <td><span class="badge bg-success">Distribusi</span></td>
-                                        <td><span class="badge bg-success">Aktif</span></td>
-                                        <td>20 Jan 2023</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewVolunteerDetail('V002')">
+                                        <td colspan="8" class="text-center">Tidak ada relawan</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-warning" onclick="editVolunteer('V002')">
@@ -299,19 +290,9 @@
                             </table>
                         </div>
                         <!-- Pagination -->
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div class="mt-3">
+                            {{ $relawans->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

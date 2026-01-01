@@ -116,9 +116,9 @@
                         <p>Kelola semua donasi makanan dan barang yang terdaftar di platform RaihAsa</p>
                     </div>
                     <div class="page-actions">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDonationModal">
+                        <a href="{{ route('admin.donations.create') }}" class="btn btn-primary">
                             <i class="fas fa-plus"></i> Tambah Donasi
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -183,153 +183,41 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse($donations as $donation)
                                     <tr>
-                                        <td>#D001</td>
+                                        <td>#{{ $donation->id_donasi }}</td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Donatur" class="user-avatar me-2">
-                                                <span>Ahmad Fadli</span>
+                                                <span>{{ $donation->id_donatur }}</span>
                                             </div>
                                         </td>
-                                        <td><span class="badge bg-primary">Makanan</span></td>
-                                        <td>Nasi Kotak (50 porsi)</td>
-                                        <td>15 Jun 2023</td>
-                                        <td><span class="badge bg-success">Selesai</span></td>
+                                        <td><span class="badge bg-secondary">{{ $donation->kategori ?? 'Umum' }}</span></td>
+                                        <td>{{ $donation->nama_barang }}</td>
+                                        <td>{{ $donation->created_at->format('d M Y') }}</td>
+                                        <td><span class="badge bg-info">{{ ucfirst($donation->status) }}</span></td>
                                         <td>
                                             <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewDonationDetail('D001')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editDonation('D001')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteDonation(this, 'D001')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
+                                                <a href="{{ route('admin.donations.edit', $donation->id_donasi) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                                <form action="{{ route('admin.donations.destroy', $donation->id_donasi) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus donasi ini?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
+                                    @empty
                                     <tr>
-                                        <td>#D002</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Donatur" class="user-avatar me-2">
-                                                <span>Siti Nurhaliza</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="badge bg-warning">Barang</span></td>
-                                        <td>Pakaian Anak (20 pcs)</td>
-                                        <td>17 Jun 2023</td>
-                                        <td><span class="badge bg-info">Aktif</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewDonationDetail('D002')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editDonation('D002')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteDonation(this, 'D002')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
+                                        <td colspan="7" class="text-center">Tidak ada donasi</td>
                                     </tr>
-                                    <tr>
-                                        <td>#D003</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Donatur" class="user-avatar me-2">
-                                                <span>Budi Santoso</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="badge bg-primary">Makanan</span></td>
-                                        <td>Sayuran Segar (15 kg)</td>
-                                        <td>18 Jun 2023</td>
-                                        <td><span class="badge bg-primary">Diklaim</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewDonationDetail('D003')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editDonation('D003')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteDonation(this, 'D003')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#D004</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Donatur" class="user-avatar me-2">
-                                                <span>Dewi Lestari</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="badge bg-warning">Barang</span></td>
-                                        <td>Alat Tulis (30 pcs)</td>
-                                        <td>19 Jun 2023</td>
-                                        <td><span class="badge bg-info">Aktif</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewDonationDetail('D004')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editDonation('D004')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteDonation(this, 'D004')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#D005</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Donatur" class="user-avatar me-2">
-                                                <span>Rizki Ahmad</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="badge bg-primary">Makanan</span></td>
-                                        <td>Buah-buahan (20 kg)</td>
-                                        <td>20 Jun 2023</td>
-                                        <td><span class="badge bg-danger">Dibatalkan</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewDonationDetail('D005')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editDonation('D005')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteDonation(this, 'D005')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
                         <!-- Pagination -->
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div class="mt-3">
+                            {{ $donations->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
