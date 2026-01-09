@@ -1,4 +1,22 @@
 /*=============== FORMS ===============*/
+:root {
+    --primary-color: #000957;
+    --secondary-color: #FF7043;
+    --success-color: #66BB6A;
+    --danger-color: #EF5350;
+    --warning-color: #FFA726;
+    --info-color: #29B6F6;
+    --light-color: #F5F7FA;
+    --dark-color: #263238;
+    --text-primary: #2C3E50;
+    --text-secondary: #7F8C8D;
+    --white: #FFFFFF;
+    --radius: 8px;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
 .registration-section {
     background-color: var(--white);
     padding-top: 2rem;
@@ -13,6 +31,7 @@
     overflow: hidden;
 }
 
+/* Type Selection Styles */
 .registration-type-selector {
     background-color: var(--light-color);
     padding: 2rem;
@@ -34,16 +53,18 @@
     cursor: pointer;
     transition: var(--transition);
     border: 2px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .type-option:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow);
-}
-
-.type-option.active {
     border-color: var(--primary-color);
     background-color: rgba(92, 107, 192, 0.05);
+    text-decoration: none;
+    color: inherit;
 }
 
 .type-icon {
@@ -74,12 +95,9 @@
     margin: 0;
 }
 
+/* Form Styles */
 .registration-form {
     padding: 2rem;
-    display: none;
-}
-
-.registration-form.active {
     display: block;
 }
 
@@ -202,138 +220,4 @@
     .document-upload {
         grid-template-columns: 1fr;
     }
-}
-
-/*=============== LOGIN ===============*/
-.login-section {
-    background-color: var(--white);
-    padding-top: 2rem;
-}
-
-.login-container {
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
-    overflow: hidden;
-}
-
-.login-form {
-    padding: 2rem;
-}
-
-.login-icon {
-    width: 80px;
-    height: 80px;
-    background-color: rgba(92, 107, 192, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-}
-
-.login-icon i {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
-
-.login-form h3 {
-    font-size: 1.75rem;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.login-form p.text-muted {
-    margin-bottom: 2rem;
-}
-
-/* Success message for login */
-.login-success {
-    display: none;
-    text-align: center;
-    padding: 3rem;
-}
-
-.login-success.show {
-    display: block;
-}
-
-.login-success .success-icon {
-    width: 80px;
-    height: 80px;
-    background-color: rgba(102, 187, 106, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-}
-
-.login-success .success-icon i {
-    font-size: 2.5rem;
-    color: var(--success-color);
-}
-
-.login-success h3 {
-    font-size: 1.75rem;
-    color: var(--success-color);
-    margin-bottom: 1rem;
-}
-
-.login-success p {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-}
-
-/* Back button styling */
-.btn-outline-secondary {
-    color: var(--text-secondary);
-    border-color: var(--text-secondary);
-}
-
-.btn-outline-secondary:hover {
-    color: var(--white);
-    background-color: var(--text-secondary);
-    border-color: var(--text-secondary);
-}
-
-/* Ensure type selector is visible when needed */
-.registration-type-selector {
-    display: block;
-}
-
-/* Fix for form display */
-.registration-form {
-    display: none;
-}
-
-.registration-form.active {
-    display: block;
-}
-
-/* --- SOLUSI: TAMBAHKAN CSS INI --- */
-
-/* Sembunyikan semua form registrasi secara default */
-.registration-form {
-  display: none;
-}
-
-/* Tampilkan HANYA form yang sedang memiliki kelas 'active' */
-.registration-form.active {
-  display: block;
-}
-
-/* Pastikan selector untuk tipe pilihan juga berfungsi dengan baik */
-.type-option {
-  cursor: pointer; /* Menunjukkan bahwa elemen ini bisa diklik */
-  transition: all 0.3s ease;
-}
-
-/* Gaya untuk opsi yang sedang dipilih/aktif */
-.type-option.active {
-  /* Tambahkan gaya visual di sini, misalnya: */
-  border-color: var(--primary-color);
-  background-color: rgba(92, 107, 192, 0.1);
 }
