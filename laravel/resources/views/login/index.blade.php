@@ -16,7 +16,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="index.html">
-                    <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" height="40" class="me-2">
+                    <img src="{{ asset('assets/raih asa logo.png') }}" alt="RaihAsa Logo" height="40" class="me-2">
                     <span>RaihAsa</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,22 +31,43 @@
                             <a class="nav-link" href="/index.html#about">Tentang</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/food-rescue.html">Food Rescue</a>
+                            <a class="nav-link requires-auth" href="{{ route('food-rescue') }}">Food Rescue</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/wishlist.html">Wishlist</a>
+                            <a class="nav-link requires-auth" href="{{ route('wishlist') }}">Wishlist</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/volunteer.html">Relawan</a>
+                            <a class="nav-link requires-auth" href="{{ route('volunteer') }}">Relawan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link requires-auth" href="/pages/my-donations.html">Kontribusiku</a>
+                            <a class="nav-link requires-auth" href="{{ route('my-donations') }}">Kontribusiku</a>
                         </li>
                     </ul>
+                    @auth
                     <div class="d-flex">
-                        <a href="/pages/login.html" class="btn btn-outline-primary me-2">Masuk</a>
-                        <a href="register.html" class="btn btn-primary">Daftar</a>
+                        <div class="dropdown">
+                            <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->nama ?? Auth::user()->email }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                                <li><a class="dropdown-item" href="{{ route('home') }}">Beranda</a></li>
+                                <li><a class="dropdown-item" href="{{ route('my-donations') }}">Kontribusiku</a></li>                                @if((Auth::user()->is_admin ?? false) || (Auth::user()->email === 'admin@example.com'))
+                                    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                @endif                                <li>
+                                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Keluar</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+                    @else
+                    <div class="d-flex">
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">Masuk</a>
+                        <a href="{{ route('register') }}" class="btn btn-primary">Daftar</a>
+                    </div>
+                    @endauth
                 </div>
             </div>
         </nav>
@@ -72,6 +93,13 @@
                         <h3>Masuk ke Akun Anda</h3>
                         <p class="text-muted">Masukkan email dan password untuk melanjutkan</p>
                     </div>
+
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+                    @if($errors->any())
+                        <div class="alert alert-danger">{{ $errors->first() }}</div>
+                    @endif
                     
                     <form id="login-form" method="POST" action="{{ route('login.submit') }}">
                         @csrf
@@ -82,18 +110,23 @@
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" name="password" required>
+                                <button type="button" class="btn btn-outline-secondary" id="togglePassword" aria-label="Tampilkan Password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
                             @error('password') <div class="text-danger small">{{ $message }}</div> @enderror
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="remember">
+                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
                             <label class="form-check-label" for="remember">Ingat saya</label>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Masuk</button>
                         </div>
                         <div class="text-center mt-3">
-                            <p>Belum punya akun? <a href="register.html">Daftar sekarang</a></p>
+                            <p>Belum punya akun? <a href="{{ route('register') }}">Daftar sekarang</a></p>
                             <p><a href="#" class="text-primary">Lupa password?</a></p>
                         </div>
                     </form>
@@ -110,7 +143,7 @@
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <div class="footer-about">
                             <a href="index.html" class="footer-logo">
-                                <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" class="footer-logo-img me-2">
+                                <img src="{{ asset('assets/raih asa logo.png') }}" alt="RaihAsa Logo" class="footer-logo-img me-2">
                                 <span>RaihAsa</span>
                             </a>
                             <p>Jembatan kebaikan yang menghubungkan kepedulian Anda dengan mereka yang membutuhkan, mewujudkan harapan melalui donasi makanan, barang, dan tenaga.</p>

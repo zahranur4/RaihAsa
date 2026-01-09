@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Client-side demo auth disabled: server-side authentication is used instead.
+    // If you need client-side demo behavior for testing, set a flag and re-enable.
+    return;
+
     // Cek status login
     checkLoginStatus();
     
@@ -28,9 +32,9 @@ function updateAuthUI(isLoggedIn, userRole) {
                     <i class="fas fa-user-circle me-2"></i> ${userRole === 'admin' ? 'Admin' : 'Pengguna'}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="/pages/my-donations.html">Kontribusiku</a></li>
-                    <li><a class="dropdown-item" href="/pages/profile.html">Profil Saya</a></li>
-                    ${userRole === 'admin' ? '<li><a class="dropdown-item" href="/admin/dashboard.html">Dashboard Admin</a></li>' : ''}
+                    <li><a class="dropdown-item" href="/my-donations">Kontribusiku</a></li>
+                    <li><a class="dropdown-item" href="/profile">Profil Saya</a></li>
+                    ${userRole === 'admin' ? '<li><a class="dropdown-item" href="/admin">Dashboard Admin</a></li>' : ''}
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#" id="logoutBtn">Keluar</a></li>
                 </ul>
@@ -98,9 +102,9 @@ function setupLoginForm() {
                 setTimeout(() => {
                     const userRole = localStorage.getItem('userRole');
                     if (userRole === 'admin') {
-                        window.location.href = '/admin/dashboard.html';
+                        window.location.href = '/admin';
                     } else {
-                        window.location.href = '/pages/my-donations.html';
+                        window.location.href = '/my-donations';
                     }
                 }, 1500);
             } else {
@@ -121,7 +125,7 @@ function logout() {
     
     // Redirect ke halaman utama
     setTimeout(() => {
-        window.location.href = '/index.html';
+        window.location.href = '/';
     }, 1000);
 }
 

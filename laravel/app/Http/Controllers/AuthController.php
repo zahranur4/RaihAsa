@@ -12,6 +12,9 @@ class AuthController extends Controller
     // Tampilkan form login (GET /login)
     public function showLogin()
     {
+        if (Auth::check()) {
+            return redirect()->route('home');
+        }
         return view('login.index');
     }
 
@@ -39,7 +42,8 @@ class AuthController extends Controller
         $userModel = \App\Models\User::find($user->id);
         Auth::login($userModel, $request->boolean('remember'));
 
-        return redirect()->intended('/home');
+        // After successful login, go to home page
+        return redirect()->intended(route('home'));
     }
 
     // Proses logout (POST /logout)

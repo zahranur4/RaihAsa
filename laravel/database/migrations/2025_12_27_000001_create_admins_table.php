@@ -16,15 +16,18 @@ return new class extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('username')->unique();
+            // Add email for admin identity and contact
+            $table->string('email')->unique();
             // Kata sandi disimpan ter-hash
             $table->string('kata_sandi');
             $table->timestamps();
         });
 
-        // Insert default admin dengan password yang diminta (hashed)
+        // Insert default admin with email and password (hashed)
         try {
             DB::table('admins')->insert([
                 'username' => 'admin',
+                'email' => 'admin@example.com',
                 'kata_sandi' => Hash::make('@dM1nR4ih4sa'),
                 'created_at' => now(),
                 'updated_at' => now(),

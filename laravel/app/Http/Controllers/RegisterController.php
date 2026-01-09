@@ -12,6 +12,9 @@ class RegisterController extends Controller
     // Tampilkan form pendaftaran (GET /register)
     public function showRegister()
     {
+        if (Auth::check()) {
+            return redirect()->route('home');
+        }
         return view('register.index');
     }
 
@@ -43,7 +46,7 @@ class RegisterController extends Controller
         $user = \App\Models\User::find($id);
         Auth::login($user);
 
-        return redirect('/home')->with('success', 'Pendaftaran berhasil. Selamat datang!');
+        return redirect()->route('home')->with('success', 'Pendaftaran berhasil. Selamat datang!');
     }
 
     // Mendaftar penerima/panti -> membuat record di tabel panti_asuhan
@@ -87,6 +90,6 @@ class RegisterController extends Controller
 
         DB::table('panti_asuhan')->insert($data);
 
-        return redirect('/home')->with('success', 'Pendaftaran panti/lembaga berhasil dikirim dan menunggu verifikasi.');
+        return redirect()->route('home')->with('success', 'Pendaftaran panti/lembaga berhasil dikirim dan menunggu verifikasi.');
     }
 }

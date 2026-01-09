@@ -245,12 +245,13 @@ function initializeCharts() {
     // Cek halaman mana yang sedang aktif dan inisialisasi chart yang relevan
     const currentPath = window.location.pathname;
     
-    if (currentPath.includes('dashboard.html') || currentPath.includes('laporan-admin.html')) {
+    // Initialize charts for admin pages
+    if (currentPath.includes('/admin') || currentPath.includes('/admin/dashboard') || currentPath.includes('/admin/laporan')) {
         initializeDonationTrendChart();
         initializeDonationCategoryChart();
     }
     
-    if (currentPath.includes('laporan-admin.html')) {
+    if (currentPath.includes('/admin/laporan')) {
         initializeFoodRescueTrendChart();
         initializeVolunteerActivityChart();
     }

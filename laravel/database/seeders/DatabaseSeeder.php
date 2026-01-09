@@ -15,11 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Gunakan seeder khusus untuk membuat akun dummy user & admin
+        $this->call(UserAdminSeeder::class);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Jika ingin menambah user tambahan: User::factory(10)->create();
     }
 }
