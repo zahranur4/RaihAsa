@@ -72,3 +72,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', \App\Http\Middleware
     Route::put('/manajemen-pengguna/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/manajemen-pengguna/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 });
+
+// Panti (recipient) pages
+Route::prefix('panti')->name('panti.')->middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () { return view('panti.dashboard.index'); })->name('dashboard');
+    Route::get('/wishlist', function () { return view('panti.wishlist.index'); })->name('wishlist');
+    Route::get('/donasi-masuk', function () { return view('panti.donasi-masuk.index'); })->name('donasi-masuk');
+    Route::get('/food-rescue', function () { return view('panti.food-rescue.index'); })->name('food-rescue');
+    Route::get('/laporan', function () { return view('panti.laporan.index'); })->name('laporan');
+    Route::get('/profil', function () { return view('panti.profil.index'); })->name('profil');
+    Route::get('/pengaturan', function () { return view('panti.pengaturan.index'); })->name('pengaturan');
+});
