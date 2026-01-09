@@ -206,6 +206,51 @@
     margin-bottom: 1.5rem;
 }
 
+/* Login Form Styles */
+.login-section {
+    background-color: var(--white);
+    padding-top: 2rem;
+}
+
+.login-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.login-form {
+    padding: 2rem;
+}
+
+.login-icon {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(92, 107, 192, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.login-icon i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.login-form h3 {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.login-form p.text-muted {
+    margin-bottom: 2rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .type-options {
@@ -219,5 +264,9 @@
     
     .document-upload {
         grid-template-columns: 1fr;
+    }
+    
+    .login-form {
+        padding: 1.5rem;
     }
 }
