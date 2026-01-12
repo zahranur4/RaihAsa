@@ -42,7 +42,13 @@ class AuthController extends Controller
         $userModel = \App\Models\User::find($user->id);
         Auth::login($userModel, $request->boolean('remember'));
 
-        // After successful login, go to home page
+        // If the user is linked to a panti (recipient), send them to the panti dashboard
+        $isRecipient = \Illuminate\Support\Facades\DB::table('panti_asuhan')->where('user_id', $user->id)->exists();
+        if ($isRecipient) {
+            return redirect()->intended(route('panti.dashboard'));
+        }
+
+        // Otherwise go to home page
         return redirect()->intended(route('home'));
     }
 

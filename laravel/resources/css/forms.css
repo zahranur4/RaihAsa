@@ -112,12 +112,27 @@
 
 .document-upload {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* fixed 2 columns on medium+ screens */
     gap: 1rem;
 }
 
+@media (min-width: 992px) {
+    /* keep two columns on large screens to avoid very wide inputs */
+    .document-upload {
+        grid-template-columns: repeat(2, 1fr);
+    }
+} 
+
 .upload-item {
     margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.upload-item input[type="file"] {
+    max-width: 220px; /* keep the native file button compact */
 }
 
 .upload-item label {

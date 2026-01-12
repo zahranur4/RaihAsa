@@ -16,7 +16,7 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <img src="{{ asset('assets/raih asa logo.png') }}" alt="RaihAsa Logo" class="logo">
-                <h3>Panti Asuhan Harapan</h3>
+                <h3>{{ $currentPanti->nama ?? 'Panti Asuhan Harapan' }}</h3>
             </div>
             <ul class="sidebar-menu">
                 <li><a href="dashboard-panti.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
@@ -51,7 +51,7 @@
                     <div class="admin-profile">
                         <div class="profile-info" onclick="toggleProfileMenu()">
                             <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Admin Panti">
-                            <span>Panti Asuhan Harapan</span>
+                            <span>{{ $currentPanti->nama ?? 'Panti Asuhan Harapan' }}</span>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <ul class="profile-menu" id="profileMenu">

@@ -123,17 +123,41 @@ window.simpanWishlistBaru = function() {
 
 // --- FUNGSI KHUSUS HALAMAN PROFIL ---
 let isEditMode = false;
+let _profileOriginalValues = {};
+
+function _captureOriginalValues() {
+    _profileOriginalValues = {};
+    const inputs = document.querySelectorAll('#profileForm input[name], #profileForm textarea[name], #profileForm select[name]');
+    inputs.forEach(input => {
+        _profileOriginalValues[input.name] = input.type === 'checkbox' ? input.checked : input.value;
+    });
+}
+
+function _restoreOriginalValues() {
+    const inputs = document.querySelectorAll('#profileForm input[name], #profileForm textarea[name], #profileForm select[name]');
+    inputs.forEach(input => {
+        const orig = _profileOriginalValues[input.name];
+        if (typeof orig !== 'undefined') {
+            if (input.type === 'checkbox') input.checked = orig;
+            else input.value = orig;
+        }
+    });
+}
+
 window.toggleEditMode = function() {
     isEditMode = !isEditMode;
-    const inputs = document.querySelectorAll('#infoForm input, #infoForm textarea, #infoForm select, #legalForm input, #legalForm select, #operationalForm input, #operationalForm select, #contactForm input');
+    const inputs = document.querySelectorAll('#profileForm input, #profileForm textarea, #profileForm select');
     const editBtn = document.getElementById('editProfileBtn');
     const saveActions = document.getElementById('saveActions');
 
     if (isEditMode) {
+        // enter edit: capture values and enable inputs
+        _captureOriginalValues();
         inputs.forEach(input => input.disabled = false);
         editBtn.style.display = 'none';
         saveActions.style.display = 'block';
     } else {
+        // leaving edit: disable inputs
         inputs.forEach(input => input.disabled = true);
         editBtn.style.display = 'block';
         saveActions.style.display = 'none';
@@ -141,12 +165,30 @@ window.toggleEditMode = function() {
 };
 
 window.cancelEdit = function() {
-    toggleEditMode(); 
+    // restore previous values and exit edit mode
+    _restoreOriginalValues();
+    if (isEditMode) toggleEditMode();
 };
 
 window.saveProfile = function() {
-    alert('Profil berhasil diperbarui!');
-    toggleEditMode();
+    // Submit the profile form to the server for processing
+    const form = document.getElementById('profileForm');
+    const saveBtn = document.querySelector('#saveActions button.btn-success');
+    const cancelBtn = document.querySelector('#saveActions button.btn-secondary');
+
+    if (!form) {
+        alert('Form not found');
+        return;
+    }
+
+    // disable buttons to prevent double submit, show spinner on save
+    if (saveBtn) {
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan...';
+    }
+    if (cancelBtn) cancelBtn.disabled = true;
+
+    form.submit();
 };
 
 

@@ -15,7 +15,7 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <img src="{{ asset('assets/raih asa logo.png') }}" alt="RaihAsa Logo" class="logo">
-                <h3>Panti Asuhan Harapan</h3>
+                <h3>{{ $currentPanti->nama ?? 'Panti Asuhan Harapan' }}</h3>
             </div>
             <ul class="sidebar-menu">
                 <li><a href="{{ route('panti.dashboard') }}" class="{{ request()->routeIs('panti.dashboard') ? 'active' : '' }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
@@ -50,7 +50,7 @@
                     <div class="admin-profile">
                         <div class="profile-info" onclick="toggleProfileMenu()">
                             <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Admin Panti">
-                            <span>Panti Asuhan Harapan</span>
+                            <span>{{ $currentPanti->nama ?? 'Panti Asuhan Harapan' }}</span>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <ul class="profile-menu" id="profileMenu">
@@ -67,7 +67,7 @@
             <div class="content">
                 <!-- Welcome Banner -->
                 <div class="welcome-banner" style="background: linear-gradient(135deg, var(--primary-color), #0030a1); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px;">
-                    <h2>Selamat Datang kembali, Admin Panti Asuhan Harapan!</h2>
+                    <h2>Selamat Datang kembali, Admin {{ $currentPanti->nama ?? 'Panti Asuhan Harapan' }}!</h2>
                     <p>Mari bersama-sama wujudkan harapan untuk anak-anak Indonesia.</p>
                 </div>
 

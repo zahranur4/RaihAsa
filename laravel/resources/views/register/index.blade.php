@@ -118,6 +118,9 @@
                     @if(session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
+                    @if(session('error'))
+                        <div class="alert alert-warning">{{ session('error') }}</div>
+                    @endif
                     @if($errors->any())
                         <div class="alert alert-danger">{{ $errors->first() }}</div>
                     @endif
@@ -155,28 +158,28 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="donor-city" class="form-label">Kota</label>
-                                <input type="text" class="form-control" id="donor-city" required>
+                                <input type="text" class="form-control" id="donor-city" name="kota" value="{{ old('kota') }}">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="donor-postal" class="form-label">Kode Pos</label>
-                                <input type="text" class="form-control" id="donor-postal" required>
+                                <input type="text" class="form-control" id="donor-postal" name="kode_pos" value="{{ old('kode_pos') }}">
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="donor-type" class="form-label">Jenis Donor</label>
-                            <select class="form-control" id="donor-type" required>
+                            <select class="form-control" id="donor-type" name="jenis_donor">
                                 <option value="">Pilih jenis donor</option>
-                                <option value="individual">Individu</option>
-                                <option value="restaurant">Restoran</option>
-                                <option value="catering">Jasa Boga</option>
-                                <option value="market">Pasar/Supermarket</option>
-                                <option value="company">Perusahaan</option>
-                                <option value="other">Lainnya</option>
+                                <option value="individual" {{ old('jenis_donor') == 'individual' ? 'selected' : '' }}>Individu</option>
+                                <option value="restaurant" {{ old('jenis_donor') == 'restaurant' ? 'selected' : '' }}>Restoran</option>
+                                <option value="catering" {{ old('jenis_donor') == 'catering' ? 'selected' : '' }}>Jasa Boga</option>
+                                <option value="market" {{ old('jenis_donor') == 'market' ? 'selected' : '' }}>Pasar/Supermarket</option>
+                                <option value="company" {{ old('jenis_donor') == 'company' ? 'selected' : '' }}>Perusahaan</option>
+                                <option value="other" {{ old('jenis_donor') == 'other' ? 'selected' : '' }}>Lainnya</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="donor-description" class="form-label">Deskripsi (Opsional)</label>
-                            <textarea class="form-control" id="donor-description" rows="3" placeholder="Ceritakan sedikit tentang diri Anda atau organisasi Anda"></textarea>
+                            <textarea class="form-control" id="donor-description" name="deskripsi_donor" rows="3" placeholder="Ceritakan sedikit tentang diri Anda atau organisasi Anda">{{ old('deskripsi_donor') }}</textarea>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="donor-terms" required>
@@ -188,7 +191,7 @@
                             <button type="submit" class="btn btn-primary">Daftar sebagai Donor</button>
                         </div>
                         <div class="text-center mt-3">
-                            <p>Sudah punya akun? <a href="login.html">Masuk</a></p>
+                            <p>Sudah punya akun? <a href="{{ route('login') }}">Masuk</a></p>
                         </div>
                     </form>
                 </div>
@@ -199,7 +202,7 @@
                         <h3>Form Pendaftaran Penerima</h3>
                         <p>Isi formulir di bawah ini untuk mendaftar sebagai penerima donasi</p>
                     </div>
-                    <form id="recipient-registration-form" method="POST" action="{{ route('register.recipient') }}">
+                    <form id="recipient-registration-form" method="POST" action="{{ route('register.recipient') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -233,7 +236,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="recipient-city" class="form-label">Kota</label>
-                                <input type="text" class="form-control" id="recipient-city" required>
+                                <input type="text" class="form-control" id="recipient-city" name="kota" value="{{ old('kota') }}">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="recipient-postal" class="form-label">Kode Pos</label>
@@ -243,15 +246,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="recipient-type" class="form-label">Jenis Panti/Lembaga</label>
-                            <select class="form-control" id="recipient-type" required>
+                            <select class="form-control" id="recipient-type" name="jenis" required>
                                 <option value="">Pilih jenis panti/lembaga</option>
-                                <option value="orphanage">Panti Asuhan</option>
-                                <option value="elderly">Panti Jompo</option>
-                                <option value="disability">Panti Disabilitas</option>
-                                <option value="foundation">Yayasan</option>
-                                <option value="community">Komunitas</option>
-                                <option value="mosque">Masjid/Mushola</option>
-                                <option value="other">Lainnya</option>
+                                <option value="orphanage" {{ old('jenis') == 'orphanage' ? 'selected' : '' }}>Panti Asuhan</option>
+                                <option value="elderly" {{ old('jenis') == 'elderly' ? 'selected' : '' }}>Panti Jompo</option>
+                                <option value="disability" {{ old('jenis') == 'disability' ? 'selected' : '' }}>Panti Disabilitas</option>
+                                <option value="foundation" {{ old('jenis') == 'foundation' ? 'selected' : '' }}>Yayasan</option>
+                                <option value="community" {{ old('jenis') == 'community' ? 'selected' : '' }}>Komunitas</option>
+                                <option value="mosque" {{ old('jenis') == 'mosque' ? 'selected' : '' }}>Masjid/Mushola</option>
+                                <option value="other" {{ old('jenis') == 'other' ? 'selected' : '' }}>Lainnya</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -270,14 +273,14 @@
                             
                             <div class="mb-3">
                                 <label for="legal-status" class="form-label">Status Legal</label>
-                                <select class="form-control" id="legal-status" required>
+                                <select class="form-control" id="legal-status" name="status_legal">
                                     <option value="">Pilih status legal</option>
-                                    <option value="foundation">Yayasan (Akta Notaris & SK Kemenkumham)</option>
-                                    <option value="association">Perkumpulan (Akta Notaris & SK Kemenkumham)</option>
-                                    <option value="cooperative">Koperasi</option>
-                                    <option value="religious">Lembaga Keagamaan Terdaftar</option>
-                                    <option value="community">Komunitas dengan Surat Keterangan</option>
-                                    <option value="informal">Informal (membutuhkan verifikasi tambahan)</option>
+                                    <option value="foundation" {{ old('status_legal') == 'foundation' ? 'selected' : '' }}>Yayasan (Akta Notaris & SK Kemenkumham)</option>
+                                    <option value="association" {{ old('status_legal') == 'association' ? 'selected' : '' }}>Perkumpulan (Akta Notaris & SK Kemenkumham)</option>
+                                    <option value="cooperative" {{ old('status_legal') == 'cooperative' ? 'selected' : '' }}>Koperasi</option>
+                                    <option value="religious" {{ old('status_legal') == 'religious' ? 'selected' : '' }}>Lembaga Keagamaan Terdaftar</option>
+                                    <option value="community" {{ old('status_legal') == 'community' ? 'selected' : '' }}>Komunitas dengan Surat Keterangan</option>
+                                    <option value="informal" {{ old('status_legal') == 'informal' ? 'selected' : '' }}>Informal (membutuhkan verifikasi tambahan)</option>
                                 </select>
                             </div>
                             
@@ -295,8 +298,8 @@
                             
                             <div class="mb-3">
                                 <label for="legal-notary" class="form-label">Nama Notaris (jika ada)</label>
-                                <input type="text" class="form-control" id="legal-notary" name="posisi_penanggung_jawab" value="{{ old('posisi_penanggung_jawab') }}">
-                                @error('posisi_penanggung_jawab') <div class="text-danger small">{{ $message }}</div> @enderror
+                                <input type="text" class="form-control" id="legal-notary" name="nama_notaris" value="{{ old('nama_notaris') }}">
+                                @error('nama_notaris') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             
                             <div class="mb-3">
@@ -304,22 +307,22 @@
                                 <div class="document-upload">
                                     <div class="upload-item">
                                         <label for="doc-akte">Akta Pendirian <span class="text-muted">(PDF, max 5MB)</span></label>
-                                        <input type="file" class="form-control" id="doc-akte" accept=".pdf">
+                                        <input type="file" class="form-control" id="doc-akte" name="doc_akte" accept=".pdf">
                                     </div>
                                     <div class="upload-item">
                                         <label for="doc-sk">SK Kemenkumham <span class="text-muted">(PDF, max 5MB)</span></label>
-                                        <input type="file" class="form-control" id="doc-sk" accept=".pdf">
+                                        <input type="file" class="form-control" id="doc-sk" name="doc_sk" accept=".pdf">
                                     </div>
                                     <div class="upload-item">
                                         <label for="doc-npwp">NPWP <span class="text-muted">(PDF, max 5MB)</span></label>
-                                        <input type="file" class="form-control" id="doc-npwp" accept=".pdf">
+                                        <input type="file" class="form-control" id="doc-npwp" name="doc_npwp" accept=".pdf">
                                     </div>
                                     <div class="upload-item">
                                         <label for="doc-other">Dokumen Pendukung Lainnya <span class="text-muted">(PDF, max 5MB)</span></label>
-                                        <input type="file" class="form-control" id="doc-other" accept=".pdf">
+                                        <input type="file" class="form-control" id="doc-other" name="doc_other" accept=".pdf">
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                             
                             <div class="mb-3">
                                 <label for="contact-person" class="form-label">Nama Penanggung Jawab</label>
@@ -411,7 +414,7 @@
                         </div>
                         
                         <div class="text-center mt-3">
-                            <p>Sudah punya akun? <a href="login.html">Masuk</a></p>
+                            <p>Sudah punya akun? <a href="{{ route('login') }}">Masuk</a></p>
                         </div>
                     </form>
                 </div>

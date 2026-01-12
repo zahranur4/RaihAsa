@@ -27,8 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const donorFormElement = document.getElementById('donor-registration-form');
     if (donorFormElement) {
         donorFormElement.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             // Get form data
             const formData = {
                 fullname: document.getElementById('donor-fullname').value,
@@ -43,14 +41,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 terms: document.getElementById('donor-terms').checked
             };
             
-            // Validate form
-            if (validateDonorForm(formData)) {
-                // In a real application, you would send this data to a server
-                console.log('Donor form data:', formData);
-                
-                // Show success message
-                showSuccessMessage('donor');
+            // Validate form; if invalid, prevent submit and show validation alert
+            if (!validateDonorForm(formData)) {
+                e.preventDefault();
+                return;
             }
+            // Otherwise allow normal form submission to the server
         });
     }
     
@@ -58,8 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const recipientFormElement = document.getElementById('recipient-registration-form');
     if (recipientFormElement) {
         recipientFormElement.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             // Get form data
             const formData = {
                 name: document.getElementById('recipient-name').value,
@@ -94,15 +88,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const docNpwp = document.getElementById('doc-npwp').files[0];
             const docOther = document.getElementById('doc-other').files[0];
             
-            // Validate form
-            if (validateRecipientForm(formData, docAkte, docSk)) {
-                // In a real application, you would send this data and files to a server
-                console.log('Recipient form data:', formData);
-                console.log('Documents:', { docAkte, docSk, docNpwp, docOther });
-                
-                // Show success message
-                showSuccessMessage('recipient');
+            // Validate form; if invalid, prevent submit
+            if (!validateRecipientForm(formData, docAkte, docSk)) {
+                e.preventDefault();
+                return;
             }
+            // Otherwise allow normal form submission (server will handle files and validation)
         });
     }
     

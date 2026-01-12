@@ -10,7 +10,11 @@ class PantiProfileController extends Controller
 {
     public function index()
     {
-        $pantis = PantiProfile::orderBy('id_panti','desc')->paginate(20);
+        // Use the main orphanage table (panti_asuhan) so admin sees real registrations
+        $pantis = \Illuminate\Support\Facades\DB::table('panti_asuhan')
+            ->orderBy('id','desc')
+            ->paginate(20);
+
         return view('admin.manajemen-penerima.index', compact('pantis'));
     }
 
@@ -22,48 +26,47 @@ class PantiProfileController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'id_user' => 'required|exists:users,id',
-            'nama_panti' => 'required|string|max:255',
-            'alamat_lengkap' => 'required|string',
-            'kota' => 'required|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-            'no_sk' => 'nullable|string',
-            'status_verif' => 'nullable|in:pending,verified,rejected',
+            'nama' => 'required|string|max:255',
+            'jenis' => 'nullable|string|max:100',
+            'alamat' => 'required|string',
+            'nomor_telepon' => 'nullable|string',
+            'kode_pos' => 'nullable|string|max:10',
+            'kapasitas' => 'nullable|integer|min:0',
+            'status_verifikasi_legalitas' => 'nullable|in:pending,terverifikasi,ditolak',
         ]);
 
-        PantiProfile::create($data);
+        \Illuminate\Support\Facades\DB::table('panti_asuhan')->insert(array_merge($data, ['created_at' => now(), 'updated_at' => now()]));
+
         return redirect()->route('admin.recipients.index')->with('success','Panti ditambahkan.');
     }
 
     public function edit($id)
     {
-        $panti = PantiProfile::findOrFail($id);
+        $panti = \Illuminate\Support\Facades\DB::table('panti_asuhan')->where('id', $id)->first();
+        if (! $panti) abort(404);
         return view('admin.manajemen-penerima.edit', compact('panti'));
     }
 
     public function update(Request $request, $id)
     {
-        $panti = PantiProfile::findOrFail($id);
         $data = $request->validate([
-            'id_user' => 'required|exists:users,id',
-            'nama_panti' => 'required|string|max:255',
-            'alamat_lengkap' => 'required|string',
-            'kota' => 'required|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-            'no_sk' => 'nullable|string',
-            'status_verif' => 'nullable|in:pending,verified,rejected',
+            'nama' => 'required|string|max:255',
+            'jenis' => 'nullable|string|max:100',
+            'alamat' => 'required|string',
+            'nomor_telepon' => 'nullable|string',
+            'kode_pos' => 'nullable|string|max:10',
+            'kapasitas' => 'nullable|integer|min:0',
+            'status_verifikasi_legalitas' => 'nullable|in:pending,terverifikasi,ditolak',
         ]);
 
-        $panti->update($data);
+        \Illuminate\Support\Facades\DB::table('panti_asuhan')->where('id', $id)->update(array_merge($data, ['updated_at' => now()]));
+
         return redirect()->route('admin.recipients.index')->with('success','Panti diperbarui.');
     }
 
     public function destroy($id)
     {
-        $panti = PantiProfile::findOrFail($id);
-        $panti->delete();
+        \Illuminate\Support\Facades\DB::table('panti_asuhan')->where('id', $id)->delete();
         return redirect()->route('admin.recipients.index')->with('success','Panti dihapus.');
     }
 }

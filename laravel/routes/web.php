@@ -19,6 +19,8 @@ Route::view('/volunteer', 'volunteer.index')->name('volunteer');
 Route::view('/wishlist', 'wishlist.index')->name('wishlist');
 Route::view('/food-rescue', 'food-rescue.index')->name('food-rescue');
 Route::view('/my-donations', 'my-donations.index')->name('my-donations');
+// Register-panti page removed; redirect to the main register selection
+Route::redirect('/register-panti', '/register');
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
@@ -26,6 +28,7 @@ use App\Http\Controllers\Admin\DonasiController;
 use App\Http\Controllers\Admin\FoodRescueController;
 use App\Http\Controllers\Admin\PantiProfileController;
 use App\Http\Controllers\Admin\RelawanProfileController;
+use App\Http\Controllers\Panti\ProfileController;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', \App\Http\Middleware\EnsureAdmin::class])->group(function () {
     // Redirect /admin to dashboard
@@ -80,6 +83,7 @@ Route::prefix('panti')->name('panti.')->middleware(['auth'])->group(function () 
     Route::get('/donasi-masuk', function () { return view('panti.donasi-masuk.index'); })->name('donasi-masuk');
     Route::get('/food-rescue', function () { return view('panti.food-rescue.index'); })->name('food-rescue');
     Route::get('/laporan', function () { return view('panti.laporan.index'); })->name('laporan');
-    Route::get('/profil', function () { return view('panti.profil.index'); })->name('profil');
+    Route::get('/profil', [ProfileController::class, 'index'])->name('profil');
+    Route::post('/profil', [ProfileController::class, 'update'])->name('profil.update');
     Route::get('/pengaturan', function () { return view('panti.pengaturan.index'); })->name('pengaturan');
 });

@@ -30,6 +30,7 @@ export default defineConfig({
                 'resources/js/register.js',
                 'resources/js/login.js',
                 'resources/js/penerima-dashboard.js',
+                'resources/js/donation-modal.js',
             ],
             refresh: true,
         }),

@@ -1,0 +1,182 @@
+{
+  "resources/css/admin-dashboard.css": {
+    "file": "assets/admin-dashboard-BMxfdT_p.css",
+    "src": "resources/css/admin-dashboard.css",
+    "isEntry": true,
+    "name": "admin-dashboard",
+    "names": [
+      "admin-dashboard.css"
+    ]
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-BHVZwbmV.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/css/components.css": {
+    "file": "assets/components-SDk8KqeU.css",
+    "src": "resources/css/components.css",
+    "isEntry": true,
+    "name": "components",
+    "names": [
+      "components.css"
+    ]
+  },
+  "resources/css/food-rescue.css": {
+    "file": "assets/food-rescue-C5QLkGHa.css",
+    "src": "resources/css/food-rescue.css",
+    "isEntry": true,
+    "name": "food-rescue",
+    "names": [
+      "food-rescue.css"
+    ]
+  },
+  "resources/css/forms.css": {
+    "file": "assets/forms-CFmN995p.css",
+    "src": "resources/css/forms.css",
+    "isEntry": true,
+    "name": "forms",
+    "names": [
+      "forms.css"
+    ]
+  },
+  "resources/css/my-donations.css": {
+    "file": "assets/my-donations-C9JGn_LA.css",
+    "src": "resources/css/my-donations.css",
+    "isEntry": true,
+    "name": "my-donations",
+    "names": [
+      "my-donations.css"
+    ]
+  },
+  "resources/css/penerima-dashboard.css": {
+    "file": "assets/penerima-dashboard-C4p8dyZF.css",
+    "src": "resources/css/penerima-dashboard.css",
+    "isEntry": true,
+    "name": "penerima-dashboard",
+    "names": [
+      "penerima-dashboard.css"
+    ]
+  },
+  "resources/css/scroll-animation.css": {
+    "file": "assets/scroll-animation-BShQAA5t.css",
+    "src": "resources/css/scroll-animation.css",
+    "isEntry": true,
+    "name": "scroll-animation",
+    "names": [
+      "scroll-animation.css"
+    ]
+  },
+  "resources/css/style.css": {
+    "file": "assets/style--djmUO6_.css",
+    "src": "resources/css/style.css",
+    "isEntry": true,
+    "name": "style",
+    "names": [
+      "style.css"
+    ]
+  },
+  "resources/css/volunteer.css": {
+    "file": "assets/volunteer-CCkfV1OO.css",
+    "src": "resources/css/volunteer.css",
+    "isEntry": true,
+    "name": "volunteer",
+    "names": [
+      "volunteer.css"
+    ]
+  },
+  "resources/css/wishlist.css": {
+    "file": "assets/wishlist-B_eBCGui.css",
+    "src": "resources/css/wishlist.css",
+    "isEntry": true,
+    "name": "wishlist",
+    "names": [
+      "wishlist.css"
+    ]
+  },
+  "resources/js/admin-dashboard.js": {
+    "file": "assets/admin-dashboard-Be6JTrcU.js",
+    "name": "admin-dashboard",
+    "src": "resources/js/admin-dashboard.js",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-vXxwagmv.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/bootstrap.js"
+    ]
+  },
+  "resources/js/auth.js": {
+    "file": "assets/auth-D-nbQjmd.js",
+    "name": "auth",
+    "src": "resources/js/auth.js",
+    "isEntry": true
+  },
+  "resources/js/bootstrap.js": {
+    "file": "assets/bootstrap-CAiCLEjY.js",
+    "name": "bootstrap",
+    "src": "resources/js/bootstrap.js",
+    "isEntry": true
+  },
+  "resources/js/donation-modal.js": {
+    "file": "assets/donation-modal-331OwKwo.js",
+    "name": "donation-modal",
+    "src": "resources/js/donation-modal.js",
+    "isEntry": true
+  },
+  "resources/js/login.js": {
+    "file": "assets/login-B0vEx4jc.js",
+    "name": "login",
+    "src": "resources/js/login.js",
+    "isEntry": true
+  },
+  "resources/js/main.js": {
+    "file": "assets/main-DyLHt-Xj.js",
+    "name": "main",
+    "src": "resources/js/main.js",
+    "isEntry": true
+  },
+  "resources/js/penerima-dashboard.js": {
+    "file": "assets/penerima-dashboard-CdJ385jg.js",
+    "name": "penerima-dashboard",
+    "src": "resources/js/penerima-dashboard.js",
+    "isEntry": true
+  },
+  "resources/js/register.js": {
+    "file": "assets/register-CoBsdfFj.js",
+    "name": "register",
+    "src": "resources/js/register.js",
+    "isEntry": true
+  },
+  "resources/js/script-panti.js": {
+    "file": "assets/script-panti-DFYn8Mi-.js",
+    "name": "script-panti",
+    "src": "resources/js/script-panti.js",
+    "isEntry": true
+  },
+  "resources/js/script.js": {
+    "file": "assets/script-D651i6iy.js",
+    "name": "script",
+    "src": "resources/js/script.js",
+    "isEntry": true
+  },
+  "resources/js/scroll-animation.js": {
+    "file": "assets/scroll-animation-q-rssfG2.js",
+    "name": "scroll-animation",
+    "src": "resources/js/scroll-animation.js",
+    "isEntry": true
+  },
+  "resources/js/volunteer.js": {
+    "file": "assets/volunteer-Bz4NARVP.js",
+    "name": "volunteer",
+    "src": "resources/js/volunteer.js",
+    "isEntry": true
+  }
+}

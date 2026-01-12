@@ -15,6 +15,12 @@ class RegisterController extends Controller
         if (Auth::check()) {
             return redirect()->route('home');
         }
+
+        // If registration is disabled via env flag, show closed page
+        if (!env('REGISTRATION_ENABLED', true)) {
+            return view('register.closed');
+        }
+
         return view('register.index');
     }
 
@@ -52,10 +58,11 @@ class RegisterController extends Controller
     // Mendaftar penerima/panti -> membuat record di tabel panti_asuhan
     public function registerRecipient(Request $request)
     {
+        // Validate recipient + account details (require email + password so an account can be created)
         $request->validate([
             'nama' => 'required|string|max:255',
-            'email' => 'nullable|email',
-            'kata_sandi' => ['nullable','string','min:8','regex:/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/'],
+            'email' => 'required|email|unique:users,email',
+            'kata_sandi' => ['required','string','min:8','regex:/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/'],
             'nomor_telepon' => ['nullable','string','regex:/^(\\+62|62|0)8[0-9]{7,11}$/'],
             'kode_pos' => 'nullable|string|max:10',
             'kapasitas' => 'nullable|integer|min:1',
@@ -63,15 +70,60 @@ class RegisterController extends Controller
             'tanggal_berdiri' => 'nullable|date',
             'nama_penanggung_jawab' => 'nullable|string',
             'posisi_penanggung_jawab' => 'nullable|string',
-            'nik' => ['nullable','string','size:16','regex:/^[0-9]{16}$/'],
+            'nik' => ['required','string','size:16','regex:/^[0-9]{16}$/'],
+            // file uploads (optional PDFs, max 5MB)
+            'doc_akte' => 'nullable|file|mimes:pdf|max:5120',
+            'doc_sk' => 'nullable|file|mimes:pdf|max:5120',
+            'doc_npwp' => 'nullable|file|mimes:pdf|max:5120',
+            'doc_other' => 'nullable|file|mimes:pdf|max:5120',
         ], [
             'kata_sandi.regex' => 'Password harus minimal 8 karakter dan mengandung huruf serta angka.',
             'nomor_telepon.regex' => 'Nomor telepon harus format Indonesia (contoh: 081234567890 atau +6281234567890).',
             'nik.size' => 'NIK harus 16 digit.',
-            'nik.regex' => 'NIK harus berupa 16 digit angka.'
+            'nik.regex' => 'NIK harus berupa 16 digit angka.',
+            'doc_akte.mimes' => 'Akta harus berupa file PDF.',
+            'doc_sk.mimes' => 'SK Kemenkumham harus berupa file PDF.',
+            'doc_npwp.mimes' => 'NPWP harus berupa file PDF.',
+            'doc_other.mimes' => 'Dokumen pendukung harus berupa file PDF.',
+            'doc_akte.max' => 'Akta maksimal 5MB.',
+            'doc_sk.max' => 'SK maksimal 5MB.',
+            'doc_npwp.max' => 'NPWP maksimal 5MB.',
+            'doc_other.max' => 'Dokumen pendukung maksimal 5MB.',
         ]);
 
+        // Create a user account for the panti (so they can login)
+        $userId = DB::table('users')->insertGetId([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'kata_sandi' => \Illuminate\Support\Facades\Hash::make($request->kata_sandi),
+            'alamat' => $request->alamat ?? null,
+            'nomor_telepon' => $request->nomor_telepon ?? null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // Handle document uploads (if provided) and store in public disk under panti_docs/{userId}
+        $docAkte = null;
+        $docSk = null;
+        $docNpwp = null;
+        $docOther = null;
+
+        if ($request->hasFile('doc_akte')) {
+            $docAkte = $request->file('doc_akte')->store("panti_docs/{$userId}", 'public');
+        }
+        if ($request->hasFile('doc_sk')) {
+            $docSk = $request->file('doc_sk')->store("panti_docs/{$userId}", 'public');
+        }
+        if ($request->hasFile('doc_npwp')) {
+            $docNpwp = $request->file('doc_npwp')->store("panti_docs/{$userId}", 'public');
+        }
+        if ($request->hasFile('doc_other')) {
+            $docOther = $request->file('doc_other')->store("panti_docs/{$userId}", 'public');
+        }
+
+        // Insert panti_asuhan and link to user
         $data = [
+            'user_id' => $userId,
             'nama' => $request->nama,
             'jenis' => $request->jenis ?? $request->type ?? null,
             'nomor_telepon' => $request->nomor_telepon,
@@ -83,6 +135,10 @@ class RegisterController extends Controller
             'nama_penanggung_jawab' => $request->nama_penanggung_jawab,
             'posisi_penanggung_jawab' => $request->posisi_penanggung_jawab,
             'nik' => $request->nik,
+            'doc_akte' => $docAkte,
+            'doc_sk' => $docSk,
+            'doc_npwp' => $docNpwp,
+            'doc_other' => $docOther,
             'status_verifikasi_legalitas' => 'pending',
             'created_at' => now(),
             'updated_at' => now(),
@@ -90,6 +146,11 @@ class RegisterController extends Controller
 
         DB::table('panti_asuhan')->insert($data);
 
-        return redirect()->route('home')->with('success', 'Pendaftaran panti/lembaga berhasil dikirim dan menunggu verifikasi.');
+        // Auto-login as the newly created user
+        $user = \App\Models\User::find($userId);
+        Auth::login($user);
+
+        // Redirect recipient (panti) to their dashboard
+        return redirect()->route('panti.dashboard')->with('success', 'Pendaftaran panti/lembaga berhasil. Selamat datang! Silakan lengkapi profil Anda untuk verifikasi.');
     }
 }

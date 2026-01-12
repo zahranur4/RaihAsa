@@ -57,3 +57,37 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+## Testing the recipient registration flow ✅
+
+To run the feature test that verifies recipient (panti) registration, file uploads, and database records locally, follow these steps:
+
+1. Ensure your application migrations are up-to-date (recommended on your local development DB):
+
+   php artisan migrate
+
+2. Make the storage publicly accessible (only needed once):
+
+   php artisan storage:link
+
+3. Run the tests (this project uses PHPUnit via the Laravel test runner):
+
+   php artisan test --filter RegisterRecipientTest
+
+Notes:
+- The test uses the `RefreshDatabase` trait; it will migrate the testing database before running.
+- Uploaded files in the test are stored using Laravel's `Storage::fake('public')` so they won't affect your real storage.
+- If you prefer to run a single test file with PHPUnit directly, use: `vendor/bin/phpunit tests/Feature/RegisterRecipientTest.php`.
+
+---
+
+## Temporarily disabling public registration
+
+If you want to disable the public registration page and endpoints while testing, set the `REGISTRATION_ENABLED` environment variable to `false` in your `.env` file (default is `true`). The app will then:
+
+- show a "Pendaftaran Ditutup" page for `GET /register`, and
+- block `POST /register/donor` and `POST /register/recipient` with a friendly message.
+
+This toggle helps you control when the site accepts new signups during development or maintenance.

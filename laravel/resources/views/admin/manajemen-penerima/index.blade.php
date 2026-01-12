@@ -194,17 +194,23 @@
                                 </thead>
                                 <tbody>
                                     @forelse($pantis as $panti)
+                                    @php
+                                        $statusRaw = $panti->status_verifikasi_legalitas ?? ($panti->status_verif ?? 'pending');
+                                        $statusMap = $statusRaw === 'terverifikasi' ? 'verified' : ($statusRaw === 'ditolak' ? 'rejected' : 'pending');
+                                        $badgeClass = $statusMap === 'verified' ? 'success' : ($statusMap === 'rejected' ? 'danger' : 'warning');
+                                        $city = \Illuminate\Support\Str::before($panti->alamat ?? '', ',');
+                                    @endphp
                                     <tr>
-                                        <td>#{{ $panti->id_panti }}</td>
-                                        <td>{{ $panti->nama_panti }}</td>
-                                        <td><span class="badge bg-secondary">Panti</span></td>
-                                        <td>{{ $panti->kota }}</td>
-                                        <td>-</td>
-                                        <td><span class="badge bg-{{ $panti->status_verif == 'verified' ? 'success' : ($panti->status_verif == 'rejected' ? 'danger' : 'warning') }}">{{ ucfirst($panti->status_verif) }}</span></td>
-                                        <td>{{ $panti->created_at->format('d M Y') }}</td>
+                                        <td>#{{ $panti->id }}</td>
+                                        <td>{{ $panti->nama }}</td>
+                                        <td><span class="badge bg-secondary">{{ ucfirst($panti->jenis ?? 'panti') }}</span></td>
+                                        <td>{{ $city ?: ($panti->alamat ?? '-') }}</td>
+                                        <td>{{ $panti->kapasitas ? $panti->kapasitas : '-' }}</td>
+                                        <td><span class="badge bg-{{ $badgeClass }}">{{ ucfirst($statusMap) }}</span></td>
+                                        <td>{{ \Carbon\Carbon::parse($panti->created_at)->format('d M Y') }}</td>
                                         <td>
-                                            <a href="{{ route('admin.recipients.edit', $panti->id_panti) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                                            <form action="{{ route('admin.recipients.destroy', $panti->id_panti) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus panti ini?');">
+                                            <a href="{{ route('admin.recipients.edit', $panti->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                            <form action="{{ route('admin.recipients.destroy', $panti->id) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus panti ini?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
@@ -216,107 +222,6 @@
                                         <td colspan="8" class="text-center">Tidak ada panti</td>
                                     </tr>
                                     @endforelse
-                                </tbody>
-                                    <tr>
-                                        <td>#R002</td>
-                                        <td>Yayasan Peduli Anak</td>
-                                        <td><span class="badge bg-info">Yayasan</span></td>
-                                        <td>Jakarta</td>
-                                        <td>75 anak</td>
-                                        <td><span class="badge bg-warning">Menunggu Verifikasi</span></td>
-                                        <td>20 Jan 2023</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewRecipientDetail('R002')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editRecipient('R002')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-success" onclick="verifyRecipient('R002')">
-                                                    <i class="fas fa-check"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteRecipient(this, 'R002')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#R003</td>
-                                        <td>Panti Jompo Sejahtera</td>
-                                        <td><span class="badge bg-secondary">Panti Jompo</span></td>
-                                        <td>Surabaya</td>
-                                        <td>30 lansia</td>
-                                        <td><span class="badge bg-success">Terverifikasi</span></td>
-                                        <td>5 Feb 2023</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewRecipientDetail('R003')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editRecipient('R003')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-success" onclick="verifyRecipient('R003')">
-                                                    <i class="fas fa-check"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteRecipient(this, 'R003')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#R004</td>
-                                        <td>Komunitas Berbagi Kasih</td>
-                                        <td><span class="badge bg-warning">Komunitas</span></td>
-                                        <td>Medan</td>
-                                        <td>100 orang</td>
-                                        <td><span class="badge bg-danger">Ditolak</span></td>
-                                        <td>12 Feb 2023</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewRecipientDetail('R004')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editRecipient('R004')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-success" onclick="verifyRecipient('R004')">
-                                                    <i class="fas fa-check"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteRecipient(this, 'R004')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#R005</td>
-                                        <td>Masjid Al-Hikmah</td>
-                                        <td><span class="badge bg-success">Masjid/Mushola</span></td>
-                                        <td>Bandung</td>
-                                        <td>200 jamaah</td>
-                                        <td><span class="badge bg-warning">Menunggu Verifikasi</span></td>
-                                        <td>1 Mar 2023</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewRecipientDetail('R005')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editRecipient('R005')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-success" onclick="verifyRecipient('R005')">
-                                                    <i class="fas fa-check"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteRecipient(this, 'R005')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
