@@ -54,6 +54,7 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <ul class="profile-menu" id="profileMenu">
+                            <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Kembali Ke Halaman Utama</a></li>
                             <li><a href="{{ route('panti.profil') }}"><i class="fas fa-building"></i> Profil Panti</a></li>
                             <li><a href="{{ route('panti.pengaturan') }}"><i class="fas fa-cog"></i> Pengaturan</a></li>
                             <li>
@@ -65,6 +66,32 @@
             </header>
 
             <div class="content">
+                @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                @endif
+                
+                @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                @endif
+                
+                @if($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Terjadi kesalahan:</strong>
+                    <ul class="mb-0">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                @endif
+                
                 <!-- Content Header -->
                 <div class="content-header">
                     <div class="page-info">
@@ -133,86 +160,75 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse($wishlists as $wishlist)
                                     <tr>
-                                        <td>#WL001</td>
-                                        <td>Susu Formula Usia 1-3 Tahun</td>
-                                        <td><span class="badge bg-info">Makanan</span></td>
-                                        <td>20 kaleng</td>
-                                        <td>20 kaleng</td>
+                                        <td>#WL{{ str_pad($wishlist->id_wishlist, 3, '0', STR_PAD_LEFT) }}</td>
+                                        <td>{{ $wishlist->nama_barang }}</td>
+                                        <td>
+                                            @php
+                                                $badgeColors = [
+                                                    'Makanan' => 'bg-info',
+                                                    'Pakaian' => 'bg-secondary',
+                                                    'Pendidikan' => 'bg-warning',
+                                                    'Kesehatan' => 'bg-danger',
+                                                ];
+                                                $color = $badgeColors[$wishlist->kategori] ?? 'bg-primary';
+                                            @endphp
+                                            <span class="badge {{ $color }}">{{ $wishlist->kategori }}</span>
+                                        </td>
+                                        <td>{{ $wishlist->jumlah }}</td>
+                                        <td>-</td>
                                         <td>
                                             <div class="progress" style="height: 10px;">
-                                                <div class="progress-bar bg-success" style="width: 100%"></div>
+                                                <div class="progress-bar bg-primary" style="width: 0%"></div>
                                             </div>
                                         </td>
-                                        <td>30 Jun 2023</td>
-                                        <td><span class="badge bg-success">Terkumpul</span></td>
+                                        <td>
+                                            @php
+                                                $urgencyLabels = [
+                                                    'low' => 'Rendah',
+                                                    'medium' => 'Sedang',
+                                                    'high' => 'Tinggi'
+                                                ];
+                                            @endphp
+                                            <span class="badge {{ $wishlist->urgensi === 'high' ? 'bg-danger' : ($wishlist->urgensi === 'medium' ? 'bg-warning' : 'bg-secondary') }}">
+                                                {{ $urgencyLabels[$wishlist->urgensi] ?? $wishlist->urgensi }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @php
+                                                $statusLabels = [
+                                                    'open' => ['label' => 'Aktif', 'class' => 'bg-primary'],
+                                                    'fulfilled' => ['label' => 'Terpenuhi', 'class' => 'bg-success'],
+                                                    'cancelled' => ['label' => 'Dibatalkan', 'class' => 'bg-danger']
+                                                ];
+                                                $status = $statusLabels[$wishlist->status] ?? ['label' => $wishlist->status, 'class' => 'bg-secondary'];
+                                            @endphp
+                                            <span class="badge {{ $status['class'] }}">{{ $status['label'] }}</span>
+                                        </td>
                                         <td>
                                             <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewWishlistDetail('WL001')"><i class="fas fa-eye"></i></button>
-                                                <button class="btn btn-sm btn-warning" onclick="editWishlist('WL001')"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-sm btn-danger" onclick="hapusWishlist(this, 'WL001')"><i class="fas fa-trash"></i></button>
+                                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editWishlistModal{{ $wishlist->id_wishlist }}"><i class="fas fa-edit"></i></button>
+                                                <form action="{{ route('panti.wishlist.destroy', $wishlist->id_wishlist) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus wishlist ini?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
+                                    @empty
                                     <tr>
-                                        <td>#WL002</td>
-                                        <td>Buku Tulis 60 Lembar</td>
-                                        <td><span class="badge bg-warning">Pendidikan</span></td>
-                                        <td>50 pcs</td>
-                                        <td>35 pcs</td>
-                                        <td>
-                                            <div class="progress" style="height: 10px;">
-                                                <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                            </div>
-                                        </td>
-                                        <td>15 Jul 2023</td>
-                                        <td><span class="badge bg-warning">Dalam Proses</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewWishlistDetail('WL002')"><i class="fas fa-eye"></i></button>
-                                                <button class="btn btn-sm btn-warning" onclick="editWishlist('WL002')"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-sm btn-danger" onclick="hapusWishlist(this, 'WL002')"><i class="fas fa-trash"></i></button>
-                                            </div>
-                                        </td>
+                                        <td colspan="9" class="text-center">Belum ada wishlist. Tambahkan wishlist pertama Anda!</td>
                                     </tr>
-                                    <tr>
-                                        <td>#WL003</td>
-                                        <td>Pakaian Anak (Usia 5-7 th)</td>
-                                        <td><span class="badge bg-secondary">Pakaian</span></td>
-                                        <td>30 set</td>
-                                        <td>5 set</td>
-                                        <td>
-                                            <div class="progress" style="height: 10px;">
-                                                <div class="progress-bar" style="width: 16.67%"></div>
-                                            </div>
-                                        </td>
-                                        <td>30 Jul 2023</td>
-                                        <td><span class="badge bg-primary">Aktif</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewWishlistDetail('WL003')"><i class="fas fa-eye"></i></button>
-                                                <button class="btn btn-sm btn-warning" onclick="editWishlist('WL003')"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-sm btn-danger" onclick="hapusWishlist(this, 'WL003')"><i class="fas fa-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
                         <!-- Pagination -->
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div class="d-flex justify-content-center">
+                            {{ $wishlists->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -228,43 +244,49 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addWishlistForm">
+                    <form id="addWishlistForm" method="POST" action="{{ route('panti.wishlist.store') }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="itemName" class="form-label">Nama Item</label>
-                                <input type="text" class="form-control" id="itemName" required>
+                                <label for="nama_barang" class="form-label">Nama Item</label>
+                                <input type="text" class="form-control" id="nama_barang" name="nama_barang" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="itemCategory" class="form-label">Kategori</label>
-                                <select class="form-select" id="itemCategory" required>
+                                <label for="kategori" class="form-label">Kategori</label>
+                                <select class="form-select" id="kategori" name="kategori" required>
                                     <option value="">Pilih Kategori</option>
-                                    <option value="makanan">Makanan</option>
-                                    <option value="pakaian">Pakaian</option>
-                                    <option value="pendidikan">Pendidikan</option>
-                                    <option value="kesehatan">Kesehatan</option>
-                                    <option value="lainnya">Lainnya</option>
+                                    <option value="Makanan">Makanan</option>
+                                    <option value="Pakaian">Pakaian</option>
+                                    <option value="Pendidikan">Pendidikan</option>
+                                    <option value="Kesehatan">Kesehatan</option>
+                                    <option value="Lainnya">Lainnya</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="itemQuantity" class="form-label">Jumlah Dibutuhkan</label>
-                                <input type="text" class="form-control" id="itemQuantity" required>
+                                <label for="jumlah" class="form-label">Jumlah Dibutuhkan</label>
+                                <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="itemDeadline" class="form-label">Batas Waktu</label>
-                                <input type="date" class="form-control" id="itemDeadline" required>
+                                <label for="urgensi" class="form-label">Urgensi</label>
+                                <select class="form-select" id="urgensi" name="urgensi" required>
+                                    <option value="low">Rendah</option>
+                                    <option value="medium" selected>Sedang</option>
+                                    <option value="high">Tinggi</option>
+                                </select>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="itemDescription" class="form-label">Deskripsi</label>
-                            <textarea class="form-control" id="itemDescription" rows="3" required></textarea>
+                            <label for="image" class="form-label">Gambar (Opsional)</label>
+                            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                            <small class="text-muted">Format: JPEG, PNG, JPG, GIF | Ukuran maksimal: 2MB</small>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" onclick="simpanWishlistBaru()">Simpan</button>
+                    <button type="submit" form="addWishlistForm" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>
@@ -302,6 +324,79 @@
             </div>
         </div>
     </div>
+
+    <!-- Edit Modals for each wishlist -->
+    @foreach($wishlists as $wishlist)
+    <div class="modal fade" id="editWishlistModal{{ $wishlist->id_wishlist }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Wishlist</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST" action="{{ route('panti.wishlist.update', $wishlist->id_wishlist) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_nama_barang{{ $wishlist->id_wishlist }}" class="form-label">Nama Item</label>
+                                <input type="text" class="form-control" id="edit_nama_barang{{ $wishlist->id_wishlist }}" name="nama_barang" value="{{ $wishlist->nama_barang }}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_kategori{{ $wishlist->id_wishlist }}" class="form-label">Kategori</label>
+                                <select class="form-select" id="edit_kategori{{ $wishlist->id_wishlist }}" name="kategori" required>
+                                    <option value="Makanan" {{ $wishlist->kategori == 'Makanan' ? 'selected' : '' }}>Makanan</option>
+                                    <option value="Pakaian" {{ $wishlist->kategori == 'Pakaian' ? 'selected' : '' }}>Pakaian</option>
+                                    <option value="Pendidikan" {{ $wishlist->kategori == 'Pendidikan' ? 'selected' : '' }}>Pendidikan</option>
+                                    <option value="Kesehatan" {{ $wishlist->kategori == 'Kesehatan' ? 'selected' : '' }}>Kesehatan</option>
+                                    <option value="Lainnya" {{ $wishlist->kategori == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_jumlah{{ $wishlist->id_wishlist }}" class="form-label">Jumlah Dibutuhkan</label>
+                                <input type="number" class="form-control" id="edit_jumlah{{ $wishlist->id_wishlist }}" name="jumlah" value="{{ $wishlist->jumlah }}" min="1" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_urgensi{{ $wishlist->id_wishlist }}" class="form-label">Urgensi</label>
+                                <select class="form-select" id="edit_urgensi{{ $wishlist->id_wishlist }}" name="urgensi" required>
+                                    <option value="low" {{ $wishlist->urgensi == 'low' ? 'selected' : '' }}>Rendah</option>
+                                    <option value="medium" {{ $wishlist->urgensi == 'medium' ? 'selected' : '' }}>Sedang</option>
+                                    <option value="high" {{ $wishlist->urgensi == 'high' ? 'selected' : '' }}>Tinggi</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit_status{{ $wishlist->id_wishlist }}" class="form-label">Status</label>
+                            <select class="form-select" id="edit_status{{ $wishlist->id_wishlist }}" name="status" required>
+                                <option value="open" {{ $wishlist->status == 'open' ? 'selected' : '' }}>Aktif</option>
+                                <option value="fulfilled" {{ $wishlist->status == 'fulfilled' ? 'selected' : '' }}>Terpenuhi</option>
+                                <option value="cancelled" {{ $wishlist->status == 'cancelled' ? 'selected' : '' }}>Dibatalkan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit_image{{ $wishlist->id_wishlist }}" class="form-label">Gambar (Opsional)</label>
+                            @if($wishlist->image)
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/' . $wishlist->image) }}" alt="{{ $wishlist->nama_barang }}" style="max-width: 100px; border-radius: 4px;">
+                                <small class="text-muted d-block">Gambar saat ini</small>
+                            </div>
+                            @endif
+                            <input type="file" class="form-control" id="edit_image{{ $wishlist->id_wishlist }}" name="image" accept="image/*">
+                            <small class="text-muted">Format: JPEG, PNG, JPG, GIF | Ukuran maksimal: 2MB</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endforeach
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">

@@ -14,7 +14,7 @@
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
                     <img src="{{ asset('assets/raih asa logo.png') }}" alt="RaihAsa Logo" height="40" class="me-2">
                     <span>RaihAsa</span>
                 </a>
@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/index.html">Beranda</a>
+                            <a class="nav-link" href="{{ route('home') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/index.html#about">Tentang</a>
@@ -53,6 +53,10 @@
                                 <li><a class="dropdown-item" href="{{ route('my-donations') }}">Kontribusiku</a></li>
                                 @if((Auth::user()->is_admin ?? false) || (Auth::user()->email === 'admin@example.com'))
                                     <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                @else
+                                    @if(Auth::check() && \Illuminate\Support\Facades\DB::table('panti_asuhan')->where('user_id', Auth::id())->exists())
+                                        <li><a class="dropdown-item" href="{{ route('panti.dashboard') }}">Dashboard Panti</a></li>
+                                    @endif
                                 @endif
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
@@ -1011,7 +1015,7 @@
                 <div class="row">
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <div class="footer-about">
-                            <a href="index.html" class="footer-logo">
+                            <a href="{{ route('home') }}" class="footer-logo">
                                 <img src="{{ asset('assets/raih asa logo.png') }}" alt="RaihAsa Logo" class="footer-logo-img me-2">
                                 <span>RaihAsa</span>
                             </a>
@@ -1028,7 +1032,7 @@
                         <div class="footer-links">
                             <h4>Link Cepat</h4>
                             <ul>
-                                <li><a href="index.html">Beranda</a></li>
+                                <li><a href="{{ route('home') }}">Beranda</a></li>
                                 <li><a href="#about">Tentang Kami</a></li>
                                 <li><a href="#donate">Cara Kerja</a></li>
                                 <li><a href="pages/food-rescue.html">Food Rescue</a></li>

@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-
-// Static view routes (directly return Blade views)
-Route::view('/', 'home.index')->name('home');
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Donor;
+use App\Http\Controllers\Panti;
+
+// Home page
+Route::view('/', 'home.index')->name('home');
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
@@ -16,7 +17,7 @@ Route::get('/register', [RegisterController::class, 'showRegister'])->name('regi
 Route::post('/register/donor', [RegisterController::class, 'registerDonor'])->name('register.donor');
 Route::post('/register/recipient', [RegisterController::class, 'registerRecipient'])->name('register.recipient');
 Route::view('/volunteer', 'volunteer.index')->name('volunteer');
-Route::view('/wishlist', 'wishlist.index')->name('wishlist');
+Route::get('/wishlist', [\App\Http\Controllers\WishlistController::class, 'index'])->name('wishlist');
 Route::view('/food-rescue', 'food-rescue.index')->name('food-rescue');
 Route::view('/my-donations', 'my-donations.index')->name('my-donations');
 // Register-panti page removed; redirect to the main register selection
@@ -29,6 +30,7 @@ use App\Http\Controllers\Admin\FoodRescueController;
 use App\Http\Controllers\Admin\PantiProfileController;
 use App\Http\Controllers\Admin\RelawanProfileController;
 use App\Http\Controllers\Panti\ProfileController;
+use App\Http\Controllers\Panti\WishlistController;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', \App\Http\Middleware\EnsureAdmin::class])->group(function () {
     // Redirect /admin to dashboard
@@ -79,7 +81,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', \App\Http\Middleware
 // Panti (recipient) pages
 Route::prefix('panti')->name('panti.')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () { return view('panti.dashboard.index'); })->name('dashboard');
-    Route::get('/wishlist', function () { return view('panti.wishlist.index'); })->name('wishlist');
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+    Route::post('/wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
+    Route::put('/wishlist/{id}', [WishlistController::class, 'update'])->name('wishlist.update');
+    Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
     Route::get('/donasi-masuk', function () { return view('panti.donasi-masuk.index'); })->name('donasi-masuk');
     Route::get('/food-rescue', function () { return view('panti.food-rescue.index'); })->name('food-rescue');
     Route::get('/laporan', function () { return view('panti.laporan.index'); })->name('laporan');
@@ -87,3 +92,7 @@ Route::prefix('panti')->name('panti.')->middleware(['auth'])->group(function () 
     Route::post('/profil', [ProfileController::class, 'update'])->name('profil.update');
     Route::get('/pengaturan', function () { return view('panti.pengaturan.index'); })->name('pengaturan');
 });
+
+// Donor profile page
+Route::get('/donor-profile', [Donor\ProfileController::class, 'index'])->name('donor-profile')->middleware('auth');
+Route::post('/donor-profile', [Donor\ProfileController::class, 'update'])->name('donor-profile.update')->middleware('auth');

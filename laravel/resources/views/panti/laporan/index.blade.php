@@ -55,6 +55,7 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <ul class="profile-menu" id="profileMenu">
+                            <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Kembali Ke Halaman Utama</a></li>
                             <li><a href="{{ route('panti.profil') }}"><i class="fas fa-building"></i> Profil Panti</a></li>
                             <li><a href="{{ route('panti.pengaturan') }}"><i class="fas fa-cog"></i> Pengaturan</a></li>
                             <li>

@@ -14,7 +14,7 @@
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
                     <img src="{{ asset('assets/raih asa logo.png') }}" alt="RaihAsa Logo" height="40" class="me-2">
                     <span>RaihAsa</span>
                 </a>
@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/index.html">Beranda</a>
+                            <a class="nav-link" href="{{ route('home') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/index.html#about">Tentang</a>
@@ -52,6 +52,10 @@
                                 <li><a class="dropdown-item" href="{{ route('home') }}">Beranda</a></li>
                                 <li><a class="dropdown-item" href="{{ route('my-donations') }}">Kontribusiku</a></li>                                @if((Auth::user()->is_admin ?? false) || (Auth::user()->email === 'admin@example.com'))
                                     <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                @else
+                                    @if(Auth::check() && \Illuminate\Support\Facades\DB::table('panti_asuhan')->where('user_id', Auth::id())->exists())
+                                        <li><a class="dropdown-item" href="{{ route('panti.dashboard') }}">Dashboard Panti</a></li>
+                                    @endif
                                 @endif                                <li>
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                         @csrf
@@ -85,176 +89,58 @@
         <div class="container">
             <div class="wishlist-categories">
                 <div class="category-tabs">
-                    <button class="category-btn active" data-category="all">Semua</button>
-                    <button class="category-btn" data-category="mendesak">Mendesak</button>
-                    <button class="category-btn" data-category="rutin">Rutin</button>
-                    <button class="category-btn" data-category="pendidikan">Pendidikan</button>
-                    <button class="category-btn" data-category="kesehatan">Kesehatan</button>
+                    <a href="{{ route('wishlist') }}" class="category-btn {{ !request('urgensi') && !request('kategori') ? 'active' : '' }}">Semua</a>
+                    <a href="{{ route('wishlist', ['urgensi' => 'high']) }}" class="category-btn {{ request('urgensi') === 'high' ? 'active' : '' }}">Mendesak</a>
+                    <a href="{{ route('wishlist', ['urgensi' => 'medium']) }}" class="category-btn {{ request('urgensi') === 'medium' ? 'active' : '' }}">Rutin</a>
+                    <a href="{{ route('wishlist', ['kategori' => 'Pendidikan']) }}" class="category-btn {{ request('kategori') === 'Pendidikan' ? 'active' : '' }}">Pendidikan</a>
+                    <a href="{{ route('wishlist', ['kategori' => 'Kesehatan']) }}" class="category-btn {{ request('kategori') === 'Kesehatan' ? 'active' : '' }}">Kesehatan</a>
                 </div>
                 
                 <div class="wishlist-grid">
-                    <div class="wishlist-card urgent" data-category="mendesak">
+                    @forelse($wishlists as $wishlist)
+                    <div class="wishlist-card {{ $wishlist->urgensi === 'high' ? 'urgent' : 'routine' }}">
                         <div class="wishlist-image">
-                            <img src="{{ asset('assets/susu bayi.jpg') }}" alt="Susu Formula">
+                            @if($wishlist->image)
+                                <img src="{{ asset('storage/' . $wishlist->image) }}" alt="{{ $wishlist->nama_barang }}" style="object-fit: cover; width: 100%; height: 200px;">
+                            @else
+                                <img src="https://via.placeholder.com/300x200?text={{ urlencode($wishlist->nama_barang) }}" alt="{{ $wishlist->nama_barang }}">
+                            @endif
                         </div>
                         <div class="wishlist-content">
                             <div class="wishlist-header">
-                                <h4>Susu Formula Bayi</h4>
-                                <div class="wishlist-urgency urgent">
-                                    <i class="fas fa-exclamation-triangle"></i> Mendesak
+                                <h4>{{ $wishlist->nama_barang }}</h4>
+                                <div class="wishlist-urgency {{ $wishlist->urgensi === 'high' ? 'urgent' : ($wishlist->urgensi === 'medium' ? 'routine' : '') }}">
+                                    <i class="fas {{ $wishlist->urgensi === 'high' ? 'fa-exclamation-triangle' : 'fa-sync-alt' }}"></i>
+                                    {{ $wishlist->urgensi === 'high' ? 'Mendesak' : ($wishlist->urgensi === 'medium' ? 'Rutin' : 'Rendah') }}
                                 </div>
                             </div>
                             <div class="wishlist-meta">
-                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Harapan, Jakarta</span>
-                                <span><i class="fas fa-users"></i> 15 bayi</span>
+                                <span><i class="fas fa-map-marker-alt"></i> {{ $wishlist->panti->nama_panti ?? 'Panti Asuhan' }}, {{ $wishlist->panti->kota ?? 'Lokasi' }}</span>
+                                <span><i class="fas fa-box"></i> {{ $wishlist->jumlah }} unit</span>
                             </div>
                             <div class="wishlist-details">
-                                <p><strong>Jumlah:</strong> 20 kaleng</p>
-                                <p><strong>Keterangan:</strong> Stok susu formula untuk bayi 0-6 bulan sudah hampir habis</p>
-                                <p><strong>Penerima:</strong> Panti Asuhan Harapan</p>
+                                <p><strong>Kategori:</strong> {{ $wishlist->kategori }}</p>
+                                <p><strong>Jumlah Dibutuhkan:</strong> {{ $wishlist->jumlah }}</p>
+                                <p><strong>Penerima:</strong> {{ $wishlist->panti->nama_panti ?? 'Panti Asuhan' }}</p>
                             </div>
                             <div class="wishlist-actions">
                                 <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
-                                <button class="btn btn-outline-primary btn-sm">Detail</button>
+                                <button class="btn btn-outline-primary btn-sm" onclick="showDetail({{ $wishlist->id_wishlist }})">Detail</button>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="wishlist-card urgent" data-category="kesehatan">
-                        <div class="wishlist-image">
-                            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Obat-obatan">
-                        </div>
-                        <div class="wishlist-content">
-                            <div class="wishlist-header">
-                                <h4>Obat-obatan Dasar</h4>
-                                <div class="wishlist-urgency urgent">
-                                    <i class="fas fa-exclamation-triangle"></i> Mendesak
-                                </div>
-                            </div>
-                            <div class="wishlist-meta">
-                                <span><i class="fas fa-map-marker-alt"></i> Panti Jompo Bahagia, Depok</span>
-                                <span><i class="fas fa-users"></i> 30 lansia</span>
-                            </div>
-                            <div class="wishlist-details">
-                                <p><strong>Jumlah:</strong> Paracetamol, vitamin, antiseptik</p>
-                                <p><strong>Keterangan:</strong> Kebutuhan obat-obatan dasar untuk lansia dengan penyakit kronis</p>
-                                <p><strong>Penerima:</strong> Panti Jompo Bahagia</p>
-                            </div>
-                            <div class="wishlist-actions">
-                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
-                                <button class="btn btn-outline-primary btn-sm">Detail</button>
-                            </div>
-                        </div>
+                    @empty
+                    <div class="col-12 text-center py-5">
+                        <p class="text-muted">Tidak ada wishlist yang tersedia pada kategori ini.</p>
                     </div>
-                    
-                    <div class="wishlist-card routine" data-category="rutin">
-                        <div class="wishlist-image">
-                            <img src="{{ asset('assets/beras.webp') }}" alt="Beras">
-                        </div>
-                        <div class="wishlist-content">
-                            <div class="wishlist-header">
-                                <h4>Beras</h4>
-                                <div class="wishlist-urgency routine">
-                                    <i class="fas fa-sync-alt"></i> Rutin
-                                </div>
-                            </div>
-                            <div class="wishlist-meta">
-                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Ceria, Bogor</span>
-                                <span><i class="fas fa-users"></i> 50 anak</span>
-                            </div>
-                            <div class="wishlist-details">
-                                <p><strong>Jumlah:</strong> 50 kg per bulan</p>
-                                <p><strong>Keterangan:</strong> Kebutuhan beras untuk konsumsi sehari-hari anak panti</p>
-                                <p><strong>Penerima:</strong> Panti Asuhan Ceria</p>
-                            </div>
-                            <div class="wishlist-actions">
-                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
-                                <button class="btn btn-outline-primary btn-sm">Detail</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="wishlist-card routine" data-category="pendidikan">
-                        <div class="wishlist-image">
-                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Buku Tulis">
-                        </div>
-                        <div class="wishlist-content">
-                            <div class="wishlist-header">
-                                <h4>Buku Tulis dan Alat Tulis</h4>
-                                <div class="wishlist-urgency routine">
-                                    <i class="fas fa-sync-alt"></i> Rutin
-                                </div>
-                            </div>
-                            <div class="wishlist-meta">
-                                <span><i class="fas fa-map-marker-alt"></i> Rumah Belajar Cemerlang, Tangerang</span>
-                                <span><i class="fas fa-users"></i> 100 anak</span>
-                            </div>
-                            <div class="wishlist-details">
-                                <p><strong>Jumlah:</strong> 100 buku tulis, pensil, penggaris</p>
-                                <p><strong>Keterangan:</strong> Kebutuhan alat tulis untuk tahun ajaran baru</p>
-                                <p><strong>Penerima:</strong> Rumah Belajar Cemerlang</p>
-                            </div>
-                            <div class="wishlist-actions">
-                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
-                                <button class="btn btn-outline-primary btn-sm">Detail</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="wishlist-card urgent" data-category="mendesak">
-                        <div class="wishlist-image">
-                            <img src="{{ asset('assets/makanan bayi.png') }}" alt="Makanan Bayi">
-                        </div>
-                        <div class="wishlist-content">
-                            <div class="wishlist-header">
-                                <h4>Makanan Bayi</h4>
-                                <div class="wishlist-urgency urgent">
-                                    <i class="fas fa-exclamation-triangle"></i> Mendesak
-                                </div>
-                            </div>
-                            <div class="wishlist-meta">
-                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Kasih, Bekasi</span>
-                                <span><i class="fas fa-users"></i> 20 bayi</span>
-                            </div>
-                            <div class="wishlist-details">
-                                <p><strong>Jumlah:</strong> Bubur bayi, puree buah</p>
-                                <p><strong>Keterangan:</strong> Kebutuhan makanan bayi untuk usia 6-12 bulan</p>
-                                <p><strong>Penerima:</strong> Panti Asuhan Kasih</p>
-                            </div>
-                            <div class="wishlist-actions">
-                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
-                                <button class="btn btn-outline-primary btn-sm">Detail</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="wishlist-card routine" data-category="kesehatan">
-                        <div class="wishlist-image">
-                            <img src="{{ asset('assets/Popok nayi.jpg') }}" alt="Popok Bayi">
-                        </div>
-                        <div class="wishlist-content">
-                            <div class="wishlist-header">
-                                <h4>Popok Bayi</h4>
-                                <div class="wishlist-urgency routine">
-                                    <i class="fas fa-sync-alt"></i> Rutin
-                                </div>
-                            </div>
-                            <div class="wishlist-meta">
-                                <span><i class="fas fa-map-marker-alt"></i> Panti Asuhan Harapan, Jakarta</span>
-                                <span><i class="fas fa-users"></i> 15 bayi</span>
-                            </div>
-                            <div class="wishlist-details">
-                                <p><strong>Jumlah:</strong> 5 pack per minggu</p>
-                                <p><strong>Keterangan:</strong> Kebutuhan popok bayi untuk usia 0-2 tahun</p>
-                                <p><strong>Penerima:</strong> Panti Asuhan Harapan</p>
-                            </div>
-                            <div class="wishlist-actions">
-                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
-                                <button class="btn btn-outline-primary btn-sm">Detail</button>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
+
+                @if($wishlists->hasPages())
+                <div class="d-flex justify-content-center mt-5">
+                    {{ $wishlists->links() }}
+                </div>
+                @endif
             </div>
         </div>
     </section>
@@ -324,7 +210,7 @@
                 <div class="row">
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <div class="footer-about">
-                            <a href="index.html" class="footer-logo">
+                            <a href="{{ route('home') }}" class="footer-logo">
                                 <img src="{{ asset('assets/raih asa logo.png') }}" alt="RaihAsa Logo" class="footer-logo-img me-2">
                                 <span>RaihAsa</span>
                             </a>
@@ -341,7 +227,7 @@
                         <div class="footer-links">
                             <h4>Link Cepat</h4>
                             <ul>
-                                <li><a href="index.html">Beranda</a></li>
+                                <li><a href="{{ route('home') }}">Beranda</a></li>
                                 <li><a href="#about">Tentang Kami</a></li>
                                 <li><a href="#donate">Cara Kerja</a></li>
                                 <li><a href="pages/food-rescue.html">Food Rescue</a></li>
