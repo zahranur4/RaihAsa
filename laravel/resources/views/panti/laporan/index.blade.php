@@ -19,10 +19,10 @@
                 <h3>{{ $currentPanti->nama ?? 'Panti Asuhan Harapan' }}</h3>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="dashboard-panti.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="penerima-wishlist.html"><i class="fas fa-list-alt"></i> Wishlist Saya</a></li>
-                <li><a href="penerima-donasi-masuk.html"><i class="fas fa-hand-holding-heart"></i> Donasi Masuk</a></li>
-                <li><a href="penerima-food-rescue.html"><i class="fas fa-utensils"></i> Food Rescue</a></li>
+                <li><a href="{{ route('panti.dashboard') }}" class="{{ request()->routeIs('panti.dashboard') ? 'active' : '' }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{{ route('panti.wishlist') }}" class="{{ request()->routeIs('panti.wishlist') ? 'active' : '' }}"><i class="fas fa-list-alt"></i> Wishlist Saya</a></li>
+                <li><a href="{{ route('panti.donasi-masuk') }}" class="{{ request()->routeIs('panti.donasi-masuk') ? 'active' : '' }}"><i class="fas fa-hand-holding-heart"></i> Donasi Masuk</a></li>
+                <li><a href="{{ route('panti.food-rescue') }}" class="{{ request()->routeIs('panti.food-rescue') ? 'active' : '' }}"><i class="fas fa-utensils"></i> Food Rescue</a></li>
                 <li><a href="{{ route('panti.laporan') }}" class="{{ request()->routeIs('panti.laporan') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i> Laporan</a></li>
                 <li><a href="{{ route('panti.profil') }}" class="{{ request()->routeIs('panti.profil') ? 'active' : '' }}"><i class="fas fa-building"></i> Profil Panti</a></li>
                 <li><a href="{{ route('panti.pengaturan') }}" class="{{ request()->routeIs('panti.pengaturan') ? 'active' : '' }}"><i class="fas fa-cog"></i> Pengaturan</a></li>

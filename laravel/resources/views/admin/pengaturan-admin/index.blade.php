@@ -49,12 +49,13 @@
                         <span class="badge">3</span>
                     </div>
                     <div class="admin-profile">
-                        <div class="profile-info" onclick="toggleProfileMenu()">
+                        <div class="profile-info" onclick="event.stopPropagation(); toggleProfileMenu()">
                             <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama ?? Auth::user()->email) }}&background=0D6EFD&color=fff" alt="Admin">
                             <span>{{ Auth::user()->nama ?? Auth::user()->email }}</span>
                             <i class="fas fa-chevron-down"></i>
                         </div>
-                        <ul class="profile-menu" id="profileMenu">
+                        <ul class="profile-menu" id="profileMenu" onclick="event.stopPropagation();">
+                            <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Kembali ke Halaman Utama</a></li>
                             <li><a href="#"><i class="fas fa-user"></i> Profil Saya</a></li>
                             <li><a href="{{ route('admin.settings.index') }}"><i class="fas fa-cog"></i> Pengaturan</a></li>
                             <li>

@@ -66,6 +66,26 @@
             </header>
 
             <div class="content">
+                @if($pantiProfile)
+                    @if($pantiProfile->status_verif === 'verified')
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>Status: Terverifikasi</strong>
+                        <br>
+                        Panti Asuhan Anda telah diverifikasi dan dapat menerima donasi.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    @else
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Status: {{ $pantiProfile->status_verif === 'pending' ? 'Belum Terverifikasi' : ($pantiProfile->status_verif === 'rejected' ? 'Ditolak' : 'Belum Terverifikasi') }}</strong>
+                        <br>
+                        Panti Asuhan Anda belum diverifikasi dan tidak dapat menerima donasi. Silakan tunggu admin memverifikasi akun Anda terlebih dahulu.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    @endif
+                @endif
+                
                 <!-- Welcome Banner -->
                 <div class="welcome-banner" style="background: linear-gradient(135deg, var(--primary-color), #0030a1); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px;">
                     <h2>Selamat Datang kembali, Admin {{ $currentPanti->nama ?? 'Panti Asuhan Harapan' }}!</h2>

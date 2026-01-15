@@ -49,12 +49,13 @@
                         <span class="badge">3</span>
                     </div>
                     <div class="admin-profile">
-                        <div class="profile-info" onclick="toggleProfileMenu()">
+                        <div class="profile-info" onclick="event.stopPropagation(); toggleProfileMenu()">
                             <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama ?? Auth::user()->email) }}&background=0D6EFD&color=fff" alt="Admin">
                             <span>{{ Auth::user()->nama ?? Auth::user()->email }}</span>
                             <i class="fas fa-chevron-down"></i>
                         </div>
-                        <ul class="profile-menu" id="profileMenu">
+                        <ul class="profile-menu" id="profileMenu" onclick="event.stopPropagation();">
+                            <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Kembali ke Halaman Utama</a></li>
                             <li><a href="#"><i class="fas fa-user"></i> Profil Saya</a></li>
                             <li><a href="{{ route('admin.settings.index') }}"><i class="fas fa-cog"></i> Pengaturan</a></li>
                             <li>
@@ -183,10 +184,10 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nama Panti/Lembaga</th>
-                                        <th>Jenis</th>
+                                        <th>Nama Panti</th>
+                                        <th>Email User</th>
                                         <th>Kota</th>
-                                        <th>Kapasitas</th>
+                                        <th>No. SK</th>
                                         <th>Status Verifikasi</th>
                                         <th>Tanggal Daftar</th>
                                         <th>Aksi</th>
@@ -195,22 +196,21 @@
                                 <tbody>
                                     @forelse($pantis as $panti)
                                     @php
-                                        $statusRaw = $panti->status_verifikasi_legalitas ?? ($panti->status_verif ?? 'pending');
-                                        $statusMap = $statusRaw === 'terverifikasi' ? 'verified' : ($statusRaw === 'ditolak' ? 'rejected' : 'pending');
+                                        $statusMap = $panti->status_verif;
                                         $badgeClass = $statusMap === 'verified' ? 'success' : ($statusMap === 'rejected' ? 'danger' : 'warning');
-                                        $city = \Illuminate\Support\Str::before($panti->alamat ?? '', ',');
+                                        $statusLabel = $statusMap === 'verified' ? 'Terverifikasi' : ($statusMap === 'rejected' ? 'Ditolak' : 'Menunggu');
                                     @endphp
                                     <tr>
-                                        <td>#{{ $panti->id }}</td>
-                                        <td>{{ $panti->nama }}</td>
-                                        <td><span class="badge bg-secondary">{{ ucfirst($panti->jenis ?? 'panti') }}</span></td>
-                                        <td>{{ $city ?: ($panti->alamat ?? '-') }}</td>
-                                        <td>{{ $panti->kapasitas ? $panti->kapasitas : '-' }}</td>
-                                        <td><span class="badge bg-{{ $badgeClass }}">{{ ucfirst($statusMap) }}</span></td>
+                                        <td>#{{ $panti->id_panti }}</td>
+                                        <td>{{ $panti->nama_panti }}</td>
+                                        <td>{{ $panti->user->email ?? '-' }}</td>
+                                        <td>{{ $panti->kota }}</td>
+                                        <td>{{ $panti->no_sk ?? '-' }}</td>
+                                        <td><span class="badge bg-{{ $badgeClass }}">{{ $statusLabel }}</span></td>
                                         <td>{{ \Carbon\Carbon::parse($panti->created_at)->format('d M Y') }}</td>
                                         <td>
-                                            <a href="{{ route('admin.recipients.edit', $panti->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                                            <form action="{{ route('admin.recipients.destroy', $panti->id) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus panti ini?');">
+                                            <a href="{{ route('admin.recipients.edit', $panti->id_panti) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                            <form action="{{ route('admin.recipients.destroy', $panti->id_panti) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus panti ini?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>

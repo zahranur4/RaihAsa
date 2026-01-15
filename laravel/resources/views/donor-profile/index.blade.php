@@ -28,19 +28,19 @@
                             <a class="nav-link" href="{{ route('home') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/index.html#about">Tentang</a>
+                            <a class="nav-link" href="{{ route('home') }}#about">Tentang</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/pages/food-rescue.html">Food Rescue</a>
+                            <a class="nav-link" href="{{ route('food-rescue') }}">Food Rescue</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/pages/wishlist.html">Wishlist</a>
+                            <a class="nav-link" href="{{ route('wishlist') }}">Wishlist</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/pages/volunteer.html">Relawan</a>
+                            <a class="nav-link" href="{{ route('volunteer') }}">Relawan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="/pages/my-donations.html">Kontribusiku</a>
+                            <a class="nav-link" href="{{ route('my-donations') }}">Kontribusiku</a>
                         </li>
                     </ul>
                     <div class="d-flex">
@@ -429,14 +429,33 @@
                                     <div class="tab-content" id="settingsTabContent">
                                         <!-- Account Settings -->
                                         <div class="tab-pane fade show active" id="account-settings" role="tabpanel" aria-labelledby="account-settings-tab">
-                                            <form>
+                                            <form method="POST" action="{{ route('donor-profile.update') }}">
+                                                @csrf
+                                                @if(session('success'))
+                                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                        {{ session('success') }}
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                    </div>
+                                                @endif
+                                                @if($errors->any())
+                                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                        <ul class="mb-0">
+                                                            @foreach($errors->all() as $error)
+                                                                <li>{{ $error }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                    </div>
+                                                @endif
                                                 <div class="mb-3">
                                                     <label for="settings-email" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="settings-email" value="christiancc@email.com">
+                                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="settings-email" name="email" value="{{ old('email', $user->email) }}">
+                                                    @error('email')<span class="invalid-feedback">{{ $message }}</span>@enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="settings-phone" class="form-label">Nomor Telepon</label>
-                                                    <input type="tel" class="form-control" id="settings-phone" value="08123456789">
+                                                    <input type="tel" class="form-control @error('nomor_telepon') is-invalid @enderror" id="settings-phone" name="nomor_telepon" value="{{ old('nomor_telepon', $user->nomor_telepon ?? '') }}">
+                                                    @error('nomor_telepon')<span class="invalid-feedback">{{ $message }}</span>@enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="settings-language" class="form-label">Bahasa</label>
@@ -446,28 +465,54 @@
                                                     </select>
                                                 </div>
                                                 <div class="d-grid">
-                                                    <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                                 </div>
                                             </form>
                                         </div>
                                         
                                         <!-- Password Settings -->
                                         <div class="tab-pane fade" id="password-settings" role="tabpanel" aria-labelledby="password-settings-tab">
-                                            <form>
+                                            <form method="POST" action="{{ route('donor-profile.update-password') }}">
+                                                @csrf
+                                                @if(session('password-success'))
+                                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                        {{ session('password-success') }}
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                    </div>
+                                                @endif
+                                                @if($errors->has('current_password') || $errors->has('password') || $errors->has('password_confirmation'))
+                                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                        <ul class="mb-0">
+                                                            @if($errors->has('current_password'))
+                                                                <li>{{ $errors->first('current_password') }}</li>
+                                                            @endif
+                                                            @if($errors->has('password'))
+                                                                <li>{{ $errors->first('password') }}</li>
+                                                            @endif
+                                                            @if($errors->has('password_confirmation'))
+                                                                <li>{{ $errors->first('password_confirmation') }}</li>
+                                                            @endif
+                                                        </ul>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                    </div>
+                                                @endif
                                                 <div class="mb-3">
                                                     <label for="current-password" class="form-label">Password Saat Ini</label>
-                                                    <input type="password" class="form-control" id="current-password">
+                                                    <input type="password" class="form-control @error('current_password') is-invalid @enderror" id="current-password" name="current_password">
+                                                    @error('current_password')<span class="invalid-feedback">{{ $message }}</span>@enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="new-password" class="form-label">Password Baru</label>
-                                                    <input type="password" class="form-control" id="new-password">
+                                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="new-password" name="password">
+                                                    @error('password')<span class="invalid-feedback">{{ $message }}</span>@enderror
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="confirm-password" class="form-label">Konfirmasi Password Baru</label>
-                                                    <input type="password" class="form-control" id="confirm-password">
+                                                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="confirm-password" name="password_confirmation">
+                                                    @error('password_confirmation')<span class="invalid-feedback">{{ $message }}</span>@enderror
                                                 </div>
                                                 <div class="d-grid">
-                                                    <button type="button" class="btn btn-primary">Ubah Password</button>
+                                                    <button type="submit" class="btn btn-primary">Ubah Password</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -698,10 +743,10 @@
                             <h4>Link Cepat</h4>
                             <ul>
                                 <li><a href="{{ route('home') }}">Beranda</a></li>
-                                <li><a href="#about">Tentang Kami</a></li>
-                                <li><a href="#donate">Cara Kerja</a></li>
-                                <li><a href="pages/food-rescue.html">Food Rescue</a></li>
-                                <li><a href="#contact">Kontak</a></li>
+                                <li><a href="{{ route('home') }}#about">Tentang Kami</a></li>
+                                <li><a href="{{ route('home') }}#donate">Cara Kerja</a></li>
+                                <li><a href="{{ route('food-rescue') }}">Food Rescue</a></li>
+                                <li><a href="{{ route('home') }}#contact">Kontak</a></li>
                             </ul>
                         </div>
                     </div>
@@ -709,10 +754,10 @@
                         <div class="footer-links">
                             <h4>Donor</h4>
                             <ul>
-                                <li><a href="#donate">Cara Donasi</a></li>
-                                <li><a href="#donate">Jenis Makanan</a></li>
-                                <li><a href="#donate">Panduan Pengemasan</a></li>
-                                <li><a href="#donate">FAQ Donor</a></li>
+                                <li><a href="{{ route('home') }}#donate">Cara Donasi</a></li>
+                                <li><a href="{{ route('home') }}#donate">Jenis Makanan</a></li>
+                                <li><a href="{{ route('home') }}#donate">Panduan Pengemasan</a></li>
+                                <li><a href="{{ route('home') }}#donate">FAQ Donor</a></li>
                             </ul>
                         </div>
                     </div>
@@ -720,10 +765,10 @@
                         <div class="footer-links">
                             <h4>Relawan</h4>
                             <ul>
-                                <li><a href="#volunteer-section">Cara Mendaftar</a></li>
-                                <li><a href="pages/volunteer.html">Kegiatan</a></li>
-                                <li><a href="pages/volunteer.html">Kategori</a></li>
-                                <li><a href="pages/volunteer.html">FAQ Relawan</a></li>
+                                <li><a href="{{ route('volunteer') }}">Cara Mendaftar</a></li>
+                                <li><a href="{{ route('volunteer') }}">Kegiatan</a></li>
+                                <li><a href="{{ route('volunteer') }}">Kategori</a></li>
+                                <li><a href="{{ route('volunteer') }}">FAQ Relawan</a></li>
                             </ul>
                         </div>
                     </div>

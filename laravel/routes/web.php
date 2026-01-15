@@ -96,3 +96,5 @@ Route::prefix('panti')->name('panti.')->middleware(['auth'])->group(function () 
 // Donor profile page
 Route::get('/donor-profile', [Donor\ProfileController::class, 'index'])->name('donor-profile')->middleware('auth');
 Route::post('/donor-profile', [Donor\ProfileController::class, 'update'])->name('donor-profile.update')->middleware('auth');
+Route::post('/donor-profile/password', [Donor\ProfileController::class, 'updatePassword'])->name('donor-profile.update-password')->middleware('auth');
+

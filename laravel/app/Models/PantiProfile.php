@@ -24,4 +24,12 @@ class PantiProfile extends Model
         'no_sk',
         'status_verif',
     ];
+
+    /**
+     * Get the user that owns the panti profile.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

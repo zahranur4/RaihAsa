@@ -64,6 +64,8 @@ class RegisterController extends Controller
             'email' => 'required|email|unique:users,email',
             'kata_sandi' => ['required','string','min:8','regex:/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/'],
             'nomor_telepon' => ['nullable','string','regex:/^(\\+62|62|0)8[0-9]{7,11}$/'],
+            'alamat' => 'nullable|string',
+            'kota' => 'nullable|string|max:100',
             'kode_pos' => 'nullable|string|max:10',
             'kapasitas' => 'nullable|integer|min:1',
             'nomor_legalitas' => 'nullable|string',
@@ -146,11 +148,21 @@ class RegisterController extends Controller
 
         DB::table('panti_asuhan')->insert($data);
 
+        // Create PantiProfile record with pending status
+        \App\Models\PantiProfile::create([
+            'id_user' => $userId,
+            'nama_panti' => $request->nama,
+            'alamat_lengkap' => $request->alamat ?? 'Alamat belum diisi',
+            'kota' => $request->kota ?? 'Kota belum diisi',
+            'no_sk' => $request->nomor_legalitas ?? null,
+            'status_verif' => 'pending', // New panti accounts are unverified by default
+        ]);
+
         // Auto-login as the newly created user
         $user = \App\Models\User::find($userId);
         Auth::login($user);
 
         // Redirect recipient (panti) to their dashboard
-        return redirect()->route('panti.dashboard')->with('success', 'Pendaftaran panti/lembaga berhasil. Selamat datang! Silakan lengkapi profil Anda untuk verifikasi.');
+        return redirect()->route('panti.dashboard')->with('success', 'Pendaftaran panti/lembaga berhasil. Selamat datang! Akun Anda menunggu verifikasi dari admin.');
     }
 }

@@ -18,6 +18,12 @@ class DatabaseSeeder extends Seeder
         // Gunakan seeder khusus untuk membuat akun dummy user & admin
         $this->call(UserAdminSeeder::class);
 
+        // Seed panti profiles
+        $this->call(PantiSeeder::class);
+
+        // Seed wishlist items
+        $this->call(WishlistSeeder::class);
+
         // Jika ingin menambah user tambahan: User::factory(10)->create();
     }
 }

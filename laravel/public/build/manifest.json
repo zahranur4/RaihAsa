@@ -9,7 +9,7 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-Bl-evvym.css",
+    "file": "assets/app-9IWtbwRC.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -24,6 +24,15 @@
     "name": "components",
     "names": [
       "components.css"
+    ]
+  },
+  "resources/css/donor-profile.css": {
+    "file": "assets/donor-profile-C1qusQh4.css",
+    "src": "resources/css/donor-profile.css",
+    "isEntry": true,
+    "name": "donor-profile",
+    "names": [
+      "donor-profile.css"
     ]
   },
   "resources/css/food-rescue.css": {
@@ -90,7 +99,7 @@
     ]
   },
   "resources/css/wishlist.css": {
-    "file": "assets/wishlist-B_eBCGui.css",
+    "file": "assets/wishlist-C1G6VDCy.css",
     "src": "resources/css/wishlist.css",
     "isEntry": true,
     "name": "wishlist",
@@ -99,7 +108,7 @@
     ]
   },
   "resources/js/admin-dashboard.js": {
-    "file": "assets/admin-dashboard-Be6JTrcU.js",
+    "file": "assets/admin-dashboard-DaT97dWv.js",
     "name": "admin-dashboard",
     "src": "resources/js/admin-dashboard.js",
     "isEntry": true

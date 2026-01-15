@@ -49,17 +49,19 @@
                                 {{ Auth::user()->nama ?? Auth::user()->email }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
-                                <li><a class="dropdown-item" href="{{ route('home') }}">Beranda</a></li>
-                                <li><a class="dropdown-item" href="{{ route('my-donations') }}">Kontribusiku</a></li>                                @if((Auth::user()->is_admin ?? false) || (Auth::user()->email === 'admin@example.com'))
-                                    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                @if((Auth::user()->is_admin ?? false) || (Auth::user()->email === 'admin@example.com'))
+                                    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class="fas fa-user me-2"></i> Dashboard</a></li>
+                                @elseif(Auth::check() && (\Illuminate\Support\Facades\DB::table('panti_asuhan')->where('user_id', Auth::id())->exists() || \Illuminate\Support\Facades\DB::table('panti_profiles')->where('id_user', Auth::id())->exists()))
+                                    <li><a class="dropdown-item" href="{{ route('panti.dashboard') }}"><i class="fas fa-user me-2"></i> Dashboard Panti</a></li>
                                 @else
-                                    @if(Auth::check() && \Illuminate\Support\Facades\DB::table('panti_asuhan')->where('user_id', Auth::id())->exists())
-                                        <li><a class="dropdown-item" href="{{ route('panti.dashboard') }}">Dashboard Panti</a></li>
-                                    @endif
-                                @endif                                <li>
+                                    <li><a class="dropdown-item" href="{{ route('donor-profile') }}"><i class="fas fa-user me-2"></i> Profil Saya</a></li>
+                                @endif
+                                <li><a class="dropdown-item" href="{{ route('donor-profile') }}#settings"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                         @csrf
-                                        <button type="submit" class="dropdown-item">Keluar</button>
+                                        <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt me-2"></i> Keluar</button>
                                     </form>
                                 </li>
                             </ul>
@@ -90,15 +92,15 @@
             <div class="wishlist-categories">
                 <div class="category-tabs">
                     <a href="{{ route('wishlist') }}" class="category-btn {{ !request('urgensi') && !request('kategori') ? 'active' : '' }}">Semua</a>
-                    <a href="{{ route('wishlist', ['urgensi' => 'high']) }}" class="category-btn {{ request('urgensi') === 'high' ? 'active' : '' }}">Mendesak</a>
-                    <a href="{{ route('wishlist', ['urgensi' => 'medium']) }}" class="category-btn {{ request('urgensi') === 'medium' ? 'active' : '' }}">Rutin</a>
+                    <a href="{{ route('wishlist', ['urgensi' => 'mendesak']) }}" class="category-btn {{ request('urgensi') === 'mendesak' ? 'active' : '' }}">Mendesak</a>
+                    <a href="{{ route('wishlist', ['urgensi' => 'rutin']) }}" class="category-btn {{ request('urgensi') === 'rutin' ? 'active' : '' }}">Rutin</a>
                     <a href="{{ route('wishlist', ['kategori' => 'Pendidikan']) }}" class="category-btn {{ request('kategori') === 'Pendidikan' ? 'active' : '' }}">Pendidikan</a>
                     <a href="{{ route('wishlist', ['kategori' => 'Kesehatan']) }}" class="category-btn {{ request('kategori') === 'Kesehatan' ? 'active' : '' }}">Kesehatan</a>
                 </div>
                 
                 <div class="wishlist-grid">
                     @forelse($wishlists as $wishlist)
-                    <div class="wishlist-card {{ $wishlist->urgensi === 'high' ? 'urgent' : 'routine' }}">
+                    <div class="wishlist-card {{ $wishlist->urgensi === 'mendesak' ? 'urgent' : 'routine' }}">
                         <div class="wishlist-image">
                             @if($wishlist->image)
                                 <img src="{{ asset('storage/' . $wishlist->image) }}" alt="{{ $wishlist->nama_barang }}" style="object-fit: cover; width: 100%; height: 200px;">
@@ -109,9 +111,9 @@
                         <div class="wishlist-content">
                             <div class="wishlist-header">
                                 <h4>{{ $wishlist->nama_barang }}</h4>
-                                <div class="wishlist-urgency {{ $wishlist->urgensi === 'high' ? 'urgent' : ($wishlist->urgensi === 'medium' ? 'routine' : '') }}">
-                                    <i class="fas {{ $wishlist->urgensi === 'high' ? 'fa-exclamation-triangle' : 'fa-sync-alt' }}"></i>
-                                    {{ $wishlist->urgensi === 'high' ? 'Mendesak' : ($wishlist->urgensi === 'medium' ? 'Rutin' : 'Rendah') }}
+                                <div class="wishlist-urgency {{ $wishlist->urgensi === 'mendesak' ? 'urgent' : ($wishlist->urgensi === 'kesehatan' ? 'urgent' : 'routine') }}">
+                                    <i class="fas {{ $wishlist->urgensi === 'mendesak' || $wishlist->urgensi === 'kesehatan' ? 'fa-exclamation-triangle' : 'fa-sync-alt' }}"></i>
+                                    {{ ucfirst($wishlist->urgensi) }}
                                 </div>
                             </div>
                             <div class="wishlist-meta">
@@ -137,8 +139,10 @@
                 </div>
 
                 @if($wishlists->hasPages())
-                <div class="d-flex justify-content-center mt-5">
-                    {{ $wishlists->links() }}
+                <div class="pagination-wrapper mt-5 mb-4">
+                    <div class="d-flex justify-content-center">
+                        {{ $wishlists->onEachSide(1)->links('pagination::bootstrap-5') }}
+                    </div>
                 </div>
                 @endif
             </div>

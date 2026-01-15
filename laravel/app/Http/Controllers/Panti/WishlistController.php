@@ -34,11 +34,16 @@ class WishlistController extends Controller
             return redirect()->back()->with('error', 'Profil panti tidak ditemukan.');
         }
 
+        // Check if panti is verified
+        if ($panti->status_verif !== 'verified') {
+            return redirect()->back()->with('error', 'Akun panti Anda belum terverifikasi. Silakan tunggu admin memverifikasi akun Anda terlebih dahulu.');
+        }
+
         $data = $request->validate([
             'nama_barang' => 'required|string|max:255',
             'kategori' => 'required|string|max:100',
             'jumlah' => 'required|integer|min:1',
-            'urgensi' => 'required|in:low,medium,high',
+            'urgensi' => 'required|in:mendesak,rutin,pendidikan,kesehatan',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -64,6 +69,11 @@ class WishlistController extends Controller
             return redirect()->back()->with('error', 'Profil panti tidak ditemukan.');
         }
 
+        // Check if panti is verified
+        if ($panti->status_verif !== 'verified') {
+            return redirect()->back()->with('error', 'Akun panti Anda belum terverifikasi. Silakan tunggu admin memverifikasi akun Anda terlebih dahulu.');
+        }
+
         $wishlist = Wishlist::where('id_wishlist', $id)
             ->where('id_panti', $panti->id_panti)
             ->firstOrFail();
@@ -72,7 +82,7 @@ class WishlistController extends Controller
             'nama_barang' => 'required|string|max:255',
             'kategori' => 'required|string|max:100',
             'jumlah' => 'required|integer|min:1',
-            'urgensi' => 'required|in:low,medium,high',
+            'urgensi' => 'required|in:mendesak,rutin,pendidikan,kesehatan',
             'status' => 'required|in:open,fulfilled,cancelled',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -99,6 +109,11 @@ class WishlistController extends Controller
         $panti = $this->getOrSyncPantiProfile();
         if (!$panti) {
             return redirect()->back()->with('error', 'Profil panti tidak ditemukan.');
+        }
+
+        // Check if panti is verified
+        if ($panti->status_verif !== 'verified') {
+            return redirect()->back()->with('error', 'Akun panti Anda belum terverifikasi. Silakan tunggu admin memverifikasi akun Anda terlebih dahulu.');
         }
 
         $wishlist = Wishlist::where('id_wishlist', $id)

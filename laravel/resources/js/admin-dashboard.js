@@ -6,6 +6,9 @@ function toggleProfileMenu() {
     }
 }
 
+// Expose to window for inline onclick handlers
+window.toggleProfileMenu = toggleProfileMenu;
+
 // Fungsi global untuk aksi tabel
 function viewDetail(id) {
     alert('Melihat detail untuk: ' + id);
