@@ -17,12 +17,8 @@ class WishlistController extends Controller
 
         // Filter by urgensi if requested
         $urgensi = $request->query('urgensi');
-        if ($urgensi === 'high') {
-            $query->where('urgensi', 'high');
-        } elseif ($urgensi === 'medium') {
-            $query->where('urgensi', 'medium');
-        } elseif ($urgensi === 'low') {
-            $query->where('urgensi', 'low');
+        if (in_array($urgensi, ['mendesak', 'rutin', 'pendidikan', 'kesehatan'])) {
+            $query->where('urgensi', $urgensi);
         }
 
         // Filter by kategori if requested

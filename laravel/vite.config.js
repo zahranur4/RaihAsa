@@ -17,6 +17,7 @@ export default defineConfig({
                 'resources/css/wishlist.css',
                 'resources/css/admin-dashboard.css',
                 'resources/css/penerima-dashboard.css',
+                'resources/css/donor-profile.css',
 
                 'resources/js/app.js',
                 'resources/js/main.js',

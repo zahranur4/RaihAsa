@@ -1,0 +1,725 @@
+/*============================================
+  DONOR PROFILE STYLES
+============================================*/
+:root {
+    /*========== Colors ==========*/
+    --primary-color: #000957; /* Indigo */
+    --primary-dark: #3949AB; /* Darker Indigo */
+    --secondary-color: #26A69A; /* Teal */
+    --accent-color: #FF7043; /* Deep Orange */
+    --danger-color: #EF5350; /* Red */
+    --warning-color: #FFCA28; /* Amber */
+    --success-color: #66BB6A; /* Green */
+    --info-color: #29B6F6; /* Blue */
+    --light-color: #F5F7FA; /* Very light gray */
+    --dark-color: #263238; /* Dark blue gray */
+    --text-primary: #263238; /* Dark blue gray */
+    --text-secondary: #546E7A; /* Blue gray */
+    --text-light: #90A4AE; /* Light blue gray */
+    --white: #FFFFFF;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --radius: 0.75rem;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-primary);
+    background-color: var(--light-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-top: 76px; /* Sesuai dengan header yang fixed */
+}
+
+/*============================================
+  HEADER STYLES
+============================================*/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+}
+
+.navbar {
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-color) !important;
+}
+
+.navbar-brand i {
+    color: var(--accent-color);
+}
+
+.navbar-nav .nav-link {
+    color: var(--text-primary) !important;
+    font-weight: 500;
+    margin: 0 0.5rem;
+    position: relative;
+    transition: var(--transition);
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    width: 100%;
+}
+
+/*============================================
+  PAGE HEADER
+============================================*/
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    padding: 4rem 0;
+    text-align: center;
+    margin-top: 76px;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.page-header .lead {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/*============================================
+  PROFILE SECTION
+============================================*/
+.profile-section {
+    padding: 80px 0;
+    min-height: calc(100vh - 200px);
+}
+
+/*============================================
+  PROFILE SIDEBAR
+============================================*/
+.profile-sidebar {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 25px;
+    position: sticky;
+    top: 100px;
+    transition: var(--transition);
+}
+
+.profile-sidebar:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.profile-avatar {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-avatar img {
+    border: 4px solid var(--light-color);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.profile-avatar img:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.profile-avatar h4 {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 15px 0 5px;
+}
+
+.profile-avatar p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.profile-nav {
+    margin-top: 30px;
+}
+
+.profile-nav .nav-link {
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    padding: 12px 15px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.profile-nav .nav-link:hover,
+.profile-nav .nav-link.active {
+    background-color: rgba(0, 9, 87, 0.1);
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.profile-nav .nav-link i {
+    width: 20px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+/*============================================
+  CARDS
+============================================*/
+.card {
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 25px;
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+}
+
+.card-header {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--light-color);
+    padding: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/*============================================
+  FORMS
+============================================*/
+.form-control, .form-select {
+    border: 1px solid #e0e0e0;
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 9, 87, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+/*============================================
+  BUTTONS
+============================================*/
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/*============================================
+  VERIFICATION STATUS
+============================================*/
+.verification-status {
+    padding: 15px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.verification-status.verified {
+    background-color: rgba(102, 187, 106, 0.1);
+    border-left: 4px solid var(--success-color);
+}
+
+.verification-status.pending {
+    background-color: rgba(255, 202, 40, 0.1);
+    border-left: 4px solid var(--warning-color);
+}
+
+.verification-status.rejected {
+    background-color: rgba(239, 83, 80, 0.1);
+    border-left: 4px solid var(--danger-color);
+}
+
+.verification-status .d-flex {
+    align-items: center;
+}
+
+.verification-status i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+/*============================================
+  TABLES
+============================================*/
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    border-bottom: 2px solid var(--light-color);
+    color: var(--text-primary);
+    font-weight: 600;
+    padding: 15px 12px;
+}
+
+.table td {
+    vertical-align: middle;
+    border-color: var(--light-color);
+    padding: 12px;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 9, 87, 0.05);
+}
+
+/*============================================
+  BADGES
+============================================*/
+.badge {
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/*============================================
+  MODALS
+============================================*/
+.modal-content {
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: var(--radius) var(--radius) 0 0;
+    border-bottom: none;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--light-color);
+    padding: 15px 20px;
+}
+
+/*============================================
+  STATISTICS
+============================================*/
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--light-color);
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 10px;
+    margin-right: 15px;
+    transition: var(--transition);
+}
+
+.stat-item:hover .stat-icon {
+    background-color: var(--primary-dark);
+}
+
+.stat-info h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+}
+
+.stat-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/*============================================
+  TABS
+============================================*/
+.nav-tabs {
+    border-bottom: 2px solid var(--light-color);
+    margin-bottom: 20px;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 10px 15px;
+    margin-bottom: -2px;
+    transition: var(--transition);
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--primary-color);
+    border-bottom: 2px solid rgba(0, 9, 87, 0.3);
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--primary-color);
+    background-color: transparent;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/*============================================
+  PAGINATION
+============================================*/
+.pagination .page-link {
+    border: none;
+    color: var(--text-primary);
+    margin: 0 3px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.pagination .page-link:hover {
+    background-color: rgba(0, 9, 87, 0.1);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/*============================================
+  FOOTER
+============================================*/
+.footer {
+    background-color: var(--dark-color);
+    color: var(--white);
+    padding: 60px 0 20px;
+    margin-top: 80px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+}
+
+.footer-logo:hover {
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.footer-logo-img {
+    height: 45px;
+    width: auto;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.footer-logo:hover .footer-logo-img {
+    transform: scale(1.05);
+}
+
+.footer-about p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.footer-links h4, .footer-contact h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.footer-links h4::after, .footer-contact h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+.footer-links ul, .footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li, .footer-contact ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-links ul li a:hover {
+    color: var(--white);
+    padding-left: 5px;
+}
+
+.footer-contact ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-contact ul li i {
+    color: var(--accent-color);
+    margin-top: 0.25rem;
+}
+
+.footer-bottom {
+    margin-top: 3rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.footer-bottom-links {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-bottom-links li {
+    margin-left: 20px;
+}
+
+.footer-bottom-links li a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-bottom-links li a:hover {
+    color: var(--white);
+}
+
+/*============================================
+  ANIMASI SAAT SCROLL
+============================================*/
+
+/* Kondisi awal elemen sebelum animasi */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px); /* Bergerak dari bawah ke atas */
+    transition: all 0.8s ease; /* Durasi dan jenis transisi */
+}
+
+/* Kondisi akhir elemen saat animasi berjalan */
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efek stagger untuk kartu agar tidak muncul bersamaan */
+.profile-sidebar.animate-on-scroll { transition-delay: 0.1s; }
+.card.animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.card.animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.card.animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.stat-item.animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.stat-item.animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.stat-item.animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.stat-item.animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+
+/*============================================
+  RESPONSIVE
+============================================*/
+@media (max-width: 992px) {
+    .profile-sidebar {
+        position: relative;
+        top: 0;
+        margin-bottom: 30px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .page-header .lead {
+        font-size: 1rem;
+    }
+    
+    .footer-bottom-links {
+        justify-content: center;
+        margin-top: 1rem;
+    }
+    
+    .footer-bottom .row {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-header {
+        padding: 15px;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+    
+    .stat-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .stat-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .profile-nav .nav-link {
+        padding: 10px 12px;
+    }
+    
+    .profile-nav .nav-link i {
+        margin-right: 8px;
+    }
+}

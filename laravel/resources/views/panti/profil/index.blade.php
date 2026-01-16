@@ -71,19 +71,48 @@
             </header>
 
             <div class="content">
-                <div class="card mb-3" style="background-color: rgba(40, 167, 69, 0.1); border-left: 4px solid var(--success-color);">
-                    <div class="card-body py-3">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-check-circle fa-2x text-success me-3"></i>
-                            <div>
-                                <h6 class="mb-0 fw-bold">Status: Terverifikasi</h6>
-                                <p class="mb-0 small">Panti Asuhan Anda telah diverifikasi dan dapat menerima donasi.</p>
+                @if($pantiProfile)
+                    @if($pantiProfile->status_verif === 'verified')
+                    <div class="card mb-3" style="background-color: rgba(40, 167, 69, 0.1); border-left: 4px solid var(--success-color);">
+                        <div class="card-body py-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle fa-2x text-success me-3"></i>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Status: Terverifikasi</h6>
+                                    <p class="mb-0 small">Panti Asuhan Anda telah diverifikasi dan dapat menerima donasi.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    @elseif($pantiProfile->status_verif === 'pending')
+                    <div class="card mb-3" style="background-color: rgba(255, 193, 7, 0.1); border-left: 4px solid #ffc107;">
+                        <div class="card-body py-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-clock fa-2x text-warning me-3"></i>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Status: Menunggu Verifikasi</h6>
+                                    <p class="mb-0 small">Akun panti Anda sedang dalam proses verifikasi oleh admin. Anda belum dapat menerima donasi.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @elseif($pantiProfile->status_verif === 'rejected')
+                    <div class="card mb-3" style="background-color: rgba(220, 53, 69, 0.1); border-left: 4px solid #dc3545;">
+                        <div class="card-body py-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-times-circle fa-2x text-danger me-3"></i>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Status: Ditolak</h6>
+                                    <p class="mb-0 small">Verifikasi akun panti Anda ditolak. Silakan hubungi admin untuk informasi lebih lanjut.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                @endif
 
-                <div class="content-header mb-3"> <div class="page-info">
+                <div class="content-header mb-3">
+                    <div class="page-info">
                         <h2 class="mb-1" style="font-size: 1.5rem;">Informasi {{ $currentPanti->nama ?? 'Panti Asuhan Harapan' }}</h2>
                         <p class="mb-0 text-muted">Kelola data profil dan legalitas panti Anda</p>
                     </div>

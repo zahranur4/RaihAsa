@@ -50,17 +50,19 @@
                                 {{ Auth::user()->nama ?? Auth::user()->email }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
-                                <li><a class="dropdown-item" href="{{ route('home') }}">Beranda</a></li>
-                                <li><a class="dropdown-item" href="{{ route('my-donations') }}">Kontribusiku</a></li>                                @if((Auth::user()->is_admin ?? false) || (Auth::user()->email === 'admin@example.com'))
-                                    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                @if((Auth::user()->is_admin ?? false) || (Auth::user()->email === 'admin@example.com'))
+                                    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class="fas fa-user me-2"></i> Dashboard</a></li>
+                                @elseif(Auth::check() && (\Illuminate\Support\Facades\DB::table('panti_asuhan')->where('user_id', Auth::id())->exists() || \Illuminate\Support\Facades\DB::table('panti_profiles')->where('id_user', Auth::id())->exists()))
+                                    <li><a class="dropdown-item" href="{{ route('panti.dashboard') }}"><i class="fas fa-user me-2"></i> Dashboard Panti</a></li>
                                 @else
-                                    @if(Auth::check() && \Illuminate\Support\Facades\DB::table('panti_asuhan')->where('user_id', Auth::id())->exists())
-                                        <li><a class="dropdown-item" href="{{ route('panti.dashboard') }}">Dashboard Panti</a></li>
-                                    @endif
-                                @endif                                <li>
+                                    <li><a class="dropdown-item" href="{{ route('donor-profile') }}"><i class="fas fa-user me-2"></i> Profil Saya</a></li>
+                                @endif
+                                <li><a class="dropdown-item" href="{{ route('donor-profile') }}#settings"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                         @csrf
-                                        <button type="submit" class="dropdown-item">Keluar</button>
+                                        <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt me-2"></i> Keluar</button>
                                     </form>
                                 </li>
                             </ul>

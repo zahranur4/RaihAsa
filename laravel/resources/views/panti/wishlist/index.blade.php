@@ -66,6 +66,26 @@
             </header>
 
             <div class="content">
+                @if($panti)
+                    @if($panti->status_verif === 'verified')
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>Status: Terverifikasi</strong>
+                        <br>
+                        Panti Asuhan Anda telah diverifikasi dan dapat menerima donasi.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    @else
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Status: {{ $panti->status_verif === 'pending' ? 'Belum Terverifikasi' : ($panti->status_verif === 'rejected' ? 'Ditolak' : 'Belum Terverifikasi') }}</strong>
+                        <br>
+                        Panti Asuhan Anda belum diverifikasi dan tidak dapat menerima donasi. Silakan tunggu admin memverifikasi akun Anda terlebih dahulu.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    @endif
+                @endif
+                
                 @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
@@ -99,7 +119,7 @@
                         <p>Kelola kebutuhan panti dan pantau perkembangan donasi</p>
                     </div>
                     <div class="page-actions">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWishlistModal">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWishlistModal" {{ $panti && $panti->status_verif !== 'verified' ? 'disabled' : '' }}>
                             <i class="fas fa-plus-circle"></i> Tambah Wishlist
                         </button>
                     </div>
@@ -186,12 +206,13 @@
                                         <td>
                                             @php
                                                 $urgencyLabels = [
-                                                    'low' => 'Rendah',
-                                                    'medium' => 'Sedang',
-                                                    'high' => 'Tinggi'
+                                                    'mendesak' => 'Mendesak',
+                                                    'rutin' => 'Rutin',
+                                                    'pendidikan' => 'Pendidikan',
+                                                    'kesehatan' => 'Kesehatan'
                                                 ];
                                             @endphp
-                                            <span class="badge {{ $wishlist->urgensi === 'high' ? 'bg-danger' : ($wishlist->urgensi === 'medium' ? 'bg-warning' : 'bg-secondary') }}">
+                                            <span class="badge {{ $wishlist->urgensi === 'mendesak' ? 'bg-danger' : ($wishlist->urgensi === 'kesehatan' ? 'bg-danger' : ($wishlist->urgensi === 'pendidikan' ? 'bg-warning' : 'bg-secondary')) }}">
                                                 {{ $urgencyLabels[$wishlist->urgensi] ?? $wishlist->urgensi }}
                                             </span>
                                         </td>
@@ -271,9 +292,10 @@
                             <div class="col-md-6 mb-3">
                                 <label for="urgensi" class="form-label">Urgensi</label>
                                 <select class="form-select" id="urgensi" name="urgensi" required>
-                                    <option value="low">Rendah</option>
-                                    <option value="medium" selected>Sedang</option>
-                                    <option value="high">Tinggi</option>
+                                    <option value="mendesak">Mendesak</option>
+                                    <option value="rutin" selected>Rutin</option>
+                                    <option value="pendidikan">Pendidikan</option>
+                                    <option value="kesehatan">Kesehatan</option>
                                 </select>
                             </div>
                         </div>
@@ -362,9 +384,10 @@
                             <div class="col-md-6 mb-3">
                                 <label for="edit_urgensi{{ $wishlist->id_wishlist }}" class="form-label">Urgensi</label>
                                 <select class="form-select" id="edit_urgensi{{ $wishlist->id_wishlist }}" name="urgensi" required>
-                                    <option value="low" {{ $wishlist->urgensi == 'low' ? 'selected' : '' }}>Rendah</option>
-                                    <option value="medium" {{ $wishlist->urgensi == 'medium' ? 'selected' : '' }}>Sedang</option>
-                                    <option value="high" {{ $wishlist->urgensi == 'high' ? 'selected' : '' }}>Tinggi</option>
+                                    <option value="mendesak" {{ $wishlist->urgensi == 'mendesak' ? 'selected' : '' }}>Mendesak</option>
+                                    <option value="rutin" {{ $wishlist->urgensi == 'rutin' ? 'selected' : '' }}>Rutin</option>
+                                    <option value="pendidikan" {{ $wishlist->urgensi == 'pendidikan' ? 'selected' : '' }}>Pendidikan</option>
+                                    <option value="kesehatan" {{ $wishlist->urgensi == 'kesehatan' ? 'selected' : '' }}>Kesehatan</option>
                                 </select>
                             </div>
                         </div>
