@@ -1,0 +1,186 @@
+/*============== HEADER & NAVBAR ===============*/
+.header {
+    position: sticky; 
+    top: 0;
+    z-index: 1000;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+    border-bottom: 1px solid #eee;
+}
+
+.navbar {
+    padding: 1rem 0; 
+}
+
+.navbar-brand img {
+    max-height: 40px;
+}
+
+.user-profile-nav {
+    min-width: 200px; 
+}
+
+.user-profile-nav .text-end {
+    line-height: 1.2;
+}
+
+/*============== STATS CARDS ===============*/
+.donation-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.donation-stat-card {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: var(--transition);
+  border: 1px solid #eee;
+}
+
+.donation-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.donation-stat-icon {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(0, 9, 87, 0.1); /* Warna sesuai Logo #000957 tapi transparan */
+  color: #000957; /* Warna Logo */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.donation-stat-icon i {
+  font-size: 1.5rem;
+}
+
+.donation-stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000957; /* Warna Logo */
+  margin-bottom: 0.25rem;
+}
+
+.donation-stat-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/*============== FILTER TABS ===============*/
+.donations-tabs {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--light-color);
+  gap: 2rem;
+}
+
+.donation-tab {
+  padding: 0.75rem 0;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.donation-tab.active {
+  color: #000957; /* Warna Logo saat aktif */
+  border-bottom-color: #000957;
+}
+
+.donation-tab:hover {
+  color: #000957;
+}
+
+/*============== DONATION CARDS ===============*/
+.donations-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.donation-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+  transition: all 0.3s;
+}
+
+.donation-card:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.donation-thumb {
+  width: 120px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.donation-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px 0 0 12px;
+}
+
+.donation-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/*============== IMPACT TRACKING (SIDEBAR) ===============*/
+.impact-metrics {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 1.5rem;
+}
+
+/*============== DROPDOWN ANIMATION ===============*/
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/*============== RESPONSIVE ===============*/
+@media (max-width: 576px) {
+  .donation-card .d-flex {
+    flex-direction: column;
+  }
+  
+  .donation-thumb {
+    width: 100%;
+    height: 150px;
+  }
+  
+  .donation-thumb img {
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .donations-tabs {
+      justify-content: flex-start;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-bottom: 0.5rem;
+  }
+}
