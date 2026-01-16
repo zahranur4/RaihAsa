@@ -920,22 +920,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Login Prompt if not logged in -->
-                    <div id="volunteerLoginPrompt" class="auth-prompt">
-                        <div class="auth-icon">
-                            <i class="fas fa-user-plus"></i>
+                    @auth
+                    <!-- For logged-in users - redirect to registration form -->
+                    <div id="volunteerInfo">
+                        <div class="auth-icon mb-3">
+                            <i class="fas fa-hands-helping fa-3x text-primary"></i>
                         </div>
-                        <h4>Daftar Akun Diperlukan</h4>
-                        <p>Anda harus memiliki akun RaihAsa terlebih dahulu untuk mendaftar sebagai relawan</p>
-                        <div class="auth-buttons">
-                            <a href="{{ route('register') }}" class="btn btn-primary w-100">Daftar Akun</a>
-                            <a href="{{ route('login') }}" class="btn btn-outline-primary w-100 mt-2">Masuk</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Volunteer info if logged in (hidden by default) -->
-                    <div id="volunteerInfo" style="display: none;">
-                        <div class="volunteer-steps">
+                        <h4 class="text-center mb-3">Daftar sebagai Relawan</h4>
+                        <p class="text-center">Anda akan diarahkan ke formulir pendaftaran relawan untuk melengkapi data Anda.</p>
+                        
+                        <div class="volunteer-steps mt-4">
                             <div class="step active">
                                 <div class="step-number">1</div>
                                 <div class="step-title">Lengkapi Data</div>
@@ -955,16 +949,32 @@
                         </div>
                         
                         <div class="text-center mt-4">
-                            <p>Setelah akun Anda terverifikasi, Anda dapat mengakses:</p>
-                            <ul class="volunteer-features">
-                                <li><i class="fas fa-check-circle"></i> Form pendaftaran relawan lengkap</li>
-                                <li><i class="fas fa-check-circle"></i> Smart matching untuk kegiatan yang sesuai</li>
-                                <li><i class="fas fa-check-circle"></i> Manajemen kegiatan dan partisipasi</li>
-                                <li><i class="fas fa-check-circle"></i> Grup WhatsApp untuk koordinasi</li>
+                            <p class="small text-muted mb-3">Setelah akun Anda terverifikasi, Anda dapat mengakses:</p>
+                            <ul class="volunteer-features text-start">
+                                <li><i class="fas fa-check-circle text-success"></i> Smart matching untuk kegiatan yang sesuai</li>
+                                <li><i class="fas fa-check-circle text-success"></i> Manajemen kegiatan dan partisipasi</li>
+                                <li><i class="fas fa-check-circle text-success"></i> Grup WhatsApp untuk koordinasi</li>
+                                <li><i class="fas fa-check-circle text-success"></i> Sertifikat relawan digital</li>
                             </ul>
-                            <button type="button" class="btn btn-primary mt-3" data-bs-dismiss="modal">Mengerti</button>
+                            <a href="{{ route('volunteer.register') }}" class="btn btn-primary w-100 mt-3">
+                                <i class="fas fa-arrow-right me-2"></i> Lanjut ke Pendaftaran
+                            </a>
                         </div>
                     </div>
+                    @else
+                    <!-- Login Prompt if not logged in -->
+                    <div id="volunteerLoginPrompt" class="auth-prompt">
+                        <div class="auth-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h4>Daftar Akun Diperlukan</h4>
+                        <p>Anda harus memiliki akun RaihAsa terlebih dahulu untuk mendaftar sebagai relawan</p>
+                        <div class="auth-buttons">
+                            <a href="{{ route('register') }}" class="btn btn-primary w-100">Daftar Akun</a>
+                            <a href="{{ route('login') }}" class="btn btn-outline-primary w-100 mt-2">Masuk</a>
+                        </div>
+                    </div>
+                    @endauth
                 </div>
             </div>
         </div>

@@ -21,4 +21,12 @@ class RelawanProfile extends Model
         'skill',
         'status_verif',
     ];
+
+    /**
+     * Get the user that owns the volunteer profile
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

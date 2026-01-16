@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\VolunteerRegistrationController;
+use App\Http\Controllers\FoodRescueController;
 use App\Http\Controllers\Donor;
 use App\Http\Controllers\Panti;
 
@@ -18,15 +20,21 @@ Route::post('/register/donor', [RegisterController::class, 'registerDonor'])->na
 Route::post('/register/recipient', [RegisterController::class, 'registerRecipient'])->name('register.recipient');
 Route::view('/volunteer', 'volunteer.index')->name('volunteer');
 Route::get('/wishlist', [\App\Http\Controllers\WishlistController::class, 'index'])->name('wishlist');
-Route::view('/food-rescue', 'food-rescue.index')->name('food-rescue');
+Route::get('/food-rescue', [FoodRescueController::class, 'index'])->name('food-rescue');
+Route::post('/food-rescue/{id}/claim', [FoodRescueController::class, 'claim'])->name('food-rescue.claim')->middleware('auth');
+Route::get('/food-rescue/{id}', [FoodRescueController::class, 'detail'])->name('food-rescue.detail');
 Route::view('/my-donations', 'my-donations.index')->name('my-donations');
 // Register-panti page removed; redirect to the main register selection
 Route::redirect('/register-panti', '/register');
 
+// Volunteer registration routes
+Route::get('/volunteer/register', [VolunteerRegistrationController::class, 'create'])->name('volunteer.register');
+Route::post('/volunteer/register', [VolunteerRegistrationController::class, 'store'])->name('volunteer.register.store');
+Route::get('/volunteer/status', [VolunteerRegistrationController::class, 'status'])->name('volunteer.status');
+
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DonasiController;
-use App\Http\Controllers\Admin\FoodRescueController;
 use App\Http\Controllers\Admin\PantiProfileController;
 use App\Http\Controllers\Admin\RelawanProfileController;
 use App\Http\Controllers\Panti\ProfileController;

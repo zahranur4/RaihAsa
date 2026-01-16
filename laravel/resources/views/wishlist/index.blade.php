@@ -105,7 +105,9 @@
                             @if($wishlist->image)
                                 <img src="{{ asset('storage/' . $wishlist->image) }}" alt="{{ $wishlist->nama_barang }}" style="object-fit: cover; width: 100%; height: 200px;">
                             @else
-                                <img src="https://via.placeholder.com/300x200?text={{ urlencode($wishlist->nama_barang) }}" alt="{{ $wishlist->nama_barang }}">
+                                <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                                    <i class="fas fa-hands-helping"></i>
+                                </div>
                             @endif
                         </div>
                         <div class="wishlist-content">

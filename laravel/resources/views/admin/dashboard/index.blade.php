@@ -59,9 +59,9 @@
                             <li><a href="#"><i class="fas fa-user"></i> Profil Saya</a></li>
                             <li><a href="{{ route('admin.settings.index') }}"><i class="fas fa-cog"></i> Pengaturan</a></li>
                             <li>
-                                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                                <form action="{{ route('logout') }}" method="POST" class="logout-form">
                                     @csrf
-                                    <button type="submit" class="btn btn-link p-0 m-0 align-baseline"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+                                    <button type="submit" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Keluar</button>
                                 </form>
                             </li>
                         </ul>

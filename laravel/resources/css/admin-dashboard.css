@@ -405,6 +405,34 @@ body {
     background-color: var(--secondary-color);
 }
 
+/* Logout form and button styling */
+.logout-form {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.logout-btn:hover {
+    background-color: var(--secondary-color);
+}
+
 /* ... di akhir file ... */
 .content-header {
     display: flex;

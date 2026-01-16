@@ -101,168 +101,51 @@
 </div>
 
 <div class="rescue-grid">
-<div class="rescue-card critical" data-category="makanan-basah">
+@forelse($foods as $food)
+<div class="rescue-card {{ $food->urgency }}" data-category="{{ $food->category }}">
 <div class="rescue-image">
-<img src="{{ asset('assets/nasi kotak.webp') }}" alt="Nasi Kotak">
+<div style="width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+<i class="fas fa-utensils"></i>
+</div>
 </div>
 <div class="rescue-content">
 <div class="rescue-header">
-<h4>Nasi Kotak Sisa Catering</h4>
-<div class="rescue-urgency critical">
+<h4>{{ $food->nama_makanan }}</h4>
+<div class="rescue-urgency {{ $food->urgency }}">
+@if($food->urgency === 'critical')
 <i class="fas fa-exclamation-circle"></i> Kritis
-</div>
-</div>
-<div class="rescue-meta">
-<span><i class="fas fa-map-marker-alt"></i> 3.2 km</span>
-<span><i class="fas fa-clock"></i> 2 jam lagi</span>
-</div>
-<div class="rescue-details">
-<p><strong>Jumlah:</strong> 50 porsi</p>
-<p><strong>Kadaluwarsa:</strong> Hari ini, 18:00</p>
-<p><strong>Donor:</strong> Catering Sejahtera</p>
-</div>
-<div class="rescue-actions">
-<button class="btn btn-primary btn-sm">Klaim Donasi</button>
-<button class="btn btn-outline-primary btn-sm">Detail</button>
-</div>
-</div>
-</div>
-
-<div class="rescue-card urgent" data-category="sayur">
-<div class="rescue-image">
-<img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Sayuran Segar">
-</div>
-<div class="rescue-content">
-<div class="rescue-header">
-<h4>Sayuran Segar Restoran</h4>
-<div class="rescue-urgency urgent">
+@elseif($food->urgency === 'urgent')
 <i class="fas fa-exclamation-triangle"></i> Mendesak
-</div>
-</div>
-<div class="rescue-meta">
-<span><i class="fas fa-map-marker-alt"></i> 5.7 km</span>
-<span><i class="fas fa-clock"></i> 5 jam lagi</span>
-</div>
-<div class="rescue-details">
-<p><strong>Jumlah:</strong> 20 kg</p>
-<p><strong>Kadaluwarsa:</strong> Besok, 10:00</p>
-<p><strong>Donor:</strong> Restoran Lezat</p>
-</div>
-<div class="rescue-actions">
-<button class="btn btn-primary btn-sm">Klaim Donasi</button>
-<button class="btn btn-outline-primary btn-sm">Detail</button>
-</div>
-</div>
-</div>
-
-<div class="rescue-card urgent" data-category="makanan-kering">
-<div class="rescue-image">
-<img src="{{ asset('assets/roti.jpg') }}" alt="Roti">
-</div>
-<div class="rescue-content">
-<div class="rescue-header">
-<h4>Roti Sisa Toko Roti</h4>
-<div class="rescue-urgency urgent">
-<i class="fas fa-exclamation-triangle"></i> Mendesak
-</div>
-</div>
-<div class="rescue-meta">
-<span><i class="fas fa-map-marker-alt"></i> 2.1 km</span>
-<span><i class="fas fa-clock"></i> 8 jam lagi</span>
-</div>
-<div class="rescue-details">
-<p><strong>Jumlah:</strong> 30 bungkus</p>
-<p><strong>Kadaluwarsa:</strong> Besok, 12:00</p>
-<p><strong>Donor:</strong> Toko Roti Enak</p>
-</div>
-<div class="rescue-actions">
-<button class="btn btn-primary btn-sm">Klaim Donasi</button>
-<button class="btn btn-outline-primary btn-sm">Detail</button>
-</div>
-</div>
-</div>
-
-<div class="rescue-card normal" data-category="buah">
-<div class="rescue-image">
-<img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80" alt="Buah">
-</div>
-<div class="rescue-content">
-<div class="rescue-header">
-<h4>Buah Segar Pasar</h4>
-<div class="rescue-urgency normal">
+@else
 <i class="fas fa-info-circle"></i> Normal
+@endif
 </div>
 </div>
 <div class="rescue-meta">
-<span><i class="fas fa-map-marker-alt"></i> 4.5 km</span>
-<span><i class="fas fa-clock"></i> 1 hari lagi</span>
+<span><i class="fas fa-map-marker-alt"></i> {{ number_format($food->distance, 1) }} km</span>
+<span><i class="fas fa-clock"></i> {{ (int)$food->hours_remaining }} jam lagi</span>
 </div>
 <div class="rescue-details">
-<p><strong>Jumlah:</strong> 15 kg</p>
-<p><strong>Kadaluwarsa:</strong> 2 hari lagi</p>
-<p><strong>Donor:</strong> Pasar Segar</p>
+<p><strong>Jumlah:</strong> {{ $food->porsi }} porsi</p>
+<p><strong>Kadaluwarsa:</strong> {{ \Carbon\Carbon::parse($food->waktu_expired)->format('d M Y, H:i') }}</p>
+<p><strong>Donor:</strong> {{ $food->donor_name }}</p>
 </div>
 <div class="rescue-actions">
-<button class="btn btn-primary btn-sm">Klaim Donasi</button>
-<button class="btn btn-outline-primary btn-sm">Detail</button>
+<form action="{{ route('food-rescue.claim', $food->id_food) }}" method="POST" style="display: inline;">
+@csrf
+<button class="btn btn-primary btn-sm" onclick="return confirm('Klaim makanan ini?')">Klaim Donasi</button>
+</form>
+<a href="{{ route('food-rescue.detail', $food->id_food) }}" class="btn btn-outline-primary btn-sm">Detail</a>
 </div>
 </div>
 </div>
-
-<div class="rescue-card normal" data-category="minuman">
-<div class="rescue-image">
-<img src="{{ asset('assets/minuman kemasan.jpeg') }}" alt="Minuman">
-</div>
-<div class="rescue-content">
-<div class="rescue-header">
-<h4>Minuman Kemasan</h4>
-<div class="rescue-urgency normal">
-<i class="fas fa-info-circle"></i> Normal
+@empty
+<div class="col-12">
+<div class="alert alert-info text-center">
+<i class="fas fa-inbox"></i> Tidak ada makanan yang tersedia saat ini
 </div>
 </div>
-<div class="rescue-meta">
-<span><i class="fas fa-map-marker-alt"></i> 6.8 km</span>
-<span><i class="fas fa-clock"></i> 2 hari lagi</span>
-</div>
-<div class="rescue-details">
-<p><strong>Jumlah:</strong> 100 botol</p>
-<p><strong>Kadaluwarsa:</strong> 3 hari lagi</p>
-<p><strong>Donor:</strong> Distributor Minuman</p>
-</div>
-<div class="rescue-actions">
-<button class="btn btn-primary btn-sm">Klaim Donasi</button>
-<button class="btn btn-outline-primary btn-sm">Detail</button>
-</div>
-</div>
-</div>
-
-<div class="rescue-card normal" data-category="makanan-basah">
-<div class="rescue-image">
-<img src="{{ asset('assets/masakan restoran.jpeg') }}" alt="Makanan Masak">
-</div>
-<div class="rescue-content">
-<div class="rescue-header">
-<h4>Makanan Masak Restoran</h4>
-<div class="rescue-urgency normal">
-<i class="fas fa-info-circle"></i> Normal
-</div>
-</div>
-<div class="rescue-meta">
-<span><i class="fas fa-map-marker-alt"></i> 3.8 km</span>
-<span><i class="fas fa-clock"></i> 1 hari lagi</span>
-</div>
-<div class="rescue-details">
-<p><strong>Jumlah:</strong> 20 porsi</p>
-<p><strong>Kadaluwarsa:</strong> Besok, 08:00</p>
-<p><strong>Donor:</strong> Restoran Keluarga</p>
-</div>
-<div class="rescue-actions">
-<button class="btn btn-primary btn-sm">Klaim Donasi</button>
-<button class="btn btn-outline-primary btn-sm">Detail</button>
-</div>
-</div>
-</div>
-</div>
+@endforelse
 </div>
 </div>
 </section>

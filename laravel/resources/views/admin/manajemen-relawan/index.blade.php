@@ -59,9 +59,9 @@
                             <li><a href="#"><i class="fas fa-user"></i> Profil Saya</a></li>
                             <li><a href="{{ route('admin.settings.index') }}"><i class="fas fa-cog"></i> Pengaturan</a></li>
                             <li>
-                                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                                <form action="{{ route('logout') }}" method="POST" class="logout-form">
                                     @csrf
-                                    <button type="submit" class="btn btn-link p-0 m-0 align-baseline"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+                                    <button type="submit" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Keluar</button>
                                 </form>
                             </li>
                         </ul>
@@ -191,8 +191,8 @@
                                         <td>#{{ $relawan->id_relawan }}</td>
                                         <td><img src="https://ui-avatars.com/api/?name={{ urlencode($relawan->nama_lengkap) }}&background=0D6EFD&color=fff" alt="Volunteer" class="user-avatar"></td>
                                         <td>{{ $relawan->nama_lengkap }}</td>
-                                        <td>-</td>
-                                        <td><span class="badge bg-secondary">{{ Str::limit($relawan->skill, 20) }}</span></td>
+                                        <td>{{ $relawan->user->email ?? '-' }}</td>
+                                        <td><span class="badge bg-secondary">{{ Str::limit($relawan->skill ?? 'Tidak ada', 20) }}</span></td>
                                         <td><span class="badge bg-{{ $relawan->status_verif == 'verified' ? 'success' : ($relawan->status_verif == 'rejected' ? 'danger' : 'warning') }}">{{ ucfirst($relawan->status_verif) }}</span></td>
                                         <td>{{ $relawan->created_at->format('d M Y') }}</td>
                                         <td>
@@ -209,84 +209,6 @@
                                         <td colspan="8" class="text-center">Tidak ada relawan</td>
                                     </tr>
                                     @endforelse
-                                </tbody>
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editVolunteer('V002')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteVolunteer(this, 'V002')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#V003</td>
-                                        <td><img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Volunteer" class="user-avatar"></td>
-                                        <td>Dewi Lestari</td>
-                                        <td>dewi.l@email.com</td>
-                                        <td><span class="badge bg-warning">Pengumpulan</span></td>
-                                        <td><span class="badge bg-warning">Menunggu Verifikasi</span></td>
-                                        <td>5 Feb 2023</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewVolunteerDetail('V003')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editVolunteer('V003')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteVolunteer(this, 'V003')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#V004</td>
-                                        <td><img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Volunteer" class="user-avatar"></td>
-                                        <td>Budi Santoso</td>
-                                        <td>budi.s@email.com</td>
-                                        <td><span class="badge bg-info">Administrasi</span></td>
-                                        <td><span class="badge bg-success">Aktif</span></td>
-                                        <td>12 Feb 2023</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewVolunteerDetail('V004')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editVolunteer('V004')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteVolunteer(this, 'V004')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#V005</td>
-                                        <td><img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Volunteer" class="user-avatar"></td>
-                                        <td>Ratna Sari</td>
-                                        <td>ratna.s@email.com</td>
-                                        <td><span class="badge bg-primary">Edukasi</span></td>
-                                        <td><span class="badge bg-danger">Tidak Aktif</span></td>
-                                        <td>1 Mar 2023</td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewVolunteerDetail('V005')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editVolunteer('V005')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteVolunteer(this, 'V005')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -10,7 +10,7 @@ class RelawanProfileController extends Controller
 {
     public function index()
     {
-        $relawans = RelawanProfile::orderBy('id_relawan','desc')->paginate(20);
+        $relawans = RelawanProfile::with('user')->orderBy('id_relawan','desc')->paginate(20);
         return view('admin.manajemen-relawan.index', compact('relawans'));
     }
 
@@ -35,7 +35,7 @@ class RelawanProfileController extends Controller
 
     public function edit($id)
     {
-        $relawan = RelawanProfile::findOrFail($id);
+        $relawan = RelawanProfile::with('user')->findOrFail($id);
         return view('admin.manajemen-relawan.edit', compact('relawan'));
     }
 
