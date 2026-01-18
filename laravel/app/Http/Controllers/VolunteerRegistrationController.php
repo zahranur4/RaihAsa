@@ -25,7 +25,9 @@ class VolunteerRegistrationController extends Controller
             return redirect()->route('volunteer')->with('info', 'Anda sudah terdaftar sebagai relawan.');
         }
 
-        return view('volunteer.register');
+        $categoryQuotas = $this->buildQuotaSnapshot();
+
+        return view('volunteer.register', compact('categoryQuotas'));
     }
 
     /**
@@ -44,13 +46,23 @@ class VolunteerRegistrationController extends Controller
             'nama_lengkap' => 'required|string|max:255',
             'nik' => 'nullable|string|max:16',
             'skill' => 'nullable|string|max:1000',
+            'kategori' => 'required|string',
         ]);
+
+        if (!$this->isValidCategory($validated['kategori'])) {
+            return redirect()->back()->withErrors(['kategori' => 'Kategori tidak valid.'])->withInput();
+        }
+
+        if (!$this->hasQuota($validated['kategori'])) {
+            return redirect()->back()->withErrors(['kategori' => 'Kuota kategori ini sudah penuh.'])->withInput();
+        }
 
         RelawanProfile::create([
             'id_user' => Auth::id(),
             'nama_lengkap' => $validated['nama_lengkap'],
             'nik' => $validated['nik'],
             'skill' => $validated['skill'],
+            'kategori' => $validated['kategori'],
             'status_verif' => 'pending',
         ]);
 
@@ -68,5 +80,45 @@ class VolunteerRegistrationController extends Controller
             'registered' => $profile ? true : false,
             'status' => $profile ? $profile->status_verif : null,
         ]);
+    }
+
+    private function categories(): array
+    {
+        return [
+            'Edukasi & Literasi',
+            'Kesehatan & Gizi',
+            'Kreatif & Psikososial',
+            'Kemanusiaan & Kebencanaan',
+            'Dukungan Operasional & Lingkungan',
+        ];
+    }
+
+    private function buildQuotaSnapshot(): array
+    {
+        $quotas = [];
+        foreach ($this->categories() as $category) {
+            $accepted = RelawanProfile::where('kategori', $category)
+                ->where('status_verif', 'verified')
+                ->count();
+
+            $remaining = max(0, 20 - $accepted);
+            $quotas[$category] = [
+                'accepted' => $accepted,
+                'remaining' => $remaining,
+                'capacity' => 20,
+            ];
+        }
+        return $quotas;
+    }
+
+    private function hasQuota(string $category): bool
+    {
+        $quota = $this->buildQuotaSnapshot();
+        return isset($quota[$category]) && $quota[$category]['remaining'] > 0;
+    }
+
+    private function isValidCategory(string $category): bool
+    {
+        return in_array($category, $this->categories(), true);
     }
 }

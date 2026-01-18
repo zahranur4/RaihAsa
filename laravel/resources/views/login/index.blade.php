@@ -27,7 +27,7 @@
                             <a class="nav-link" href="{{ route('home') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/index.html#about">Tentang</a>
+                            <a class="nav-link" href="{{ route('home') }}#about">Tentang</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link requires-auth" href="{{ route('food-rescue') }}">Food Rescue</a>

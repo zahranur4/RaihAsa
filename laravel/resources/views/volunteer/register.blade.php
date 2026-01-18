@@ -108,6 +108,19 @@
                                     <small class="text-muted">Ceritakan keahlian atau minat yang bisa Anda kontribusikan</small>
                                 </div>
 
+                                <div class="mb-4">
+                                    <label for="kategori" class="form-label">Pilih Kategori</label>
+                                    <select class="form-select" id="kategori" name="kategori" required>
+                                        <option value="">-- Pilih Kategori --</option>
+                                        @foreach($categoryQuotas as $category => $quota)
+                                            <option value="{{ $category }}" {{ old('kategori') === $category ? 'selected' : '' }}>
+                                                {{ $category }} (Sisa {{ $quota['remaining'] }}/{{ $quota['capacity'] }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <small class="text-muted">Setiap kategori memiliki kuota {{ $categoryQuotas ? array_values($categoryQuotas)[0]['capacity'] : 20 }} relawan.</small>
+                                </div>
+
                                 <div class="alert alert-info">
                                     <i class="fas fa-info-circle me-2"></i>
                                     <strong>Informasi:</strong> Setelah mendaftar, akun Anda akan diverifikasi oleh admin. Anda akan menerima notifikasi setelah verifikasi selesai.

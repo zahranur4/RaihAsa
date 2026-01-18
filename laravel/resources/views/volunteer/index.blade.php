@@ -27,7 +27,7 @@
                             <a class="nav-link" href="{{ route('home') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/index.html#about">Tentang</a>
+                            <a class="nav-link" href="{{ route('home') }}#about">Tentang</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link requires-auth" href="{{ route('food-rescue') }}">Food Rescue</a>
@@ -114,12 +114,21 @@
             </div>
             
             <div class="categories-grid">
+                @php
+                    $quota = $categoryQuotas ?? [];
+                    $capacity = 20;
+                    $getRemaining = function($label) use ($quota, $capacity) {
+                        return $quota[$label]['remaining'] ?? $capacity;
+                    };
+                @endphp
+
                 <div class="category-card">
                     <div class="category-icon">
                         <i class="fas fa-book-open"></i>
                     </div>
                     <h3>Edukasi & Literasi</h3>
                     <p>Mengajar dan meningkatkan literasi masyarakat, terutama anak-anak dan remaja.</p>
+                    <div class="mb-2"><span class="badge bg-primary">Kuota tersisa: {{ $getRemaining('Edukasi & Literasi') }} / 20</span></div>
                     <div class="category-details">
                         <p><strong>Contoh kegiatan:</strong> Mengajar di panti asuhan, membaca buku bersama anak-anak</p>
                         <p><strong>Skill umum:</strong> Kemampuan mengajar, kesabaran, komunikasi</p>
@@ -134,6 +143,7 @@
                     </div>
                     <h3>Kesehatan & Gizi</h3>
                     <p>Membantu penyebaran informasi kesehatan dan gizi yang tepat kepada masyarakat.</p>
+                    <div class="mb-2"><span class="badge bg-primary">Kuota tersisa: {{ $getRemaining('Kesehatan & Gizi') }} / 20</span></div>
                     <div class="category-details">
                         <p><strong>Contoh kegiatan:</strong> Sosialisasi gizi seimbang, kampanye hidup sehat</p>
                         <p><strong>Skill umum:</strong> Pengetahuan gizi, komunikasi, presentasi</p>
@@ -148,6 +158,7 @@
                     </div>
                     <h3>Kreatif & Psikososial</h3>
                     <p>Menggunakan kegiatan kreatif untuk mendukung kesehatan mental dan emosional.</p>
+                    <div class="mb-2"><span class="badge bg-primary">Kuota tersisa: {{ $getRemaining('Kreatif & Psikososial') }} / 20</span></div>
                     <div class="category-details">
                         <p><strong>Contoh kegiatan:</strong> Terapi seni, bermain bersama anak-anak, workshop kreativitas</p>
                         <p><strong>Skill umum:</strong> Kreativitas, empati, kemampuan berinteraksi</p>
@@ -162,6 +173,7 @@
                     </div>
                     <h3>Kemanusiaan & Kebencanaan</h3>
                     <p>Memberikan bantuan kemanusiaan saat terjadi bencana atau kondisi darurat.</p>
+                    <div class="mb-2"><span class="badge bg-primary">Kuota tersisa: {{ $getRemaining('Kemanusiaan & Kebencanaan') }} / 20</span></div>
                     <div class="category-details">
                         <p><strong>Contoh kegiatan:</strong> Penggalangan dana, distribusi bantuan, evakuasi</p>
                         <p><strong>Skill umum:</strong> Ketangguhan fisik, kerja sama tim, komunikasi darurat</p>
@@ -176,6 +188,7 @@
                     </div>
                     <h3>Dukungan Operasional & Lingkungan</h3>
                     <p>Mendukung operasional organisasi dan kegiatan pelestarian lingkungan.</p>
+                    <div class="mb-2"><span class="badge bg-primary">Kuota tersisa: {{ $getRemaining('Dukungan Operasional & Lingkungan') }} / 20</span></div>
                     <div class="category-details">
                         <p><strong>Contoh kegiatan:</strong> Penanaman pohon, bersih-bersih lingkungan, administrasi</p>
                         <p><strong>Skill umum:</strong> Manajemen, organisasi, ketelitian</p>

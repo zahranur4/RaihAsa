@@ -19,6 +19,7 @@ class RelawanProfile extends Model
         'nama_lengkap',
         'nik',
         'skill',
+        'kategori',
         'status_verif',
     ];
 

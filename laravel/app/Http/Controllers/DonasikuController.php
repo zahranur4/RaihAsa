@@ -16,44 +16,70 @@ class DonasikuController extends Controller
             ->where('id_user', $user->id)
             ->first();
 
-        if (!$donatur) {
-            // If user doesn't have donatur profile, redirect to donor profile
-            return redirect()->route('donor-profile');
+        // If user has a donatur profile, show their donation dashboard
+        if ($donatur) {
+            // Get total donations (food items)
+            $totalDonasi = DB::table('food_rescue')
+                ->where('id_donatur', $donatur->id_donatur)
+                ->count();
+
+            // Get total food weight (porsi)
+            $totalBeratMakanan = DB::table('food_rescue')
+                ->where('id_donatur', $donatur->id_donatur)
+                ->sum('porsi');
+
+            // Get unique orphanages (panti) that received donations
+            $pantiTerbantui = DB::table('food_rescue')
+                ->join('donatur_profiles', 'food_rescue.id_donatur', '=', 'donatur_profiles.id_donatur')
+                ->where('food_rescue.id_donatur', $donatur->id_donatur)
+                ->distinct()
+                ->count(DB::raw('DISTINCT food_rescue.id_food'));
+
+            // For now, set sertifikat to 0 (this would need a certificates table)
+            $sertifikatDidapat = 0;
+
+            // Get donation history (all food items donated by this user)
+            $donationHistory = DB::table('food_rescue')
+                ->where('id_donatur', $donatur->id_donatur)
+                ->orderBy('waktu_dibuat', 'desc')
+                ->get();
+
+            return view('donasiku.index', [
+                'user' => $user,
+                'totalDonasi' => $totalDonasi,
+                'totalBeratMakanan' => $totalBeratMakanan,
+                'pantiTerbantui' => $pantiTerbantui,
+                'sertifikatDidapat' => $sertifikatDidapat,
+                'donationHistory' => $donationHistory,
+            ]);
         }
 
-        // Get total donations (food items)
-        $totalDonasi = DB::table('food_rescue')
-            ->where('id_donatur', $donatur->id_donatur)
+        // For non-donor users (volunteers, etc), show their contribution summary
+        $totalPledges = DB::table('wishlist_pledges')
+            ->where('id_donatur', function ($query) use ($user) {
+                $query->select('id_donatur')
+                    ->from('donatur_profiles')
+                    ->where('id_user', $user->id);
+            })
             ->count();
 
-        // Get total food weight (porsi)
-        $totalBeratMakanan = DB::table('food_rescue')
-            ->where('id_donatur', $donatur->id_donatur)
-            ->sum('porsi');
-
-        // Get unique orphanages (panti) that received donations
-        $pantiTerbantui = DB::table('food_rescue')
-            ->join('donatur_profiles', 'food_rescue.id_donatur', '=', 'donatur_profiles.id_donatur')
-            ->where('food_rescue.id_donatur', $donatur->id_donatur)
-            ->distinct()
-            ->count(DB::raw('DISTINCT food_rescue.id_food'));
-
-        // For now, set sertifikat to 0 (this would need a certificates table)
-        $sertifikatDidapat = 0;
-
-        // Get donation history (all food items donated by this user)
-        $donationHistory = DB::table('food_rescue')
-            ->where('id_donatur', $donatur->id_donatur)
-            ->orderBy('waktu_dibuat', 'desc')
-            ->get();
+        $totalWishlistContributions = DB::table('wishlist_pledges')
+            ->where('id_donatur', function ($query) use ($user) {
+                $query->select('id_donatur')
+                    ->from('donatur_profiles')
+                    ->where('id_user', $user->id);
+            })
+            ->sum('quantity_offered');
 
         return view('donasiku.index', [
             'user' => $user,
-            'totalDonasi' => $totalDonasi,
-            'totalBeratMakanan' => $totalBeratMakanan,
-            'pantiTerbantui' => $pantiTerbantui,
-            'sertifikatDidapat' => $sertifikatDidapat,
-            'donationHistory' => $donationHistory,
+            'totalDonasi' => 0,
+            'totalBeratMakanan' => 0,
+            'pantiTerbantui' => 0,
+            'sertifikatDidapat' => 0,
+            'donationHistory' => collect(),
+            'totalPledges' => $totalPledges ?? 0,
+            'totalWishlistContributions' => $totalWishlistContributions ?? 0,
         ]);
     }
 }

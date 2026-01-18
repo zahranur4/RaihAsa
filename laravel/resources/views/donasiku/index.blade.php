@@ -73,7 +73,7 @@
                 <h2 class="fw-bold" style="color: #000957;">Kontribusiku</h2>
                 <p class="text-muted mb-0">Pantau dampak kebaikan yang telah Anda berikan</p>
             </div>
-            <button class="btn btn-primary" style="background-color: #000957; border-color: #000957;"><i class="fas fa-plus me-2"></i>Buat Donasi Baru</button>
+            <a href="{{ route('wishlist') }}" class="btn btn-primary" style="background-color: #000957; border-color: #000957;"><i class="fas fa-plus me-2"></i>Buat Donasi Baru</a>
         </div>
 
         <!-- Statistik Donasi -->
