@@ -28,12 +28,10 @@ class DonasikuController extends Controller
                 ->where('id_donatur', $donatur->id_donatur)
                 ->sum('porsi');
 
-            // Get unique orphanages (panti) that received donations
+            // Get count of donations (as panti terbantui for now)
             $pantiTerbantui = DB::table('food_rescue')
-                ->join('donatur_profiles', 'food_rescue.id_donatur', '=', 'donatur_profiles.id_donatur')
-                ->where('food_rescue.id_donatur', $donatur->id_donatur)
-                ->distinct()
-                ->count(DB::raw('DISTINCT food_rescue.id_food'));
+                ->where('id_donatur', $donatur->id_donatur)
+                ->count();
 
             // For now, set sertifikat to 0 (this would need a certificates table)
             $sertifikatDidapat = 0;
@@ -44,6 +42,26 @@ class DonasikuController extends Controller
                 ->orderBy('waktu_dibuat', 'desc')
                 ->get();
 
+            // Get wishlist pledge history (smart matching donations)
+            $wishlistPledges = DB::table('wishlist_pledges as wp')
+                ->join('wishlists as w', 'wp.id_wishlist', '=', 'w.id_wishlist')
+                ->join('panti_profiles as p', 'w.id_panti', '=', 'p.id_panti')
+                ->where('wp.id_donatur', $donatur->id_donatur)
+                ->select(
+                    'wp.id_pledge',
+                    'wp.item_offered',
+                    'wp.quantity_offered',
+                    'wp.status',
+                    'wp.created_at',
+                    'wp.confirmed_at',
+                    'wp.completed_at',
+                    'w.nama_barang',
+                    'w.kategori',
+                    'p.nama_panti'
+                )
+                ->orderBy('wp.created_at', 'desc')
+                ->get();
+
             return view('donasiku.index', [
                 'user' => $user,
                 'totalDonasi' => $totalDonasi,
@@ -51,6 +69,7 @@ class DonasikuController extends Controller
                 'pantiTerbantui' => $pantiTerbantui,
                 'sertifikatDidapat' => $sertifikatDidapat,
                 'donationHistory' => $donationHistory,
+                'wishlistPledges' => $wishlistPledges,
             ]);
         }
 

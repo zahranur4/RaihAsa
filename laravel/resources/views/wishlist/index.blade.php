@@ -136,8 +136,35 @@
                                     <p><strong>Jumlah Dibutuhkan:</strong> {{ $rec->jumlah }}</p>
                                     <p><strong>Penerima:</strong> {{ $rec->panti->nama_panti ?? 'Panti Asuhan' }}</p>
                                 </div>
+                                <!-- Progress Bar -->
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <small class="text-muted">Terpenuhi</small>
+                                        <small class="fw-bold">{{ $rec->quantity_pledged ?? 0 }}/{{ $rec->jumlah }} unit ({{ number_format($rec->progress_percentage ?? 0, 0) }}%)</small>
+                                    </div>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar {{ ($rec->progress_percentage ?? 0) >= 75 ? 'bg-success' : (($rec->progress_percentage ?? 0) >= 50 ? 'bg-info' : 'bg-warning') }}" 
+                                             role="progressbar" 
+                                             style="width: {{ $rec->progress_percentage ?? 0 }}%" 
+                                             aria-valuenow="{{ $rec->progress_percentage ?? 0 }}" 
+                                             aria-valuemin="0" 
+                                             aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="wishlist-actions">
-                                    <button class="btn btn-primary btn-sm">Penuhi Sekarang</button>
+                                    @if($isPanti)
+                                        <button type="button" class="btn btn-secondary btn-sm" disabled title="Panti tidak dapat memberikan donasi">
+                                            <i class="fas fa-lock me-1"></i> Tidak Tersedia
+                                        </button>
+                                    @else
+                                    <form action="{{ route('wishlist.fulfill', $rec->id_wishlist) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        <input type="hidden" name="item_name" value="{{ $rec->nama_barang }}">
+                                        <input type="hidden" name="quantity_offered" value="1">
+                                        <button type="submit" class="btn btn-primary btn-sm">Penuhi Sekarang</button>
+                                    </form>
+                                    @endif
                                     <button class="btn btn-outline-primary btn-sm" onclick="showDetail({{ $rec->id_wishlist }})">Detail</button>
                                 </div>
                             </div>
@@ -184,8 +211,35 @@
                                 <p><strong>Jumlah Dibutuhkan:</strong> {{ $wishlist->jumlah }}</p>
                                 <p><strong>Penerima:</strong> {{ $wishlist->panti->nama_panti ?? 'Panti Asuhan' }}</p>
                             </div>
+                            <!-- Progress Bar -->
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <small class="text-muted">Terpenuhi</small>
+                                    <small class="fw-bold">{{ $wishlist->quantity_pledged ?? 0 }}/{{ $wishlist->jumlah }} unit ({{ number_format($wishlist->progress_percentage ?? 0, 0) }}%)</small>
+                                </div>
+                                <div class="progress" style="height: 6px;">
+                                    <div class="progress-bar {{ ($wishlist->progress_percentage ?? 0) >= 75 ? 'bg-success' : (($wishlist->progress_percentage ?? 0) >= 50 ? 'bg-info' : 'bg-warning') }}" 
+                                         role="progressbar" 
+                                         style="width: {{ $wishlist->progress_percentage ?? 0 }}%" 
+                                         aria-valuenow="{{ $wishlist->progress_percentage ?? 0 }}" 
+                                         aria-valuemin="0" 
+                                         aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="wishlist-actions">
-                                <button class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                @if($isPanti)
+                                    <button type="button" class="btn btn-secondary btn-sm" disabled title="Panti tidak dapat memberikan donasi">
+                                        <i class="fas fa-lock me-1"></i> Tidak Tersedia
+                                    </button>
+                                @else
+                                <form action="{{ route('wishlist.fulfill', $wishlist->id_wishlist) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <input type="hidden" name="item_name" value="{{ $wishlist->nama_barang }}">
+                                    <input type="hidden" name="quantity_offered" value="1">
+                                    <button type="submit" class="btn btn-primary btn-sm">Donasi Sekarang</button>
+                                </form>
+                                @endif
                                 <button class="btn btn-outline-primary btn-sm" onclick="showDetail({{ $wishlist->id_wishlist }})">Detail</button>
                             </div>
                         </div>

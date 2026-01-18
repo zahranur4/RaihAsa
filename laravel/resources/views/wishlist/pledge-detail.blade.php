@@ -184,9 +184,18 @@
                                 <a href="{{ route('wishlist') }}" class="btn btn-outline-primary">
                                     <i class="fas fa-arrow-left me-2"></i> Kembali ke Wishlist
                                 </a>
+                                @if($pledge->status === 'pending')
+                                <form action="{{ route('wishlist.pledge.confirm', $pledge->id_pledge) }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fas fa-check me-2"></i> Penuhi Sekarang
+                                    </button>
+                                </form>
+                                @else
                                 <a href="{{ route('wishlist.matching') }}" class="btn btn-primary">
                                     <i class="fas fa-search me-2"></i> Cari Donasi Lagi
                                 </a>
+                                @endif
                             </div>
                         </div>
                     </div>

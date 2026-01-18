@@ -72,7 +72,7 @@
                             <i class="fas fa-hand-holding-heart"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>56</h3>
+                            <h3>{{ $stats['total_donations'] }}</h3>
                             <p>Total Donasi</p>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>43</h3>
+                            <h3>{{ $stats['received_donations'] }}</h3>
                             <p>Donasi Diterima</p>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                             <i class="fas fa-hourglass-half"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>8</h3>
+                            <h3>{{ $stats['pending_donations'] }}</h3>
                             <p>Menunggu Konfirmasi</p>
                         </div>
                     </div>
@@ -99,32 +99,34 @@
                             <i class="fas fa-boxes"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>120 kg</h3>
-                            <p>Total Berat Donasi</p>
+                            <h3>{{ $stats['total_items'] }}</h3>
+                            <p>Total Item Donasi</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Filter Bar -->
                 <div class="filter-bar">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label for="statusFilter" class="form-label">Filter Status</label>
-                            <select class="form-select" id="statusFilter">
-                                <option value="">Semua Status</option>
-                                <option value="diklaim">Diklaim</option>
-                                <option value="dikirim">Dikirim</option>
-                                <option value="diterima">Diterima</option>
-                            </select>
+                    <form action="{{ route('panti.donasi-masuk') }}" method="GET">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="statusFilter" class="form-label">Filter Status</label>
+                                <select class="form-select" id="statusFilter" name="status">
+                                    <option value="">Semua Status</option>
+                                    <option value="pending" {{ request('status') === 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="confirmed" {{ request('status') === 'confirmed' ? 'selected' : '' }}>Dikonfirmasi</option>
+                                    <option value="completed" {{ request('status') === 'completed' ? 'selected' : '' }}>Selesai</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="dateFilter" class="form-label">Filter Tanggal</label>
+                                <input type="date" class="form-control" id="dateFilter" name="date" value="{{ request('date') }}">
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                                <button type="submit" class="btn btn-primary w-100">Terapkan Filter</button>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label for="dateFilter" class="form-label">Filter Tanggal</label>
-                            <input type="date" class="form-control" id="dateFilter">
-                        </div>
-                        <div class="col-md-4 d-flex align-items-end">
-                            <button class="btn btn-primary w-100">Terapkan Filter</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
                 <!-- Donations Table -->
@@ -152,79 +154,57 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse($donations as $donation)
                                     <tr>
-                                        <td>#D001</td>
+                                        <td>#P{{ str_pad($donation->id_pledge, 4, '0', STR_PAD_LEFT) }}</td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Donatur" class="user-avatar me-2">
-                                                <span>Ahmad Fadli</span>
+                                                <img src="https://ui-avatars.com/api/?name={{ urlencode($donation->donor_name) }}&background=667eea&color=fff" alt="Donatur" class="user-avatar me-2">
+                                                <span>{{ $donation->donor_name }}</span>
                                             </div>
                                         </td>
-                                        <td>Berbagai Makanan Kaleng</td>
-                                        <td>20 kaleng</td>
-                                        <td>15 Jun 2023</td>
-                                        <td><span class="badge bg-info">Dikirim</span></td>
-                                        <td><button class="btn btn-sm btn-success" onclick="confirmReceipt('D001')">Konfirmasi Penerimaan</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>#D002</td>
+                                        <td>{{ $donation->item_offered }}</td>
+                                        <td>{{ $donation->quantity_offered }} unit</td>
+                                        <td>{{ \Carbon\Carbon::parse($donation->created_at)->format('d M Y') }}</td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Donatur" class="user-avatar me-2">
-                                                <span>Siti Nurhaliza</span>
-                                            </div>
+                                            @if($donation->status === 'pending')
+                                                <span class="badge bg-warning">Pending</span>
+                                            @elseif($donation->status === 'confirmed')
+                                                <span class="badge bg-info">Dikonfirmasi</span>
+                                            @elseif($donation->status === 'completed')
+                                                <span class="badge bg-success">Selesai</span>
+                                            @else
+                                                <span class="badge bg-secondary">{{ ucfirst($donation->status) }}</span>
+                                            @endif
                                         </td>
-                                        <td>Buku Tulis</td>
-                                        <td>35 pcs</td>
-                                        <td>10 Jun 2023</td>
-                                        <td><span class="badge bg-success">Diterima</span></td>
-                                        <td><button class="btn btn-sm btn-info" onclick="viewDonationDetail('D002')">Lihat Detail</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>#D003</td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Donatur" class="user-avatar me-2">
-                                                <span>Budi Santoso</span>
-                                            </div>
+                                            @if($donation->status === 'confirmed')
+                                            <form action="{{ route('panti.donasi-masuk.confirm', $donation->id_pledge) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-success">Konfirmasi Penerimaan</button>
+                                            </form>
+                                            @else
+                                            <a href="{{ route('panti.donasi-masuk.detail', $donation->id_pledge) }}" class="btn btn-sm btn-info">Lihat Detail</a>
+                                            @endif
                                         </td>
-                                        <td>Pakaian Anak</td>
-                                        <td>15 set</td>
-                                        <td>8 Jun 2023</td>
-                                        <td><span class="badge bg-primary">Diklaim</span></td>
-                                        <td><button class="btn btn-sm btn-info" onclick="viewDonationDetail('D003')">Lihat Detail</button></td>
                                     </tr>
+                                    @empty
                                     <tr>
-                                        <td>#D004</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Donatur" class="user-avatar me-2">
-                                                <span>Dewi Lestari</span>
-                                            </div>
+                                        <td colspan="7" class="text-center py-4">
+                                            <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                            <p class="text-muted">Belum ada donasi masuk</p>
                                         </td>
-                                        <td>Alat Tulis</td>
-                                        <td>30 pcs</td>
-                                        <td>5 Jun 2023</td>
-                                        <td><span class="badge bg-warning">Menunggu Konfirmasi</span></td>
-                                        <td><button class="btn btn-sm btn-success" onclick="confirmReceipt('D004')">Konfirmasi Penerimaan</button></td>
                                     </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
                         <!-- Pagination -->
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        @if($donations->hasPages())
+                        <div class="d-flex justify-content-center mt-4">
+                            {{ $donations->appends(request()->query())->links('pagination::bootstrap-5') }}
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

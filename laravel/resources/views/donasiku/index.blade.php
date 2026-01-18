@@ -108,6 +108,7 @@
                     <button class="donation-tab" onclick="filterDonations('processing', this)">Diproses</button>
                     <button class="donation-tab" onclick="filterDonations('completed', this)">Selesai</button>
                     <button class="donation-tab" onclick="filterDonations('cancelled', this)">Dibatalkan</button>
+                    <button class="donation-tab" onclick="filterDonations('wishlist', this)">Smart Matching</button>
                 </div>
 
                 <!-- Grid Donasi -->
@@ -169,6 +170,54 @@
                         <i class="fas fa-info-circle me-2"></i>
                         Anda belum memiliki riwayat donasi. Mulai berdonasi sekarang!
                     </div>
+                    @endforelse
+
+                    <!-- Wishlist Pledges -->
+                    @forelse($wishlistPledges ?? [] as $pledge)
+                    <div class="donation-card" data-status="wishlist">
+                        <div class="card-body p-0">
+                            <div class="d-flex">
+                                <div class="donation-thumb">
+                                    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                                        <i class="fas fa-hand-holding-heart"></i>
+                                    </div>
+                                </div>
+                                <div class="donation-content p-3 flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <div>
+                                            <h5 class="mb-0 fw-bold">{{ $pledge->item_offered }}</h5>
+                                            <small class="text-muted">Untuk: {{ $pledge->nama_barang }}</small>
+                                        </div>
+                                        @php
+                                            $pledgeStatuses = [
+                                                'pending' => ['badge' => 'bg-warning', 'label' => 'Pending'],
+                                                'confirmed' => ['badge' => 'bg-info', 'label' => 'Dikonfirmasi'],
+                                                'completed' => ['badge' => 'bg-success', 'label' => 'Selesai'],
+                                                'cancelled' => ['badge' => 'bg-danger', 'label' => 'Dibatalkan']
+                                            ];
+                                            $pledgeInfo = $pledgeStatuses[$pledge->status] ?? ['badge' => 'bg-secondary', 'label' => ucfirst($pledge->status)];
+                                        @endphp
+                                        <span class="badge {{ $pledgeInfo['badge'] }} bg-opacity-10 text-{{ str_replace('bg-', '', $pledgeInfo['badge']) }} rounded-pill">{{ $pledgeInfo['label'] }}</span>
+                                    </div>
+                                    <div class="donation-meta small text-muted mb-2">
+                                        <span class="me-3"><i class="fas fa-box me-1"></i> {{ $pledge->quantity_offered }} unit</span>
+                                        <span class="me-3"><i class="fas fa-tag me-1"></i> {{ $pledge->kategori }}</span>
+                                        <span><i class="fas fa-home me-1"></i> {{ $pledge->nama_panti }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="fw-bold">
+                                            <span class="badge bg-primary">Smart Matching</span>
+                                            <span class="ms-2 text-muted">{{ \Carbon\Carbon::parse($pledge->created_at)->format('d M Y') }}</span>
+                                        </small>
+                                        <div>
+                                            <a href="{{ route('wishlist.pledge-detail', $pledge->id_pledge) }}" class="btn btn-sm btn-outline-primary me-1">Detail</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @empty
                     @endforelse
                 </div>
             </div>

@@ -180,9 +180,40 @@ class DonationMatchingController extends Controller
             return redirect()->route('wishlist')->with('error', 'Pledge not found');
         }
 
+        // Convert timestamps to Carbon instances
+        $pledge->created_at = $pledge->created_at ? \Carbon\Carbon::parse($pledge->created_at) : null;
+        $pledge->confirmed_at = $pledge->confirmed_at ? \Carbon\Carbon::parse($pledge->confirmed_at) : null;
+        $pledge->completed_at = $pledge->completed_at ? \Carbon\Carbon::parse($pledge->completed_at) : null;
+
         $wishlist = Wishlist::where('id_wishlist', $pledge->id_wishlist)->first();
         $panti = $wishlist ? $wishlist->panti : null;
 
         return view('wishlist.pledge-detail', compact('pledge', 'wishlist', 'panti'));
+    }
+
+    /**
+     * Confirm/fulfill a pledge (set status to confirmed).
+     */
+    public function confirmPledge(Request $request, $pledgeId)
+    {
+        $pledge = DB::table('wishlist_pledges')
+            ->where('id_pledge', $pledgeId)
+            ->first();
+
+        if (!$pledge) {
+            return redirect()->route('wishlist')->with('error', 'Pledge not found');
+        }
+
+        // Update pledge status to confirmed
+        DB::table('wishlist_pledges')
+            ->where('id_pledge', $pledgeId)
+            ->update([
+                'status' => 'confirmed',
+                'confirmed_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+        return redirect()->route('wishlist.pledge-detail', $pledgeId)
+            ->with('success', 'Penawaran donasi berhasil dikonfirmasi!');
     }
 }

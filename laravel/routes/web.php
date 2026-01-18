@@ -25,6 +25,7 @@ Route::get('/wishlist', [\App\Http\Controllers\WishlistController::class, 'index
 Route::get('/wishlist/matching', [\App\Http\Controllers\DonationMatchingController::class, 'findMatches'])->name('wishlist.matching');
 Route::post('/wishlist/{id}/fulfill', [\App\Http\Controllers\DonationMatchingController::class, 'fulfillWishlist'])->name('wishlist.fulfill')->middleware('auth');
 Route::get('/wishlist/pledge/{id}', [\App\Http\Controllers\DonationMatchingController::class, 'showPledge'])->name('wishlist.pledge-detail')->middleware('auth');
+Route::post('/wishlist/pledge/{id}/confirm', [\App\Http\Controllers\DonationMatchingController::class, 'confirmPledge'])->name('wishlist.pledge.confirm')->middleware('auth');
 Route::get('/food-rescue', [FoodRescueController::class, 'index'])->name('food-rescue');
 Route::post('/food-rescue/{id}/claim', [FoodRescueController::class, 'claim'])->name('food-rescue.claim')->middleware('auth');
 Route::get('/food-rescue/{id}', [FoodRescueController::class, 'detail'])->name('food-rescue.detail');
@@ -44,6 +45,7 @@ use App\Http\Controllers\Admin\PantiProfileController;
 use App\Http\Controllers\Admin\RelawanProfileController;
 use App\Http\Controllers\Panti\ProfileController;
 use App\Http\Controllers\Panti\WishlistController;
+use App\Http\Controllers\Panti\DonasiMasukController;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', \App\Http\Middleware\EnsureAdmin::class])->group(function () {
     // Redirect /admin to dashboard
@@ -98,7 +100,9 @@ Route::prefix('panti')->name('panti.')->middleware(['auth'])->group(function () 
     Route::post('/wishlist', [WishlistController::class, 'store'])->name('wishlist.store');
     Route::put('/wishlist/{id}', [WishlistController::class, 'update'])->name('wishlist.update');
     Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
-    Route::get('/donasi-masuk', function () { return view('panti.donasi-masuk.index'); })->name('donasi-masuk');
+    Route::get('/donasi-masuk', [DonasiMasukController::class, 'index'])->name('donasi-masuk');
+    Route::post('/donasi-masuk/{id}/confirm', [DonasiMasukController::class, 'confirmReceipt'])->name('donasi-masuk.confirm');
+    Route::get('/donasi-masuk/{id}/detail', [DonasiMasukController::class, 'viewDetail'])->name('donasi-masuk.detail');
     Route::get('/food-rescue', function () { return view('panti.food-rescue.index'); })->name('food-rescue');
     Route::get('/laporan', function () { return view('panti.laporan.index'); })->name('laporan');
     Route::get('/profil', [ProfileController::class, 'index'])->name('profil');

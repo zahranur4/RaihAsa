@@ -31,6 +31,19 @@ class WishlistController extends Controller
 
         $wishlists = $query->paginate(12);
 
+        // Add pledge progress to each wishlist
+        $wishlists->getCollection()->transform(function ($wishlist) {
+            $totalPledged = DB::table('wishlist_pledges')
+                ->where('id_wishlist', $wishlist->id_wishlist)
+                ->where('status', '!=', 'cancelled')
+                ->sum('quantity_offered');
+            
+            $wishlist->quantity_pledged = $totalPledged ?? 0;
+            $wishlist->progress_percentage = min(100, ($totalPledged / max(1, $wishlist->jumlah)) * 100);
+            
+            return $wishlist;
+        });
+
         // Build personalized recommendations for logged-in donors
         $recommendations = collect();
         if (Auth::check()) {
@@ -87,12 +100,30 @@ class WishlistController extends Controller
                 })
                 ->sortByDesc('match_score')
                 ->take(6)
+                ->map(function ($wishlist) {
+                    $totalPledged = DB::table('wishlist_pledges')
+                        ->where('id_wishlist', $wishlist->id_wishlist)
+                        ->where('status', '!=', 'cancelled')
+                        ->sum('quantity_offered');
+                    
+                    $wishlist->quantity_pledged = $totalPledged ?? 0;
+                    $wishlist->progress_percentage = min(100, ($totalPledged / max(1, $wishlist->jumlah)) * 100);
+                    
+                    return $wishlist;
+                })
                 ->values();
+        }
+
+        // Check if current user is a panti/orphanage
+        $isPanti = false;
+        if (Auth::check()) {
+            $isPanti = DB::table('panti_profiles')->where('id_user', Auth::id())->exists();
         }
 
         return view('wishlist.index', [
             'wishlists' => $wishlists,
             'recommendations' => $recommendations,
+            'isPanti' => $isPanti,
         ]);
     }
 
