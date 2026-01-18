@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wishlist Penerima - RaihAsa</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    @vite(['resources/css/style.css','resources/css/components.css','resources/css/wishlist.css','resources/css/scroll-animation.css','resources/js/main.js','resources/js/scroll-animation.js'])
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    @vite(['resources/css/font-awesome.css','resources/css/style.css','resources/css/components.css','resources/css/wishlist.css','resources/css/scroll-animation.css','resources/js/main.js','resources/js/scroll-animation.js'])
 </head>
 <body>
 <!-- Header with Navigation -->
@@ -38,9 +37,15 @@
                         <li class="nav-item">
                             <a class="nav-link requires-auth" href="{{ route('volunteer') }}">Relawan</a>
                         </li>
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('my-donations') }}">Kontribusiku</a>
+                        </li>
+                        @else
                         <li class="nav-item">
                             <a class="nav-link requires-auth" href="{{ route('my-donations') }}">Kontribusiku</a>
                         </li>
+                        @endauth
                     </ul>
                     @auth
                     <div class="d-flex">
@@ -83,6 +88,11 @@
         <div class="container">
             <h1>Wishlist Penerima</h1>
             <p class="lead">Temukan kebutuhan mendesak dari panti dan lembaga yang membutuhkan bantuan</p>
+            @auth
+            <a href="{{ route('wishlist.matching') }}" class="btn btn-light btn-lg mt-3">
+                <i class="fas fa-magic me-2"></i> Gunakan Smart Matching
+            </a>
+            @endauth
         </div>
     </section>
 
@@ -90,6 +100,53 @@
     <section class="wishlist-section py-5">
         <div class="container">
             <div class="wishlist-categories">
+                @if(isset($recommendations) && $recommendations->isNotEmpty())
+                <div class="mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="mb-0">Rekomendasi untukmu</h3>
+                        <span class="text-muted" style="font-size: 0.95rem;">Disusun dari urgensi, riwayat kategori donasi, dan kedekatan lokasi</span>
+                    </div>
+                    <div class="wishlist-grid">
+                        @foreach($recommendations as $rec)
+                        <div class="wishlist-card {{ $rec->urgensi === 'mendesak' ? 'urgent' : 'routine' }}">
+                            <div class="wishlist-image">
+                                @if($rec->image)
+                                    <img src="{{ asset('storage/' . $rec->image) }}" alt="{{ $rec->nama_barang }}" style="object-fit: cover; width: 100%; height: 200px;">
+                                @else
+                                    <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                                        <i class="fas fa-hands-helping"></i>
+                                    </div>
+                                @endif
+                                <div class="badge bg-primary" style="position: absolute; top: 12px; left: 12px;">Skor {{ number_format($rec->match_score, 1) }}</div>
+                            </div>
+                            <div class="wishlist-content">
+                                <div class="wishlist-header">
+                                    <h4>{{ $rec->nama_barang }}</h4>
+                                    <div class="wishlist-urgency {{ $rec->urgensi === 'mendesak' ? 'urgent' : ($rec->urgensi === 'kesehatan' ? 'urgent' : 'routine') }}">
+                                        <i class="fas {{ $rec->urgensi === 'mendesak' || $rec->urgensi === 'kesehatan' ? 'fa-exclamation-triangle' : 'fa-sync-alt' }}"></i>
+                                        {{ ucfirst($rec->urgensi) }}
+                                    </div>
+                                </div>
+                                <div class="wishlist-meta">
+                                    <span><i class="fas fa-map-marker-alt"></i> {{ $rec->panti->nama_panti ?? 'Panti Asuhan' }}, {{ $rec->panti->kota ?? 'Lokasi' }}</span>
+                                    <span><i class="fas fa-box"></i> {{ $rec->jumlah }} unit</span>
+                                </div>
+                                <div class="wishlist-details">
+                                    <p><strong>Kategori:</strong> {{ $rec->kategori }}</p>
+                                    <p><strong>Jumlah Dibutuhkan:</strong> {{ $rec->jumlah }}</p>
+                                    <p><strong>Penerima:</strong> {{ $rec->panti->nama_panti ?? 'Panti Asuhan' }}</p>
+                                </div>
+                                <div class="wishlist-actions">
+                                    <button class="btn btn-primary btn-sm">Penuhi Sekarang</button>
+                                    <button class="btn btn-outline-primary btn-sm" onclick="showDetail({{ $rec->id_wishlist }})">Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+
                 <div class="category-tabs">
                     <a href="{{ route('wishlist') }}" class="category-btn {{ !request('urgensi') && !request('kategori') ? 'active' : '' }}">Semua</a>
                     <a href="{{ route('wishlist', ['urgensi' => 'mendesak']) }}" class="category-btn {{ request('urgensi') === 'mendesak' ? 'active' : '' }}">Mendesak</a>

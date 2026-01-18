@@ -9,7 +9,7 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-Dm1nIoE-.css",
+    "file": "assets/app-Dihlmw98.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -26,6 +26,15 @@
       "components.css"
     ]
   },
+  "resources/css/donasiku.css": {
+    "file": "assets/donasiku-CLjNp5BJ.css",
+    "src": "resources/css/donasiku.css",
+    "isEntry": true,
+    "name": "donasiku",
+    "names": [
+      "donasiku.css"
+    ]
+  },
   "resources/css/donor-profile.css": {
     "file": "assets/donor-profile-C1qusQh4.css",
     "src": "resources/css/donor-profile.css",
@@ -33,6 +42,15 @@
     "name": "donor-profile",
     "names": [
       "donor-profile.css"
+    ]
+  },
+  "resources/css/font-awesome.css": {
+    "file": "assets/font-awesome-DzyvinDT.css",
+    "src": "resources/css/font-awesome.css",
+    "isEntry": true,
+    "name": "font-awesome",
+    "names": [
+      "font-awesome.css"
     ]
   },
   "resources/css/food-rescue.css": {

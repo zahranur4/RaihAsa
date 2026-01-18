@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Rescue - RaihAsa Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    @vite(['resources/css/style.css','resources/css/admin-dashboard.css','resources/js/admin-dashboard.js'])
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    @vite(['resources/css/font-awesome.css','resources/css/style.css','resources/css/admin-dashboard.css','resources/js/admin-dashboard.js'])
 </head>
 <body>
     <div class="dashboard-container">
@@ -187,17 +186,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($items as $item)
+                                    @forelse($foods as $food)
                                     <tr>
-                                        <td>#{{ $item->id_food }}</td>
-                                        <td>{{ $item->id_donatur }}</td>
-                                        <td>{{ $item->nama_makanan }}</td>
-                                        <td>{{ $item->porsi }}</td>
-                                        <td>{{ optional($item->waktu_expired)->format('d M Y H:i') ?? '-' }}</td>
-                                        <td><span class="badge bg-info">{{ ucfirst($item->status) }}</span></td>
+                                        <td>#{{ $food->id_food }}</td>
+                                        <td>{{ $food->donor_name ?? $food->id_donatur }}</td>
+                                        <td>{{ $food->nama_makanan }}</td>
+                                        <td>{{ $food->porsi }}</td>
+                                        <td>{{ $food->waktu_expired ? \Carbon\Carbon::parse($food->waktu_expired)->format('d M Y H:i') : '-' }}</td>
+                                        <td><span class="badge bg-info">{{ ucfirst($food->status) }}</span></td>
                                         <td>
-                                            <a href="{{ route('admin.food-rescue.edit', $item->id_food) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                                            <form action="{{ route('admin.food-rescue.destroy', $item->id_food) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus item ini?');">
+                                            <a href="{{ route('admin.food-rescue.edit', $food->id_food) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                            <form action="{{ route('admin.food-rescue.destroy', $food->id_food) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus item ini?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
@@ -210,65 +209,11 @@
                                     </tr>
                                     @endforelse
                                 </tbody>
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editFoodRescue('FR003')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteFoodRescue(this, 'FR003')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#FR004</td>
-                                        <td>Bakso Pak Kumis</td>
-                                        <td>Bakso</td>
-                                        <td>25 mangkuk</td>
-                                        <td>Kemarin, 17:00</td>
-                                        <td><span class="badge bg-danger">Kadaluarsa</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewFoodRescueDetail('FR004')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editFoodRescue('FR004')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteFoodRescue(this, 'FR004')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#FR005</td>
-                                        <td>Ayam Bakar Wong Solo</td>
-                                        <td>Ayam Bakar</td>
-                                        <td>10 ekor</td>
-                                        <td>Besok, 15:00</td>
-                                        <td><span class="badge bg-success">Tersedia</span></td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn btn-sm btn-info" onclick="viewFoodRescueDetail('FR005')">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning" onclick="editFoodRescue('FR005')">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" onclick="deleteFoodRescue(this, 'FR005')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                         <!-- Pagination -->
                         <div class="mt-3">
-                            {{ $items->links() }}
+                            {{ $foods->links() }}
                         </div>
                     </div>
                 </div>

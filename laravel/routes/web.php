@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\VolunteerRegistrationController;
 use App\Http\Controllers\FoodRescueController;
+use App\Http\Controllers\MyDonationsController;
 use App\Http\Controllers\Donor;
 use App\Http\Controllers\Panti;
 
@@ -20,10 +21,13 @@ Route::post('/register/donor', [RegisterController::class, 'registerDonor'])->na
 Route::post('/register/recipient', [RegisterController::class, 'registerRecipient'])->name('register.recipient');
 Route::view('/volunteer', 'volunteer.index')->name('volunteer');
 Route::get('/wishlist', [\App\Http\Controllers\WishlistController::class, 'index'])->name('wishlist');
+Route::get('/wishlist/matching', [\App\Http\Controllers\DonationMatchingController::class, 'findMatches'])->name('wishlist.matching');
+Route::post('/wishlist/{id}/fulfill', [\App\Http\Controllers\DonationMatchingController::class, 'fulfillWishlist'])->name('wishlist.fulfill')->middleware('auth');
+Route::get('/wishlist/pledge/{id}', [\App\Http\Controllers\DonationMatchingController::class, 'showPledge'])->name('wishlist.pledge-detail')->middleware('auth');
 Route::get('/food-rescue', [FoodRescueController::class, 'index'])->name('food-rescue');
 Route::post('/food-rescue/{id}/claim', [FoodRescueController::class, 'claim'])->name('food-rescue.claim')->middleware('auth');
 Route::get('/food-rescue/{id}', [FoodRescueController::class, 'detail'])->name('food-rescue.detail');
-Route::view('/my-donations', 'my-donations.index')->name('my-donations');
+Route::get('/my-donations', [MyDonationsController::class, 'index'])->name('my-donations');
 // Register-panti page removed; redirect to the main register selection
 Route::redirect('/register-panti', '/register');
 
@@ -55,7 +59,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', \App\Http\Middleware
     Route::put('/manajemen-donasi/{id}', [DonasiController::class, 'update'])->name('donations.update');
     Route::delete('/manajemen-donasi/{id}', [DonasiController::class, 'destroy'])->name('donations.destroy');
     // Food Rescue (CRUD)
-    Route::get('/food-rescue', [FoodRescueController::class, 'index'])->name('food-rescue.index');
+    Route::get('/food-rescue', [FoodRescueController::class, 'adminIndex'])->name('food-rescue.index');
     Route::get('/food-rescue/create', [FoodRescueController::class, 'create'])->name('food-rescue.create');
     Route::post('/food-rescue', [FoodRescueController::class, 'store'])->name('food-rescue.store');
     Route::get('/food-rescue/{id}/edit', [FoodRescueController::class, 'edit'])->name('food-rescue.edit');

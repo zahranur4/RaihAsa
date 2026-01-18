@@ -30,6 +30,9 @@ class DatabaseSeeder extends Seeder
         // Seed food rescue items
         $this->call(FoodRescueSeeder::class);
 
+        // Seed donasi barang (items donated to orphanages)
+        $this->call(DonasiBarangSeeder::class);
+
         // Jika ingin menambah user tambahan: User::factory(10)->create();
     }
 }

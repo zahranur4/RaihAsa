@@ -108,4 +108,52 @@ class FoodRescueController extends Controller
         
         return view('food-rescue.detail', compact('food', 'donatur'));
     }
+
+    public function adminIndex(Request $request)
+    {
+        // Admin view shows ALL food items regardless of status
+        $query = DB::table('food_rescue')
+            ->orderBy('waktu_expired', 'asc');
+
+        // Apply filters if provided
+        if ($request->has('status') && $request->input('status') !== 'all') {
+            $query->where('status', $request->input('status'));
+        }
+
+        // Get all foods with simple pagination
+        $foods = $query->paginate(10);
+
+        // Add computed data for each food item
+        $foods->getCollection()->transform(function ($food) {
+            $now = Carbon::now();
+            $expireTime = Carbon::parse($food->waktu_expired);
+            $hoursRemaining = $now->diffInHours($expireTime, false);
+
+            if ($hoursRemaining < 2) {
+                $food->urgency = 'critical';
+            } elseif ($hoursRemaining < 6) {
+                $food->urgency = 'urgent';
+            } else {
+                $food->urgency = 'normal';
+            }
+
+            // Get donor name
+            $donatur = DB::table('donatur_profiles')->where('id_donatur', $food->id_donatur)->first();
+            $food->donor_name = $donatur->nama_lengkap ?? 'Unknown Donor';
+            $food->donor_phone = $donatur->no_telp ?? '-';
+
+            // Get claimer name if claimed
+            if ($food->id_claimer) {
+                $claimer = DB::table('users')->where('id', $food->id_claimer)->first();
+                $food->claimer_name = $claimer->nama ?? 'Unknown User';
+            }
+
+            // Get hours remaining
+            $food->hours_remaining = max(0, $hoursRemaining);
+
+            return $food;
+        });
+
+        return view('admin.food-rescue-admin.index', compact('foods'));
+    }
 }

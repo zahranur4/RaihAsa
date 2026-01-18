@@ -5,13 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Food Rescue - RaihAsa</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-@vite(['resources/css/style.css','resources/css/components.css','resources/css/food-rescue.css','resources/css/scroll-animation.css','resources/js/main.js','resources/js/scroll-animation.js'])
-
-</head>
-<body>
-<!-- Header with Navigation -->
+@vite(['resources/css/font-awesome.css','resources/css/style.css','resources/css/components.css','resources/css/food-rescue.css','resources/css/scroll-animation.css','resources/js/main.js','resources/js/scroll-animation.js'])
 <header class="header">
 <nav class="navbar navbar-expand-lg navbar-light">
 <div class="container">
@@ -25,10 +20,10 @@
 <div class="collapse navbar-collapse" id="navbarNav">
 <ul class="navbar-nav mx-auto">
 <li class="nav-item">
-<a class="nav-link" href="/index.html">Beranda</a>
+<a class="nav-link" href="{{ route('home') }}">Beranda</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="/index.html#about">Tentang</a>
+<a class="nav-link" href="{{ route('home') }}#about">Tentang</a>
 </li>
 <li class="nav-item">
 <a class="nav-link requires-auth" href="{{ route('food-rescue') }}">Food Rescue</a>

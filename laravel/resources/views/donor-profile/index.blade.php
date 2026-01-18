@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Donatur - RaihAsa</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    @vite(['resources/css/style.css','resources/css/components.css','resources/css/forms.css','resources/css/donor-profile.css'])
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    @vite(['resources/css/font-awesome.css','resources/css/style.css','resources/css/components.css','resources/css/forms.css','resources/css/donor-profile.css'])
 </head>
 <body>
     
@@ -39,14 +38,25 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('volunteer') }}">Relawan</a>
                         </li>
+                        @auth
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('my-donations') }}">Kontribusiku</a>
                         </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link requires-auth" href="{{ route('my-donations') }}">Kontribusiku</a>
+                        </li>
+                        @endauth
                     </ul>
                     <div class="d-flex">
                         <div class="dropdown">
                             <button class="btn btn-outline-primary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="/assets/Profil.jpg" alt="Profile" class="rounded-circle me-2" width="25" height="25">
+                                @php
+                                    $initials = strtoupper(substr(Auth::user()->nama ?? Auth::user()->name, 0, 1));
+                                @endphp
+                                <div style="width: 25px; height: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px; margin-right: 8px; vertical-align: middle;">
+                                    {{ $initials }}
+                                </div>
                                 {{ Auth::user()->name }}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="profileDropdown">
@@ -78,7 +88,12 @@
                 <div class="col-lg-3 mb-4">
                     <div class="profile-sidebar">
                         <div class="profile-avatar text-center mb-4">
-                            <img src="/assets/Profil.jpg" alt="Profile" class="rounded-circle mb-3" width="120" height="120">
+                            @php
+                                $initials = strtoupper(substr($user->nama ?? $user->name, 0, 1));
+                            @endphp
+                            <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 48px; margin-bottom: 1rem;">
+                                {{ $initials }}
+                            </div>
                             <h4>{{ $user->name }}</h4>
                             <p class="text-secondary">Halo, {{ explode(' ', $user->name)[0] }}</p>
                             <button class="btn btn-sm btn-outline-primary mt-2" data-bs-toggle="modal" data-bs-target="#changePhotoModal">
@@ -617,7 +632,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-center mb-3">
-                        <img src="/assets/Profil.jpg" alt="Profile" class="rounded-circle" width="150" height="150" id="previewImage">
+                        @php
+                            $initials = strtoupper(substr($user->nama ?? $user->name, 0, 1));
+                        @endphp
+                        <div style="width: 150px; height: 150px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 60px; margin: 0 auto;" id="previewImage">
+                            {{ $initials }}
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="profilePhoto" class="form-label">Pilih Foto</label>
