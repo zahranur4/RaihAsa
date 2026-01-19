@@ -128,7 +128,7 @@
         </div>
         
         <!-- Search container -->
-        <div class="container search-container mt-4">
+        <!-- <div class="container search-container mt-4">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6">
                     <div class="search-box p-3">
@@ -141,39 +141,39 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 
     <!-- Small Categories Section -->
     <section class="small-categories py-3">
         <div class="container">
             <div class="row g-3 justify-content-center">
-                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
-                    <a href="pages/food-rescue.html" class="small-category-card">
+                <div class="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                    <a href="{{ route('food-rescue') }}" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-utensils"></i>
                         </div>
                         <span>Food Rescue</span>
                     </a>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
-                    <a href="pages/wishlist.html" class="small-category-card">
+                <div class="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                    <a href="{{ route('wishlist') }}" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-heart"></i>
                         </div>
                         <span>Wishlist</span>
                     </a>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
-                    <a href="pages/volunteer.html" class="small-category-card">
+                <div class="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                    <a href="{{ route('volunteer') }}" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-hands-helping"></i>
                         </div>
                         <span>Relawan</span>
                     </a>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
-                    <a href="pages/my-donations.html" class="small-category-card">
+                <div class="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                    <a href="{{ route('my-donations') }}" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-hand-holding-heart"></i>
                         </div>

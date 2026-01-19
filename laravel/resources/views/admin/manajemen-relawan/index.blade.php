@@ -76,7 +76,7 @@
                             <i class="fas fa-hands-helping"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>89</h3>
+                            <h3>{{ $stats['active_volunteers'] ?? 0 }}</h3>
                             <p>Relawan Aktif</p>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>156</h3>
+                            <h3>{{ $stats['completed_programs'] ?? 0 }}</h3>
                             <p>Program Selesai</p>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                             <i class="fas fa-hourglass-half"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>24</h3>
+                            <h3>{{ $stats['active_programs'] ?? 0 }}</h3>
                             <p>Program Aktif</p>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                             <i class="fas fa-user-clock"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>12</h3>
+                            <h3>{{ $stats['pending_verification'] ?? 0 }}</h3>
                             <p>Menunggu Verifikasi</p>
                         </div>
                     </div>

@@ -20,6 +20,7 @@ export default defineConfig({
                 'resources/css/donor-profile.css',
                 'resources/css/donasiku.css',
                 'resources/css/font-awesome.css',
+                'resources/css/volunteer-dashboard.css',
 
                 'resources/js/app.js',
                 'resources/js/main.js',

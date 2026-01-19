@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PantiProfile;
+use Illuminate\Support\Facades\DB;
 
 class PantiProfileController extends Controller
 {
@@ -15,7 +16,14 @@ class PantiProfileController extends Controller
             ->orderBy('created_at','desc')
             ->paginate(20);
 
-        return view('admin.manajemen-penerima.index', compact('pantis'));
+        $stats = [
+            'total' => PantiProfile::count(),
+            'verified' => PantiProfile::where('status_verif', 'verified')->count(),
+            'pending' => PantiProfile::where('status_verif', 'pending')->count(),
+            'rejected' => PantiProfile::where('status_verif', 'rejected')->count(),
+        ];
+
+        return view('admin.manajemen-penerima.index', compact('pantis', 'stats'));
     }
 
     public function create()

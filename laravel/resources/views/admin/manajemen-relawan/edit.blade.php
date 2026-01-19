@@ -49,6 +49,7 @@
                 <form action="{{ route('admin.volunteers.update', $relawan->id_relawan) }}" method="POST">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="id_user" value="{{ $relawan->id_user }}">
                     
                     <div class="mb-3">
                         <label for="nama_lengkap" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>

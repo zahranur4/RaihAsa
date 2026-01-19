@@ -76,7 +76,7 @@
                             <i class="fas fa-utensils"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>2.5 Ton</h3>
+                            <h3>{{ number_format($stats['total_saved_portions'] ?? 0) }}</h3>
                             <p>Makanan Terselamatkan</p>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>189</h3>
+                            <h3>{{ $stats['completed_rescue'] ?? 0 }}</h3>
                             <p>Rescue Selesai</p>
                         </div>
                     </div>
@@ -94,8 +94,8 @@
                             <i class="fas fa-hourglass-half"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>24</h3>
-                            <p>Rescue Aktif</h></p>
+                            <h3>{{ $stats['active_rescue'] ?? 0 }}</h3>
+                            <p>Rescue Aktif</p>
                         </div>
                     </div>
                     <div class="stat-card">
@@ -103,7 +103,7 @@
                             <i class="fas fa-store"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>67</h3>
+                            <h3>{{ $stats['partner_restaurants'] ?? 0 }}</h3>
                             <p>Restoran Mitra</p>
                         </div>
                     </div>

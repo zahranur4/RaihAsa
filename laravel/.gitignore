@@ -24,3 +24,4 @@ Homestead.yaml
 Thumbs.db
 /laravel/public/build/
 /node_modules/
+DATABASE_ERD.md

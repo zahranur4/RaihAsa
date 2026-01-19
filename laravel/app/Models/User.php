@@ -57,6 +57,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Relationship to relawan_profiles
+     */
+    public function relawan_profiles()
+    {
+        return $this->hasMany(RelawanProfile::class, 'id_user', 'id');
+    }
+
+    /**
      * The attributes that should be cast.
      *
      * @return array<string, string>

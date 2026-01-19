@@ -9,7 +9,7 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-Dihlmw98.css",
+    "file": "assets/app-BOw5Pme4.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -105,6 +105,15 @@
     "name": "style",
     "names": [
       "style.css"
+    ]
+  },
+  "resources/css/volunteer-dashboard.css": {
+    "file": "assets/volunteer-dashboard-XVAZIQqQ.css",
+    "src": "resources/css/volunteer-dashboard.css",
+    "isEntry": true,
+    "name": "volunteer-dashboard",
+    "names": [
+      "volunteer-dashboard.css"
     ]
   },
   "resources/css/volunteer.css": {

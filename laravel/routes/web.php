@@ -34,9 +34,10 @@ Route::get('/my-donations', [MyDonationsController::class, 'index'])->name('my-d
 Route::redirect('/register-panti', '/register');
 
 // Volunteer registration routes
-Route::get('/volunteer/register', [VolunteerRegistrationController::class, 'create'])->name('volunteer.register');
-Route::post('/volunteer/register', [VolunteerRegistrationController::class, 'store'])->name('volunteer.register.store');
-Route::get('/volunteer/status', [VolunteerRegistrationController::class, 'status'])->name('volunteer.status');
+Route::get('/volunteer/register', [VolunteerRegistrationController::class, 'create'])->middleware('auth')->name('volunteer.register');
+Route::post('/volunteer/register', [VolunteerRegistrationController::class, 'store'])->middleware('auth')->name('volunteer.register.store');
+Route::get('/volunteer/status', [VolunteerRegistrationController::class, 'status'])->middleware('auth')->name('volunteer.status');
+Route::get('/volunteer/dashboard', [VolunteerController::class, 'dashboard'])->middleware('auth')->name('volunteer.dashboard');
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;

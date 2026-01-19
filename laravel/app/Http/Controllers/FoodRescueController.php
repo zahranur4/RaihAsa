@@ -154,6 +154,15 @@ class FoodRescueController extends Controller
             return $food;
         });
 
-        return view('admin.food-rescue-admin.index', compact('foods'));
+        $stats = [
+            'total_saved_portions' => DB::table('food_rescue')
+                ->whereIn('status', ['claimed'])
+                ->sum('porsi'),
+            'completed_rescue' => DB::table('food_rescue')->where('status', 'claimed')->count(),
+            'active_rescue' => DB::table('food_rescue')->where('status', 'available')->count(),
+            'partner_restaurants' => DB::table('food_rescue')->distinct('id_donatur')->count('id_donatur'),
+        ];
+
+        return view('admin.food-rescue-admin.index', compact('foods', 'stats'));
     }
 }
