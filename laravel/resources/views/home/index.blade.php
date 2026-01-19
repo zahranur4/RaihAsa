@@ -128,7 +128,7 @@
         </div>
         
         <!-- Search container -->
-        <div class="container search-container mt-4">
+        <!-- <div class="container search-container mt-4">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6">
                     <div class="search-box p-3">
@@ -141,39 +141,39 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 
     <!-- Small Categories Section -->
     <section class="small-categories py-3">
         <div class="container">
             <div class="row g-3 justify-content-center">
-                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
-                    <a href="pages/food-rescue.html" class="small-category-card">
+                <div class="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                    <a href="{{ route('food-rescue') }}" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-utensils"></i>
                         </div>
                         <span>Food Rescue</span>
                     </a>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
-                    <a href="pages/wishlist.html" class="small-category-card">
+                <div class="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                    <a href="{{ route('wishlist') }}" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-heart"></i>
                         </div>
                         <span>Wishlist</span>
                     </a>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
-                    <a href="pages/volunteer.html" class="small-category-card">
+                <div class="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                    <a href="{{ route('volunteer') }}" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-hands-helping"></i>
                         </div>
                         <span>Relawan</span>
                     </a>
                 </div>
-                <div class="col-6 col-md-4 col-lg-2 d-flex justify-content-center">
-                    <a href="pages/my-donations.html" class="small-category-card">
+                <div class="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                    <a href="{{ route('my-donations') }}" class="small-category-card">
                         <div class="small-category-icon">
                             <i class="fas fa-hand-holding-heart"></i>
                         </div>
@@ -474,7 +474,7 @@
                     <p class="lead">Simpan makanan dari pemborosan dengan mendistribusikannya kepada yang membutuhkan sebelum kedaluwarsa.</p>
                     <p>Fitur Food Rescue kami memungkinkan restoran, toko makanan, dan individu untuk mendonasikan makanan berlebih yang masih layak konsumsi kepada panti asuhan, panti jompo, dan lembaga lain yang membutuhkan.</p>
                     <p>Dengan sistem monitoring dan notifikasi real-time, kami memastikan makanan didistribusikan dengan cepat sebelum kedaluwarsa, mengurangi pemborosan, dan membantu mereka yang membutuhkan.</p>
-                    <a href="pages/food-rescue.html" class="btn btn-primary mt-3">Lihat Selengkapnya</a>
+                    <a href="{{ route('food-rescue') }}" class="btn btn-primary mt-3">Lihat Selengkapnya</a>
                 </div>
                 <div class="col-lg-6">
                     <div class="food-rescue-image">
@@ -494,7 +494,7 @@
                     <p class="lead">Temukan kebutuhan mendesak dari panti dan lembaga yang membutuhkan bantuan.</p>
                     <p>Panti asuhan, panti jompo, dan lembaga sosial dapat membuat daftar kebutuhan mereka dengan label tingkat urgensi. Anda dapat melihat semua wishlist ini dan memilih untuk membantu sesuai dengan kemampuan dan keinginan Anda.</p>
                     <p>Setiap wishlist memiliki informasi detail tentang jenis kebutuhan, jumlah yang dibutuhkan, dan tingkat urgensi, sehingga Anda dapat membuat keputusan yang tepat tentang donasi Anda.</p>
-                    <a href="pages/wishlist.html" class="btn btn-primary mt-3">Lihat Selengkapnya</a>
+                    <a href="{{ route('wishlist') }}" class="btn btn-primary mt-3">Lihat Selengkapnya</a>
                 </div>
                 <div class="col-lg-6 order-lg-1">
                     <div class="wishlist-image">
@@ -514,7 +514,7 @@
                     <p class="lead">Ingin menjadi relawan?</p>
                     <p>Bergabunglah sebagai relawan untuk membuat dampak positif di masyarakat. RaihAsa menyediakan berbagai kesempatan untuk berkontribusi sesuai minat dan kemampuan Anda.</p>
                     <p>Setelah mendaftar dan login, Anda dapat mengisi form pendaftaran relawan, melihat kegiatan yang tersedia melalui smart matching, dan mengelola partisipasi Anda dalam berbagai kegiatan sosial.</p>
-                    <a href="#volunteerModal" data-bs-toggle="modal" class="btn btn-primary mt-3">Daftar sebagai Relawan</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary mt-3 requires-auth">Daftar sebagai Relawan</a>
                 </div>
                 <div class="col-lg-6">
                     <div class="volunteer-image">
@@ -605,7 +605,7 @@
                 <p class="lead">Bersama-sama, kita dapat membuat perbedaan nyata dalam kehidupan banyak orang dan mengurangi dampak negatif pemborosan makanan terhadap lingkungan.</p>
                 <div class="cta-buttons">
                     <a href="{{ route('register') }}" class="btn btn-light btn-lg me-2">Daftar sebagai Donor</a>
-                    <a href="#volunteerModal" data-bs-toggle="modal" class="btn btn-outline-light btn-lg">Daftar sebagai Relawan</a>
+                    <a href="{{ route('volunteer') }}" class="btn btn-outline-light btn-lg">Daftar sebagai Relawan</a>
                 </div>
             </div>
         </div>

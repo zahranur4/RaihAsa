@@ -5,13 +5,21 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DonasiBarang;
+use Illuminate\Support\Facades\DB;
 
 class DonasiController extends Controller
 {
     public function index()
     {
         $donations = DonasiBarang::orderBy('id_donasi','desc')->paginate(20);
-        return view('admin.manajemen-donasi.index', compact('donations'));
+
+        $stats = [
+            'total_donations' => DonasiBarang::count(),
+            'completed_donations' => DonasiBarang::where('status', 'delivered')->count(),
+            'active_donations' => DonasiBarang::whereIn('status', ['pending', 'accepted'])->count(),
+        ];
+
+        return view('admin.manajemen-donasi.index', compact('donations', 'stats'));
     }
 
     public function create()

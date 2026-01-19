@@ -76,7 +76,7 @@
                             <i class="fas fa-home"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>78</h3>
+                            <h3>{{ $stats['total'] ?? 0 }}</h3>
                             <p>Total Penerima</p>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>65</h3>
+                            <h3>{{ $stats['verified'] ?? 0 }}</h3>
                             <p>Terverifikasi</p>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                             <i class="fas fa-hourglass-half"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>13</h3>
+                            <h3>{{ $stats['pending'] ?? 0 }}</h3>
                             <p>Menunggu Verifikasi</p>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                             <i class="fas fa-times-circle"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>5</h3>
+                            <h3>{{ $stats['rejected'] ?? 0 }}</h3>
                             <p>Ditolak</p>
                         </div>
                     </div>

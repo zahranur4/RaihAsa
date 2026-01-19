@@ -76,7 +76,7 @@
                             <i class="fas fa-hand-holding-heart"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>567</h3>
+                            <h3>{{ $stats['total_donations'] ?? 0 }}</h3>
                             <p>Total Donasi</p>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>432</h3>
+                            <h3>{{ $stats['completed_donations'] ?? 0 }}</h3>
                             <p>Donasi Selesai</p>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                             <i class="fas fa-hourglass-half"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>89</h3>
+                            <h3>{{ $stats['active_donations'] ?? 0 }}</h3>
                             <p>Donasi Aktif</p>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                             <i class="fas fa-boxes"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>3.2 Ton</h3>
+                            <h3>-</h3>
                             <p>Total Berat Donasi</p>
                         </div>
                     </div>

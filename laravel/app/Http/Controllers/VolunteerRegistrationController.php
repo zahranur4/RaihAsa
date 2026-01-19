@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class VolunteerRegistrationController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show volunteer registration form
      */

@@ -5,13 +5,22 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RelawanProfile;
+use Illuminate\Support\Facades\DB;
 
 class RelawanProfileController extends Controller
 {
     public function index()
     {
         $relawans = RelawanProfile::with('user')->orderBy('id_relawan','desc')->paginate(20);
-        return view('admin.manajemen-relawan.index', compact('relawans'));
+
+        $stats = [
+            'active_volunteers' => RelawanProfile::where('status_verif', 'verified')->count(),
+            'completed_programs' => DB::table('volunteer_activities')->where('status', 'completed')->count(),
+            'active_programs' => DB::table('volunteer_activities')->where('status', 'active')->count(),
+            'pending_verification' => RelawanProfile::where('status_verif', 'pending')->count(),
+        ];
+
+        return view('admin.manajemen-relawan.index', compact('relawans', 'stats'));
     }
 
     public function create()
