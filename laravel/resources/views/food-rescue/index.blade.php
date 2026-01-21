@@ -95,6 +95,12 @@
 <button class="category-btn" data-category="minuman">Minuman</button>
 </div>
 
+<div class="text-end mb-4">
+                 <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalDonasiBaru" style="background-color: #000957; border-color: #000957;">
+                    <i class="fas fa-plus-circle me-2"></i> Donasi Baru
+                </button>
+            </div>
+
 <div class="rescue-grid">
 @forelse($foods as $food)
 <div class="rescue-card {{ $food->urgency }}" data-category="{{ $food->category }}">
