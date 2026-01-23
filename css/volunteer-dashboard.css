@@ -1,144 +1,444 @@
-/*============== HEADER ===============*/
+/* ============== 1. VARIABEL & GLOBAL (Tema Warna) ============== */
+:root {
+    /* Warna Utama (Sesuai logo/brand) */
+    --primary-color: #000957;
+    --primary-light: rgba(0, 9, 87, 0.1);
+    
+    /* Warna Aksen & Status */
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    
+    /* Warna Teks & Background */
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --white: #ffffff;
+    --light-bg: #f8f9fa;
+    
+    /* Efek Visual */
+    --shadow: 0 4px 6px rgba(0,0,0,0.05);
+    --shadow-hover: 0 10px 15px rgba(0,0,0,0.1);
+    --radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-primary);
+    background-color: var(--light-bg);
+    line-height: 1.6;
+    padding-top: 80px; /* Padding untuk mengkompensasi header sticky/fixed */
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ============== 2. HEADER & NAVBAR (DIUPDATE SESUAI REFERENSI) ============== */
 .header {
-    position: sticky; 
+    position: fixed; /* Menggunakan Fixed agar efek blur terlihat saat scroll */
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-    border-bottom: 1px solid #eee;
+    /* Efek Glassmorphism: Putih transparan dengan blur */
+    background-color: rgba(255, 255, 255, 0.95); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 0.5rem 0;
+    transition: background-color 0.3s ease;
 }
 
 .navbar {
-    padding: 1rem 0; 
+    padding: 0.5rem 0;
 }
 
-.user-profile-nav {
-    min-width: 200px; 
-}
-
-/*============== STATS CARDS ===============*/
-.stat-card {
-    transition: transform 0.2s ease-in-out;
-}
-
-.stat-card:hover {
-    transform: translateY(-3px);
-}
-
-.stat-icon {
-    width: 45px;
-    height: 45px;
+/* Brand Logo */
+.navbar-brand {
+    font-weight: 700;
+    color: var(--primary-color) !important;
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
 }
 
-/*============== RECOMMENDED SECTION ===============*/
-.recommended-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+.navbar-brand img {
+    height: 40px;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
 }
 
-.activity-card.recommended {
-    border: 2px solid #000957;
-    background: #fff;
+.navbar-brand:hover img {
+    transform: scale(1.05);
 }
 
-.activity-card.recommended .activity-thumb {
-    background-color: #000957;
-    color: white;
-}
-
-/*============== ACTIVITY TABS ===============*/
-.volunteer-tabs {
-    background: white;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-}
-
-.volunteer-tab {
-    background: none;
-    border: none;
-    padding: 0.5rem 1rem;
+/* Navigasi Links */
+.nav-link {
     font-weight: 500;
-    color: #6c757d;
-    border-bottom: 2px solid transparent;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.3s;
+    color: var(--text-primary) !important; /* Teks hitam/abu default */
+    margin: 0 0.5rem;
+    position: relative; /* Penting untuk animasi garis bawah */
+    transition: var(--transition);
+    font-size: 0.95rem;
+    background-color: transparent !important; /* Pastikan background transparan */
 }
 
-.volunteer-tab.active {
-    color: #000957;
-    border-bottom-color: #000957;
+/* Animasi Garis Bawah (Underline) */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
 }
 
-.volunteer-tab:hover {
-    color: #000957;
+/* Hover & Active State */
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color) !important; /* Warna teks Navy saat hover/aktif */
+    background-color: transparent !important; /* Background tetap transparan */
 }
 
-/*============== ACTIVITY CARDS ===============*/
-.activities-grid {
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%; /* Garis bawah muncul penuh saat hover/aktif */
+}
+
+/* Toggler Mobile */
+.navbar-toggler {
+    border: none;
+    padding: 0;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* User Profile Section */
+.user-profile-nav {
+    min-width: 200px;
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    align-items: center;
+    justify-content: flex-end; 
 }
 
-.activity-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    border: 1px solid #eee;
-    transition: all 0.3s;
+.user-info {
+    text-align: right;
+    margin-right: 1rem;
+    line-height: 1.2;
 }
 
-.activity-card:hover {
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+.user-info .name {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+    display: block;
 }
 
-.activity-thumb {
-    width: 100px;
-    height: auto;
-    flex-shrink: 0;
-    background-color: #f8f9fa;
-    border-right: 1px solid #eee;
+.user-info .role {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
 }
 
-.activity-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.profile-img-wrapper img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 50%;
 }
 
-/* Responsive */
-@media (max-width: 576px) {
-    .activity-card .d-flex {
-        flex-direction: column;
-    }
-    
-    .activity-thumb {
-        width: 100%;
-        height: 80px;
-        border-right: none;
-        border-bottom: 1px solid #eee;
-    }
-}
-
-/* DROPDOWN ANIMATION */
+/* Dropdown Menu */
 .dropdown-menu {
     border: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    animation: fadeIn 0.3s;
+    box-shadow: var(--shadow-hover);
+    border-radius: var(--radius);
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.dropdown-item {
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.dropdown-item:hover {
+    background-color: var(--light-bg);
+    color: var(--primary-color);
 }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Navbar Mobile */
+@media (max-width: 991px) {
+    .user-profile-nav {
+        margin-top: 1rem;
+        width: 100%;
+        justify-content: flex-start;
+        border-top: 1px solid #eee;
+        padding-top: 1rem;
+    }
+    
+    .user-info {
+        text-align: left;
+    }
+    
+    .header {
+        background-color: rgba(255, 255, 255, 0.98); /* Lebih solid di mobile */
+    }
+}
+
+/* ============== 3. DASHBOARD COMPONENTS ============== */
+
+/* Typography */
+.section-title {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Stats Cards */
+.stat-card {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: none;
+    transition: var(--transition);
+    height: 100%;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+/* Activity Cards */
+.activity-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.activity-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.activity-thumb {
+    width: 100px;
+    background-color: #f0f4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+}
+
+/* Style Khusus Kartu Rekomendasi */
+.activity-card.recommended {
+    border: 2px solid var(--primary-color);
+}
+
+.activity-card.recommended .activity-thumb {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Tabs (Semua, Terdaftar, dll) */
+.volunteer-tabs {
+    background: var(--white);
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+}
+
+.volunteer-tab {
+    border: none;
+    background: transparent;
+    padding: 0.5rem 1.25rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.volunteer-tab.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.volunteer-tab:hover:not(.active) {
+    background-color: #f0f4ff;
+    color: var(--primary-color);
+}
+
+/* Buttons & Badges */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #000740;
+    border-color: #000740;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Custom Badges */
+.badge.bg-success.bg-opacity-10.text-success { 
+    background-color: rgba(25, 135, 84, 0.1) !important; 
+    color: var(--success-color) !important;
+}
+
+.badge.bg-warning.bg-opacity-10.text-warning { 
+    background-color: rgba(255, 193, 7, 0.1) !important; 
+    color: #b48b03 !important;
+}
+
+.badge.bg-info.bg-opacity-10.text-info { 
+    background-color: rgba(13, 202, 240, 0.1) !important; 
+    color: var(--info-color) !important;
+}
+
+/* ============== 4. FOOTER ============== */
+.footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4rem 0 0 0;
+    margin-top: 5rem;
+}
+
+.footer-logo {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.footer-logo-img {
+    height: 40px;
+    margin-right: 0.5rem;
+    background: white;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.footer h4 {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.footer-links ul, .footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links ul li, .footer-contact li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: white;
+    padding-left: 5px;
+}
+
+.footer-contact li {
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    align-items: flex-start;
+}
+
+.footer-contact i {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+}
+
+.footer-bottom a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    transition: 0.3s;
+}
+
+.footer-bottom a:hover {
+    color: white;
+}
+
+.social-links a {
+    display: inline-flex;
+    width: 35px;
+    height: 35px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background: white;
+    color: var(--primary-color);
 }

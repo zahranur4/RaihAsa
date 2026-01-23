@@ -10,13 +10,15 @@
     <!-- CSS Style -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/components.css">
+    <!-- Pastikan path CSS ini sesuai dengan file baru di bawah -->
     <link rel="stylesheet" href="/css/volunteer-dashboard.css">
 </head>
 <body>
 
 <!-- Header -->
 <header class="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <!-- HAPUS bg-white di sini, kita atur di CSS untuk efek transparan -->
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="../index.html">
                 <img src="/assets/raih asa logo.png" alt="RaihAsa Logo" height="40" class="me-2">
@@ -29,14 +31,13 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Beranda</a></li>
-                    <!-- MENU TENTANG DITAMBAHKAN DI SINI -->
-                    <li class="nav-item"><a class="nav-link" href="../index.html#about">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/index.html#about">Tentang</a></li>
                     
-                    <li class="nav-item"><a class="nav-link" href="food-rescue.html">Food Rescue</a></li>
-                    <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
-                    <li class="nav-item"><a class="nav-link active fw-bold" href="volunteer-dashboard.html">Relawan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="my-donations.html">Kontribusiku</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/pages/food-rescue.html">Food Rescue</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/pages/wishlist.html">Wishlist</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/pages/volunteer-dashboard.html">Relawan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/pages/my-donations.html">Kontribusiku</a></li>
                 </ul>
 
                 <!-- User Profile -->
@@ -71,7 +72,7 @@
             <p class="text-muted mb-0">Halo Christian, siap membantu hari ini?</p>
         </div>
 
-        <!-- Statistik Relawan (Tanpa Total Jam) -->
+        <!-- Statistik Relawan -->
         <section class="row g-4 mb-5">
             <div class="col-md-6 col-lg-4">
                 <div class="stat-card bg-white p-4 rounded shadow-sm h-100 border-0">
@@ -157,7 +158,7 @@
                             </div>
                         </div>
 
-                        <!-- Pilihan 2: Tombol Juga Memicu Modal -->
+                        <!-- Pilihan 2 -->
                         <div class="activity-card recommended">
                             <div class="card-body p-0">
                                 <div class="d-flex">
@@ -174,7 +175,6 @@
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <small class="text-muted">Butuh 1 relawan lagi</small>
-                                            <!-- Tombol 2: Saya tambahkan data-bs-toggle dan target -->
                                             <button class="btn btn-sm btn-primary" style="background-color: #000957; border-color: #000957;" 
                                                     data-bs-toggle="modal" data-bs-target="#registerActivityModal"
                                                     id="btn-activity-2">
@@ -203,7 +203,7 @@
                     <!-- Grid History -->
                     <div class="activities-grid">
                         
-                        <!-- ITEM History 1: Approved (Dengan Tombol WA) -->
+                        <!-- ITEM History 1: Approved -->
                         <div class="activity-card" data-status="approved">
                             <div class="card-body p-0">
                                 <div class="d-flex">
@@ -223,7 +223,6 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <small class="text-success fw-bold">Siap Melaksanakan</small>
                                             <div>
-                                                <!-- TOMBOL WA SUDAH DIKEMBALIKAN -->
                                                 <button class="btn btn-primary" style="background-color: #000957; border-color: #000957;" onclick="alert('Membuka Grup WhatsApp...')">
                                                     <i class="fab fa-whatsapp me-1"></i> Lihat Grup WA
                                                 </button>
@@ -280,7 +279,6 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <small class="text-info">Kegiatan Selesai</small>
                                             <div>
-                                                <!-- HAPUS: <button class="btn btn-sm btn-outline-primary me-1">Beri Feedback</button> -->
                                                 <button class="btn btn-sm btn-primary"><i class="fas fa-download me-1"></i> Sertifikat</button>
                                             </div>
                                         </div>
@@ -316,10 +314,7 @@
                         
                         <hr class="my-3">
                         
-                        <!-- UPDATE: Link ke donor-profile.html -->
                         <a href="/donor/donor-profile.html" class="btn btn-outline-primary btn-sm w-100 mb-2">Edit Profil</a>
-                        
-                        <!-- DIHAPUS: <button class="btn btn-outline-secondary btn-sm w-100">Lihat Skill Saya</button> -->
                     </div>
                 </div>
 
@@ -362,13 +357,10 @@
 
                 <!-- Form Pendaftaran -->
                 <form id="activityRegistrationForm">
-                    <!-- Input 1: Motivasi -->
                     <div class="mb-3">
                         <label for="motivation" class="form-label fw-bold">Motivasi Mengikuti</label>
                         <textarea class="form-control" id="motivation" rows="3" placeholder="Ceritakan singkat kenapa Anda ingin ikut kegiatan ini..." required></textarea>
                     </div>
-
-                    <!-- Input 2: Kontak Darurat -->
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="emergencyName" class="form-label fw-bold">Nama Kontak Darurat</label>
@@ -379,8 +371,6 @@
                             <input type="tel" class="form-control" id="emergencyPhone" placeholder="08..." required>
                         </div>
                     </div>
-
-                    <!-- Input 3: Transportasi -->
                     <div class="mb-3">
                         <label class="form-label fw-bold">Transportasi ke Lokasi</label>
                         <select class="form-select" required>
@@ -391,8 +381,6 @@
                             <option value="umum">Angkutan Umum</option>
                         </select>
                     </div>
-
-                    <!-- Input 4: Persetujuan -->
                     <div class="mb-3">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="commitment" required>
@@ -430,7 +418,6 @@
     </div>
 </footer>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../js/main.js"></script>
 
@@ -458,24 +445,20 @@
         });
     }
 
-    // 2. Reset Modal (Agar kembali ke form saat dibuka ulang)
+    // 2. Reset Modal
     function resetModal() {
         document.getElementById('activityRegistrationForm').style.display = 'block';
         document.getElementById('registrationSuccess').classList.add('d-none');
         document.getElementById('activityRegistrationForm').reset();
     }
 
-    // 3. Handle Submit Form -> Munculkan Sukses & Ubah Tombol Luar
+    // 3. Handle Submit Form
     document.getElementById('activityRegistrationForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Sembunyikan Form
         this.style.display = 'none';
-        
-        // Tampilkan Pesan Sukses
         document.getElementById('registrationSuccess').classList.remove('d-none');
 
-        // Ubah tombol di kartu rekomendasi (Simulasi UI)
         const btn = document.getElementById('btn-activity-1');
         if(btn) {
             btn.innerHTML = '<i class="fas fa-hourglass-half me-1"></i> Menunggu Verifikasi';
@@ -492,20 +475,16 @@
             
             btn.innerHTML = '<i class="fab fa-whatsapp me-1"></i> Masuk Grup WA';
             btn.classList.replace('btn-warning', 'btn-success');
-            btn.removeAttribute('disabled'); // Aktifkan tombol
+            btn.removeAttribute('disabled'); 
             btn.onclick = function() { 
-                // Logika buka WhatsApp
                 window.open('https://chat.whatsapp.com', '_blank'); 
             };
         }
     }
     
-    // Jalankan simulasi otomatis 5 detik setelah submit (opsional, agar tidak bingung)
     setTimeout(() => {
-        // Uncomment baris di bawah ini jika ingin otomatis terverifikasi 5 detik setelah klik Daftar
         // simulateVerification(); 
     }, 5000);
-
 </script>
 </body>
 </html>
