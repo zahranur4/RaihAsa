@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for C:\Users\Zahra\Documents\Pemerogaman Dasar\RaihAsa\laravel\app</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=11.0.12" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css?v=11.0.12" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=11.0.12" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">C:\Users\Zahra\Documents\Pemerogaman Dasar\RaihAsa\laravel</a></li>
+         <li class="breadcrumb-item"><a href="index.html">app</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Http/Controllers/Admin/FoodRescueController.php.html#9">App\Http\Controllers\Admin\FoodRescueController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/PantiProfile.php.html#8">App\Models\PantiProfile</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/RelawanProfile.php.html#8">App\Models\RelawanProfile</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Wishlist.php.html#7">App\Models\Wishlist</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/ProfileController.php.html#11">App\Http\Controllers\Panti\ProfileController</a></td><td class="text-right">1%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/UserController.php.html#10">App\Http\Controllers\Admin\UserController</a></td><td class="text-right">4%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/DonasiMasukController.php.html#10">App\Http\Controllers\Panti\DonasiMasukController</a></td><td class="text-right">5%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#13">App\Http\Controllers\Panti\WishlistController</a></td><td class="text-right">22%</td></tr>
+       <tr><td><a href="Http/Controllers/WishlistController.php.html#11">App\Http\Controllers\WishlistController</a></td><td class="text-right">23%</td></tr>
+       <tr><td><a href="Http/Controllers/DonationMatchingController.php.html#10">App\Http\Controllers\DonationMatchingController</a></td><td class="text-right">28%</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerController.php.html#9">App\Http\Controllers\VolunteerController</a></td><td class="text-right">31%</td></tr>
+       <tr><td><a href="Http/Controllers/FoodRescueController.php.html#9">App\Http\Controllers\FoodRescueController</a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/DonasiController.php.html#10">App\Http\Controllers\Admin\DonasiController</a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="Http/Controllers/DonasikuController.php.html#8">App\Http\Controllers\DonasikuController</a></td><td class="text-right">41%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/PantiProfileController.php.html#10">App\Http\Controllers\Admin\PantiProfileController</a></td><td class="text-right">51%</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerRegistrationController.php.html#9">App\Http\Controllers\VolunteerRegistrationController</a></td><td class="text-right">51%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/RelawanProfileController.php.html#10">App\Http\Controllers\Admin\RelawanProfileController</a></td><td class="text-right">54%</td></tr>
+       <tr><td><a href="Models/User.php.html#10">App\Models\User</a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Http/Middleware/EnsureAdmin.php.html#9">App\Http\Middleware\EnsureAdmin</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Http/Controllers/AuthController.php.html#10">App\Http\Controllers\AuthController</a></td><td class="text-right">87%</td></tr>
+       <tr><td><a href="Http/Controllers/Donor/ProfileController.php.html#10">App\Http\Controllers\Donor\ProfileController</a></td><td class="text-right">89%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Http/Controllers/DonationMatchingController.php.html#10">App\Http\Controllers\DonationMatchingController</a></td><td class="text-right">276</td></tr>
+       <tr><td><a href="Http/Controllers/FoodRescueController.php.html#9">App\Http\Controllers\FoodRescueController</a></td><td class="text-right">260</td></tr>
+       <tr><td><a href="Http/Controllers/WishlistController.php.html#11">App\Http\Controllers\WishlistController</a></td><td class="text-right">220</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#13">App\Http\Controllers\Panti\WishlistController</a></td><td class="text-right">187</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/ProfileController.php.html#11">App\Http\Controllers\Panti\ProfileController</a></td><td class="text-right">125</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/DonasiMasukController.php.html#10">App\Http\Controllers\Panti\DonasiMasukController</a></td><td class="text-right">93</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/UserController.php.html#10">App\Http\Controllers\Admin\UserController</a></td><td class="text-right">49</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerRegistrationController.php.html#9">App\Http\Controllers\VolunteerRegistrationController</a></td><td class="text-right">40</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerController.php.html#9">App\Http\Controllers\VolunteerController</a></td><td class="text-right">22</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/DonasiController.php.html#10">App\Http\Controllers\Admin\DonasiController</a></td><td class="text-right">21</td></tr>
+       <tr><td><a href="Http/Controllers/AuthController.php.html#10">App\Http\Controllers\AuthController</a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="Http/Middleware/EnsureAdmin.php.html#9">App\Http\Middleware\EnsureAdmin</a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Http/Controllers/Donor/ProfileController.php.html#10">App\Http\Controllers\Donor\ProfileController</a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Http/Controllers/DonasikuController.php.html#8">App\Http\Controllers\DonasikuController</a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Http/Controllers/Admin/DonasiController.php.html#25"><abbr title="App\Http\Controllers\Admin\DonasiController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/DonasiController.php.html#50"><abbr title="App\Http\Controllers\Admin\DonasiController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/DonasiController.php.html#56"><abbr title="App\Http\Controllers\Admin\DonasiController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/FoodRescueController.php.html#11"><abbr title="App\Http\Controllers\Admin\FoodRescueController::index">index</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/FoodRescueController.php.html#17"><abbr title="App\Http\Controllers\Admin\FoodRescueController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/FoodRescueController.php.html#22"><abbr title="App\Http\Controllers\Admin\FoodRescueController::store">store</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/FoodRescueController.php.html#39"><abbr title="App\Http\Controllers\Admin\FoodRescueController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/FoodRescueController.php.html#45"><abbr title="App\Http\Controllers\Admin\FoodRescueController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/FoodRescueController.php.html#62"><abbr title="App\Http\Controllers\Admin\FoodRescueController::destroy">destroy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/PantiProfileController.php.html#29"><abbr title="App\Http\Controllers\Admin\PantiProfileController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/PantiProfileController.php.html#49"><abbr title="App\Http\Controllers\Admin\PantiProfileController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/PantiProfileController.php.html#55"><abbr title="App\Http\Controllers\Admin\PantiProfileController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/PantiProfileController.php.html#71"><abbr title="App\Http\Controllers\Admin\PantiProfileController::destroy">destroy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/RelawanProfileController.php.html#26"><abbr title="App\Http\Controllers\Admin\RelawanProfileController::create">create</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/RelawanProfileController.php.html#45"><abbr title="App\Http\Controllers\Admin\RelawanProfileController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/RelawanProfileController.php.html#66"><abbr title="App\Http\Controllers\Admin\RelawanProfileController::destroy">destroy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/UserController.php.html#20"><abbr title="App\Http\Controllers\Admin\UserController::edit">edit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/UserController.php.html#27"><abbr title="App\Http\Controllers\Admin\UserController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/UserController.php.html#55"><abbr title="App\Http\Controllers\Admin\UserController::store">store</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/UserController.php.html#82"><abbr title="App\Http\Controllers\Admin\UserController::destroy">destroy</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/DonationMatchingController.php.html#118"><abbr title="App\Http\Controllers\DonationMatchingController::fulfillWishlist">fulfillWishlist</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/DonasiMasukController.php.html#86"><abbr title="App\Http\Controllers\Panti\DonasiMasukController::confirmReceipt">confirmReceipt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/DonasiMasukController.php.html#106"><abbr title="App\Http\Controllers\Panti\DonasiMasukController::viewDetail">viewDetail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/ProfileController.php.html#19"><abbr title="App\Http\Controllers\Panti\ProfileController::update">update</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerRegistrationController.php.html#31"><abbr title="App\Http\Controllers\VolunteerRegistrationController::store">store</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerRegistrationController.php.html#109"><abbr title="App\Http\Controllers\VolunteerRegistrationController::hasQuota">hasQuota</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerRegistrationController.php.html#115"><abbr title="App\Http\Controllers\VolunteerRegistrationController::isValidCategory">isValidCategory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/WishlistController.php.html#130"><abbr title="App\Http\Controllers\WishlistController::extractCity">extractCity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/PantiProfile.php.html#31"><abbr title="App\Models\PantiProfile::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/RelawanProfile.php.html#29"><abbr title="App\Models\RelawanProfile::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/User.php.html#54"><abbr title="App\Models\User::getAuthPassword">getAuthPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/User.php.html#62"><abbr title="App\Models\User::relawan_profiles">relawan_profiles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Wishlist.php.html#22"><abbr title="App\Models\Wishlist::panti">panti</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/DonasiMasukController.php.html#12"><abbr title="App\Http\Controllers\Panti\DonasiMasukController::index">index</abbr></a></td><td class="text-right">9%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/RelawanProfileController.php.html#51"><abbr title="App\Http\Controllers\Admin\RelawanProfileController::update">update</abbr></a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#65"><abbr title="App\Http\Controllers\Panti\WishlistController::update">update</abbr></a></td><td class="text-right">12%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#30"><abbr title="App\Http\Controllers\Panti\WishlistController::store">store</abbr></a></td><td class="text-right">15%</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerController.php.html#41"><abbr title="App\Http\Controllers\VolunteerController::dashboard">dashboard</abbr></a></td><td class="text-right">15%</td></tr>
+       <tr><td><a href="Http/Controllers/FoodRescueController.php.html#11"><abbr title="App\Http\Controllers\FoodRescueController::index">index</abbr></a></td><td class="text-right">21%</td></tr>
+       <tr><td><a href="Http/Controllers/FoodRescueController.php.html#74"><abbr title="App\Http\Controllers\FoodRescueController::claim">claim</abbr></a></td><td class="text-right">23%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#107"><abbr title="App\Http\Controllers\Panti\WishlistController::destroy">destroy</abbr></a></td><td class="text-right">25%</td></tr>
+       <tr><td><a href="Http/Controllers/WishlistController.php.html#13"><abbr title="App\Http\Controllers\WishlistController::index">index</abbr></a></td><td class="text-right">25%</td></tr>
+       <tr><td><a href="Http/Controllers/DonationMatchingController.php.html#15"><abbr title="App\Http\Controllers\DonationMatchingController::findMatches">findMatches</abbr></a></td><td class="text-right">30%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/DonasiController.php.html#77"><abbr title="App\Http\Controllers\Admin\DonasiController::destroy">destroy</abbr></a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#136"><abbr title="App\Http\Controllers\Panti\WishlistController::getOrSyncPantiProfile">getOrSyncPantiProfile</abbr></a></td><td class="text-right">35%</td></tr>
+       <tr><td><a href="Http/Controllers/DonationMatchingController.php.html#197"><abbr title="App\Http\Controllers\DonationMatchingController::confirmPledge">confirmPledge</abbr></a></td><td class="text-right">35%</td></tr>
+       <tr><td><a href="Http/Controllers/DonasikuController.php.html#10"><abbr title="App\Http\Controllers\DonasikuController::index">index</abbr></a></td><td class="text-right">41%</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#15"><abbr title="App\Http\Controllers\Panti\WishlistController::index">index</abbr></a></td><td class="text-right">42%</td></tr>
+       <tr><td><a href="Http/Controllers/DonationMatchingController.php.html#173"><abbr title="App\Http\Controllers\DonationMatchingController::showPledge">showPledge</abbr></a></td><td class="text-right">45%</td></tr>
+       <tr><td><a href="Http/Controllers/FoodRescueController.php.html#112"><abbr title="App\Http\Controllers\FoodRescueController::adminIndex">adminIndex</abbr></a></td><td class="text-right">46%</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerController.php.html#21"><abbr title="App\Http\Controllers\VolunteerController::index">index</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Http/Controllers/FoodRescueController.php.html#98"><abbr title="App\Http\Controllers\FoodRescueController::detail">detail</abbr></a></td><td class="text-right">60%</td></tr>
+       <tr><td><a href="Http/Controllers/RegisterController.php.html#13"><abbr title="App\Http\Controllers\RegisterController::showRegister">showRegister</abbr></a></td><td class="text-right">60%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/DonasiController.php.html#30"><abbr title="App\Http\Controllers\Admin\DonasiController::store">store</abbr></a></td><td class="text-right">61%</td></tr>
+       <tr><td><a href="Http/Controllers/AuthController.php.html#13"><abbr title="App\Http\Controllers\AuthController::showLogin">showLogin</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Http/Middleware/EnsureAdmin.php.html#19"><abbr title="App\Http\Middleware\EnsureAdmin::handle">handle</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerRegistrationController.php.html#14"><abbr title="App\Http\Controllers\VolunteerRegistrationController::create">create</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Http/Controllers/Donor/ProfileController.php.html#21"><abbr title="App\Http\Controllers\Donor\ProfileController::update">update</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Http/Controllers/AuthController.php.html#22"><abbr title="App\Http\Controllers\AuthController::login">login</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/PantiProfileController.php.html#34"><abbr title="App\Http\Controllers\Admin\PantiProfileController::store">store</abbr></a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Http/Controllers/FoodRescueController.php.html#11"><abbr title="App\Http\Controllers\FoodRescueController::index">index</abbr></a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="Http/Controllers/WishlistController.php.html#13"><abbr title="App\Http\Controllers\WishlistController::index">index</abbr></a></td><td class="text-right">137</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/ProfileController.php.html#19"><abbr title="App\Http\Controllers\Panti\ProfileController::update">update</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Http/Controllers/DonationMatchingController.php.html#15"><abbr title="App\Http\Controllers\DonationMatchingController::findMatches">findMatches</abbr></a></td><td class="text-right">69</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/DonasiMasukController.php.html#12"><abbr title="App\Http\Controllers\Panti\DonasiMasukController::index">index</abbr></a></td><td class="text-right">32</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#65"><abbr title="App\Http\Controllers\Panti\WishlistController::update">update</abbr></a></td><td class="text-right">21</td></tr>
+       <tr><td><a href="Http/Controllers/DonationMatchingController.php.html#118"><abbr title="App\Http\Controllers\DonationMatchingController::fulfillWishlist">fulfillWishlist</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerRegistrationController.php.html#31"><abbr title="App\Http\Controllers\VolunteerRegistrationController::store">store</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Controllers/WishlistController.php.html#130"><abbr title="App\Http\Controllers\WishlistController::extractCity">extractCity</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#30"><abbr title="App\Http\Controllers\Panti\WishlistController::store">store</abbr></a></td><td class="text-right">13</td></tr>
+       <tr><td><a href="Http/Controllers/DonationMatchingController.php.html#173"><abbr title="App\Http\Controllers\DonationMatchingController::showPledge">showPledge</abbr></a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="Http/Controllers/FoodRescueController.php.html#112"><abbr title="App\Http\Controllers\FoodRescueController::adminIndex">adminIndex</abbr></a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#107"><abbr title="App\Http\Controllers\Panti\WishlistController::destroy">destroy</abbr></a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#136"><abbr title="App\Http\Controllers\Panti\WishlistController::getOrSyncPantiProfile">getOrSyncPantiProfile</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Http/Controllers/FoodRescueController.php.html#74"><abbr title="App\Http\Controllers\FoodRescueController::claim">claim</abbr></a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/DonasiController.php.html#56"><abbr title="App\Http\Controllers\Admin\DonasiController::update">update</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/UserController.php.html#27"><abbr title="App\Http\Controllers\Admin\UserController::update">update</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/UserController.php.html#55"><abbr title="App\Http\Controllers\Admin\UserController::store">store</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/DonasiMasukController.php.html#86"><abbr title="App\Http\Controllers\Panti\DonasiMasukController::confirmReceipt">confirmReceipt</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/DonasiMasukController.php.html#106"><abbr title="App\Http\Controllers\Panti\DonasiMasukController::viewDetail">viewDetail</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerRegistrationController.php.html#109"><abbr title="App\Http\Controllers\VolunteerRegistrationController::hasQuota">hasQuota</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Http/Middleware/EnsureAdmin.php.html#19"><abbr title="App\Http\Middleware\EnsureAdmin::handle">handle</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerController.php.html#41"><abbr title="App\Http\Controllers\VolunteerController::dashboard">dashboard</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerController.php.html#21"><abbr title="App\Http\Controllers\VolunteerController::index">index</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Http/Controllers/AuthController.php.html#22"><abbr title="App\Http\Controllers\AuthController::login">login</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Http/Controllers/RegisterController.php.html#13"><abbr title="App\Http\Controllers\RegisterController::showRegister">showRegister</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Http/Controllers/DonationMatchingController.php.html#197"><abbr title="App\Http\Controllers\DonationMatchingController::confirmPledge">confirmPledge</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Http/Controllers/DonasikuController.php.html#10"><abbr title="App\Http\Controllers\DonasikuController::index">index</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Http/Controllers/Panti/WishlistController.php.html#15"><abbr title="App\Http\Controllers\Panti\WishlistController::index">index</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Http/Controllers/FoodRescueController.php.html#98"><abbr title="App\Http\Controllers\FoodRescueController::detail">detail</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Http/Controllers/Admin/DonasiController.php.html#30"><abbr title="App\Http\Controllers\Admin\DonasiController::store">store</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Http/Controllers/AuthController.php.html#13"><abbr title="App\Http\Controllers\AuthController::showLogin">showLogin</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Http/Controllers/VolunteerRegistrationController.php.html#14"><abbr title="App\Http\Controllers\VolunteerRegistrationController::create">create</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 11.0.12</a> using <a href="https://www.php.net/" target="_top">PHP 8.2.12</a> and <a href="https://phpunit.de/">PHPUnit 11.5.46</a> at Sat Jan 24 6:57:57 UTC 2026.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js?v=11.0.12" type="text/javascript"></script>
+  <script src="../_js/d3.min.js?v=11.0.12" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js?v=11.0.12" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([4,3,0,3,2,2,3,1,1,2,1,6], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([33,1,4,4,4,4,1,4,1,4,1,21], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Http\/Controllers\/Admin\/AdminController.php.html#8\">App\\Http\\Controllers\\Admin\\AdminController<\/a>"],[40,8,"<a href=\"Http\/Controllers\/Admin\/DonasiController.php.html#10\">App\\Http\\Controllers\\Admin\\DonasiController<\/a>"],[0,6,"<a href=\"Http\/Controllers\/Admin\/FoodRescueController.php.html#9\">App\\Http\\Controllers\\Admin\\FoodRescueController<\/a>"],[51.42857142857142,6,"<a href=\"Http\/Controllers\/Admin\/PantiProfileController.php.html#10\">App\\Http\\Controllers\\Admin\\PantiProfileController<\/a>"],[54.54545454545454,6,"<a href=\"Http\/Controllers\/Admin\/RelawanProfileController.php.html#10\">App\\Http\\Controllers\\Admin\\RelawanProfileController<\/a>"],[4.3478260869565215,7,"<a href=\"Http\/Controllers\/Admin\/UserController.php.html#10\">App\\Http\\Controllers\\Admin\\UserController<\/a>"],[87.5,7,"<a href=\"Http\/Controllers\/AuthController.php.html#10\">App\\Http\\Controllers\\AuthController<\/a>"],[100,0,"<a href=\"Http\/Controllers\/Controller.php.html#5\">App\\Http\\Controllers\\Controller<\/a>"],[41.42857142857143,2,"<a href=\"Http\/Controllers\/DonasikuController.php.html#8\">App\\Http\\Controllers\\DonasikuController<\/a>"],[28.205128205128204,26,"<a href=\"Http\/Controllers\/DonationMatchingController.php.html#10\">App\\Http\\Controllers\\DonationMatchingController<\/a>"],[89.28571428571429,4,"<a href=\"Http\/Controllers\/Donor\/ProfileController.php.html#10\">App\\Http\\Controllers\\Donor\\ProfileController<\/a>"],[33.33333333333333,28,"<a href=\"Http\/Controllers\/FoodRescueController.php.html#9\">App\\Http\\Controllers\\FoodRescueController<\/a>"],[100,2,"<a href=\"Http\/Controllers\/MyDonationsController.php.html#7\">App\\Http\\Controllers\\MyDonationsController<\/a>"],[5.88235294117647,10,"<a href=\"Http\/Controllers\/Panti\/DonasiMasukController.php.html#10\">App\\Http\\Controllers\\Panti\\DonasiMasukController<\/a>"],[1.7857142857142856,11,"<a href=\"Http\/Controllers\/Panti\/ProfileController.php.html#11\">App\\Http\\Controllers\\Panti\\ProfileController<\/a>"],[22.5,19,"<a href=\"Http\/Controllers\/Panti\/WishlistController.php.html#13\">App\\Http\\Controllers\\Panti\\WishlistController<\/a>"],[98.23008849557522,9,"<a href=\"Http\/Controllers\/RegisterController.php.html#10\">App\\Http\\Controllers\\RegisterController<\/a>"],[31.76470588235294,7,"<a href=\"Http\/Controllers\/VolunteerController.php.html#9\">App\\Http\\Controllers\\VolunteerController<\/a>"],[51.85185185185185,15,"<a href=\"Http\/Controllers\/VolunteerRegistrationController.php.html#9\">App\\Http\\Controllers\\VolunteerRegistrationController<\/a>"],[23.170731707317074,21,"<a href=\"Http\/Controllers\/WishlistController.php.html#11\">App\\Http\\Controllers\\WishlistController<\/a>"],[75,5,"<a href=\"Http\/Middleware\/EnsureAdmin.php.html#9\">App\\Http\\Middleware\\EnsureAdmin<\/a>"],[100,0,"<a href=\"Models\/DonasiBarang.php.html#8\">App\\Models\\DonasiBarang<\/a>"],[100,0,"<a href=\"Models\/FoodRescue.php.html#8\">App\\Models\\FoodRescue<\/a>"],[0,1,"<a href=\"Models\/PantiProfile.php.html#8\">App\\Models\\PantiProfile<\/a>"],[0,1,"<a href=\"Models\/RelawanProfile.php.html#8\">App\\Models\\RelawanProfile<\/a>"],[66.66666666666666,4,"<a href=\"Models\/User.php.html#10\">App\\Models\\User<\/a>"],[0,1,"<a href=\"Models\/Wishlist.php.html#7\">App\\Models\\Wishlist<\/a>"],[100,3,"<a href=\"Providers\/AppServiceProvider.php.html#10\">App\\Providers\\AppServiceProvider<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Http\/Controllers\/Admin\/AdminController.php.html#10\">App\\Http\\Controllers\\Admin\\AdminController::index<\/a>"],[100,1,"<a href=\"Http\/Controllers\/Admin\/DonasiController.php.html#12\">App\\Http\\Controllers\\Admin\\DonasiController::index<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/DonasiController.php.html#25\">App\\Http\\Controllers\\Admin\\DonasiController::create<\/a>"],[61.53846153846154,2,"<a href=\"Http\/Controllers\/Admin\/DonasiController.php.html#30\">App\\Http\\Controllers\\Admin\\DonasiController::store<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/DonasiController.php.html#50\">App\\Http\\Controllers\\Admin\\DonasiController::edit<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Admin\/DonasiController.php.html#56\">App\\Http\\Controllers\\Admin\\DonasiController::update<\/a>"],[33.33333333333333,1,"<a href=\"Http\/Controllers\/Admin\/DonasiController.php.html#77\">App\\Http\\Controllers\\Admin\\DonasiController::destroy<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/FoodRescueController.php.html#11\">App\\Http\\Controllers\\Admin\\FoodRescueController::index<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/FoodRescueController.php.html#17\">App\\Http\\Controllers\\Admin\\FoodRescueController::create<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/FoodRescueController.php.html#22\">App\\Http\\Controllers\\Admin\\FoodRescueController::store<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/FoodRescueController.php.html#39\">App\\Http\\Controllers\\Admin\\FoodRescueController::edit<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/FoodRescueController.php.html#45\">App\\Http\\Controllers\\Admin\\FoodRescueController::update<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/FoodRescueController.php.html#62\">App\\Http\\Controllers\\Admin\\FoodRescueController::destroy<\/a>"],[100,1,"<a href=\"Http\/Controllers\/Admin\/PantiProfileController.php.html#12\">App\\Http\\Controllers\\Admin\\PantiProfileController::index<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/PantiProfileController.php.html#29\">App\\Http\\Controllers\\Admin\\PantiProfileController::create<\/a>"],[88.88888888888889,1,"<a href=\"Http\/Controllers\/Admin\/PantiProfileController.php.html#34\">App\\Http\\Controllers\\Admin\\PantiProfileController::store<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/PantiProfileController.php.html#49\">App\\Http\\Controllers\\Admin\\PantiProfileController::edit<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/PantiProfileController.php.html#55\">App\\Http\\Controllers\\Admin\\PantiProfileController::update<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/PantiProfileController.php.html#71\">App\\Http\\Controllers\\Admin\\PantiProfileController::destroy<\/a>"],[100,1,"<a href=\"Http\/Controllers\/Admin\/RelawanProfileController.php.html#12\">App\\Http\\Controllers\\Admin\\RelawanProfileController::index<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/RelawanProfileController.php.html#26\">App\\Http\\Controllers\\Admin\\RelawanProfileController::create<\/a>"],[100,1,"<a href=\"Http\/Controllers\/Admin\/RelawanProfileController.php.html#31\">App\\Http\\Controllers\\Admin\\RelawanProfileController::store<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/RelawanProfileController.php.html#45\">App\\Http\\Controllers\\Admin\\RelawanProfileController::edit<\/a>"],[10,1,"<a href=\"Http\/Controllers\/Admin\/RelawanProfileController.php.html#51\">App\\Http\\Controllers\\Admin\\RelawanProfileController::update<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/RelawanProfileController.php.html#66\">App\\Http\\Controllers\\Admin\\RelawanProfileController::destroy<\/a>"],[100,1,"<a href=\"Http\/Controllers\/Admin\/UserController.php.html#13\">App\\Http\\Controllers\\Admin\\UserController::index<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/UserController.php.html#20\">App\\Http\\Controllers\\Admin\\UserController::edit<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Admin\/UserController.php.html#27\">App\\Http\\Controllers\\Admin\\UserController::update<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Admin\/UserController.php.html#55\">App\\Http\\Controllers\\Admin\\UserController::store<\/a>"],[0,1,"<a href=\"Http\/Controllers\/Admin\/UserController.php.html#82\">App\\Http\\Controllers\\Admin\\UserController::destroy<\/a>"],[66.66666666666666,2,"<a href=\"Http\/Controllers\/AuthController.php.html#13\">App\\Http\\Controllers\\AuthController::showLogin<\/a>"],[88.23529411764706,4,"<a href=\"Http\/Controllers\/AuthController.php.html#22\">App\\Http\\Controllers\\AuthController::login<\/a>"],[100,1,"<a href=\"Http\/Controllers\/AuthController.php.html#56\">App\\Http\\Controllers\\AuthController::logout<\/a>"],[41.42857142857143,2,"<a href=\"Http\/Controllers\/DonasikuController.php.html#10\">App\\Http\\Controllers\\DonasikuController::index<\/a>"],[30.612244897959183,13,"<a href=\"Http\/Controllers\/DonationMatchingController.php.html#15\">App\\Http\\Controllers\\DonationMatchingController::findMatches<\/a>"],[100,1,"<a href=\"Http\/Controllers\/DonationMatchingController.php.html#103\">App\\Http\\Controllers\\DonationMatchingController::getWishlistCategories<\/a>"],[0,4,"<a href=\"Http\/Controllers\/DonationMatchingController.php.html#118\">App\\Http\\Controllers\\DonationMatchingController::fulfillWishlist<\/a>"],[45.45454545454545,6,"<a href=\"Http\/Controllers\/DonationMatchingController.php.html#173\">App\\Http\\Controllers\\DonationMatchingController::showPledge<\/a>"],[35.714285714285715,2,"<a href=\"Http\/Controllers\/DonationMatchingController.php.html#197\">App\\Http\\Controllers\\DonationMatchingController::confirmPledge<\/a>"],[100,1,"<a href=\"Http\/Controllers\/Donor\/ProfileController.php.html#12\">App\\Http\\Controllers\\Donor\\ProfileController::index<\/a>"],[83.33333333333334,1,"<a href=\"Http\/Controllers\/Donor\/ProfileController.php.html#21\">App\\Http\\Controllers\\Donor\\ProfileController::update<\/a>"],[91.66666666666666,2,"<a href=\"Http\/Controllers\/Donor\/ProfileController.php.html#40\">App\\Http\\Controllers\\Donor\\ProfileController::updatePassword<\/a>"],[21.62162162162162,17,"<a href=\"Http\/Controllers\/FoodRescueController.php.html#11\">App\\Http\\Controllers\\FoodRescueController::index<\/a>"],[23.076923076923077,3,"<a href=\"Http\/Controllers\/FoodRescueController.php.html#74\">App\\Http\\Controllers\\FoodRescueController::claim<\/a>"],[60,2,"<a href=\"Http\/Controllers\/FoodRescueController.php.html#98\">App\\Http\\Controllers\\FoodRescueController::detail<\/a>"],[46.875,6,"<a href=\"Http\/Controllers\/FoodRescueController.php.html#112\">App\\Http\\Controllers\\FoodRescueController::adminIndex<\/a>"],[100,2,"<a href=\"Http\/Controllers\/MyDonationsController.php.html#9\">App\\Http\\Controllers\\MyDonationsController::index<\/a>"],[9.803921568627452,6,"<a href=\"Http\/Controllers\/Panti\/DonasiMasukController.php.html#12\">App\\Http\\Controllers\\Panti\\DonasiMasukController::index<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Panti\/DonasiMasukController.php.html#86\">App\\Http\\Controllers\\Panti\\DonasiMasukController::confirmReceipt<\/a>"],[0,2,"<a href=\"Http\/Controllers\/Panti\/DonasiMasukController.php.html#106\">App\\Http\\Controllers\\Panti\\DonasiMasukController::viewDetail<\/a>"],[100,1,"<a href=\"Http\/Controllers\/Panti\/ProfileController.php.html#13\">App\\Http\\Controllers\\Panti\\ProfileController::index<\/a>"],[0,10,"<a href=\"Http\/Controllers\/Panti\/ProfileController.php.html#19\">App\\Http\\Controllers\\Panti\\ProfileController::update<\/a>"],[42.857142857142854,2,"<a href=\"Http\/Controllers\/Panti\/WishlistController.php.html#15\">App\\Http\\Controllers\\Panti\\WishlistController::index<\/a>"],[15,4,"<a href=\"Http\/Controllers\/Panti\/WishlistController.php.html#30\">App\\Http\\Controllers\\Panti\\WishlistController::store<\/a>"],[12.5,5,"<a href=\"Http\/Controllers\/Panti\/WishlistController.php.html#65\">App\\Http\\Controllers\\Panti\\WishlistController::update<\/a>"],[25,4,"<a href=\"Http\/Controllers\/Panti\/WishlistController.php.html#107\">App\\Http\\Controllers\\Panti\\WishlistController::destroy<\/a>"],[35.294117647058826,4,"<a href=\"Http\/Controllers\/Panti\/WishlistController.php.html#136\">App\\Http\\Controllers\\Panti\\WishlistController::getOrSyncPantiProfile<\/a>"],[60,3,"<a href=\"Http\/Controllers\/RegisterController.php.html#13\">App\\Http\\Controllers\\RegisterController::showRegister<\/a>"],[100,1,"<a href=\"Http\/Controllers\/RegisterController.php.html#28\">App\\Http\\Controllers\\RegisterController::registerDonor<\/a>"],[100,5,"<a href=\"Http\/Controllers\/RegisterController.php.html#59\">App\\Http\\Controllers\\RegisterController::registerRecipient<\/a>"],[50,3,"<a href=\"Http\/Controllers\/VolunteerController.php.html#21\">App\\Http\\Controllers\\VolunteerController::index<\/a>"],[15.873015873015872,2,"<a href=\"Http\/Controllers\/VolunteerController.php.html#41\">App\\Http\\Controllers\\VolunteerController::dashboard<\/a>"],[100,2,"<a href=\"Http\/Controllers\/VolunteerController.php.html#120\">App\\Http\\Controllers\\VolunteerController::buildQuotaSnapshot<\/a>"],[80,2,"<a href=\"Http\/Controllers\/VolunteerRegistrationController.php.html#14\">App\\Http\\Controllers\\VolunteerRegistrationController::create<\/a>"],[0,4,"<a href=\"Http\/Controllers\/VolunteerRegistrationController.php.html#31\">App\\Http\\Controllers\\VolunteerRegistrationController::store<\/a>"],[100,3,"<a href=\"Http\/Controllers\/VolunteerRegistrationController.php.html#70\">App\\Http\\Controllers\\VolunteerRegistrationController::status<\/a>"],[100,1,"<a href=\"Http\/Controllers\/VolunteerRegistrationController.php.html#80\">App\\Http\\Controllers\\VolunteerRegistrationController::categories<\/a>"],[100,2,"<a href=\"Http\/Controllers\/VolunteerRegistrationController.php.html#91\">App\\Http\\Controllers\\VolunteerRegistrationController::buildQuotaSnapshot<\/a>"],[0,2,"<a href=\"Http\/Controllers\/VolunteerRegistrationController.php.html#109\">App\\Http\\Controllers\\VolunteerRegistrationController::hasQuota<\/a>"],[0,1,"<a href=\"Http\/Controllers\/VolunteerRegistrationController.php.html#115\">App\\Http\\Controllers\\VolunteerRegistrationController::isValidCategory<\/a>"],[25.333333333333336,17,"<a href=\"Http\/Controllers\/WishlistController.php.html#13\">App\\Http\\Controllers\\WishlistController::index<\/a>"],[0,4,"<a href=\"Http\/Controllers\/WishlistController.php.html#130\">App\\Http\\Controllers\\WishlistController::extractCity<\/a>"],[75,5,"<a href=\"Http\/Middleware\/EnsureAdmin.php.html#19\">App\\Http\\Middleware\\EnsureAdmin::handle<\/a>"],[0,1,"<a href=\"Models\/PantiProfile.php.html#31\">App\\Models\\PantiProfile::user<\/a>"],[0,1,"<a href=\"Models\/RelawanProfile.php.html#29\">App\\Models\\RelawanProfile::user<\/a>"],[100,1,"<a href=\"Models\/User.php.html#35\">App\\Models\\User::getNameAttribute<\/a>"],[0,1,"<a href=\"Models\/User.php.html#54\">App\\Models\\User::getAuthPassword<\/a>"],[0,1,"<a href=\"Models\/User.php.html#62\">App\\Models\\User::relawan_profiles<\/a>"],[100,1,"<a href=\"Models\/User.php.html#72\">App\\Models\\User::casts<\/a>"],[0,1,"<a href=\"Models\/Wishlist.php.html#22\">App\\Models\\Wishlist::panti<\/a>"],[100,1,"<a href=\"Providers\/AppServiceProvider.php.html#15\">App\\Providers\\AppServiceProvider::register<\/a>"],[100,2,"<a href=\"Providers\/AppServiceProvider.php.html#23\">App\\Providers\\AppServiceProvider::boot<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
