@@ -35,7 +35,7 @@ class WishlistController extends Controller
         $wishlists->getCollection()->transform(function ($wishlist) {
             $totalPledged = DB::table('wishlist_pledges')
                 ->where('id_wishlist', $wishlist->id_wishlist)
-                ->where('status', '!=', 'cancelled')
+                ->whereIn('status', ['confirmed', 'completed'])
                 ->sum('quantity_offered');
             
             $wishlist->quantity_pledged = $totalPledged ?? 0;
@@ -103,7 +103,7 @@ class WishlistController extends Controller
                 ->map(function ($wishlist) {
                     $totalPledged = DB::table('wishlist_pledges')
                         ->where('id_wishlist', $wishlist->id_wishlist)
-                        ->where('status', '!=', 'cancelled')
+                        ->whereIn('status', ['confirmed', 'completed'])
                         ->sum('quantity_offered');
                     
                     $wishlist->quantity_pledged = $totalPledged ?? 0;

@@ -26,7 +26,9 @@ Route::get('/wishlist/matching', [\App\Http\Controllers\DonationMatchingControll
 Route::post('/wishlist/{id}/fulfill', [\App\Http\Controllers\DonationMatchingController::class, 'fulfillWishlist'])->name('wishlist.fulfill')->middleware('auth');
 Route::get('/wishlist/pledge/{id}', [\App\Http\Controllers\DonationMatchingController::class, 'showPledge'])->name('wishlist.pledge-detail')->middleware('auth');
 Route::post('/wishlist/pledge/{id}/confirm', [\App\Http\Controllers\DonationMatchingController::class, 'confirmPledge'])->name('wishlist.pledge.confirm')->middleware('auth');
+Route::post('/wishlist/pledge/{id}/cancel', [\App\Http\Controllers\DonationMatchingController::class, 'cancelPledge'])->name('wishlist.pledge.cancel')->middleware('auth');
 Route::get('/food-rescue', [FoodRescueController::class, 'index'])->name('food-rescue');
+Route::post('/food-rescue', [FoodRescueController::class, 'store'])->name('food-rescue.store')->middleware('auth');
 Route::post('/food-rescue/{id}/claim', [FoodRescueController::class, 'claim'])->name('food-rescue.claim')->middleware('auth');
 Route::get('/food-rescue/{id}', [FoodRescueController::class, 'detail'])->name('food-rescue.detail');
 Route::get('/my-donations', [MyDonationsController::class, 'index'])->name('my-donations');
@@ -38,12 +40,14 @@ Route::get('/volunteer/register', [VolunteerRegistrationController::class, 'crea
 Route::post('/volunteer/register', [VolunteerRegistrationController::class, 'store'])->middleware('auth')->name('volunteer.register.store');
 Route::get('/volunteer/status', [VolunteerRegistrationController::class, 'status'])->middleware('auth')->name('volunteer.status');
 Route::get('/volunteer/dashboard', [VolunteerController::class, 'dashboard'])->middleware('auth')->name('volunteer.dashboard');
+Route::post('/volunteer/activities/register', [\App\Http\Controllers\Admin\VolunteerActivityController::class, 'storeActivity'])->middleware('auth')->name('volunteer-activities.store');
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DonasiController;
 use App\Http\Controllers\Admin\PantiProfileController;
 use App\Http\Controllers\Admin\RelawanProfileController;
+use App\Http\Controllers\Admin\VolunteerActivityController;
 use App\Http\Controllers\Panti\ProfileController;
 use App\Http\Controllers\Panti\WishlistController;
 use App\Http\Controllers\Panti\DonasiMasukController;
@@ -64,10 +68,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', \App\Http\Middleware
     Route::delete('/manajemen-donasi/{id}', [DonasiController::class, 'destroy'])->name('donations.destroy');
     // Food Rescue (CRUD)
     Route::get('/food-rescue', [FoodRescueController::class, 'adminIndex'])->name('food-rescue.index');
-    Route::get('/food-rescue/create', [FoodRescueController::class, 'create'])->name('food-rescue.create');
-    Route::post('/food-rescue', [FoodRescueController::class, 'store'])->name('food-rescue.store');
-    Route::get('/food-rescue/{id}/edit', [FoodRescueController::class, 'edit'])->name('food-rescue.edit');
-    Route::put('/food-rescue/{id}', [FoodRescueController::class, 'update'])->name('food-rescue.update');
+    Route::post('/food-rescue/{id}/approve', [FoodRescueController::class, 'approve'])->name('food-rescue.approve');
+    Route::post('/food-rescue/{id}/reject', [FoodRescueController::class, 'reject'])->name('food-rescue.reject');
+    Route::post('/food-rescue/{id}/update-status', [FoodRescueController::class, 'updateStatus'])->name('food-rescue.update-status');
     Route::delete('/food-rescue/{id}', [FoodRescueController::class, 'destroy'])->name('food-rescue.destroy');
     // Manajemen Penerima (Panti Profiles)
     Route::get('/manajemen-penerima', [PantiProfileController::class, 'index'])->name('recipients.index');
@@ -83,6 +86,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', \App\Http\Middleware
     Route::get('/manajemen-relawan/{id}/edit', [RelawanProfileController::class, 'edit'])->name('volunteers.edit');
     Route::put('/manajemen-relawan/{id}', [RelawanProfileController::class, 'update'])->name('volunteers.update');
     Route::delete('/manajemen-relawan/{id}', [RelawanProfileController::class, 'destroy'])->name('volunteers.destroy');
+    Route::get('/manajemen-kegiatan-relawan', [VolunteerActivityController::class, 'index'])->name('volunteer-activities.index');
+    Route::post('/manajemen-kegiatan-relawan/{id}/approve', [VolunteerActivityController::class, 'approve'])->name('volunteer-activities.approve');
+    Route::post('/manajemen-kegiatan-relawan/{id}/reject', [VolunteerActivityController::class, 'reject'])->name('volunteer-activities.reject');
+    Route::post('/manajemen-kegiatan-relawan/{id}/complete', [VolunteerActivityController::class, 'complete'])->name('volunteer-activities.complete');
     Route::view('/pengaturan', 'admin.pengaturan-admin.index')->name('settings.index');
     Route::view('/laporan', 'admin.laporan-admin.index')->name('reports.index');
 
@@ -103,8 +110,9 @@ Route::prefix('panti')->name('panti.')->middleware(['auth'])->group(function () 
     Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
     Route::get('/donasi-masuk', [DonasiMasukController::class, 'index'])->name('donasi-masuk');
     Route::post('/donasi-masuk/{id}/confirm', [DonasiMasukController::class, 'confirmReceipt'])->name('donasi-masuk.confirm');
+    Route::post('/donasi-masuk/{id}/decline', [DonasiMasukController::class, 'declineReceipt'])->name('donasi-masuk.decline');
     Route::get('/donasi-masuk/{id}/detail', [DonasiMasukController::class, 'viewDetail'])->name('donasi-masuk.detail');
-    Route::get('/food-rescue', function () { return view('panti.food-rescue.index'); })->name('food-rescue');
+    Route::get('/food-rescue', [FoodRescueController::class, 'pantiIndex'])->name('food-rescue');
     Route::get('/laporan', function () { return view('panti.laporan.index'); })->name('laporan');
     Route::get('/profil', [ProfileController::class, 'index'])->name('profil');
     Route::post('/profil', [ProfileController::class, 'update'])->name('profil.update');

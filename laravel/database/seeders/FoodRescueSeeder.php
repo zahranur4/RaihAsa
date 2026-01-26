@@ -23,6 +23,48 @@ class FoodRescueSeeder extends Seeder
         }
 
         $foods = [
+            // Pending Donations - Awaiting Admin Verification
+            [
+                'id_donatur' => $donaturs[0] ?? $donaturs[array_rand($donaturs)],
+                'nama_makanan' => 'Rendang + Nasi Putih (50 Kotak)',
+                'porsi' => 50,
+                'waktu_dibuat' => Carbon::now()->subHours(2),
+                'waktu_expired' => Carbon::now()->addDays(1)->setHour(18),
+                'foto' => null,
+                'status' => 'pending',
+                'id_claimer' => null,
+            ],
+            [
+                'id_donatur' => $donaturs[1] ?? $donaturs[array_rand($donaturs)],
+                'nama_makanan' => 'Bubur Ayam + Kerupuk (40 Porsi)',
+                'porsi' => 40,
+                'waktu_dibuat' => Carbon::now()->subHours(5),
+                'waktu_expired' => Carbon::now()->addHours(12),
+                'foto' => null,
+                'status' => 'pending',
+                'id_claimer' => null,
+            ],
+            [
+                'id_donatur' => $donaturs[2] ?? $donaturs[array_rand($donaturs)],
+                'nama_makanan' => 'Nasi Goreng Seafood (35 Kotak)',
+                'porsi' => 35,
+                'waktu_dibuat' => Carbon::now()->subHour(),
+                'waktu_expired' => Carbon::now()->addDays(1),
+                'foto' => null,
+                'status' => 'pending',
+                'id_claimer' => null,
+            ],
+            [
+                'id_donatur' => $donaturs[0] ?? $donaturs[array_rand($donaturs)],
+                'nama_makanan' => 'Kue Tradisional (Berbagai Jenis)',
+                'porsi' => 80,
+                'waktu_dibuat' => Carbon::now()->subMinutes(30),
+                'waktu_expired' => Carbon::now()->addDays(2),
+                'foto' => null,
+                'status' => 'pending',
+                'id_claimer' => null,
+            ],
+
             // Available Foods - Expiring Next Month (February 2026)
             [
                 'id_donatur' => $donaturs[0] ?? $donaturs[array_rand($donaturs)],
@@ -30,6 +72,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 50,
                 'waktu_dibuat' => Carbon::now(),
                 'waktu_expired' => Carbon::create(2026, 2, 5, 12, 0, 0), // Feb 5, 2026
+                'foto' => null,
                 'status' => 'available',
                 'id_claimer' => null,
             ],
@@ -39,6 +82,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 30,
                 'waktu_dibuat' => Carbon::now(),
                 'waktu_expired' => Carbon::create(2026, 2, 10, 18, 0, 0), // Feb 10, 2026
+                'foto' => null,
                 'status' => 'available',
                 'id_claimer' => null,
             ],
@@ -48,6 +92,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 100,
                 'waktu_dibuat' => Carbon::now(),
                 'waktu_expired' => Carbon::create(2026, 3, 1, 10, 0, 0), // March 1, 2026
+                'foto' => null,
                 'status' => 'available',
                 'id_claimer' => null,
             ],
@@ -57,6 +102,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 40,
                 'waktu_dibuat' => Carbon::now(),
                 'waktu_expired' => Carbon::create(2026, 2, 15, 14, 0, 0), // Feb 15, 2026
+                'foto' => null,
                 'status' => 'available',
                 'id_claimer' => null,
             ],
@@ -66,6 +112,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 35,
                 'waktu_dibuat' => Carbon::now(),
                 'waktu_expired' => Carbon::create(2026, 3, 5, 16, 0, 0), // March 5, 2026
+                'foto' => null,
                 'status' => 'available',
                 'id_claimer' => null,
             ],
@@ -77,6 +124,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 60,
                 'waktu_dibuat' => Carbon::create(2026, 1, 14, 8, 0, 0),
                 'waktu_expired' => Carbon::create(2026, 1, 14, 18, 0, 0),
+                'foto' => null,
                 'status' => 'claimed',
                 'id_claimer' => $users[0] ?? $users[array_rand($users)],
             ],
@@ -86,6 +134,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 50,
                 'waktu_dibuat' => Carbon::create(2026, 1, 13, 10, 0, 0),
                 'waktu_expired' => Carbon::create(2026, 1, 13, 20, 0, 0),
+                'foto' => null,
                 'status' => 'claimed',
                 'id_claimer' => $users[1] ?? $users[array_rand($users)],
             ],
@@ -95,6 +144,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 80,
                 'waktu_dibuat' => Carbon::create(2026, 1, 15, 6, 0, 0),
                 'waktu_expired' => Carbon::create(2026, 1, 15, 12, 0, 0),
+                'foto' => null,
                 'status' => 'claimed',
                 'id_claimer' => $users[2] ?? $users[array_rand($users)],
             ],
@@ -106,6 +156,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 25,
                 'waktu_dibuat' => Carbon::create(2026, 1, 10, 7, 0, 0),
                 'waktu_expired' => Carbon::create(2026, 1, 10, 18, 0, 0), // Jan 10 expired
+                'foto' => null,
                 'status' => 'expired',
                 'id_claimer' => null,
             ],
@@ -115,6 +166,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 30,
                 'waktu_dibuat' => Carbon::create(2026, 1, 8, 12, 0, 0),
                 'waktu_expired' => Carbon::create(2026, 1, 8, 20, 0, 0), // Jan 8 expired
+                'foto' => null,
                 'status' => 'expired',
                 'id_claimer' => null,
             ],
@@ -124,6 +176,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 45,
                 'waktu_dibuat' => Carbon::create(2026, 1, 12, 8, 0, 0),
                 'waktu_expired' => Carbon::create(2026, 1, 12, 16, 0, 0), // Jan 12 expired
+                'foto' => null,
                 'status' => 'expired',
                 'id_claimer' => null,
             ],
@@ -133,6 +186,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => 40,
                 'waktu_dibuat' => Carbon::create(2026, 1, 5, 11, 0, 0),
                 'waktu_expired' => Carbon::create(2026, 1, 5, 21, 0, 0), // Jan 5 expired
+                'foto' => null,
                 'status' => 'expired',
                 'id_claimer' => null,
             ],
@@ -145,6 +199,7 @@ class FoodRescueSeeder extends Seeder
                 'porsi' => $food['porsi'],
                 'waktu_dibuat' => $food['waktu_dibuat'],
                 'waktu_expired' => $food['waktu_expired'],
+                'foto' => $food['foto'],
                 'status' => $food['status'],
                 'id_claimer' => $food['id_claimer'],
                 'created_at' => $food['waktu_dibuat'],

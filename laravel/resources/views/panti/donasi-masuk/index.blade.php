@@ -6,6 +6,7 @@
     <title>Donasi Masuk - RaihAsa</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/css/font-awesome.css','resources/css/style.css','resources/css/penerima-dashboard.css','resources/js/penerima-dashboard.js'])
 </head>
 <body>
@@ -182,6 +183,10 @@
                                             <form action="{{ route('panti.donasi-masuk.confirm', $donation->id_pledge) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-success">Konfirmasi Penerimaan</button>
+                                            </form>
+                                            <form action="{{ route('panti.donasi-masuk.decline', $donation->id_pledge) }}" method="POST" style="display:inline;" onsubmit="event.preventDefault(); const form = this; Swal.fire({title: 'Konfirmasi', text: 'Tolak donasi ini?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#3085d6', confirmButtonText: 'Ya, Tolak', cancelButtonText: 'Batal'}).then((result) => {if (result.isConfirmed) {form.submit();}});">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-danger ms-1">Tolak</button>
                                             </form>
                                             @else
                                             <a href="{{ route('panti.donasi-masuk.detail', $donation->id_pledge) }}" class="btn btn-sm btn-info">Lihat Detail</a>

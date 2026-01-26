@@ -6,6 +6,7 @@
 <title>Food Rescue - RaihAsa</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @vite(['resources/css/font-awesome.css','resources/css/style.css','resources/css/components.css','resources/css/food-rescue.css','resources/css/scroll-animation.css','resources/js/main.js','resources/js/scroll-animation.js'])
 <header class="header">
 <nav class="navbar navbar-expand-lg navbar-light">
@@ -85,6 +86,9 @@
 <!-- Food Rescue Section -->
 <section class="food-rescue-section py-5">
 <div class="container">
+@php
+    $isPantiUser = Auth::check() && (\Illuminate\Support\Facades\DB::table('panti_asuhan')->where('user_id', Auth::id())->exists() || \Illuminate\Support\Facades\DB::table('panti_profiles')->where('id_user', Auth::id())->exists());
+@endphp
 <div class="rescue-categories">
 <div class="category-tabs">
 <button class="category-btn active" data-category="all">Semua</button>
@@ -96,9 +100,15 @@
 </div>
 
 <div class="text-end mb-4">
+                 @auth
                  <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalDonasiBaru" style="background-color: #000957; border-color: #000957;">
                     <i class="fas fa-plus-circle me-2"></i> Donasi Baru
                 </button>
+                @else
+                <a href="{{ route('login') }}" class="btn btn-primary btn-lg" style="background-color: #000957; border-color: #000957;">
+                    <i class="fas fa-plus-circle me-2"></i> Donasi Baru
+                </a>
+                @endauth
             </div>
 
 <div class="rescue-grid">
@@ -132,11 +142,15 @@
 <p><strong>Donor:</strong> {{ $food->donor_name }}</p>
 </div>
 <div class="rescue-actions">
-<form action="{{ route('food-rescue.claim', $food->id_food) }}" method="POST" style="display: inline;">
-@csrf
-<button class="btn btn-primary btn-sm" onclick="return confirm('Klaim makanan ini?')">Klaim Donasi</button>
-</form>
-<a href="{{ route('food-rescue.detail', $food->id_food) }}" class="btn btn-outline-primary btn-sm">Detail</a>
+    @if($isPantiUser)
+        <form action="{{ route('food-rescue.claim', $food->id_food) }}" method="POST" style="display: inline;">
+            @csrf
+            <button class="btn btn-primary btn-sm" onclick="event.preventDefault(); Swal.fire({title: 'Konfirmasi', text: 'Klaim makanan ini?', icon: 'question', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Ya, Klaim!', cancelButtonText: 'Batal'}).then((result) => {if (result.isConfirmed) {this.closest('form').submit();}})">Klaim Donasi</button>
+        </form>
+    @else
+        <button class="btn btn-secondary btn-sm" disabled title="Klaim hanya untuk akun panti">Klaim Donasi</button>
+    @endif
+    <a href="{{ route('food-rescue.detail', $food->id_food) }}" class="btn btn-outline-primary btn-sm">Detail</a>
 </div>
 </div>
 </div>
@@ -343,7 +357,111 @@
         </div>
     </footer>
 
+<!-- Modal Donasi Baru -->
+<div class="modal fade" id="modalDonasiBaru" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Donasi Makanan Baru</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="formDonasiBaru" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <!-- Nama Makanan -->
+                    <div class="mb-3">
+                        <label for="nama_makanan" class="form-label fw-bold">Nama Makanan <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="nama_makanan" name="nama_makanan" placeholder="Contoh: Nasi Goreng, Ayam Bakar, dll" required>
+                    </div>
+
+                    <!-- Jumlah -->
+                    <div class="mb-3">
+                        <label for="jumlah" class="form-label fw-bold">Jumlah (Porsi) <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" placeholder="Contoh: 20" required>
+                    </div>
+
+                    <!-- Kadaluarsa -->
+                    <div class="mb-3">
+                        <label for="kadaluarsa" class="form-label fw-bold">Waktu Kadaluarsa <span class="text-danger">*</span></label>
+                        <input type="datetime-local" class="form-control" id="kadaluarsa" name="kadaluarsa" required>
+                    </div>
+
+                    <!-- Foto -->
+                    <div class="mb-3">
+                        <label for="foto" class="form-label fw-bold">Foto Makanan <span class="text-muted">(Opsional)</span></label>
+                        <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+                        <small class="text-muted">Jika tidak ada foto, akan menggunakan gambar default</small>
+                    </div>
+
+                    <!-- Alert Info -->
+                    <div class="alert alert-info" role="alert">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Catatan:</strong> Donasi Anda akan diverifikasi oleh admin terlebih dahulu sebelum ditampilkan di halaman Food Rescue.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" style="background-color: #000957; border-color: #000957;">
+                        <i class="fas fa-upload me-2"></i> Kirim Donasi
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Handle form submission for donation
+    document.getElementById('formDonasiBaru').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const actionUrl = "{{ route('food-rescue.store') }}";
+
+        fetch(actionUrl, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: data.message || 'Donasi Anda telah dikirim dan menunggu verifikasi admin.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Close modal and reset form
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('modalDonasiBaru'));
+                    modal.hide();
+                    document.getElementById('formDonasiBaru').reset();
+                    // Reload page to see if new donation appears
+                    setTimeout(() => location.reload(), 1000);
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: data.message || 'Terjadi kesalahan saat mengirim donasi',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            Swal.fire({
+                title: 'Error',
+                text: 'Terjadi kesalahan jaringan',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
+    });
+</script>
 </body>
 </html>
