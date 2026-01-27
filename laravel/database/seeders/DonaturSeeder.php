@@ -30,19 +30,19 @@ class DonaturSeeder extends Seeder
                 'id_user' => $users[0]->id ?? 2,
                 'nama_lengkap' => 'Contoh Pengguna',
                 'no_telp' => '081234567890',
-                'alamat_jemput' => 'Jl. Contoh No.1, Kota Contoh',
+                'alamat_jemput' => 'Jl. Contoh No.1, Bandung',
             ],
             [
                 'id_user' => $users[1]->id ?? 3,
                 'nama_lengkap' => 'Budi Santoso',
                 'no_telp' => '081234567891',
-                'alamat_jemput' => 'Jl. Merdeka No.5, Jakarta Pusat',
+                'alamat_jemput' => 'Jl. Merdeka No.5, Bandung',
             ],
             [
                 'id_user' => $users[2]->id ?? 4,
                 'nama_lengkap' => 'Siti Nurhaliza',
                 'no_telp' => '081234567892',
-                'alamat_jemput' => 'Jl. Sudirman No.10, Jakarta Selatan',
+                'alamat_jemput' => 'Jl. Sudirman No.10, Bandung',
             ],
         ];
 

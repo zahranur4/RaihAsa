@@ -85,7 +85,7 @@
                             <td>{{ Str::limit($user->alamat, 50) }}</td>
                             <td>
                                 <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus pengguna ini?');">
+                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline-block" onsubmit="event.preventDefault(); Swal.fire({title: 'Konfirmasi', text: 'Hapus pengguna ini?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#3085d6', confirmButtonText: 'Ya, Hapus!', cancelButtonText: 'Batal'}).then((result) => {if (result.isConfirmed) {this.submit();}})">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>

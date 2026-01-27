@@ -216,4 +216,33 @@ class DonationMatchingController extends Controller
         return redirect()->route('wishlist.pledge-detail', $pledgeId)
             ->with('success', 'Penawaran donasi berhasil dikonfirmasi!');
     }
+
+    /**
+     * Cancel a pledge (donor cancels their donation offer).
+     */
+    public function cancelPledge(Request $request, $pledgeId)
+    {
+        $pledge = DB::table('wishlist_pledges')
+            ->where('id_pledge', $pledgeId)
+            ->first();
+
+        if (!$pledge) {
+            return redirect()->route('wishlist')->with('error', 'Pledge tidak ditemukan');
+        }
+
+        // Only allow cancellation for pending pledges
+        if ($pledge->status !== 'pending') {
+            return redirect()->back()->with('error', 'Hanya penawaran dengan status pending yang dapat dibatalkan');
+        }
+
+        // Update pledge status to cancelled
+        DB::table('wishlist_pledges')
+            ->where('id_pledge', $pledgeId)
+            ->update([
+                'status' => 'cancelled',
+                'updated_at' => now(),
+            ]);
+
+        return redirect()->route('wishlist')->with('success', 'Penawaran donasi berhasil dibatalkan');
+    }
 }

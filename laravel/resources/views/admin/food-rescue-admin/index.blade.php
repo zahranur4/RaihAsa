@@ -22,6 +22,7 @@
                 <li><a href="{{ route('admin.donations.index') }}" class="{{ request()->routeIs('admin.donations.*') ? 'active' : '' }}"><i class="fas fa-hand-holding-heart"></i> Manajemen Donasi</a></li>
                 <li><a href="{{ route('admin.food-rescue.index') }}" class="{{ request()->routeIs('admin.food-rescue.*') ? 'active' : '' }}"><i class="fas fa-utensils"></i> Food Rescue</a></li>
                 <li><a href="{{ route('admin.volunteers.index') }}" class="{{ request()->routeIs('admin.volunteers.*') ? 'active' : '' }}"><i class="fas fa-hands-helping"></i> Manajemen Relawan</a></li>
+                <li><a href="{{ route('admin.volunteer-activities.index') }}" class="{{ request()->routeIs('admin.volunteer-activities.*') ? 'active' : '' }}"><i class="fas fa-calendar-check"></i> Manajemen Kegiatan Relawan</a></li>
                 <li><a href="{{ route('admin.recipients.index') }}" class="{{ request()->routeIs('admin.recipients.*') ? 'active' : '' }}"><i class="fas fa-home"></i> Manajemen Penerima</a></li>
                 <li><a href="{{ route('admin.reports.index') }}" class="{{ request()->routeIs('admin.reports.*') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i> Laporan</a></li>
                 <li><a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}"><i class="fas fa-cog"></i> Pengaturan</a></li>
@@ -100,11 +101,11 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">
-                            <i class="fas fa-store"></i>
+                            <i class="fas fa-clock"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>{{ $stats['partner_restaurants'] ?? 0 }}</h3>
-                            <p>Restoran Mitra</p>
+                            <h3>{{ $stats['pending_verification'] ?? 0 }}</h3>
+                            <p>Menunggu Verifikasi</p>
                         </div>
                     </div>
                 </div>
@@ -114,11 +115,6 @@
                     <div class="page-info">
                         <h2>Daftar Food Rescue</h2>
                         <p>Kelola semua program food rescue yang ada di platform RaihAsa</p>
-                    </div>
-                    <div class="page-actions">
-                        <a href="{{ route('admin.food-rescue.create') }}" class="btn btn-primary">
-                            <i class="fas fa-plus"></i> Tambah Food Rescue
-                        </a>
                     </div>
                 </div>
 
@@ -138,12 +134,12 @@
                         </div>
                         <div class="col-md-3">
                             <label for="statusFilter" class="form-label">Filter berdasarkan status</label>
-                            <select class="form-select" id="statusFilter">
+                            <select class="form-select" id="statusFilter" onchange="filterByStatus(this.value)">
                                 <option value="">Semua Status</option>
-                                <option value="tersedia">Tersedia</option>
-                                <option value="diklaim">Diklaim</option>
-                                <option value="diambil">Diambil</option>
-                                <option value="kadaluarsa">Kadaluarsa</option>
+                                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Menunggu Verifikasi</option>
+                                <option value="available" {{ request('status') == 'available' ? 'selected' : '' }}>Tersedia</option>
+                                <option value="claimed" {{ request('status') == 'claimed' ? 'selected' : '' }}>Diklaim</option>
+                                <option value="expired" {{ request('status') == 'expired' ? 'selected' : '' }}>Kadaluarsa</option>
                             </select>
                         </div>
                         <div class="col-md-3">
@@ -177,9 +173,10 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Restoran</th>
+                                        <th>Donatur</th>
                                         <th>Jenis Makanan</th>
                                         <th>Jumlah</th>
+                                        <th>Dibuat</th>
                                         <th>Kadaluarsa</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
@@ -189,23 +186,63 @@
                                     @forelse($foods as $food)
                                     <tr>
                                         <td>#{{ $food->id_food }}</td>
-                                        <td>{{ $food->donor_name ?? $food->id_donatur }}</td>
-                                        <td>{{ $food->nama_makanan }}</td>
-                                        <td>{{ $food->porsi }}</td>
-                                        <td>{{ $food->waktu_expired ? \Carbon\Carbon::parse($food->waktu_expired)->format('d M Y H:i') : '-' }}</td>
-                                        <td><span class="badge bg-info">{{ ucfirst($food->status) }}</span></td>
                                         <td>
-                                            <a href="{{ route('admin.food-rescue.edit', $food->id_food) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                                            <form action="{{ route('admin.food-rescue.destroy', $food->id_food) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus item ini?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                                            </form>
+                                            {{ $food->donor_name ?? 'Donatur Anonim' }}
+                                            @if($food->donor_phone)
+                                                <br><small class="text-muted">{{ $food->donor_phone }}</small>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $food->nama_makanan }}
+                                            @if($food->foto)
+                                                <br><small class="text-success"><i class="fas fa-image"></i> Ada foto</small>
+                                            @endif
+                                        </td>
+                                        <td>{{ $food->porsi }} porsi</td>
+                                        <td>{{ $food->waktu_dibuat ? \Carbon\Carbon::parse($food->waktu_dibuat)->format('d M Y H:i') : '-' }}</td>
+                                        <td>{{ $food->waktu_expired ? \Carbon\Carbon::parse($food->waktu_expired)->format('d M Y H:i') : '-' }}</td>
+                                        <td>
+                                            @if($food->status == 'pending')
+                                                <span class="badge bg-warning text-dark"><i class="fas fa-clock"></i> Menunggu Verifikasi</span>
+                                            @elseif($food->status == 'available')
+                                                <span class="badge bg-success"><i class="fas fa-check-circle"></i> Tersedia</span>
+                                            @elseif($food->status == 'claimed')
+                                                <span class="badge bg-info"><i class="fas fa-hand-holding"></i> Diklaim</span>
+                                            @elseif($food->status == 'expired')
+                                                <span class="badge bg-secondary"><i class="fas fa-times-circle"></i> Kadaluarsa</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($food->status == 'pending')
+                                                <!-- Approve Button -->
+                                                <form action="{{ route('admin.food-rescue.approve', $food->id_food) }}" method="POST" style="display:inline-block" onsubmit="event.preventDefault(); Swal.fire({title: 'Verifikasi Donasi?', text: 'Donasi akan muncul di halaman Food Rescue', icon: 'question', showCancelButton: true, confirmButtonColor: '#28a745', cancelButtonColor: '#6c757d', confirmButtonText: 'Ya, Setujui!', cancelButtonText: 'Batal'}).then((result) => {if (result.isConfirmed) {this.submit();}})">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-success" title="Setujui">
+                                                        <i class="fas fa-check"></i>
+                                                    </button>
+                                                </form>
+                                                <!-- Reject Button -->
+                                                <form action="{{ route('admin.food-rescue.reject', $food->id_food) }}" method="POST" style="display:inline-block" onsubmit="event.preventDefault(); Swal.fire({title: 'Tolak Donasi?', text: 'Donasi ini akan dihapus', icon: 'warning', showCancelButton: true, confirmButtonColor: '#dc3545', cancelButtonColor: '#6c757d', confirmButtonText: 'Ya, Tolak!', cancelButtonText: 'Batal'}).then((result) => {if (result.isConfirmed) {this.submit();}})">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-danger" title="Tolak">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <!-- Edit Status -->
+                                                <button type="button" class="btn btn-sm btn-primary" onclick="editStatus({{ $food->id_food }}, '{{ $food->status }}')"><i class="fas fa-edit"></i></button>
+                                                <!-- Delete Button -->
+                                                <form action="{{ route('admin.food-rescue.destroy', $food->id_food) }}" method="POST" style="display:inline-block" onsubmit="event.preventDefault(); Swal.fire({title: 'Konfirmasi', text: 'Hapus item ini?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#3085d6', confirmButtonText: 'Ya, Hapus!', cancelButtonText: 'Batal'}).then((result) => {if (result.isConfirmed) {this.submit();}})">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">Tidak ada item</td>
+                                        <td colspan="8" class="text-center">Tidak ada item</td>
                                     </tr>
                                     @endforelse
                                 </tbody>
@@ -277,8 +314,57 @@
         </div>
     </div>
 
+    <!-- Edit Status Modal -->
+    <div class="modal fade" id="editStatusModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Status Donasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="editStatusForm" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="editStatusSelect" class="form-label">Status Baru</label>
+                            <select class="form-select" id="editStatusSelect" name="status" required>
+                                <option value="available">Tersedia</option>
+                                <option value="claimed">Diklaim</option>
+                                <option value="expired">Kadaluarsa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function editStatus(foodId, currentStatus) {
+            const form = document.getElementById('editStatusForm');
+            form.action = '{{ url("admin/food-rescue") }}/' + foodId + '/update-status';
+            document.getElementById('editStatusSelect').value = currentStatus;
+            const modal = new bootstrap.Modal(document.getElementById('editStatusModal'));
+            modal.show();
+        }
+
+        function filterByStatus(status) {
+            const url = new URL(window.location.href);
+            if (status) {
+                url.searchParams.set('status', status);
+            } else {
+                url.searchParams.delete('status');
+            }
+            window.location.href = url.toString();
+        }
+    </script>
 </body>
 </html>

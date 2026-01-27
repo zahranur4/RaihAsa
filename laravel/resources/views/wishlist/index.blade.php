@@ -158,12 +158,7 @@
                                             <i class="fas fa-lock me-1"></i> Tidak Tersedia
                                         </button>
                                     @else
-                                    <form action="{{ route('wishlist.fulfill', $rec->id_wishlist) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        <input type="hidden" name="item_name" value="{{ $rec->nama_barang }}">
-                                        <input type="hidden" name="quantity_offered" value="1">
-                                        <button type="submit" class="btn btn-primary btn-sm">Penuhi Sekarang</button>
-                                    </form>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="openFulfillModal({{ $rec->id_wishlist }}, '{{ addslashes($rec->nama_barang) }}', {{ $rec->jumlah }}, '{{ addslashes($rec->panti->nama_panti ?? 'Panti Asuhan') }}', '{{ addslashes($rec->panti->kota ?? 'Bandung') }}')">Penuhi Sekarang</button>
                                     @endif
                                     <button class="btn btn-outline-primary btn-sm" onclick="showDetail({{ $rec->id_wishlist }})">Detail</button>
                                 </div>
@@ -233,12 +228,7 @@
                                         <i class="fas fa-lock me-1"></i> Tidak Tersedia
                                     </button>
                                 @else
-                                <form action="{{ route('wishlist.fulfill', $wishlist->id_wishlist) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <input type="hidden" name="item_name" value="{{ $wishlist->nama_barang }}">
-                                    <input type="hidden" name="quantity_offered" value="1">
-                                    <button type="submit" class="btn btn-primary btn-sm">Donasi Sekarang</button>
-                                </form>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="openFulfillModal({{ $wishlist->id_wishlist }}, '{{ addslashes($wishlist->nama_barang) }}', {{ $wishlist->jumlah }}, '{{ addslashes($wishlist->panti->nama_panti ?? 'Panti Asuhan') }}', '{{ addslashes($wishlist->panti->kota ?? 'Bandung') }}')">Penuhi Sekarang</button>
                                 @endif
                                 <button class="btn btn-outline-primary btn-sm" onclick="showDetail({{ $wishlist->id_wishlist }})">Detail</button>
                             </div>
@@ -402,8 +392,71 @@
         </div>
     </footer>
 
+    <!-- Fulfill Wishlist Modal -->
+    <div class="modal fade" id="fulfillModal" tabindex="-1" aria-labelledby="fulfillModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #000957; color: white;">
+                    <h5 class="modal-title" id="fulfillModalLabel">Penuhi Kebutuhan</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="fulfillForm" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="itemName" class="form-label">Barang yang Akan Didonasikan</label>
+                            <input type="text" class="form-control" id="itemName" name="item_name" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="quantity" class="form-label">Jumlah</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity_offered" min="1" value="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="notes" class="form-label">Catatan (Opsional)</label>
+                            <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Contoh: Kondisi barang, waktu pengiriman, dll"></textarea>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Penerima:</strong> <span id="pantiInfo"></span> akan menerima penawaran donasi Anda. Tunggu konfirmasi lebih lanjut.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" style="background-color: #000957; border-color: #000957;">Kirim Penawaran</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function openFulfillModal(wishlistId, itemName, maxQuantity, pantiName, pantiCity) {
+            // Set form action
+            document.getElementById('fulfillForm').action = '/wishlist/' + wishlistId + '/fulfill';
+            
+            // Set item name
+            document.getElementById('itemName').value = itemName;
+            
+            // Set max quantity
+            document.getElementById('quantity').max = maxQuantity;
+            document.getElementById('quantity').value = 1;
+            
+            // Set panti info
+            document.getElementById('pantiInfo').textContent = pantiName + ', ' + pantiCity;
+            
+            // Show modal
+            var modal = new bootstrap.Modal(document.getElementById('fulfillModal'));
+            modal.show();
+        }
+
+        function showDetail(id) {
+            // Implement detail view if needed
+            alert('Detail wishlist ID: ' + id);
+        }
+    </script>
     
 </body>
 </html>

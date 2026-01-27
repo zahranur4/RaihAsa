@@ -22,6 +22,7 @@
                 <li><a href="{{ route('admin.donations.index') }}" class="{{ request()->routeIs('admin.donations.*') ? 'active' : '' }}"><i class="fas fa-hand-holding-heart"></i> Manajemen Donasi</a></li>
                 <li><a href="{{ route('admin.food-rescue.index') }}" class="{{ request()->routeIs('admin.food-rescue.*') ? 'active' : '' }}"><i class="fas fa-utensils"></i> Food Rescue</a></li>
                 <li><a href="{{ route('admin.volunteers.index') }}" class="{{ request()->routeIs('admin.volunteers.*') ? 'active' : '' }}"><i class="fas fa-hands-helping"></i> Manajemen Relawan</a></li>
+                <li><a href="{{ route('admin.volunteer-activities.index') }}" class="{{ request()->routeIs('admin.volunteer-activities.*') ? 'active' : '' }}"><i class="fas fa-calendar-check"></i> Manajemen Kegiatan Relawan</a></li>
                 <li><a href="{{ route('admin.recipients.index') }}" class="{{ request()->routeIs('admin.recipients.*') ? 'active' : '' }}"><i class="fas fa-home"></i> Manajemen Penerima</a></li>
                 <li><a href="{{ route('admin.reports.index') }}" class="{{ request()->routeIs('admin.reports.*') ? 'active' : '' }}"><i class="fas fa-chart-bar"></i> Laporan</a></li>
                 <li><a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}"><i class="fas fa-cog"></i> Pengaturan</a></li>
@@ -196,7 +197,7 @@
                                         <td>{{ $relawan->created_at->format('d M Y') }}</td>
                                         <td>
                                             <a href="{{ route('admin.volunteers.edit', $relawan->id_relawan) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                                            <form action="{{ route('admin.volunteers.destroy', $relawan->id_relawan) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Hapus relawan ini?');">
+                                            <form action="{{ route('admin.volunteers.destroy', $relawan->id_relawan) }}" method="POST" style="display:inline-block" onsubmit="event.preventDefault(); Swal.fire({title: 'Konfirmasi', text: 'Hapus relawan ini?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#3085d6', confirmButtonText: 'Ya, Hapus!', cancelButtonText: 'Batal'}).then((result) => {if (result.isConfirmed) {this.submit();}})">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>

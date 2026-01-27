@@ -233,6 +233,12 @@
                                         <i class="fas fa-check-circle me-2"></i> Konfirmasi Penerimaan
                                     </button>
                                 </form>
+                                <form action="{{ route('panti.donasi-masuk.decline', $pledge->id_pledge) }}" method="POST" onsubmit="event.preventDefault(); Swal.fire({title: 'Konfirmasi', text: 'Apakah Anda yakin ingin menolak donasi ini?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#3085d6', confirmButtonText: 'Ya, Tolak!', cancelButtonText: 'Batal'}).then((result) => {if (result.isConfirmed) {this.submit();}})">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger w-100 mb-2">
+                                        <i class="fas fa-times-circle me-2"></i> Tolak Donasi
+                                    </button>
+                                </form>
                                 <p class="small text-muted mb-0">
                                     <i class="fas fa-info-circle me-1"></i>
                                     Konfirmasi setelah menerima donasi dari donor

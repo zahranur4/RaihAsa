@@ -6,6 +6,7 @@
     <title>Detail Penawaran Donasi - RaihAsa</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/css/font-awesome.css','resources/css/style.css','resources/css/components.css'])
 </head>
 <body>
@@ -41,6 +42,15 @@
                         </div>
                         <div class="card-body p-5">
                             <!-- Pledge Status -->
+                            @php
+                                $statusMap = [
+                                    'pending' => ['label' => 'Pending', 'class' => 'bg-warning', 'desc' => 'Menunggu konfirmasi dari panti'],
+                                    'confirmed' => ['label' => 'Dikonfirmasi', 'class' => 'bg-info', 'desc' => 'Panti menerima penawaran Anda'],
+                                    'completed' => ['label' => 'Selesai', 'class' => 'bg-success', 'desc' => 'Donasi selesai diterima'],
+                                    'cancelled' => ['label' => 'Ditolak', 'class' => 'bg-danger', 'desc' => 'Donasi ditolak oleh panti'],
+                                ];
+                                $currentStatus = $statusMap[$pledge->status] ?? ['label' => ucfirst($pledge->status), 'class' => 'bg-secondary', 'desc' => 'Status tidak dikenal'];
+                            @endphp
                             <div class="alert alert-info mb-4">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
@@ -48,9 +58,9 @@
                                     </div>
                                     <div class="col">
                                         <strong>Status:</strong> 
-                                        <span class="badge bg-warning">{{ ucfirst($pledge->status) }}</span>
+                                        <span class="badge {{ $currentStatus['class'] }}">{{ $currentStatus['label'] }}</span>
                                         <br>
-                                        <small class="text-muted">Menunggu konfirmasi dari panti</small>
+                                        <small class="text-muted">{{ $currentStatus['desc'] }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -159,21 +169,29 @@
                                         </div>
                                     </div>
                                     <div class="timeline-item">
-                                        <div class="timeline-marker {{ $pledge->confirmed_at ? 'completed' : 'pending' }}">
+                                        <div class="timeline-marker {{ $pledge->status === 'cancelled' ? 'cancelled' : ($pledge->confirmed_at ? 'completed' : 'pending') }}">
                                             <i class="fas fa-hourglass-end"></i>
                                         </div>
                                         <div class="timeline-content">
                                             <h6>Konfirmasi Panti</h6>
-                                            <p class="text-muted small">{{ $pledge->confirmed_at ? $pledge->confirmed_at->format('d M Y H:i') : 'Menunggu...' }}</p>
+                                            @if($pledge->status === 'cancelled')
+                                                <p class="text-muted small">Ditolak oleh panti</p>
+                                            @else
+                                                <p class="text-muted small">{{ $pledge->confirmed_at ? $pledge->confirmed_at->format('d M Y H:i') : 'Menunggu...' }}</p>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="timeline-item">
-                                        <div class="timeline-marker {{ $pledge->completed_at ? 'completed' : 'pending' }}">
+                                        <div class="timeline-marker {{ $pledge->status === 'cancelled' ? 'cancelled' : ($pledge->completed_at ? 'completed' : 'pending') }}">
                                             <i class="fas fa-handshake"></i>
                                         </div>
                                         <div class="timeline-content">
-                                            <h6>Donasi Selesai</h6>
-                                            <p class="text-muted small">{{ $pledge->completed_at ? $pledge->completed_at->format('d M Y H:i') : 'Menunggu...' }}</p>
+                                            <h6>{{ $pledge->status === 'cancelled' ? 'Donasi Dibatalkan' : 'Donasi Selesai' }}</h6>
+                                            @if($pledge->status === 'cancelled')
+                                                <p class="text-muted small">Ditolak oleh panti</p>
+                                            @else
+                                                <p class="text-muted small">{{ $pledge->completed_at ? $pledge->completed_at->format('d M Y H:i') : 'Menunggu...' }}</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -189,6 +207,12 @@
                                     @csrf
                                     <button type="submit" class="btn btn-success">
                                         <i class="fas fa-check me-2"></i> Penuhi Sekarang
+                                    </button>
+                                </form>
+                                <form action="{{ route('wishlist.pledge.cancel', $pledge->id_pledge) }}" method="POST" style="display: inline;" onsubmit="event.preventDefault(); Swal.fire({title: 'Konfirmasi', text: 'Apakah Anda yakin ingin membatalkan penawaran donasi ini?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#d33', cancelButtonColor: '#3085d6', confirmButtonText: 'Ya, Batalkan!', cancelButtonText: 'Tidak'}).then((result) => {if (result.isConfirmed) {this.submit();}})">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-times me-2"></i> Batalkan Penawaran
                                     </button>
                                 </form>
                                 @else
@@ -249,6 +273,10 @@
         .timeline-marker.pending {
             background: #e9ecef;
             color: #6c757d;
+        }
+
+        .timeline-marker.cancelled {
+            background: #dc3545;
         }
 
         @keyframes pulse {

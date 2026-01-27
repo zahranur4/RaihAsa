@@ -68,39 +68,31 @@
                 <!-- Stats Cards -->
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-utensils"></i>
-                        </div>
+                        <div class="stat-icon"><i class="fas fa-utensils"></i></div>
                         <div class="stat-info">
-                            <h3>28</h3>
+                            <h3>{{ $stats['available'] ?? 0 }}</h3>
                             <p>Makanan Tersedia</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
+                        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
                         <div class="stat-info">
-                            <h3>15</h3>
+                            <h3>{{ $stats['claimed_by_panti'] ?? 0 }}</h3>
                             <p>Food Rescue Diambil</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-hourglass-half"></i>
-                        </div>
+                        <div class="stat-icon"><i class="fas fa-hourglass-half"></i></div>
                         <div class="stat-info">
-                            <h3>5</h3>
-                            <p>Kadaluarsa Hari Ini</h3>
+                            <h3>{{ $stats['expire_today'] ?? 0 }}</h3>
+                            <p>Kadaluarsa Hari Ini</p>
                         </div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-boxes"></i>
-                        </div>
+                        <div class="stat-icon"><i class="fas fa-boxes"></i></div>
                         <div class="stat-info">
-                            <h3>85 kg</h3>
-                            <p>Total Berat Diambil</p>
+                            <h3>{{ $stats['total_claimed_portion'] ?? 0 }} porsi</h3>
+                            <p>Total Porsi Diambil</p>
                         </div>
                     </div>
                 </div>
@@ -147,7 +139,7 @@
                             <table class="table table-hover align-middle">
                                 <thead>
                                     <tr>
-                                        <th>Restoran</th>
+                                        <th>Donatur</th>
                                         <th>Jenis Makanan</th>
                                         <th>Jumlah</th>
                                         <th>Kadaluarsa</th>
@@ -156,55 +148,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Restoran Padang Sederhana</td>
-                                        <td>Nasi Padang</td>
-                                        <td>20 porsi</td>
-                                        <td>Hari ini, 20:00</td>
-                                        <td><span class="badge bg-success">Tersedia</span></td>
-                                        <td><button class="btn btn-sm btn-primary" onclick="claimFood('FR001')">Klaim Sekarang</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Warung Nusantara</td>
-                                        <td>Sate Ayam</td>
-                                        <td>15 tusuk</td>
-                                        <td>Besok, 12:00</td>
-                                        <td><span class="badge bg-warning">Diklaim</span></td>
-                                        <td><button class="btn btn-sm btn-info" disabled>Anda Telah Mengklaim</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kedai Makanan</td>
-                                        <td>Mie Goreng</td>
-                                        <td>25 porsi</td>
-                                        <td>Hari ini, 18:00</td>
-                                        <td><span class="badge bg-success">Tersedia</span></td>
-                                        <td><button class="btn btn-sm btn-primary" onclick="claimFood('FR003')">Klaim Sekarang</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Restoran Padang Sederhana</td>
-                                        <td>Rendang</td>
-                                        <td>10 porsi</td>
-                                        <td>Hari ini, 21:00</td>
-                                        <td><span class="badge bg-danger">Kadaluarsa Hari Ini</span></td>
-                                        <td><button class="btn btn-sm btn-danger" onclick="claimFood('FR004')">Klaim Sekarang</button></td>
-                                    </tr>
+                                    @forelse($foods as $food)
+                                        <tr>
+                                            <td>{{ $food->donor_name }}</td>
+                                            <td>{{ $food->nama_makanan }}</td>
+                                            <td>{{ $food->porsi }} porsi</td>
+                                            <td>{{ $food->waktu_expired ? \Carbon\Carbon::parse($food->waktu_expired)->format('d M Y, H:i') : '-' }}</td>
+                                            <td><span class="badge bg-{{ $food->status_class }}">{{ $food->status_label }}</span></td>
+                                            <td>
+                                                @if($food->claimable)
+                                                    <form action="{{ route('food-rescue.claim', $food->id_food) }}" method="POST" onsubmit="event.preventDefault(); Swal.fire({title:'Klaim makanan ini?',icon:'question',showCancelButton:true,confirmButtonText:'Ya, klaim',cancelButtonText:'Batal'}).then((result)=>{if(result.isConfirmed){this.submit();}})">
+                                                        @csrf
+                                                        <button class="btn btn-sm btn-primary">Klaim Sekarang</button>
+                                                    </form>
+                                                @elseif($food->claimed_by_me)
+                                                    <button class="btn btn-sm btn-info" disabled>Anda Telah Mengklaim</button>
+                                                @else
+                                                    <button class="btn btn-sm btn-secondary" disabled>Tidak Tersedia</button>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6" class="text-center">Tidak ada makanan tersedia saat ini</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
-                        <!-- Pagination -->
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div class="mt-3 d-flex justify-content-center">
+                            {{ $foods->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

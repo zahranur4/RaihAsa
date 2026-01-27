@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     @vite(['resources/css/style.css', 'resources/css/components.css', 'resources/css/volunteer-dashboard.css'])
 </head>
 <body>
@@ -192,7 +193,7 @@
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <small class="text-muted">Butuh {{ $activity->needed_volunteers - $activity->registered_count }} relawan lagi</small>
-                                            <button class="btn btn-sm btn-primary" style="background-color: #000957; border-color: #000957;" data-bs-toggle="modal" data-bs-target="#registerActivityModal">
+                                            <button class="btn btn-sm btn-primary" style="background-color: #000957; border-color: #000957;" data-bs-toggle="modal" data-bs-target="#registerActivityModal" onclick="setActivityId({{ $activity->id_activity }})">
                                                 Daftar Sekarang
                                             </button>
                                         </div>
@@ -354,29 +355,33 @@
                 </div>
 
                 <!-- Form Pendaftaran -->
-                <form id="activityRegistrationForm">
+                <form id="activityRegistrationForm" method="POST">
+                    @csrf
+                    <input type="hidden" id="volunteer_id" name="volunteer_id" value="{{ auth()->user()->id }}">
+                    <input type="hidden" id="activity_id" name="activity_id" value="">
+                    
                     <!-- Input 1: Motivasi -->
                     <div class="mb-3">
                         <label for="motivation" class="form-label fw-bold">Motivasi Mengikuti</label>
-                        <textarea class="form-control" id="motivation" rows="3" placeholder="Ceritakan singkat kenapa Anda ingin ikut kegiatan ini..." required></textarea>
+                        <textarea class="form-control" id="motivation" name="motivation" rows="3" placeholder="Ceritakan singkat kenapa Anda ingin ikut kegiatan ini..." required></textarea>
                     </div>
 
                     <!-- Input 2: Kontak Darurat -->
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="emergencyName" class="form-label fw-bold">Nama Kontak Darurat</label>
-                            <input type="text" class="form-control" id="emergencyName" placeholder="Misal: Ibu / Teman" required>
+                            <input type="text" class="form-control" id="emergencyName" name="emergency_name" placeholder="Misal: Ibu / Teman" required>
                         </div>
                         <div class="col-md-6">
                             <label for="emergencyPhone" class="form-label fw-bold">No. Telepon</label>
-                            <input type="tel" class="form-control" id="emergencyPhone" placeholder="08..." required>
+                            <input type="tel" class="form-control" id="emergencyPhone" name="emergency_phone" placeholder="08..." required>
                         </div>
                     </div>
 
                     <!-- Input 3: Transportasi -->
                     <div class="mb-3">
                         <label class="form-label fw-bold">Transportasi ke Lokasi</label>
-                        <select class="form-select" required>
+                        <select class="form-select" id="transportation" name="transportation" required>
                             <option value="" selected disabled>Pilih kendaraan</option>
                             <option value="motor">Motor Pribadi</option>
                             <option value="mobil">Mobil Pribadi</option>
@@ -388,7 +393,7 @@
                     <!-- Input 4: Persetujuan -->
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="commitment" required>
+                            <input class="form-check-input" type="checkbox" id="commitment" name="commitment" required>
                             <label class="form-check-label small" for="commitment">
                                 Saya berkomitmen untuk hadir tepat waktu dan mengikuti arahan panitia.
                             </label>
@@ -458,46 +463,59 @@
         document.getElementById('activityRegistrationForm').reset();
     }
 
-    // 3. Handle Submit Form -> Munculkan Sukses & Ubah Tombol Luar
+    // 3. Set Activity ID when button is clicked
+    function setActivityId(activityId) {
+        document.getElementById('activity_id').value = activityId;
+        resetModal();
+    }
+
+    // 4. Handle Submit Form -> Send to Controller
     document.getElementById('activityRegistrationForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Sembunyikan Form
-        this.style.display = 'none';
-        
-        // Tampilkan Pesan Sukses
-        document.getElementById('registrationSuccess').classList.remove('d-none');
+        const formData = new FormData(this);
+        const actionUrl = "{{ route('volunteer-activities.store') }}";
 
-        // Ubah tombol di kartu rekomendasi (Simulasi UI)
-        const btn = document.getElementById('btn-activity-1');
-        if(btn) {
-            btn.innerHTML = '<i class="fas fa-hourglass-half me-1"></i> Menunggu Verifikasi';
-            btn.classList.replace('btn-primary', 'btn-warning');
-            btn.setAttribute('disabled', 'true');
-        }
+        fetch(actionUrl, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Sembunyikan Form
+                document.getElementById('activityRegistrationForm').style.display = 'none';
+                
+                // Tampilkan Pesan Sukses
+                document.getElementById('registrationSuccess').classList.remove('d-none');
+
+                // Tutup modal setelah 3 detik
+                setTimeout(() => {
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('registerActivityModal'));
+                    if (modal) modal.hide();
+                }, 3000);
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: data.message || 'Terjadi kesalahan saat mendaftarkan kegiatan',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            Swal.fire({
+                title: 'Error',
+                text: 'Terjadi kesalahan jaringan',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
     });
-
-    // 4. FUNGSI SIMULASI VERIFIKASI ADMIN
-    function simulateVerification() {
-        const btn = document.getElementById('btn-activity-1');
-        if(btn && btn.innerHTML.includes('Menunggu')) {
-            alert("Admin telah memverifikasi pendaftaran Anda!");
-            
-            btn.innerHTML = '<i class="fab fa-whatsapp me-1"></i> Masuk Grup WA';
-            btn.classList.replace('btn-warning', 'btn-success');
-            btn.removeAttribute('disabled'); // Aktifkan tombol
-            btn.onclick = function() { 
-                // Logika buka WhatsApp
-                window.open('https://chat.whatsapp.com', '_blank'); 
-            };
-        }
-    }
-    
-    // Jalankan simulasi otomatis 5 detik setelah submit (opsional, agar tidak bingung)
-    setTimeout(() => {
-        // Uncomment baris di bawah ini jika ingin otomatis terverifikasi 5 detik setelah klik Daftar
-        // simulateVerification(); 
-    }, 5000);
 
 </script>
 </body>

@@ -103,6 +103,25 @@ class DonasiMasukController extends Controller
         return redirect()->back()->with('success', 'Penerimaan donasi berhasil dikonfirmasi!');
     }
 
+    public function declineReceipt(Request $request, $pledgeId)
+    {
+        $pledge = DB::table('wishlist_pledges')->where('id_pledge', $pledgeId)->first();
+
+        if (!$pledge) {
+            return redirect()->back()->with('error', 'Donasi tidak ditemukan');
+        }
+
+        // Update pledge status to cancelled
+        DB::table('wishlist_pledges')
+            ->where('id_pledge', $pledgeId)
+            ->update([
+                'status' => 'cancelled',
+                'updated_at' => now(),
+            ]);
+
+        return redirect()->route('panti.donasi-masuk')->with('success', 'Donasi berhasil ditolak');
+    }
+
     public function viewDetail($pledgeId)
     {
         // Get current panti profile
