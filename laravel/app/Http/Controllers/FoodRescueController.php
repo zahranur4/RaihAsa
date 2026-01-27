@@ -22,11 +22,14 @@ class FoodRescueController extends Controller
         // Get all foods for the page
         $foods = $query->get();
 
-        // Add computed urgency level based on time remaining
+        // Add computed urgency level based on time remaining and extra fields for the UI
+        $isPanti = Auth::check() && $this->isPantiUser(Auth::id());
+
         $foods = $foods->map(function ($food) {
             $now = Carbon::now();
             $expireTime = Carbon::parse($food->waktu_expired);
             $hoursRemaining = $now->diffInHours($expireTime, false);
+            $secondsRemaining = $now->diffInSeconds($expireTime, false);
 
             if ($hoursRemaining < 2) {
                 $food->urgency = 'critical';
@@ -38,17 +41,18 @@ class FoodRescueController extends Controller
 
             // Get donor name
             $donatur = DB::table('donatur_profiles')->where('id_donatur', $food->id_donatur)->first();
-            $food->donor_name = $donatur->nama_lengkap ?? 'Unknown Donor';
+            $food->donor_name = $donatur->nama_lengkap ?? 'Donatur';
 
             // Get distance (simulated for now)
             $distances = [2.1, 3.2, 4.5, 5.7, 6.8];
             $food->distance = $distances[array_rand($distances)];
 
-            // Get hours remaining
+            // Time remaining helpers for the UI
             $food->hours_remaining = max(0, $hoursRemaining);
+            $food->countdown_seconds = max(0, $secondsRemaining);
 
             // Determine category based on food name
-            $foodName = strtolower($food->nama_makanan);
+            $foodName = strtolower($food->nama_makanan ?? '');
             if (strpos($foodName, 'nasi') !== false || strpos($foodName, 'mie') !== false || 
                 strpos($foodName, 'bakso') !== false || strpos($foodName, 'lumpia') !== false ||
                 strpos($foodName, 'soto') !== false || strpos($foodName, 'masak') !== false) {
@@ -66,10 +70,13 @@ class FoodRescueController extends Controller
                 $food->category = 'makanan-basah';
             }
 
+            // Claimable flag for the UI
+            $food->claimable = $food->status === 'available';
+
             return $food;
         });
 
-        return view('food-rescue.index', compact('foods'));
+        return view('food-rescue.index', compact('foods', 'isPanti'));
     }
 
     public function claim($id)
@@ -289,16 +296,25 @@ class FoodRescueController extends Controller
                 'updated_at' => now(),
             ]);
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Donasi Anda berhasil dikirim! Menunggu verifikasi admin.'
-            ]);
+            // If request expects JSON (AJAX), return JSON. Otherwise redirect back with flash message.
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Donasi Anda berhasil dikirim! Menunggu verifikasi admin.'
+                ]);
+            }
+
+            return redirect()->route('food-rescue')->with('success', 'Donasi Anda berhasil dikirim! Menunggu verifikasi admin.');
 
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
-            ], 500);
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+                ], 500);
+            }
+
+            return redirect()->route('food-rescue')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
 
