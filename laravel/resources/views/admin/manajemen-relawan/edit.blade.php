@@ -62,6 +62,23 @@
                         <small class="text-muted">16 digit NIK</small>
                     </div>
                     
+                    @if($relawan->ktp_file)
+                    <div class="mb-3">
+                        <label class="form-label">Kartu Identitas (KTP/SIM)</label>
+                        <div class="border rounded p-3">
+                            @if(Str::endsWith($relawan->ktp_file, '.pdf'))
+                                <a href="{{ asset('storage/' . $relawan->ktp_file) }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-file-pdf me-2"></i> Lihat Dokumen PDF
+                                </a>
+                            @else
+                                <a href="{{ asset('storage/' . $relawan->ktp_file) }}" target="_blank">
+                                    <img src="{{ asset('storage/' . $relawan->ktp_file) }}" alt="KTP" class="img-fluid" style="max-height: 300px;">
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                    @endif
+                    
                     <div class="mb-3">
                         <label for="skill" class="form-label">Keahlian & Minat</label>
                         <textarea name="skill" id="skill" class="form-control" rows="4">{{ old('skill', $relawan->skill) }}</textarea>

@@ -62,4 +62,73 @@ class AuthController extends Controller
 
         return redirect('/');
     }
+
+    // Tampilkan form forgot password (GET)
+    public function showForgotPassword()
+    {
+        return view('forgot-password.request-email');
+    }
+
+    // Proses request password reset - validasi email
+    public function processForgotPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        // Check if email exists
+        $user = DB::table('users')->where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'Email tidak ditemukan.'])->withInput();
+        }
+
+        // Store email in session to proceed to reset password form
+        $request->session()->put('forgot_password_email', $request->email);
+
+        return redirect()->route('reset-password-form');
+    }
+
+    // Tampilkan form reset password
+    public function showResetPasswordForm()
+    {
+        $email = session('forgot_password_email');
+
+        if (!$email) {
+            return redirect()->route('forgot-password')->withErrors(['session' => 'Session expired. Please try again.']);
+        }
+
+        return view('forgot-password.reset-password', compact('email'));
+    }
+
+    // Proses reset password
+    public function processResetPassword(Request $request)
+    {
+        $email = session('forgot_password_email');
+
+        if (!$email) {
+            return redirect()->route('forgot-password')->withErrors(['session' => 'Session expired. Please try again.']);
+        }
+
+        $request->validate([
+            'password' => ['required', 'string', 'min:8', 'regex:/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/', 'confirmed'],
+            'password_confirmation' => 'required',
+        ], [
+            'password.regex' => 'Password harus minimal 8 karakter dan mengandung huruf serta angka.',
+            'password.confirmed' => 'Password dan konfirmasi password tidak cocok.',
+        ]);
+
+        // Update password in database
+        DB::table('users')
+            ->where('email', $email)
+            ->update([
+                'kata_sandi' => Hash::make($request->password),
+                'updated_at' => now(),
+            ]);
+
+        // Clear the session
+        $request->session()->forget('forgot_password_email');
+
+        return redirect()->route('login')->with('success', 'Password berhasil direset. Silakan masuk dengan password baru Anda.');
+    }
 }

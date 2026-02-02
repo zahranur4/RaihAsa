@@ -39,7 +39,8 @@ class VolunteerRegistrationController extends Controller
 
         $validated = $request->validate([
             'nama_lengkap' => 'required|string|max:255',
-            'nik' => 'nullable|string|max:16',
+            'nik' => 'required|string|size:16|regex:/^[0-9]{16}$/',
+            'ktp_file' => 'required|file|mimes:jpeg,jpg,png,pdf|max:2048',
             'skill' => 'nullable|string|max:1000',
             'kategori' => 'required|string',
         ]);
@@ -52,10 +53,17 @@ class VolunteerRegistrationController extends Controller
             return redirect()->back()->withErrors(['kategori' => 'Kuota kategori ini sudah penuh.'])->withInput();
         }
 
+        // Handle file upload
+        $ktpPath = null;
+        if ($request->hasFile('ktp_file')) {
+            $ktpPath = $request->file('ktp_file')->store('volunteer-identity', 'public');
+        }
+
         RelawanProfile::create([
             'id_user' => Auth::id(),
             'nama_lengkap' => $validated['nama_lengkap'],
             'nik' => $validated['nik'],
+            'ktp_file' => $ktpPath,
             'skill' => $validated['skill'],
             'kategori' => $validated['kategori'],
             'status_verif' => 'pending',

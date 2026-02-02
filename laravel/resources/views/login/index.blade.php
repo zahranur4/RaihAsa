@@ -138,7 +138,7 @@
                         </div>
                         <div class="text-center mt-3">
                             <p>Belum punya akun? <a href="{{ route('register') }}">Daftar sekarang</a></p>
-                            <p><a href="#" class="text-primary">Lupa password?</a></p>
+                            <p><a href="{{ route('forgot-password') }}" class="text-primary">Lupa password?</a></p>
                         </div>
                     </form>
                 </div>

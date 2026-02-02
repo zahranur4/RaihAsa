@@ -18,6 +18,7 @@ class RelawanProfile extends Model
         'id_user',
         'nama_lengkap',
         'nik',
+        'ktp_file',
         'skill',
         'kategori',
         'status_verif',

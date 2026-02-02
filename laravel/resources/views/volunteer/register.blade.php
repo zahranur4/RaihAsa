@@ -84,7 +84,7 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('volunteer.register.store') }}" method="POST">
+                            <form action="{{ route('volunteer.register.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="mb-3">
@@ -95,10 +95,17 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="nik" class="form-label">NIK (Nomor Induk Kependudukan)</label>
+                                    <label for="nik" class="form-label">NIK (Nomor Induk Kependudukan) <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="nik" name="nik" 
-                                           value="{{ old('nik') }}" maxlength="16" pattern="[0-9]{16}">
-                                    <small class="text-muted">16 digit NIK (opsional)</small>
+                                           value="{{ old('nik') }}" maxlength="16" pattern="[0-9]{16}" required>
+                                    <small class="text-muted">16 digit NIK sesuai identitas</small>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="ktp_file" class="form-label">Upload Kartu Identitas (KTP/SIM) <span class="text-danger">*</span></label>
+                                    <input type="file" class="form-control" id="ktp_file" name="ktp_file" 
+                                           accept="image/jpeg,image/jpg,image/png,application/pdf" required>
+                                    <small class="text-muted">Format: JPG, PNG, atau PDF. Maksimal 2MB</small>
                                 </div>
 
                                 <div class="mb-3">

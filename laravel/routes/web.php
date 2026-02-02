@@ -17,6 +17,12 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+// Forgot password routes
+Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('forgot-password');
+Route::post('/forgot-password', [AuthController::class, 'processForgotPassword'])->name('forgot-password.submit');
+Route::get('/reset-password', [AuthController::class, 'showResetPasswordForm'])->name('reset-password-form');
+Route::post('/reset-password', [AuthController::class, 'processResetPassword'])->name('reset-password.submit');
+
 Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
 Route::post('/register/donor', [RegisterController::class, 'registerDonor'])->name('register.donor');
 Route::post('/register/recipient', [RegisterController::class, 'registerRecipient'])->name('register.recipient');
